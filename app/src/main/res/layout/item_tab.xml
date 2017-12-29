@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/tab_iv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:src="@drawable/icon_dakai_nor"/>
+
+    <TextView
+        android:id="@+id/tab_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:textSize="12sp"
+        android:textColor="@color/gray_text"
+        tools:text="打卡"/>
+</merge>

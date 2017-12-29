@@ -1,0 +1,33 @@
+package com.habitree.xueshu.xs.activity;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+
+import com.habitree.xueshu.R;
+import com.habitree.xueshu.xs.util.UIUtil;
+
+
+public abstract class BaseActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(setLayoutId());
+        initStatusBar();
+        initView();
+        initListener();
+        initData();
+    }
+
+    protected void initStatusBar(){
+        UIUtil.setStatusBar(this,getResources().getColor(R.color.white));
+    }
+
+    protected abstract int setLayoutId();
+
+    protected abstract void initView();
+
+    protected abstract void initListener();
+
+    protected abstract void initData();
+}

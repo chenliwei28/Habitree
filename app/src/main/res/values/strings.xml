@@ -1,3 +1,29 @@
 <resources>
-    <string name="app_name">XueShu</string>
+    <!--按文字的拼音首字母分类-->
+    <string name="app_name">学树</string>
+
+    <!--A-->
+    <!--B-->
+    <!--C-->
+    <!--D-->
+    <string name="punch_card">打卡</string>
+    <!--E-->
+    <!--F-->
+    <!--G-->
+    <!--H-->
+    <!--I-->
+    <!--J-->
+    <string name="supervision">监督</string>
+    <!--K-->
+    <!--L-->
+    <!--M-->
+
+    <!--N-->
+    <!--X-->
+    <string name="message">消息</string>
+    <!--W-->
+    <string name="mine">我</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

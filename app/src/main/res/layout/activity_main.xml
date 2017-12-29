@@ -1,18 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.habitree.xueshu.MainActivity">
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="com.habitree.xueshu.main.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:id="@+id/fragment_fl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <View style="@style/Line"/>
+
+    <LinearLayout
+        android:id="@+id/tab_ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <com.habitree.xueshu.xs.view.TabItemView
+            android:id="@+id/pc_tiv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:tab_text="@string/punch_card"
+            app:normal_image_src="@drawable/icon_dakai_nor"
+            app:selected_image_src="@drawable/icon_dakai_per"
+            app:normal_text_color="@color/gray_text"
+            app:selected_text_color="@color/orange"/>
+
+        <com.habitree.xueshu.xs.view.TabItemView
+            android:id="@+id/sv_tiv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:tab_text="@string/supervision"
+            app:normal_image_src="@drawable/icon_jiandu_nor"
+            app:selected_image_src="@drawable/icon_jiandu_per"
+            app:normal_text_color="@color/gray_text"
+            app:selected_text_color="@color/orange"/>
+
+        <com.habitree.xueshu.xs.view.TabItemView
+            android:id="@+id/ms_tiv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:tab_text="@string/message"
+            app:normal_image_src="@drawable/icon_xiaoxi_nor"
+            app:selected_image_src="@drawable/icon_xiaoxi_per"
+            app:normal_text_color="@color/gray_text"
+            app:selected_text_color="@color/orange"/>
+
+        <com.habitree.xueshu.xs.view.TabItemView
+            android:id="@+id/me_tiv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:tab_text="@string/mine"
+            app:normal_image_src="@drawable/icon_wo_nor"
+            app:selected_image_src="@drawable/icon_wo_per"
+            app:normal_text_color="@color/gray_text"
+            app:selected_text_color="@color/orange"/>
+    </LinearLayout>
+</LinearLayout>

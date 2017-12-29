@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TabItemView">
+        <attr name="normal_image_src" format="reference"/>
+        <attr name="selected_image_src" format="reference"/>
+        <attr name="normal_text_color" format="reference|color|integer"/>
+        <attr name="selected_text_color" format="reference|color|integer"/>
+        <attr name="tab_text" format="reference|string"/>
+    </declare-styleable>
+
+    <declare-styleable name="MyActionBar">
+        <attr name="mode" format="integer"/>
+        <attr name="title_text" format="integer|reference"/>
+        <attr name="back_btn_img" format="integer|reference"/>
+        <attr name="back_btn_visible" format="boolean"/>
+        <attr name="right_btn_text" format="integer|reference"/>
+        <attr name="right_btn_img" format="integer|reference"/>
+    </declare-styleable>
+</resources>
