@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
+import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BasePresenterFragment;
 
 
-public class MyFragment extends BasePresenterFragment<MyPresenter> {
+public class MyFragment extends BasePresenterFragment<MyPresenter> implements MyView{
 
 
     @Override

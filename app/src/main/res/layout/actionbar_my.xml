@@ -34,6 +34,7 @@
         android:layout_marginRight="10dp"
         android:scaleType="center"
         android:layout_alignParentEnd="true"
+        android:visibility="gone"
         tools:src="@drawable/icon_gd"/>
 
     <TextView
@@ -46,5 +47,6 @@
         android:gravity="center"
         android:textSize="14sp"
         android:textColor="@color/orange"
+        android:visibility="gone"
         tools:text="下一步"/>
 </merge>

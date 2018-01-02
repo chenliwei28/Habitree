@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context="com.habitree.xueshu.login.activity.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/logo_denglv" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/orange"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/boil_yourself"
+                android:textColor="@color/gray_text"
+                android:textSize="26sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:text="@string/begin_with_a_little_habit"
+            android:textColor="@color/gray_text"
+            android:textSize="15sp" />
+
+        <com.habitree.xueshu.xs.view.LoginEditText
+            android:id="@+id/phone_let"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="29dp"
+            app:hint="@string/please_enter_phone_number"
+            app:left_img="@drawable/icon_yonghu" />
+
+        <com.habitree.xueshu.xs.view.LoginEditText
+            android:id="@+id/password_let"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="5dp"
+            app:hint="@string/please_enter_password"
+            app:input_mode="1"
+            app:left_img="@drawable/icon_lock_open" />
+
+        <TextView
+            android:id="@+id/login_btn"
+            style="@style/Button"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/login" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:id="@+id/register_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="@color/gray_text"
+                android:text="@string/register_now"/>
+
+            <TextView
+                android:id="@+id/forget_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="@color/gray_text"
+                android:text="@string/forget_password"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical">
+
+            <View style="@style/Line"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/quick_login"
+                android:textSize="15sp"
+                android:textColor="@color/gray_text"/>
+
+            <View style="@style/Line"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp">
+
+            <ImageView
+                android:id="@+id/wx_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="center"
+                android:src="@drawable/icon_weixin"/>
+
+            <ImageView
+                android:id="@+id/weibo_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="center"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:src="@drawable/icon_weibo"/>
+
+            <ImageView
+                android:id="@+id/qq_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="center"
+                android:src="@drawable/icon_qq"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

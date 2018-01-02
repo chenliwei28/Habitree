@@ -1,10 +1,12 @@
 package com.habitree.xueshu.main;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.login.activity.LoginActivity;
 import com.habitree.xueshu.message.fragment.MessageFragment;
 import com.habitree.xueshu.mine.fragment.MyFragment;
 import com.habitree.xueshu.punchcard.fragment.PunchCardFragment;
@@ -57,17 +59,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void initData() {
         mManager = getSupportFragmentManager();
-        mPcFragment = PunchCardFragment.newInstance(0);
-        mSvFragment = SupervisionFragment.newInstance(1);
-        mMsFragment = MessageFragment.newInstance(2);
-        mMeFragment = MyFragment.newInstance(3);
-        FragmentTransaction transaction = mManager.beginTransaction();
-        transaction.add(R.id.fragment_fl,mPcFragment);
-        transaction.add(R.id.fragment_fl,mSvFragment);
-        transaction.add(R.id.fragment_fl,mMsFragment);
-        transaction.add(R.id.fragment_fl,mMeFragment);
-        transaction.commit();
         changeTab(mPcTiv,0);
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
@@ -95,15 +88,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         switch (position){
             case 0:
                 if (mPcFragment!=null) transaction.show(mPcFragment);
+                else {
+                    mPcFragment = PunchCardFragment.newInstance(0);
+                    transaction.add(R.id.fragment_fl,mPcFragment);
+                }
                 break;
             case 1:
                 if (mSvFragment!=null) transaction.show(mSvFragment);
+                else {
+                    mSvFragment = SupervisionFragment.newInstance(1);
+                    transaction.add(R.id.fragment_fl,mSvFragment);
+                }
                 break;
             case 2:
                 if (mMsFragment!=null) transaction.show(mMsFragment);
+                else {
+                    mMsFragment = MessageFragment.newInstance(2);
+                    transaction.add(R.id.fragment_fl,mMsFragment);
+                }
                 break;
             case 3:
                 if (mMeFragment!=null) transaction.show(mMeFragment);
+                else {
+                    mMeFragment = MyFragment.newInstance(3);
+                    transaction.add(R.id.fragment_fl,mMeFragment);
+                }
                 break;
         }
         transaction.commit();

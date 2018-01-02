@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.UIUtil;
 
 
@@ -13,6 +14,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayoutId());
+        AppManager.getAppManager().addActivity(this);
         initStatusBar();
         initView();
         initListener();

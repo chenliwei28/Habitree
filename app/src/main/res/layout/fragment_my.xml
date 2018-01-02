@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/background"
     tools:context="com.habitree.xueshu.mine.fragment.MyFragment">
@@ -13,7 +14,12 @@
 
         <com.habitree.xueshu.xs.view.MyActionBar
             android:layout_width="match_parent"
-            android:layout_height="@dimen/actionbar_height"/>
+            android:layout_height="@dimen/actionbar_height"
+            android:layout_marginTop="@dimen/status_bar_height"
+            app:mode="1"
+            app:back_btn_visible="false"
+            app:title_text="@string/member_home"
+            app:right_btn_text="@string/my_forest"/>
     </FrameLayout>
 
 </LinearLayout>

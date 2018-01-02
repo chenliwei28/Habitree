@@ -9,23 +9,30 @@ import android.view.ViewGroup;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class PunchCardFragment extends Fragment {
+import com.habitree.xueshu.xs.fragment.BaseFragment;
 
 
-    public PunchCardFragment() {
-        // Required empty public constructor
-    }
+public class PunchCardFragment extends BaseFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_punch_card, container, false);
+    protected int setLayoutId() {
+        return R.layout.fragment_punch_card;
+    }
+
+    @Override
+    protected void initView(View view) {
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     public static PunchCardFragment newInstance(int position) {
