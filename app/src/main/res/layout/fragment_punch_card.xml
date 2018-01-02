@@ -44,5 +44,15 @@
         android:scaleType="center"
         android:src="@drawable/icon_gd" />
 
-    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/card_vp"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@id/month_tv"
+        android:layout_marginTop="100dp"
+        android:clipToPadding="false"/>
 </RelativeLayout>

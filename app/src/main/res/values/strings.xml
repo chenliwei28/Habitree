@@ -42,6 +42,7 @@
     <string name="phone_number_must_be_not_empty">手机号不能为空</string>
     <!--X-->
     <string name="message">消息</string>
+    <string name="detail">详情</string>
     <!--W-->
     <string name="mine">我</string>
     <string name="forget_password">忘记密码？</string>
