@@ -1,23 +1,34 @@
 package com.habitree.xueshu.punchcard.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
 import com.habitree.xueshu.punchcard.adapter.CardPagerAdapter;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
+import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
 
+import java.util.Calendar;
 
-public class PunchCardFragment extends BaseFragment {
+
+public class PunchCardFragment extends BaseFragment implements View.OnClickListener{
 
     private ViewPager mCardVp;
+    private TextView mDateTv;
+    private TextView mMonthTv;
+    private ImageView mAddIv;
+    private TextView mCountTv;
 
     @Override
     protected int setLayoutId() {
@@ -26,6 +37,10 @@ public class PunchCardFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        mDateTv = view.findViewById(R.id.date_tv);
+        mMonthTv = view.findViewById(R.id.month_tv);
+        mAddIv = view.findViewById(R.id.add_iv);
+        mCountTv = view.findViewById(R.id.count_tv);
         mCardVp = view.findViewById(R.id.card_vp);
         mCardVp.setPageMargin(100);
         mCardVp.setOffscreenPageLimit(3);
@@ -33,14 +48,28 @@ public class PunchCardFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-
+        mAddIv.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         CardPagerAdapter adapter = new CardPagerAdapter(getContext());
+        adapter.setListener(new CardPagerAdapter.CardClickListener() {
+            @Override
+            public void detailClick(int position) {
+                startActivity(new Intent(getContext(), HabitDetailActivity.class));
+            }
+
+            @Override
+            public void punchClick(int position) {
+
+            }
+        });
         mCardVp.setAdapter(adapter);
         mCardVp.setPageTransformer(false,new CardPagerTransformer());
+        mDateTv.setText(TimeUtil.getTodayInfo(Calendar.DATE));
+        String s = TimeUtil.getTodayInfo(Calendar.YEAR)+"."+TimeUtil.getTodayInfo(Calendar.MONTH);
+        mMonthTv.setText(s);
     }
 
     public static PunchCardFragment newInstance(int position) {
@@ -49,5 +78,14 @@ public class PunchCardFragment extends BaseFragment {
         PunchCardFragment fragment = new PunchCardFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.add_iv:
+
+                break;
+        }
     }
 }

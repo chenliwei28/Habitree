@@ -8,51 +8,73 @@
     <!--C-->
     <string name="resend">重新发送</string>
     <string name="resend_time">重新发送（%d秒）</string>
+    <string name="repeat_day_count">重复天数</string>
+    <string name="time_of_duration">持续时间</string>
     <string name="error_phone_number">错误的手机号</string>
+    <string name="the_growing_up_habits">成长中的习惯：%d</string>
     <string name="begin_with_a_little_habit">从一个小习惯开始</string>
     <!--D-->
-    <string name="punch_card">打卡</string>
     <string name="login">登录</string>
+    <string name="punch_card">打卡</string>
+    <string name="rate_of_punch_card">打卡率</string>
+    <string name="click_to_punch_card">点击打卡</string>
+
     <!--E-->
     <!--F-->
+    <string name="abandon_habit">放弃习惯</string>
+    <string name="penalty_settings">罚金设置</string>
     <string name="send_auth_code">发送验证码</string>
     <!--G-->
     <!--H-->
     <!--I-->
     <!--J-->
     <string name="supervision">监督</string>
+    <string name="recording_mode">记录方式</string>
+    <string name="today_has_been_punch_card">今天已打卡（待审核）</string>
     <!--K-->
     <string name="quick_login">快速登录</string>
     <!--L-->
     <string name="register_now">立即注册</string>
+    <string name="continuous_of_punch_card">连续打卡次数</string>
     <!--M-->
     <string name="password">密码</string>
     <string name="password_must_not_be_empty">密码不能为空</string>
     <!--N-->
+    <!--P-->
+    <string name="foster_state">培养状态</string>
     <!--Q-->
     <string name="confirm">确认</string>
     <string name="confirm_password">确认密码</string>
-    <string name="please_enter_phone_number">请输入手机号</string>
     <string name="please_enter_password">请输入登录密码</string>
+    <string name="please_enter_phone_number">请输入手机号</string>
     <string name="please_enter_password_again">请再次输入密码</string>
     <string name="please_set_password_from_eight_to_sixteen">请设置8&#8211;16位密码，可包含数字、字母、字符</string>
     <!--S-->
     <string name="set_password">设置密码</string>
     <string name="phone_auth_code">手机验证码</string>
     <string name="phone_number_must_be_not_empty">手机号不能为空</string>
+    <!--T-->
+    <string name="statistics">统计</string>
+    <string name="reminder_time">提醒时间</string>
     <!--X-->
-    <string name="message">消息</string>
     <string name="detail">详情</string>
+    <string name="message">消息</string>
+    <string name="habit_detail">习惯详情</string>
+    <string name="number_of_penalty_need_pay">需支付罚金</string>
     <!--W-->
     <string name="mine">我</string>
-    <string name="forget_password">忘记密码？</string>
     <string name="my_forest">我的森林</string>
+    <string name="forget_password">忘记密码？</string>
     <!--Y-->
     <string name="member_home">用户中心</string>
+    <string name="paid_deposit">已付押金</string>
+    <string name="privacy_settings">隐私设置</string>
     <string name="already_send_code_to_your_phone">已经向您的手机发送验证码，请查收</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--Z-->
     <string name="register_account">注册账号</string>
+    <string name="total_number_of_punch_card">总打卡次数</string>
     <!--##-->
     <string name="phone_head">+86</string>
+    <string name="count_of_not_punch_card">（%d个未打卡）</string>
 </resources>

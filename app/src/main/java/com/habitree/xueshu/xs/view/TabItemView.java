@@ -55,7 +55,7 @@ public class TabItemView extends LinearLayout{
         String t = array.getString(R.styleable.TabItemView_tab_text);
         mTextView.setText(t);
         int nColor = array.getResourceId(R.styleable.TabItemView_normal_text_color,0);
-        int sColor = array.getResourceId(R.styleable.TabItemView_selected_text_color,0);
+        int sColor = array.getResourceId(R.styleable.TabItemView_select_text_color,0);
         mNormalColor = getResources().getColor(nColor);
         mSelectedColor = getResources().getColor(sColor);
         array.recycle();

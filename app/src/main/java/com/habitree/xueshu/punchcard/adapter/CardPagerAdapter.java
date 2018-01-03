@@ -16,6 +16,7 @@ public class CardPagerAdapter extends PagerAdapter {
 
     private String[] list = {"1", "2", "3", "4", "5"};
     private Context context;
+    private CardClickListener listener;
 
     public CardPagerAdapter(Context context) {
         this.context = context;
@@ -32,8 +33,20 @@ public class CardPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_card,container,false);
+        view.findViewById(R.id.detail_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener!=null)listener.detailClick(position);
+            }
+        });
+        view.findViewById(R.id.punch_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener!=null)listener.punchClick(position);
+            }
+        });
         container.addView(view);
         return view;
     }
@@ -43,4 +56,12 @@ public class CardPagerAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
+    public void setListener(CardClickListener listener){
+        this.listener = listener;
+    }
+
+    public interface CardClickListener{
+        void detailClick(int position);
+        void punchClick(int position);
+    }
 }

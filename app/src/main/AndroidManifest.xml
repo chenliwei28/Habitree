@@ -30,7 +30,8 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity android:name=".login.activity.SendAuthCodeActivity" />
-        <activity android:name=".login.activity.SetPasswordActivity"></activity>
+        <activity android:name=".login.activity.SetPasswordActivity" />
+        <activity android:name=".punchcard.activity.HabitDetailActivity"></activity>
     </application>
 
 </manifest>
