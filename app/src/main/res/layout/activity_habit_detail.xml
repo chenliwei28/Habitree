@@ -1,137 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.habitree.xueshu.punchcard.activity.HabitDetailActivity">
 
-    <LinearLayout
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:id="@+id/habit_detail_mab"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/habit_detail" />
 
-        <com.habitree.xueshu.xs.view.MyActionBar
-            android:id="@+id/habit_detail_mab"
+    <View style="@style/ShadowLine" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/actionbar_height"
-            app:title_text="@string/habit_detail" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <View style="@style/ShadowLine" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="@color/white"
+                android:paddingBottom="12dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="12dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:background="@color/white"
-            android:paddingBottom="12dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="12dp">
+                <com.habitree.xueshu.xs.view.RoundImageView
+                    android:id="@+id/head_riv"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/img_tupianjilv"
+                    app:type="circle" />
 
-            <com.habitree.xueshu.xs.view.RoundImageView
-                android:id="@+id/head_riv"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/img_tupianjilv"
-                app:type="circle" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toEndOf="@id/head_riv"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/name_tv"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toEndOf="@id/head_riv"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textColor="@color/black_text"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/time_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_text"
+                        android:textSize="14sp"
+                        tools:text="开始于2017年12月2日" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/count_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/black_text"
-                    android:textSize="17sp" />
+                    android:textSize="16sp"
+                    tools:text="第 3/30天" />
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/time_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_text"
-                    android:textSize="14sp"
-                    tools:text="开始于2017年12月2日" />
-            </LinearLayout>
+            <View style="@style/Line" />
+
+            <com.habitree.xueshu.xs.view.calendarview.CalendarView
+                android:id="@+id/detail_cv"
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:background="@color/white"
+                app:calendar_card_view="com.habitree.xueshu.xs.view.calendarview.ColorfulCalendarCardView"
+                app:current_day_text_color="@color/white"
+                app:current_month_lunar_text_color="@color/gray_text"
+                app:current_month_text_color="@color/black_text"
+                app:min_year="2004"
+                app:other_month_text_color="@color/gray_text"
+                app:scheme_theme_color="@color/gray_text"
+                app:selected_lunar_text_color="@color/white"
+                app:selected_text_color="@color/white"
+                app:selected_theme_color="@color/red_text"
+                app:week_background="@color/white"
+                app:week_text_color="@color/black_text" />
+
+            <View
+                style="@style/Line"
+                android:layout_marginTop="6dp" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/reminder_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/reminder_time" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/repeat_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/repeat_day_count" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/duration_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/time_of_duration" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/privacy_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/privacy_settings" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/mod_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/recording_mode" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/penalty_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/penalty_settings" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/paid_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/paid_deposit" />
 
             <TextView
-                android:id="@+id/count_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/bg_gray"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="@string/statistics"
                 android:textColor="@color/black_text"
-                android:textSize="16sp"
-                tools:text="第 3/30天" />
-        </RelativeLayout>
+                android:textSize="14sp" />
 
-        <View style="@style/Line" />
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/foster_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/foster_state" />
 
-        <com.habitree.xueshu.xs.view.calendarview.CalendarView
-            android:id="@+id/detail_cv"
-            android:layout_width="match_parent"
-            android:layout_height="275dp"
-            android:background="@color/white"
-            app:calendar_card_view="com.habitree.xueshu.xs.view.calendarview.ColorfulCalendarCardView"
-            app:current_day_text_color="@color/white"
-            app:current_month_lunar_text_color="@color/gray_text"
-            app:current_month_text_color="@color/black_text"
-            app:min_year="2004"
-            app:other_month_text_color="@color/gray_text"
-            app:scheme_theme_color="@color/gray_text"
-            app:selected_lunar_text_color="@color/white"
-            app:selected_text_color="@color/white"
-            app:selected_theme_color="@color/red_text"
-            app:week_background="@color/white"
-            app:week_text_color="@color/black_text" />
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/total_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/total_number_of_punch_card" />
 
-        <View
-            style="@style/Line"
-            android:layout_marginTop="6dp" />
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/continuous_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/continuous_of_punch_card" />
 
-        <com.habitree.xueshu.xs.view.CustomItemView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/custom_item_height"
-            app:title="@string/reminder_time" />
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/rate_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/rate_of_punch_card" />
 
-        <com.habitree.xueshu.xs.view.CustomItemView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/custom_item_height"
-            app:title="@string/repeat_day_count" />
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/need_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/number_of_penalty_need_pay" />
 
-        <com.habitree.xueshu.xs.view.CustomItemView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/custom_item_height"
-            app:title="@string/time_of_duration" />
-
-        <com.habitree.xueshu.xs.view.CustomItemView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/custom_item_height"
-            app:title="@string/privacy_settings" />
-
-        <com.habitree.xueshu.xs.view.CustomItemView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/custom_item_height"
-            app:title="@string/recording_mode" />
-
-        <com.habitree.xueshu.xs.view.CustomItemView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/custom_item_height"
-            app:title="@string/penalty_settings" />
-
-        <com.habitree.xueshu.xs.view.CustomItemView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/custom_item_height"
-            app:title="@string/paid_deposit" />
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/abandon_btn"
+                style="@style/Button"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="17dp"
+                android:text="@string/abandon_habit" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

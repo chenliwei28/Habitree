@@ -580,7 +580,7 @@ public abstract class WeekView extends View implements View.OnClickListener {
      * 2、绘制矩形选中效果，也可以在这里计算矩形宽和高
      */
     protected void onPreviewHook() {
-        // TODO: 2017/11/16
+
     }
 
 
@@ -592,7 +592,7 @@ public abstract class WeekView extends View implements View.OnClickListener {
      */
     @SuppressWarnings("unused")
     protected void onLoopStart(int x) {
-        // TODO: 2017/11/16
+
     }
 
     /**

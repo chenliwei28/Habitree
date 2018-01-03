@@ -1,9 +1,10 @@
 package com.habitree.xueshu.xs.util;
 
 
-import android.text.TextUtils;
 
+import android.text.TextUtils;
 import com.habitree.xueshu.xs.Constant;
+
 
 public class CommUtil {
 
