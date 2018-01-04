@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    tools:context="com.habitree.xueshu.punchcard.activity.PlantTreeActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:id="@+id/plant_mab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/plant_a_tree" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_below="@id/plant_mab"
+        android:background="@color/light_orange"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="@string/plant_a_tree_ba"
+            android:textColor="@color/white"
+            android:textSize="21sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/plant_tree_long_text"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/choose_a_tree_with_you"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/card_vp"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
+        android:layout_below="@id/plant_mab"
+        android:layout_marginTop="150dp"
+        android:clipToPadding="false"
+        android:paddingBottom="5dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:paddingTop="5dp" />
+
+    <TextView
+        android:id="@+id/choose_tv"
+        android:layout_width="165dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/shape_round_corner_orange_button"
+        android:gravity="center"
+        android:text="@string/it_is_you"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</RelativeLayout>

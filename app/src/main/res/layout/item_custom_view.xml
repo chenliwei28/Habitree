@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="45dp"
@@ -16,20 +16,34 @@
         android:textSize="15sp"
         tools:text="提醒时间" />
 
-    <TextView
-        android:id="@+id/detail_tv"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:textColor="@color/black_text"
-        android:textSize="15sp"
-        tools:text="21:00" />
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/detail_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textColor="@color/black_text"
+            android:textSize="15sp"
+            tools:text="21:00" />
+
+        <ImageView
+            android:id="@+id/next_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginRight="12dp"
+            android:scaleType="center"
+            android:src="@drawable/bth_fanhui_nor"
+            android:visibility="gone" />
+    </LinearLayout>
 
     <View
         android:id="@+id/line"
         style="@style/Line"
         android:layout_alignParentBottom="true" />
-</merge>
+</RelativeLayout>

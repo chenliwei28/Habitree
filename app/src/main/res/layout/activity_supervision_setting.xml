@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/background"
+    tools:context="com.habitree.xueshu.punchcard.activity.SupervisionSettingActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:id="@+id/super_mab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:right_btn_text="@string/confirm"
+        app:title_text="@string/supervision_setting" />
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/super_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="12dp"
+        app:title="@string/choose_supervisor"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/penalty_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="12dp"
+        app:title="@string/penalty_settings"
+        app:next_visible="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/gray_text"
+        android:textSize="14sp"
+        android:text="@string/every_time_do_not_punch_card_will_deduct_money"/>
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class MyActionBar extends RelativeLayout {
     private TextView mTitleTv;
     private TextView mRightTv;
     private ImageView mRightIv;
+    private View mShadowLine;
 
     public MyActionBar(Context context) {
         super(context);
@@ -42,6 +44,7 @@ public class MyActionBar extends RelativeLayout {
         mTitleTv = findViewById(R.id.title_tv);
         mRightIv = findViewById(R.id.right_iv);
         mRightTv = findViewById(R.id.right_tv);
+        mShadowLine = findViewById(R.id.shadow_line);
     }
 
     private void initAttributeSet(@Nullable AttributeSet attrs){
@@ -58,6 +61,7 @@ public class MyActionBar extends RelativeLayout {
                 setBackgroundResource(R.color.trans);
                 mTitleTv.setTextColor(getResources().getColor(R.color.white));
                 mRightTv.setTextColor(getResources().getColor(R.color.white));
+                mShadowLine.setVisibility(GONE);
                 break;
         }
 

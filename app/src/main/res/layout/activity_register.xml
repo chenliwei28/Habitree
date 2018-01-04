@@ -16,8 +16,6 @@
         app:title_text="@string/register_account"
         app:right_btn_text="@string/confirm"/>
 
-    <View style="@style/ShadowLine"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"

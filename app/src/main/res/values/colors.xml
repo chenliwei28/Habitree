@@ -12,4 +12,6 @@
     <color name="black_text">#313131</color>
     <color name="red_text">#dc4458</color>
     <color name="bg_gray">#f4f4f4</color>
+    <color name="light_orange">#f5b245</color>
+    <color name="shadow">#e5e5e5</color>
 </resources>

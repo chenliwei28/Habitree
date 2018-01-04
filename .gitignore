@@ -9,3 +9,5 @@ gradlew.bat
 gradle
 gradlew
 .idea
+/app/src/androidTest/java/com/habitree/xueshu/
+/app/src/test/java/com/habitree/xueshu/

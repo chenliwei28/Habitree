@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,7 +18,9 @@ public class CustomItemView extends RelativeLayout{
 
     private TextView mTitleTv;
     private TextView mDetailTv;
+    private ImageView mNextIv;
     private View mLine;
+    public boolean mIsSelected;
 
     public CustomItemView(Context context) {
         super(context);
@@ -39,6 +42,7 @@ public class CustomItemView extends RelativeLayout{
         LayoutInflater.from(getContext()).inflate(R.layout.item_custom_view,this);
         mTitleTv = findViewById(R.id.title_tv);
         mDetailTv = findViewById(R.id.detail_tv);
+        mNextIv = findViewById(R.id.next_iv);
         mLine = findViewById(R.id.line);
         setBackgroundResource(R.color.white);
     }
@@ -51,6 +55,23 @@ public class CustomItemView extends RelativeLayout{
         if (detail!=null)mDetailTv.setText(detail);
         boolean linev = array.getBoolean(R.styleable.CustomItemView_line_visible,true);
         mLine.setVisibility(linev?VISIBLE:GONE);
+        boolean nextv = array.getBoolean(R.styleable.CustomItemView_next_visible,false);
+        mNextIv.setVisibility(nextv?VISIBLE:GONE);
+        boolean detailv = array.getBoolean(R.styleable.CustomItemView_detail_visible,true);
+        mDetailTv.setVisibility(detailv?VISIBLE:GONE);
+        int titleColor = array.getInt(R.styleable.CustomItemView_title_color,0);
+        if (titleColor!=0)mTitleTv.setTextColor(getResources().getColor(titleColor));
+        int nextImg = array.getResourceId(R.styleable.CustomItemView_next_img,R.drawable.bth_fanhui_nor);
+        mNextIv.setImageResource(nextImg);
         array.recycle();
+    }
+
+    public void setDetail(String detail){
+        mDetailTv.setText(detail);
+    }
+
+    public void setChecked(boolean checked){
+        mIsSelected = checked;
+        mNextIv.setSelected(mIsSelected);
     }
 }

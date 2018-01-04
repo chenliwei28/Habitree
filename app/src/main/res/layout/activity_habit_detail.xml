@@ -15,8 +15,6 @@
         android:layout_height="@dimen/actionbar_height"
         app:title_text="@string/habit_detail" />
 
-    <View style="@style/ShadowLine" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"

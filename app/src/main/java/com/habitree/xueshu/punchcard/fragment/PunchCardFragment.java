@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
+import com.habitree.xueshu.punchcard.activity.PlantTreeActivity;
 import com.habitree.xueshu.punchcard.adapter.CardPagerAdapter;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
@@ -29,6 +31,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     private TextView mMonthTv;
     private ImageView mAddIv;
     private TextView mCountTv;
+    private CardView mEmptyCv;
+    private TextView mStartTv;
 
     @Override
     protected int setLayoutId() {
@@ -42,6 +46,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mAddIv = view.findViewById(R.id.add_iv);
         mCountTv = view.findViewById(R.id.count_tv);
         mCardVp = view.findViewById(R.id.card_vp);
+        mEmptyCv = view.findViewById(R.id.empty_cv);
+        mStartTv = view.findViewById(R.id.start_tv);
         mCardVp.setPageMargin(100);
         mCardVp.setOffscreenPageLimit(3);
     }
@@ -49,6 +55,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     @Override
     protected void initListener() {
         mAddIv.setOnClickListener(this);
+        mStartTv.setOnClickListener(this);
     }
 
     @Override
@@ -84,7 +91,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.add_iv:
-
+            case R.id.start_tv:
+                startActivity(new Intent(getContext(), PlantTreeActivity.class));
                 break;
         }
     }

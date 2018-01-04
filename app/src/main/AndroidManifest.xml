@@ -31,7 +31,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".login.activity.SendAuthCodeActivity" />
         <activity android:name=".login.activity.SetPasswordActivity" />
-        <activity android:name=".punchcard.activity.HabitDetailActivity"></activity>
+        <activity android:name=".punchcard.activity.HabitDetailActivity" />
+        <activity android:name=".punchcard.activity.PlantTreeActivity" />
+        <activity android:name=".punchcard.activity.HabitSettingActivity" />
+        <activity android:name=".punchcard.activity.RepeatDayActivity" />
+        <activity android:name=".punchcard.activity.SupervisionSettingActivity" />
+        <activity android:name=".punchcard.activity.ChooseSupervisorActivity"></activity>
     </application>
 
 </manifest>

@@ -16,8 +16,6 @@
         app:right_btn_text="@string/confirm"
         app:title_text="@string/phone_auth_code" />
 
-    <View style="@style/ShadowLine" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
