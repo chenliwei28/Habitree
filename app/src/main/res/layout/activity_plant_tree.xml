@@ -12,7 +12,8 @@
         android:id="@+id/plant_mab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/plant_a_tree" />
+        app:title_text="@string/plant_a_tree"
+        app:shadow_visible="false"/>
 
     <LinearLayout
         android:layout_width="match_parent"

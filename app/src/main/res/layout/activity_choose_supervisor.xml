@@ -13,7 +13,8 @@
         android:id="@+id/choose_mab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/invite_friends" />
+        app:title_text="@string/invite_friends"
+        app:line_mode="1"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/friends_civ"

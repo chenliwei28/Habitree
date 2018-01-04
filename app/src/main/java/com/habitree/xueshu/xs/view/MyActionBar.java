@@ -64,6 +64,9 @@ public class MyActionBar extends RelativeLayout {
                 mShadowLine.setVisibility(GONE);
                 break;
         }
+        //阴影线  0：用于背景色  1：用于白色
+        int lineMode = array.getInt(R.styleable.MyActionBar_line_mode,0);
+        if (lineMode!=0)mShadowLine.setBackgroundResource(R.drawable.shape_shadow_white_line);
 
         String title = array.getString(R.styleable.MyActionBar_title_text);
         if (title!=null)mTitleTv.setText(title);
@@ -85,6 +88,9 @@ public class MyActionBar extends RelativeLayout {
             mRightTv.setText(rightText);
             mRightTv.setVisibility(VISIBLE);
         }
+
+        boolean shadowVisible = array.getBoolean(R.styleable.MyActionBar_shadow_visible,true);
+        mShadowLine.setVisibility(shadowVisible?VISIBLE:GONE);
         array.recycle();
     }
 

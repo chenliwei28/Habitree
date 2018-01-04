@@ -1,5 +1,6 @@
 package com.habitree.xueshu.punchcard.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -55,7 +56,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.super_civ:
-
+                startActivity(new Intent(SupervisionSettingActivity.this,ChooseSupervisorActivity.class));
                 break;
             case R.id.penalty_civ:
 

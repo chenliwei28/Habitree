@@ -12,4 +12,6 @@ public class Constant {
     public final static String PHONE_REGEX = "[1][3578]\\d{9}";
 
     public final static String TITLE = "title";
+
+    public final static String IS_PROCESSED = "isProcessed";
 }
