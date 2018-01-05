@@ -7,12 +7,13 @@
     android:background="@color/background"
     tools:context="com.habitree.xueshu.mine.fragment.MyFragment">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:background="@drawable/bg_yhzx">
 
         <com.habitree.xueshu.xs.view.MyActionBar
+            android:id="@+id/my_mab"
             android:layout_width="match_parent"
             android:layout_height="@dimen/actionbar_height"
             android:layout_marginTop="@dimen/status_bar_height"
@@ -20,6 +21,230 @@
             app:back_btn_visible="false"
             app:title_text="@string/member_home"
             app:right_btn_text="@string/my_forest"/>
-    </FrameLayout>
 
+        <com.habitree.xueshu.xs.view.RoundImageView
+            android:id="@+id/head_riv"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_below="@id/my_mab"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:type="circle"
+            app:border_color="@color/white"
+            app:border_width="0.5dp"
+            android:src="@drawable/img_tupianjilv"/>
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_mab"
+            android:layout_toRightOf="@id/head_riv"
+            android:layout_marginTop="32dp"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            tools:text="张全蛋"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black_text"
+                android:textSize="14sp"
+                android:text="@string/days_of_accession"/>
+
+            <TextView
+                android:id="@+id/days_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="47dp"
+                android:textColor="@color/orange"
+                android:textSize="17sp"
+                android:text="@string/zero"/>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="23dp"
+                android:background="@color/line"
+                android:layout_marginTop="48dp"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black_text"
+                android:textSize="14sp"
+                android:text="@string/total_number_of_sign_in"/>
+
+            <TextView
+                android:id="@+id/count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="47dp"
+                android:textColor="@color/orange"
+                android:textSize="17sp"
+                android:text="@string/zero"/>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="23dp"
+                android:background="@color/line"
+                android:layout_marginTop="48dp"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="@string/total_rate_of_sign_in"
+                android:textColor="@color/black_text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/rate_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="47dp"
+                android:text="@string/zero"
+                android:textColor="@color/orange"
+                android:textSize="17sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="23dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="48dp"
+                android:background="@color/line" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black_text"
+                android:textSize="14sp"
+                android:text="@string/completed"/>
+
+            <TextView
+                android:id="@+id/completed_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="47dp"
+                android:textColor="@color/orange"
+                android:textSize="17sp"
+                android:text="@string/zero"/>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="23dp"
+                android:background="@color/line"
+                android:layout_marginTop="48dp"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black_text"
+                android:textSize="14sp"
+                android:text="@string/ongoing"/>
+
+            <TextView
+                android:id="@+id/ongoing_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="47dp"
+                android:textColor="@color/orange"
+                android:textSize="17sp"
+                android:text="@string/zero"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View style="@style/Line"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/info_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="12dp"
+        app:title="@string/personal_info"
+        app:detail_visible="false"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/forest_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:title="@string/my_forest"
+        app:detail_visible="false"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/wallet_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:title="@string/my_wallet"
+        app:detail_visible="false"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/setting_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="12dp"
+        app:title="@string/setting"
+        app:detail_visible="false"
+        app:next_visible="true"/>
 </LinearLayout>

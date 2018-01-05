@@ -35,7 +35,6 @@
         android:minHeight="140dp"
         android:padding="10dp"
         android:inputType="textMultiLine"
-        android:text="@string/twenty_four_un_processed"
         android:textSize="15sp"
         android:textColor="@color/black_text"
         android:labelFor="@id/detail_et"/>
