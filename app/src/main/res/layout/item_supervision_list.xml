@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <ImageView
+        android:id="@+id/unread_iv"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginRight="8dp"
+        android:contentDescription="@null"
+        android:src="@drawable/msg_xiaoxi"
+        android:visibility="gone"/>
+    
+    <com.habitree.xueshu.xs.view.RoundImageView
+        android:id="@+id/head_riv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/img_yepao"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_text"
+                android:textSize="17sp"
+                tools:text="张全蛋"/>
+
+            <TextView
+                android:id="@+id/time_tv"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textColor="@color/black_text"
+                android:textSize="14sp"
+                android:text="剩余10:00"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/detail_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="14sp"
+            android:textColor="@color/gray_text"
+            android:text="1月9日夜跑：环岛路这边，晚上很凉爽，大家有空来吹西北风"/>
+    </LinearLayout>
+    
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="30dp"
+        android:src="@drawable/bth_fanhui_nor"
+        android:scaleType="center"/>
+</LinearLayout>

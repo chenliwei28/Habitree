@@ -36,7 +36,8 @@
         <activity android:name=".punchcard.activity.HabitSettingActivity" />
         <activity android:name=".punchcard.activity.RepeatDayActivity" />
         <activity android:name=".punchcard.activity.SupervisionSettingActivity" />
-        <activity android:name=".punchcard.activity.ChooseSupervisorActivity"></activity>
+        <activity android:name=".punchcard.activity.ChooseSupervisorActivity" />
+        <activity android:name=".punchcard.activity.SendRecordActivity"></activity>
     </application>
 
 </manifest>

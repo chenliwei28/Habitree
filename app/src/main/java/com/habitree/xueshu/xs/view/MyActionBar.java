@@ -49,6 +49,8 @@ public class MyActionBar extends RelativeLayout {
 
     private void initAttributeSet(@Nullable AttributeSet attrs){
         TypedArray array = getContext().obtainStyledAttributes(attrs,R.styleable.MyActionBar);
+        boolean shadowVisible = array.getBoolean(R.styleable.MyActionBar_shadow_visible,true);
+        mShadowLine.setVisibility(shadowVisible?VISIBLE:GONE);
         //mode 0默认白底黄字  1透明底白字
         int mode = array.getInt(R.styleable.MyActionBar_mode,0);
         switch (mode){
@@ -88,9 +90,6 @@ public class MyActionBar extends RelativeLayout {
             mRightTv.setText(rightText);
             mRightTv.setVisibility(VISIBLE);
         }
-
-        boolean shadowVisible = array.getBoolean(R.styleable.MyActionBar_shadow_visible,true);
-        mShadowLine.setVisibility(shadowVisible?VISIBLE:GONE);
         array.recycle();
     }
 

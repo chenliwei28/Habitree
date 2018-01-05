@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
 import com.habitree.xueshu.punchcard.activity.PlantTreeActivity;
+import com.habitree.xueshu.punchcard.activity.SendRecordActivity;
 import com.habitree.xueshu.punchcard.adapter.CardPagerAdapter;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
@@ -69,7 +70,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
 
             @Override
             public void punchClick(int position) {
-
+                startActivity(new Intent(getContext(), SendRecordActivity.class));
             }
         });
         mCardVp.setAdapter(adapter);

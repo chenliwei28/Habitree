@@ -29,4 +29,5 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.android.support:design:27.0.2'
+    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.7'
 }
