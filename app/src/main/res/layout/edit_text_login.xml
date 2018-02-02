@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,16 +7,15 @@
 
     <ImageView
         android:id="@+id/img_iv"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_centerVertical="true"
-        android:scaleType="center"
-        tools:src="@drawable/icon_yonghu" />
+        tools:src="@drawable/ic_phone" />
 
     <EditText
         android:id="@+id/et"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/img_iv"
         android:background="@color/white"
@@ -30,4 +29,4 @@
         android:layout_height="0.5dp"
         android:layout_below="@id/et"
         android:background="@color/line" />
-</merge>
+</RelativeLayout>

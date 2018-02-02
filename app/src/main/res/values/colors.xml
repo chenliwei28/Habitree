@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">@color/trans</color>
     <color name="colorPrimaryDark">@color/trans</color>
-    <color name="colorAccent">@color/orange</color>
+    <color name="colorAccent">@color/blue</color>
     <color name="white">#FFFFFF</color>
+    <color name="blue">#74c8ff</color>
     <color name="orange">#fe9d00</color>
     <color name="trans">#00000000</color>
     <color name="background">#edeff4</color>

@@ -45,7 +45,7 @@ public class LoginEditText extends RelativeLayout{
         mEt.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                mLine.setBackgroundResource(hasFocus?R.color.orange:R.color.line);
+                mLine.setBackgroundResource(hasFocus?R.color.blue:R.color.line);
             }
         });
     }
