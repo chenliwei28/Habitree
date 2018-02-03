@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/img_iv"
-        android:layout_width="25dp"
+        android:layout_width="40dp"
         android:layout_height="25dp"
         android:layout_centerVertical="true"
         tools:src="@drawable/ic_phone" />

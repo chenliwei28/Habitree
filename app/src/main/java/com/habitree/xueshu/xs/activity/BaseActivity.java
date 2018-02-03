@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void initStatusBar(){
-        UIUtil.setStatusBar(this,getResources().getColor(R.color.white));
+        UIUtil.setStatusBar(this,getResources().getColor(R.color.blue));
     }
 
     protected abstract int setLayoutId();

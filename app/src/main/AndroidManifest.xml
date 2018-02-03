@@ -24,7 +24,7 @@
             android:name=".login.activity.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".login.activity.RegisterActivity"
             android:launchMode="singleTask"

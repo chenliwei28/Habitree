@@ -3,24 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/punch_card_bg"
     tools:context="com.habitree.xueshu.punchcard.fragment.PunchCardFragment">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="275dp"
-        android:background="@drawable/bg_shouye" />
 
     <TextView
         android:id="@+id/date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/status_bar_height"
+        android:layout_marginTop="65dp"
         android:includeFontPadding="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black_text"
         android:textSize="30sp"
-        android:textStyle="bold"
         tools:text="31" />
 
     <TextView
@@ -30,7 +24,7 @@
         android:layout_below="@id/date_tv"
         android:layout_centerHorizontal="true"
         android:includeFontPadding="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black_text"
         android:textSize="14sp"
         tools:text="2017.12" />
 
@@ -41,7 +35,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
-        android:layout_marginTop="@dimen/status_bar_height"
+        android:layout_marginTop="35dp"
         android:scaleType="center"
         android:src="@drawable/icon_gd" />
 
@@ -50,12 +44,13 @@
         android:layout_width="match_parent"
         android:layout_height="325dp"
         android:layout_below="@id/month_tv"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:clipToPadding="false"
         android:paddingBottom="5dp"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:visibility="gone"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/empty_cv"
@@ -63,11 +58,10 @@
         android:layout_height="320dp"
         android:layout_below="@id/month_tv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:background="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        android:visibility="gone">
+        app:cardElevation="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,8 +81,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="@string/the_best_world_is_now"
+                android:layout_marginTop="10dp"
+                android:text="@string/the_best_time_is_now"
                 android:textColor="@color/gray_text"
                 android:textSize="14sp" />
 
@@ -96,22 +90,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="65dp"
                 android:text="@string/create_your_first_habit"
-                android:textColor="@color/orange"
-                android:textSize="14sp" />
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/start_tv"
                 android:layout_width="165dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_round_corner_orange_stroke_button"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_round_corner_blue_stroke_button"
                 android:gravity="center"
                 android:text="@string/start_it_right_now"
-                android:textColor="@color/orange"
-                android:textSize="14sp" />
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

@@ -1,5 +1,6 @@
 package com.habitree.xueshu.login.presenter;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.habitree.xueshu.R;
@@ -10,7 +11,12 @@ import com.habitree.xueshu.xs.util.ToastUtil;
 
 
 public class LoginPresenter extends BasePresenter {
-    public void login(String phone,String password){
+
+    public LoginPresenter(Context context) {
+        super(context);
+    }
+
+    public void login(String phone, String password){
         if (!checkPhone(phone))return;
         if (!checkPassword(password))return;
     }

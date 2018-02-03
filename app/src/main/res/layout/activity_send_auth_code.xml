@@ -13,54 +13,48 @@
         android:id="@+id/send_mab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:right_btn_text="@string/confirm"
         app:title_text="@string/phone_auth_code" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="65dp">
 
         <EditText
             android:id="@+id/code_et"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
             android:background="@color/white"
-            android:hint="@string/please_enter_phone_number"
+            android:hint="@string/note_auth_code"
             android:inputType="number"
             android:maxLength="6"
             android:textSize="14sp" />
 
+        <View style="@style/Line"
+            android:layout_width="200dp"
+            android:layout_below="@id/code_et"/>
+
         <TextView
             android:id="@+id/send_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="82dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:layout_toRightOf="@id/code_et"
             android:gravity="center"
-            android:text="@string/send_auth_code"
-            android:textColor="@color/orange"
+            android:background="@drawable/shape_rect_round_corner_orange_button"
+            android:text="@string/auth_code"
+            android:textColor="@color/white"
             android:textSize="14sp" />
-    </LinearLayout>
-
-    <View
-        style="@style/Line"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="11dp"
-        android:background="@color/orange" />
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/hint_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/already_send_code_to_your_phone"
-        android:textColor="@color/gray_text"
-        android:textSize="14sp"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:id="@+id/next_tv"
+        style="@style/RectButton"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="33dp"
+        android:text="@string/next_step_set_password"/>
 </LinearLayout>

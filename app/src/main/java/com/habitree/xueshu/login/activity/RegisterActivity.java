@@ -1,30 +1,22 @@
 package com.habitree.xueshu.login.activity;
 
 
-
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.login.presenter.RegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BasePresenterActivity;
-import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
-public class RegisterActivity extends BasePresenterActivity<RegisterPresenter> implements RegisterView {
+public class RegisterActivity extends BaseActivity implements RegisterView,View.OnClickListener {
 
     private MyActionBar mRegisterMab;
     private EditText mPhoneEt;
-    private TextView mHintTv;
-
-    @Override
-    protected RegisterPresenter createPresenter() {
-        return new RegisterPresenter();
-    }
+    private TextView mNextTv;
 
     @Override
     protected int setLayoutId() {
@@ -35,23 +27,12 @@ public class RegisterActivity extends BasePresenterActivity<RegisterPresenter> i
     protected void initView() {
         mRegisterMab = findViewById(R.id.register_mab);
         mPhoneEt = findViewById(R.id.phone_et);
-        mHintTv = findViewById(R.id.hint_tv);
+        mNextTv = findViewById(R.id.next_tv);
     }
 
     @Override
     protected void initListener() {
-        mRegisterMab.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppManager.getAppManager().finishActivity(RegisterActivity.this);
-            }
-        });
-        mRegisterMab.setRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this,SendAuthCodeActivity.class));
-            }
-        });
+        mNextTv.setOnClickListener(this);
     }
 
     @Override
@@ -60,4 +41,12 @@ public class RegisterActivity extends BasePresenterActivity<RegisterPresenter> i
         if (title!=null)mRegisterMab.setTitle(title);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.next_tv:
+                startActivity(new Intent(RegisterActivity.this,SendAuthCodeActivity.class));
+                break;
+        }
+    }
 }

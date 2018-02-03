@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
-import com.habitree.xueshu.xs.activity.BasePresenterActivity;
+import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
@@ -18,7 +18,7 @@ import com.habitree.xueshu.xs.view.calendarview.CalendarView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HabitDetailActivity extends BasePresenterActivity<HabitPresenter> implements HabitView,View.OnClickListener {
+public class HabitDetailActivity extends BaseActivity implements HabitView,View.OnClickListener {
 
     private MyActionBar mDetailMab;
     private CalendarView mDetailCv;
@@ -39,11 +39,6 @@ public class HabitDetailActivity extends BasePresenterActivity<HabitPresenter> i
     private CustomItemView mRateCiv;
     private CustomItemView mNeedCiv;
     private TextView mAbandonTv;
-
-    @Override
-    protected HabitPresenter createPresenter() {
-        return new HabitPresenter();
-    }
 
     @Override
     protected int setLayoutId() {

@@ -9,14 +9,15 @@
     </declare-styleable>
 
     <declare-styleable name="MyActionBar">
-        <attr name="mode" format="integer"/>
+        <attr name="mode" format="integer">
+            <enum name="bg_blue" value="0"/>
+            <enum name="bg_trans" value="1"/>
+        </attr>
         <attr name="title_text" format="integer|reference"/>
         <attr name="back_btn_img" format="integer|reference"/>
         <attr name="back_btn_visible" format="boolean"/>
         <attr name="right_btn_text" format="integer|reference"/>
         <attr name="right_btn_img" format="integer|reference"/>
-        <attr name="line_mode" format="integer"/>
-        <attr name="shadow_visible" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="LoginEditText">

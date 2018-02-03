@@ -9,12 +9,12 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.presenter.LoginPresenter;
 import com.habitree.xueshu.login.pview.LoginView;
-import com.habitree.xueshu.xs.activity.BasePresenterActivity;
-import com.habitree.xueshu.xs.presenter.BasePresenter;
+import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.LoginEditText;
 
 
-public class LoginActivity extends BasePresenterActivity<LoginPresenter> implements LoginView,View.OnClickListener {
+public class LoginActivity extends BaseActivity implements LoginView,View.OnClickListener {
 
     private LoginEditText mPhoneLet;
     private LoginEditText mPasswLet;
@@ -25,14 +25,16 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter> impleme
     private ImageView mWeiboBtn;
     private ImageView mQQBtn;
 
-    @Override
-    protected LoginPresenter createPresenter() {
-        return new LoginPresenter();
-    }
+    private LoginPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
         return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initStatusBar() {
+        UIUtil.setStatusBar(this,getResources().getColor(R.color.trans));
     }
 
     @Override
@@ -59,7 +61,7 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter> impleme
 
     @Override
     protected void initData() {
-
+        mPresenter = new LoginPresenter(this);
     }
 
     @Override
@@ -84,5 +86,11 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter> impleme
 
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDetach();
     }
 }

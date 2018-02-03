@@ -16,8 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
         app:title_text="@string/supervision"
-        app:back_btn_visible="false"
-        app:line_mode="1"/>
+        app:back_btn_visible="false"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/super_tl"

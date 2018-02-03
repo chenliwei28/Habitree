@@ -20,7 +20,16 @@
         <item name="android:background">@drawable/shape_shadow_black_line</item>
     </style>
 
-    <style name="Button">
+    <style name="RoundButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:background">@drawable/shape_round_corner_blue_button</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="RectButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:background">@drawable/shape_rect_round_corner_blue_button</item>

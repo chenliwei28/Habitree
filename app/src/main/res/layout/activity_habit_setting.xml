@@ -13,7 +13,6 @@
         android:id="@+id/setting_mab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:right_btn_text="@string/next_step"
         app:title_text="@string/habit_setting" />
 
     <LinearLayout

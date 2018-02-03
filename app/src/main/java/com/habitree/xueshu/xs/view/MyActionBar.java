@@ -1,5 +1,6 @@
 package com.habitree.xueshu.xs.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
@@ -11,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-
+import com.habitree.xueshu.xs.util.AppManager;
 
 
 public class MyActionBar extends RelativeLayout {
@@ -20,7 +21,6 @@ public class MyActionBar extends RelativeLayout {
     private TextView mTitleTv;
     private TextView mRightTv;
     private ImageView mRightIv;
-    private View mShadowLine;
 
     public MyActionBar(Context context) {
         super(context);
@@ -44,31 +44,30 @@ public class MyActionBar extends RelativeLayout {
         mTitleTv = findViewById(R.id.title_tv);
         mRightIv = findViewById(R.id.right_iv);
         mRightTv = findViewById(R.id.right_tv);
-        mShadowLine = findViewById(R.id.shadow_line);
+        mBackIv.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppManager.getAppManager().finishActivity((Activity) getContext());
+            }
+        });
     }
 
     private void initAttributeSet(@Nullable AttributeSet attrs){
         TypedArray array = getContext().obtainStyledAttributes(attrs,R.styleable.MyActionBar);
-        boolean shadowVisible = array.getBoolean(R.styleable.MyActionBar_shadow_visible,true);
-        mShadowLine.setVisibility(shadowVisible?VISIBLE:GONE);
-        //mode 0默认白底黄字  1透明底白字
+        //mode 0默认蓝底白字  1透明底白字
         int mode = array.getInt(R.styleable.MyActionBar_mode,0);
         switch (mode){
             case 0:
-                setBackgroundResource(R.color.white);
-                mTitleTv.setTextColor(getResources().getColor(R.color.black_text));
-                mRightTv.setTextColor(getResources().getColor(R.color.orange));
+                setBackgroundResource(R.color.blue);
+                mTitleTv.setTextColor(getResources().getColor(R.color.white));
+                mRightTv.setTextColor(getResources().getColor(R.color.white));
                 break;
             case 1:
                 setBackgroundResource(R.color.trans);
                 mTitleTv.setTextColor(getResources().getColor(R.color.white));
                 mRightTv.setTextColor(getResources().getColor(R.color.white));
-                mShadowLine.setVisibility(GONE);
                 break;
         }
-        //阴影线  0：用于背景色  1：用于白色
-        int lineMode = array.getInt(R.styleable.MyActionBar_line_mode,0);
-        if (lineMode!=0)mShadowLine.setBackgroundResource(R.drawable.shape_shadow_white_line);
 
         String title = array.getString(R.styleable.MyActionBar_title_text);
         if (title!=null)mTitleTv.setText(title);

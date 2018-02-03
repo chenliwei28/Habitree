@@ -12,13 +12,13 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.fragment.BasePresenterFragment;
+import com.habitree.xueshu.xs.fragment.BaseFragment;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
 
-public class MyFragment extends BasePresenterFragment<MyPresenter> implements MyView,View.OnClickListener{
+public class MyFragment extends BaseFragment implements MyView,View.OnClickListener{
 
     private MyActionBar mMyMab;
     private RoundImageView mHeadRiv;
@@ -32,11 +32,6 @@ public class MyFragment extends BasePresenterFragment<MyPresenter> implements My
     private CustomItemView mForestCiv;
     private CustomItemView mWalletCiv;
     private CustomItemView mSettingCiv;
-
-    @Override
-    public MyPresenter createPresenter() {
-        return new MyPresenter();
-    }
 
     @Override
     protected int setLayoutId() {

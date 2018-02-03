@@ -37,7 +37,7 @@ public class CardPagerAdapter extends PagerAdapter {
     @NonNull
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_card,container,false);
-        view.findViewById(R.id.detail_btn).setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener!=null)listener.detailClick(position);

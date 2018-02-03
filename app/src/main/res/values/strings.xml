@@ -69,6 +69,7 @@
     <!--S-->
     <string name="setting">设置</string>
     <string name="set_password">设置密码</string>
+    <string name="note_auth_code">短信验证码</string>
     <string name="phone_auth_code">手机验证码</string>
     <string name="phone_number_must_be_not_empty">手机号不能为空</string>
     <string name="is_must_upload_photos_as_record">是否必须上传照片作为打卡记录</string>
@@ -92,7 +93,10 @@
     <string name="habit_setting">习惯设置</string>
     <string name="habit_description">习惯描述</string>
     <string name="choose_supervisor">选择监督人</string>
+    <string name="choose_plant_trees">选择成长树</string>
     <string name="number_of_penalty_need_pay">需支付罚金</string>
+    <string name="next_step_verify_phone">下一步，验证手机号码</string>
+    <string name="next_step_set_password">下一步，设置密码</string>
     <string name="choose_a_tree_with_you">选一棵小树陪你度过难忘的日子吧</string>
     <string name="send_card_record_to_someone">向监督人（%s）发送打卡记录</string>
     <string name="choose_rational_time_is_helpful">选择合理的周期，有助于积累成就感和信息</string>
@@ -104,6 +108,7 @@
     <string name="wx_friends">微信好友</string>
     <string name="forget_password">忘记密码</string>
     <!--Y-->
+    <string name="auth_code">验证码</string>
     <string name="completed">已完成</string>
     <string name="member_home">用户中心</string>
     <string name="paid_deposit">已付押金</string>
@@ -119,7 +124,7 @@
     <string name="total_rate_of_sign_in">总签到率</string>
     <string name="total_number_of_punch_card">总打卡次数</string>
     <string name="total_number_of_sign_in">总签到次数</string>
-    <string name="the_best_world_is_now">最好的世界就是现在</string>
+    <string name="the_best_time_is_now">最好的时间是现在</string>
     <string name="sliding_around_to_check_the_next">左右滑动查看下一棵</string>
     <!--##-->
     <string name="zero">0</string>

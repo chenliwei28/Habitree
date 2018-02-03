@@ -1,31 +1,25 @@
 package com.habitree.xueshu.login.activity;
 
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.login.presenter.RegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
-import com.habitree.xueshu.xs.activity.BasePresenterActivity;
-import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
-public class SendAuthCodeActivity extends BasePresenterActivity<RegisterPresenter> implements RegisterView,View.OnClickListener{
+public class SendAuthCodeActivity extends BaseActivity implements RegisterView,View.OnClickListener{
 
     private MyActionBar mSendMab;
     private EditText mCodeEt;
     private TextView mSendTv;
-    private TextView mHintTv;
+    private TextView mNextTv;
 
     private final static int AUTH_RESET_TIME = 60;
     private int mTime = AUTH_RESET_TIME;
-
-    @Override
-    protected RegisterPresenter createPresenter() {
-        return new RegisterPresenter();
-    }
 
     @Override
     protected int setLayoutId() {
@@ -37,24 +31,13 @@ public class SendAuthCodeActivity extends BasePresenterActivity<RegisterPresente
         mSendMab = findViewById(R.id.send_mab);
         mCodeEt = findViewById(R.id.code_et);
         mSendTv = findViewById(R.id.send_tv);
-        mHintTv = findViewById(R.id.hint_tv);
+        mNextTv = findViewById(R.id.next_tv);
     }
 
     @Override
     protected void initListener() {
-        mSendMab.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppManager.getAppManager().finishActivity(SendAuthCodeActivity.this);
-            }
-        });
-        mSendMab.setRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         mSendTv.setOnClickListener(this);
+        mNextTv.setOnClickListener(this);
     }
 
     @Override
@@ -67,6 +50,9 @@ public class SendAuthCodeActivity extends BasePresenterActivity<RegisterPresente
         switch (v.getId()){
             case R.id.send_tv:
                 countDown();
+                break;
+            case R.id.next_tv:
+                startActivity(new Intent(this,SetPasswordActivity.class));
                 break;
         }
     }

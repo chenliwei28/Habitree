@@ -15,7 +15,6 @@ import com.habitree.xueshu.xs.view.MyActionBar;
 
 public class PlantTreeActivity extends BaseActivity implements View.OnClickListener{
 
-    private MyActionBar mPlantMab;
     private ViewPager mCardVp;
     private TextView mChooseTv;
 
@@ -26,7 +25,6 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initView() {
-        mPlantMab = findViewById(R.id.plant_mab);
         mCardVp = findViewById(R.id.card_vp);
         mChooseTv = findViewById(R.id.choose_tv);
         mCardVp.setPageMargin(100);
@@ -36,12 +34,6 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void initListener() {
         mChooseTv.setOnClickListener(this);
-        mPlantMab.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppManager.getAppManager().finishActivity(PlantTreeActivity.this);
-            }
-        });
     }
 
     @Override
