@@ -7,11 +7,12 @@
 
     <ImageView
         android:id="@+id/img_iv"
-        android:layout_width="20dp"
-        android:layout_height="match_parent"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:src="@drawable/ic_time"/>
+        tools:src="@drawable/ic_time"/>
 
     <TextView
         android:id="@+id/title_tv"
@@ -43,10 +44,10 @@
             android:id="@+id/next_iv"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:minWidth="6dp"
             android:layout_marginRight="12dp"
-            android:scaleType="center"
-            android:src="@drawable/bth_fanhui_nor"
-            android:visibility="gone" />
+            android:src="@drawable/ic_next"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <View

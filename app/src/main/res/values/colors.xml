@@ -15,4 +15,5 @@
     <color name="bg_gray">#f4f4f4</color>
     <color name="light_orange">#f5b245</color>
     <color name="shadow">#e5e5e5</color>
+    <color name="gray">#999999</color>
 </resources>

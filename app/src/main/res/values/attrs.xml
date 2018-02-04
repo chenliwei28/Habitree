@@ -105,10 +105,12 @@
     <declare-styleable name="CustomItemView">
         <attr name="title" format="string"/>
         <attr name="detail_text" format="string"/>
+        <attr name="detail_text_color" format="color|integer|reference"/>
         <attr name="title_color" format="color|reference|integer"/>
         <attr name="line_visible" format="boolean"/>
         <attr name="next_visible" format="boolean"/>
         <attr name="detail_visible" format="boolean"/>
         <attr name="next_img" format="integer|reference"/>
+        <attr name="head_img" format="integer|reference"/>
     </declare-styleable>
 </resources>

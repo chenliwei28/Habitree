@@ -25,125 +25,141 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:background="@color/white"
-                android:paddingBottom="12dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="12dp">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:background="@drawable/shape_rect_round_corner_stroke_white_bg">
 
-                <com.habitree.xueshu.xs.view.RoundImageView
-                    android:id="@+id/head_riv"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/img_tupianjilv"
-                    app:type="circle" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:background="@color/white"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="12dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toEndOf="@id/head_riv"
-                    android:orientation="vertical">
+                    <com.habitree.xueshu.xs.view.RoundImageView
+                        android:id="@+id/head_riv"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_circle"
+                        app:type="circle" />
 
-                    <TextView
-                        android:id="@+id/name_tv"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:textColor="@color/black_text"
-                        android:textSize="17sp" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_toEndOf="@id/head_riv"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_name"
+                            android:textColor="@color/blue"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/time_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/gray_text"
+                            android:textSize="14sp"
+                            android:text="开始于2017年12月2日" />
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/time_tv"
+                        android:id="@+id/count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         android:textColor="@color/gray_text"
-                        android:textSize="14sp"
-                        tools:text="开始于2017年12月2日" />
-                </LinearLayout>
+                        android:textSize="16sp"
+                        android:text="3/30" />
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/count_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/black_text"
-                    android:textSize="16sp"
-                    tools:text="第 3/30天" />
-            </RelativeLayout>
+                <View style="@style/Line" />
 
-            <View style="@style/Line" />
-
-            <com.habitree.xueshu.xs.view.calendarview.CalendarView
-                android:id="@+id/detail_cv"
-                android:layout_width="match_parent"
-                android:layout_height="275dp"
-                android:background="@color/white"
-                app:calendar_card_view="com.habitree.xueshu.xs.view.calendarview.ColorfulCalendarCardView"
-                app:current_day_text_color="@color/white"
-                app:current_month_lunar_text_color="@color/gray_text"
-                app:current_month_text_color="@color/black_text"
-                app:min_year="2004"
-                app:other_month_text_color="@color/gray_text"
-                app:scheme_theme_color="@color/gray_text"
-                app:selected_lunar_text_color="@color/white"
-                app:selected_text_color="@color/white"
-                app:selected_theme_color="@color/red_text"
-                app:week_background="@color/white"
-                app:week_text_color="@color/black_text" />
-
-            <View
-                style="@style/Line"
-                android:layout_marginTop="6dp" />
-
-            <com.habitree.xueshu.xs.view.CustomItemView
-                android:id="@+id/reminder_civ"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/custom_item_height"
-                app:title="@string/reminder_time" />
-
-            <com.habitree.xueshu.xs.view.CustomItemView
-                android:id="@+id/repeat_civ"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/custom_item_height"
-                app:title="@string/repeat_day_count" />
+                <com.habitree.xueshu.xs.view.calendarview.CalendarView
+                    android:id="@+id/detail_cv"
+                    android:layout_width="match_parent"
+                    android:layout_height="275dp"
+                    android:background="@color/white"
+                    app:calendar_card_view="com.habitree.xueshu.xs.view.calendarview.ColorfulCalendarCardView"
+                    app:current_day_text_color="@color/white"
+                    app:current_month_lunar_text_color="@color/gray_text"
+                    app:current_month_text_color="@color/black_text"
+                    app:min_year="2016"
+                    app:other_month_text_color="@color/gray_text"
+                    app:scheme_theme_color="@color/gray_text"
+                    app:selected_lunar_text_color="@color/white"
+                    app:selected_text_color="@color/white"
+                    app:selected_theme_color="@color/blue"
+                    app:week_background="@color/white"
+                    app:week_text_color="@color/black_text" />
+            </LinearLayout>
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/duration_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/time_of_duration" />
+                app:title="@string/supervisor"
+                app:head_img="@drawable/ic_people"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
-                android:id="@+id/privacy_civ"
+                android:id="@+id/reminder_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/privacy_settings" />
+                app:title="@string/reminder_time"
+                app:head_img="@drawable/ic_alarm"/>
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/repeat_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/repeat_day_count"
+                app:head_img="@drawable/ic_calendar"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/mod_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/recording_mode" />
+                app:title="@string/recording_mode"
+                app:head_img="@drawable/ic_text"/>
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/privacy_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/privacy_settings"
+                app:head_img="@drawable/ic_setting"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/penalty_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/penalty_settings" />
+                app:title="@string/penalty_settings"
+                app:head_img="@drawable/ic_money"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/paid_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/paid_deposit" />
+                app:title="@string/rewards_for_all_the_work"
+                app:head_img="@drawable/ic_wallet"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -160,38 +176,43 @@
                 android:id="@+id/foster_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/foster_state" />
+                app:title="@string/foster_state"
+                app:head_img="@drawable/ic_state"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/total_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/total_number_of_punch_card" />
+                app:title="@string/total_number_of_sign_in"
+                app:head_img="@drawable/ic_pen"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/continuous_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/continuous_of_punch_card" />
+                app:title="@string/continuous_of_punch_card"
+                app:head_img="@drawable/ic_sign"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/rate_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/rate_of_punch_card" />
+                app:title="@string/rate_of_punch_card"
+                app:head_img="@drawable/ic_analyze"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/need_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
-                app:title="@string/number_of_penalty_need_pay" />
+                app:title="@string/number_of_penalty_need_pay"
+                app:head_img="@drawable/ic_coin"/>
 
             <TextView
-                android:id="@+id/abandon_btn"
-                style="@style/RoundButton"
+                android:id="@+id/abandon_tv"
+                style="@style/RectButton"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_marginTop="17dp"
                 android:text="@string/abandon_habit" />
         </LinearLayout>

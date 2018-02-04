@@ -37,7 +37,10 @@
         <activity android:name=".punchcard.activity.RepeatDayActivity" />
         <activity android:name=".punchcard.activity.SupervisionSettingActivity" />
         <activity android:name=".punchcard.activity.ChooseSupervisorActivity" />
-        <activity android:name=".punchcard.activity.SendRecordActivity"></activity>
+        <activity android:name=".punchcard.activity.SendRecordActivity" />
+        <activity android:name=".punchcard.activity.TimeSettingActivity" />
+        <activity android:name=".punchcard.activity.ForfeitSettingActivity" />
+        <activity android:name=".punchcard.activity.PayActivity"></activity>
     </application>
 
 </manifest>

@@ -13,7 +13,6 @@
         android:id="@+id/super_mab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:right_btn_text="@string/confirm"
         app:title_text="@string/supervision_setting" />
 
     <com.habitree.xueshu.xs.view.CustomItemView
@@ -22,7 +21,8 @@
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="12dp"
         app:title="@string/choose_supervisor"
-        app:next_visible="true"/>
+        app:next_visible="true"
+        app:head_img="@drawable/ic_people"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/penalty_civ"
@@ -30,7 +30,8 @@
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="12dp"
         app:title="@string/penalty_settings"
-        app:next_visible="true"/>
+        app:next_visible="true"
+        app:head_img="@drawable/ic_money"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -38,7 +39,15 @@
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:gravity="center_vertical"
-        android:textColor="@color/gray_text"
+        android:textColor="@color/red_text"
         android:textSize="14sp"
         android:text="@string/every_time_do_not_punch_card_will_deduct_money"/>
+
+    <TextView
+        android:id="@+id/confirm_tv"
+        style="@style/RectButton"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/confirm"/>
 </LinearLayout>

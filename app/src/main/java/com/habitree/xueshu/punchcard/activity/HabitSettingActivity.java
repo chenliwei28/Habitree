@@ -5,6 +5,7 @@ package com.habitree.xueshu.punchcard.activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
@@ -21,6 +22,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     private CustomItemView mDurationCiv;
     private CustomItemView mPrivacyCiv;
     private CustomItemView mRecordCiv;
+    private TextView mNextTv;
 
     @Override
     protected int setLayoutId() {
@@ -36,6 +38,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         mDurationCiv = findViewById(R.id.duration_civ);
         mPrivacyCiv = findViewById(R.id.privacy_civ);
         mRecordCiv = findViewById(R.id.record_civ);
+        mNextTv = findViewById(R.id.next_tv);
     }
 
     @Override
@@ -45,18 +48,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         mDurationCiv.setOnClickListener(this);
         mPrivacyCiv.setOnClickListener(this);
         mRecordCiv.setOnClickListener(this);
-        mSettingMab.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppManager.getAppManager().finishActivity(HabitSettingActivity.this);
-            }
-        });
-        mSettingMab.setRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HabitSettingActivity.this,SupervisionSettingActivity.class));
-            }
-        });
+        mNextTv.setOnClickListener(this);
     }
 
     @Override
@@ -74,13 +66,16 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
                 startActivity(new Intent(HabitSettingActivity.this,RepeatDayActivity.class));
                 break;
             case R.id.duration_civ:
-
+                startActivity(new Intent(HabitSettingActivity.this,TimeSettingActivity.class));
                 break;
             case R.id.privacy_civ:
 
                 break;
             case R.id.record_civ:
 
+                break;
+            case R.id.next_tv:
+                startActivity(new Intent(HabitSettingActivity.this,SupervisionSettingActivity.class));
                 break;
         }
     }

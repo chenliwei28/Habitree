@@ -22,8 +22,8 @@
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="12dp"
         app:detail_visible="false"
-        app:next_visible="true"
-        app:next_img="@drawable/selector_day_check_box"
+        app:next_visible="false"
+        app:head_img="@drawable/selector_day_check_box"
         app:title="@string/monday"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
@@ -31,8 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         app:detail_visible="false"
-        app:next_visible="true"
-        app:next_img="@drawable/selector_day_check_box"
+        app:next_visible="false"
+        app:head_img="@drawable/selector_day_check_box"
         app:title="@string/tuesday"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
@@ -40,8 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         app:detail_visible="false"
-        app:next_visible="true"
-        app:next_img="@drawable/selector_day_check_box"
+        app:next_visible="false"
+        app:head_img="@drawable/selector_day_check_box"
         app:title="@string/wednesday"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
@@ -49,8 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         app:detail_visible="false"
-        app:next_visible="true"
-        app:next_img="@drawable/selector_day_check_box"
+        app:next_visible="false"
+        app:head_img="@drawable/selector_day_check_box"
         app:title="@string/thursday"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
@@ -58,8 +58,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         app:detail_visible="false"
-        app:next_visible="true"
-        app:next_img="@drawable/selector_day_check_box"
+        app:next_visible="false"
+        app:head_img="@drawable/selector_day_check_box"
         app:title="@string/friday"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
@@ -67,8 +67,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         app:detail_visible="false"
-        app:next_visible="true"
-        app:next_img="@drawable/selector_day_check_box"
+        app:next_visible="false"
+        app:head_img="@drawable/selector_day_check_box"
         app:title="@string/saturday"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
@@ -76,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         app:detail_visible="false"
-        app:next_visible="true"
-        app:next_img="@drawable/selector_day_check_box"
+        app:next_visible="false"
+        app:head_img="@drawable/selector_day_check_box"
         app:title="@string/sunday"/>
 </LinearLayout>

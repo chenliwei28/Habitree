@@ -45,12 +45,6 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
         mFridayCiv.setOnClickListener(this);
         mSaturdayCiv.setOnClickListener(this);
         mSundayCiv.setOnClickListener(this);
-        mDayMab.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppManager.getAppManager().finishActivity(RepeatDayActivity.this);
-            }
-        });
         mDayMab.setRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

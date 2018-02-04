@@ -13,29 +13,6 @@
         android:id="@+id/choose_mab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/invite_friends"/>
+        app:title_text="@string/choose_supervisor"/>
 
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/friends_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/friend_list"
-        app:next_visible="true"
-        app:detail_visible="false"/>
-
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/wx_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/wx_friends"
-        app:next_visible="true"
-        app:detail_visible="false"/>
-
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/qq_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/qq_friends"
-        app:next_visible="true"
-        app:detail_visible="false"/>
 </LinearLayout>

@@ -10,7 +10,6 @@ import com.habitree.xueshu.login.activity.LoginActivity;
 import com.habitree.xueshu.message.fragment.MessageFragment;
 import com.habitree.xueshu.mine.fragment.MyFragment;
 import com.habitree.xueshu.punchcard.fragment.PunchCardFragment;
-import com.habitree.xueshu.supervision.fragment.SupervisionFragment;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.TabItemView;
@@ -18,12 +17,10 @@ import com.habitree.xueshu.xs.view.TabItemView;
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private TabItemView mPcTiv;
-    private TabItemView mSvTiv;
     private TabItemView mMsTiv;
     private TabItemView mMeTiv;
 
     private PunchCardFragment   mPcFragment;
-    private SupervisionFragment mSvFragment;
     private MessageFragment     mMsFragment;
     private MyFragment          mMeFragment;
     private int mCurrentTab = -1;
@@ -43,7 +40,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void initView() {
         mPcTiv = findViewById(R.id.pc_tiv);
-        mSvTiv = findViewById(R.id.sv_tiv);
         mMsTiv = findViewById(R.id.ms_tiv);
         mMeTiv = findViewById(R.id.me_tiv);
     }
@@ -51,7 +47,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void initListener() {
         mPcTiv.setOnClickListener(this);
-        mSvTiv.setOnClickListener(this);
         mMsTiv.setOnClickListener(this);
         mMeTiv.setOnClickListener(this);
     }
@@ -69,14 +64,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             case R.id.pc_tiv:
                 changeTab((TabItemView) v,0);
                 break;
-            case R.id.sv_tiv:
+            case R.id.ms_tiv:
                 changeTab((TabItemView) v,1);
                 break;
-            case R.id.ms_tiv:
-                changeTab((TabItemView) v,2);
-                break;
             case R.id.me_tiv:
-                changeTab((TabItemView) v,3);
+                changeTab((TabItemView) v,2);
                 break;
         }
     }
@@ -94,20 +86,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 }
                 break;
             case 1:
-                if (mSvFragment!=null) transaction.show(mSvFragment);
-                else {
-                    mSvFragment = SupervisionFragment.newInstance(1);
-                    transaction.add(R.id.fragment_fl,mSvFragment);
-                }
-                break;
-            case 2:
                 if (mMsFragment!=null) transaction.show(mMsFragment);
                 else {
                     mMsFragment = MessageFragment.newInstance(2);
                     transaction.add(R.id.fragment_fl,mMsFragment);
                 }
                 break;
-            case 3:
+            case 2:
                 if (mMeFragment!=null) transaction.show(mMeFragment);
                 else {
                     mMeFragment = MyFragment.newInstance(3);
@@ -118,7 +103,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         transaction.commit();
         mCurrentTab = position;
         mPcTiv.selectedTab(false);
-        mSvTiv.selectedTab(false);
         mMsTiv.selectedTab(false);
         mMeTiv.selectedTab(false);
         view.selectedTab(true);
@@ -130,12 +114,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 if (mPcFragment!=null) transaction.hide(mPcFragment);
                 break;
             case 1:
-                if (mSvFragment!=null) transaction.hide(mSvFragment);
-                break;
-            case 2:
                 if (mMsFragment!=null) transaction.hide(mMsFragment);
                 break;
-            case 3:
+            case 2:
                 if (mMeFragment!=null) transaction.hide(mMeFragment);
                 break;
         }

@@ -28,22 +28,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:tab_text="@string/punch_card"
-            app:normal_image_src="@drawable/icon_dakai_nor"
-            app:selected_image_src="@drawable/icon_dakai_per"
+            app:tab_text="@string/habit"
+            app:normal_image_src="@drawable/ic_habit_normal"
+            app:selected_image_src="@drawable/ic_habit_selected"
             app:normal_text_color="@color/gray_text"
-            app:select_text_color="@color/orange"/>
-
-        <com.habitree.xueshu.xs.view.TabItemView
-            android:id="@+id/sv_tiv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:tab_text="@string/supervision"
-            app:normal_image_src="@drawable/icon_jiandu_nor"
-            app:selected_image_src="@drawable/icon_jiandu_per"
-            app:normal_text_color="@color/gray_text"
-            app:select_text_color="@color/orange"/>
+            app:select_text_color="@color/blue"/>
 
         <com.habitree.xueshu.xs.view.TabItemView
             android:id="@+id/ms_tiv"
@@ -51,10 +40,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:tab_text="@string/message"
-            app:normal_image_src="@drawable/icon_xiaoxi_nor"
-            app:selected_image_src="@drawable/icon_xiaoxi_per"
+            app:normal_image_src="@drawable/ic_message_normal"
+            app:selected_image_src="@drawable/ic_message_selected"
             app:normal_text_color="@color/gray_text"
-            app:select_text_color="@color/orange"/>
+            app:select_text_color="@color/blue"/>
 
         <com.habitree.xueshu.xs.view.TabItemView
             android:id="@+id/me_tiv"
@@ -62,9 +51,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:tab_text="@string/mine"
-            app:normal_image_src="@drawable/icon_wo_nor"
-            app:selected_image_src="@drawable/icon_wo_per"
+            app:normal_image_src="@drawable/ic_my_normal"
+            app:selected_image_src="@drawable/ic_my_selected"
             app:normal_text_color="@color/gray_text"
-            app:select_text_color="@color/orange"/>
+            app:select_text_color="@color/blue"/>
     </LinearLayout>
 </LinearLayout>

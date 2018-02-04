@@ -65,7 +65,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
         mContinuousCiv = findViewById(R.id.continuous_civ);
         mRateCiv = findViewById(R.id.rate_civ);
         mNeedCiv = findViewById(R.id.need_civ);
-        mAbandonTv = findViewById(R.id.abandon_btn);
+        mAbandonTv = findViewById(R.id.abandon_tv);
         mDetailCv.setCanSelected(false);
     }
 
@@ -95,7 +95,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.abandon_btn:
+            case R.id.abandon_tv:
 
                 break;
         }

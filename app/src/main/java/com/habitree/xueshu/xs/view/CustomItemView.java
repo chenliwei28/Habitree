@@ -16,6 +16,7 @@ import com.habitree.xueshu.R;
 
 public class CustomItemView extends RelativeLayout{
 
+    private ImageView mImgIv;
     private TextView mTitleTv;
     private TextView mDetailTv;
     private ImageView mNextIv;
@@ -40,6 +41,7 @@ public class CustomItemView extends RelativeLayout{
 
     private void initView(){
         LayoutInflater.from(getContext()).inflate(R.layout.item_custom_view,this);
+        mImgIv = findViewById(R.id.img_iv);
         mTitleTv = findViewById(R.id.title_tv);
         mDetailTv = findViewById(R.id.detail_tv);
         mNextIv = findViewById(R.id.next_iv);
@@ -59,10 +61,14 @@ public class CustomItemView extends RelativeLayout{
         mNextIv.setVisibility(nextv?VISIBLE:GONE);
         boolean detailv = array.getBoolean(R.styleable.CustomItemView_detail_visible,true);
         mDetailTv.setVisibility(detailv?VISIBLE:GONE);
-        int titleColor = array.getInt(R.styleable.CustomItemView_title_color,0);
-        if (titleColor!=0)mTitleTv.setTextColor(getResources().getColor(titleColor));
-        int nextImg = array.getResourceId(R.styleable.CustomItemView_next_img,R.drawable.bth_fanhui_nor);
+        int titleColor = array.getColor(R.styleable.CustomItemView_title_color,getResources().getColor(R.color.black_text));
+        mTitleTv.setTextColor(titleColor);
+        int nextImg = array.getResourceId(R.styleable.CustomItemView_next_img,R.drawable.ic_next);
         mNextIv.setImageResource(nextImg);
+        int leftImg = array.getResourceId(R.styleable.CustomItemView_head_img,0);
+        mImgIv.setImageResource(leftImg);
+        int detailColor = array.getColor(R.styleable.CustomItemView_detail_text_color,getResources().getColor(R.color.black_text));
+        mDetailTv.setTextColor(detailColor);
         array.recycle();
     }
 
@@ -72,6 +78,6 @@ public class CustomItemView extends RelativeLayout{
 
     public void setChecked(boolean checked){
         mIsSelected = checked;
-        mNextIv.setSelected(mIsSelected);
+        mImgIv.setSelected(mIsSelected);
     }
 }

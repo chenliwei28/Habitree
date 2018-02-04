@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
@@ -13,9 +14,9 @@ import com.habitree.xueshu.xs.view.MyActionBar;
 
 public class SupervisionSettingActivity extends BaseActivity implements View.OnClickListener{
 
-    private MyActionBar mSuperMab;
     private CustomItemView mSuperCiv;
     private CustomItemView mPenaltyCiv;
+    private TextView mConfirmTv;
 
     @Override
     protected int setLayoutId() {
@@ -24,27 +25,16 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
 
     @Override
     protected void initView() {
-        mSuperMab = findViewById(R.id.super_mab);
         mSuperCiv = findViewById(R.id.super_civ);
         mPenaltyCiv = findViewById(R.id.penalty_civ);
+        mConfirmTv = findViewById(R.id.confirm_tv);
     }
 
     @Override
     protected void initListener() {
-        mSuperMab.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppManager.getAppManager().finishActivity(SupervisionSettingActivity.this);
-            }
-        });
-        mSuperMab.setRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         mSuperCiv.setOnClickListener(this);
         mPenaltyCiv.setOnClickListener(this);
+        mConfirmTv.setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +49,10 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
                 startActivity(new Intent(SupervisionSettingActivity.this,ChooseSupervisorActivity.class));
                 break;
             case R.id.penalty_civ:
+                startActivity(new Intent(SupervisionSettingActivity.this,ForfeitSettingActivity.class));
+
+                break;
+            case R.id.confirm_tv:
 
                 break;
         }

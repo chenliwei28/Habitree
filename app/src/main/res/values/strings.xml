@@ -18,7 +18,7 @@
     <!--D-->
     <string name="login">登录</string>
     <string name="punch_card">打卡</string>
-    <string name="rate_of_punch_card">打卡率</string>
+    <string name="rate_of_punch_card">签到率</string>
     <string name="click_to_punch_card">点击打卡</string>
 
     <!--E-->
@@ -30,7 +30,9 @@
     <string name="send_card_record">发送打卡记录</string>
     <!--G-->
     <string name="personal_info">个人资料</string>
+    <string name="forfeit_setting_long_text">共收取%d次（总次数的一半）罚金作为押金，当全部%d次罚金扣除后，本次培养即告停止。</string>
     <!--H-->
+    <string name="summation_money">合计 ¥ %d</string>
     <string name="friend_list">好友列表</string>
     <!--I-->
     <!--J-->
@@ -48,7 +50,8 @@
     <string name="quick_login">快速登录</string>
     <string name="quick_register">快速注册</string>
     <!--L-->
-    <string name="continuous_of_punch_card">连续打卡次数</string>
+    <string name="pay_right_now">立即支付</string>
+    <string name="continuous_of_punch_card">连续签到次数</string>
     <!--M-->
     <string name="password">密码</string>
     <string name="start_it_right_now">马上开始</string>
@@ -60,8 +63,11 @@
     <string name="foster_state">培养状态</string>
     <!--Q-->
     <string name="confirm">确认</string>
+    <string name="to_pay">去支付</string>
     <string name="qq_friends">QQ好友</string>
+    <string name="other_sum">其他金额</string>
     <string name="confirm_password">确认密码</string>
+    <string name="rewards_for_all_the_work">全勤奖鼓励</string>
     <string name="please_enter_password">请输入登录密码</string>
     <string name="please_enter_phone_number">请输入手机号</string>
     <string name="please_enter_password_again">请再次输入密码</string>
@@ -77,7 +83,10 @@
     <!--T-->
     <string name="statistics">统计</string>
     <string name="reminder_time">提醒时间</string>
+    <string name="wx_pay_long_text">推荐已安装微信的用户使用</string>
+    <string name="ali_pay_long_text">推荐已安装支付宝的用户使用</string>
     <!--X-->
+    <string name="habit">习惯</string>
     <string name="xue_shu">学·树</string>
     <string name="detail">详情</string>
     <string name="message">消息</string>
@@ -99,10 +108,12 @@
     <string name="next_step_set_password">下一步，设置密码</string>
     <string name="choose_a_tree_with_you">选一棵小树陪你度过难忘的日子吧</string>
     <string name="send_card_record_to_someone">向监督人（%s）发送打卡记录</string>
+    <string name="choose_time_long_text">选择时间，将作为习惯养成的时间长度。</string>
     <string name="choose_rational_time_is_helpful">选择合理的周期，有助于积累成就感和信息</string>
     <!--W-->
     <string name="mine">我</string>
     <string name="complete">完成</string>
+    <string name="wx_pay">微信支付</string>
     <string name="my_forest">我的森林</string>
     <string name="my_wallet">我的钱包</string>
     <string name="wx_friends">微信好友</string>
@@ -110,14 +121,19 @@
     <!--Y-->
     <string name="auth_code">验证码</string>
     <string name="completed">已完成</string>
+    <string name="balance_pay">余额支付</string>
     <string name="member_home">用户中心</string>
     <string name="paid_deposit">已付押金</string>
+    <string name="yuan_every_time">元/次</string>
     <string name="invite_friends">邀请好友</string>
     <string name="privacy_settings">隐私设置</string>
     <string name="already_send_code_to_your_phone">已经向您的手机发送验证码，请查收</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--Z-->
+    <string name="pay">支付</string>
+    <string name="total_sum">总金额</string>
     <string name="plant_a_tree">种一棵树</string>
+    <string name="ali_pay">支付宝支付</string>
     <string name="plant_a_tree_ba">种一颗树吧</string>
     <string name="photo_record">照片记录</string>
     <string name="register_account">注册账号</string>
@@ -128,6 +144,18 @@
     <string name="sliding_around_to_check_the_next">左右滑动查看下一棵</string>
     <!--##-->
     <string name="zero">0</string>
+    <string name="seven_days">7天</string>
+    <string name="fifteen_days">15天</string>
+    <string name="thirty_days">30天</string>
+    <string name="sixty_days">60天</string>
+    <string name="ninety_days">90天</string>
+    <string name="hundred_days">100天</string>
+    <string name="one_yuan">1元/次</string>
+    <string name="five_yuan">5元/次</string>
+    <string name="ten_yuan">10元/次</string>
+    <string name="fifteen_yuan">15元/次</string>
+    <string name="twenty_yuan">20元/次</string>
+    <string name="fifty_yuan">50元/次</string>
     <string name="phone_head">+86</string>
     <string name="count_of_not_punch_card">（%d个未打卡）</string>
     <string name="twenty_four_un_processed">24小时未处理的打开记录将视为通过；24小时未处理的监督要求视为拒绝</string>

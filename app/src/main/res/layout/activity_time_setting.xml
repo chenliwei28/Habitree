@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    tools:context="com.habitree.xueshu.punchcard.activity.TimeSettingActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/time_of_duration"/>
+
+    <com.habitree.xueshu.xs.view.CustomRadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="76dp"
+                android:gravity="center"
+                android:background="@drawable/bg_time_radio_button"
+                android:button="@null"
+                android:textSize="18sp"
+                android:textColor="@drawable/selector_radio_button_text"
+                android:text="@string/seven_days"/>
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="76dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:background="@drawable/bg_time_radio_button"
+                android:button="@null"
+                android:textSize="18sp"
+                android:textColor="@drawable/selector_radio_button_text"
+                android:text="@string/fifteen_days"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="76dp"
+                android:gravity="center"
+                android:background="@drawable/bg_time_radio_button"
+                android:button="@null"
+                android:textSize="18sp"
+                android:textColor="@drawable/selector_radio_button_text"
+                android:text="@string/thirty_days"/>
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="76dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:background="@drawable/bg_time_radio_button"
+                android:button="@null"
+                android:textSize="18sp"
+                android:textColor="@drawable/selector_radio_button_text"
+                android:text="@string/sixty_days"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="76dp"
+                android:gravity="center"
+                android:background="@drawable/bg_time_radio_button"
+                android:button="@null"
+                android:textSize="18sp"
+                android:textColor="@drawable/selector_radio_button_text"
+                android:text="@string/ninety_days" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="76dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:background="@drawable/bg_time_radio_button"
+                android:button="@null"
+                android:textSize="18sp"
+                android:textColor="@drawable/selector_radio_button_text"
+                android:text="@string/hundred_days" />
+        </LinearLayout>
+    </com.habitree.xueshu.xs.view.CustomRadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:text="@string/choose_time_long_text"
+        android:textColor="@color/gray_text"/>
+
+    <TextView
+        android:id="@+id/confirm_tv"
+        style="@style/RectButton"
+        android:text="@string/confirm"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="25dp"/>
+</LinearLayout>

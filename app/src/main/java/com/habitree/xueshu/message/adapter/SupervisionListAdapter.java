@@ -1,4 +1,4 @@
-package com.habitree.xueshu.supervision.adapter;
+package com.habitree.xueshu.message.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
