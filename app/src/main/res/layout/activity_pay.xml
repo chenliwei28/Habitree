@@ -30,6 +30,7 @@
             app:detail_text_color="@color/orange"/>
 
         <LinearLayout
+            android:id="@+id/wx_check_ll"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/white"
@@ -70,12 +71,13 @@
                 android:layout_height="23dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:src="@drawable/selector_day_check_box"/>
+                android:src="@drawable/selector_pay_check_box"/>
         </LinearLayout>
 
         <View style="@style/Line"/>
 
         <LinearLayout
+            android:id="@+id/ali_check_ll"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/white"
@@ -115,12 +117,13 @@
                 android:layout_height="23dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:src="@drawable/selector_day_check_box"/>
+                android:src="@drawable/selector_pay_check_box"/>
         </LinearLayout>
 
         <View style="@style/Line"/>
 
         <LinearLayout
+            android:id="@+id/balance_check_ll"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/white"
@@ -161,7 +164,7 @@
                 android:layout_height="23dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:src="@drawable/selector_day_check_box"/>
+                android:src="@drawable/selector_pay_check_box"/>
         </LinearLayout>
 
         <View style="@style/Line"/>
