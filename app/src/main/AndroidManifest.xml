@@ -40,7 +40,9 @@
         <activity android:name=".punchcard.activity.SendRecordActivity" />
         <activity android:name=".punchcard.activity.TimeSettingActivity" />
         <activity android:name=".punchcard.activity.ForfeitSettingActivity" />
-        <activity android:name=".punchcard.activity.PayActivity"></activity>
+        <activity android:name=".punchcard.activity.PayActivity" />
+        <activity android:name=".mine.activity.SettingActivity" />
+        <activity android:name=".mine.activity.MyWalletActivity"></activity>
     </application>
 
 </manifest>

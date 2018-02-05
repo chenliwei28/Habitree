@@ -9,10 +9,7 @@
     </declare-styleable>
 
     <declare-styleable name="MyActionBar">
-        <attr name="mode" format="integer">
-            <enum name="bg_blue" value="0"/>
-            <enum name="bg_trans" value="1"/>
-        </attr>
+        <attr name="ma_bg_color" format="color|integer|reference"/>
         <attr name="title_text" format="integer|reference"/>
         <attr name="back_btn_img" format="integer|reference"/>
         <attr name="back_btn_visible" format="boolean"/>

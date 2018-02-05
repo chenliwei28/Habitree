@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="com.habitree.xueshu.mine.activity.SettingActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/setting"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/my_wallet_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="10dp"
+        app:title="@string/my_wallet"
+        app:head_img="@drawable/ic_money"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/change_phone_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="10dp"
+        app:title="@string/change_phone_number"
+        app:head_img="@drawable/ic_phone"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/change_password_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:title="@string/change_password"
+        app:head_img="@drawable/ic_password"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/about_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="10dp"
+        app:title="@string/about_app"
+        app:head_img="@drawable/ic_tree"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/clear_cache_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:title="@string/clear_cache"
+        app:head_img="@drawable/ic_clear"
+        app:next_visible="true"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/log_out_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:title="@string/log_out"
+        app:head_img="@drawable/ic_out"
+        app:next_visible="true"/>
+</LinearLayout>

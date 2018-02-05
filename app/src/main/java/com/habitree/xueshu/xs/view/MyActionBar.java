@@ -54,20 +54,6 @@ public class MyActionBar extends RelativeLayout {
 
     private void initAttributeSet(@Nullable AttributeSet attrs){
         TypedArray array = getContext().obtainStyledAttributes(attrs,R.styleable.MyActionBar);
-        //mode 0默认蓝底白字  1透明底白字
-        int mode = array.getInt(R.styleable.MyActionBar_mode,0);
-        switch (mode){
-            case 0:
-                setBackgroundResource(R.color.blue);
-                mTitleTv.setTextColor(getResources().getColor(R.color.white));
-                mRightTv.setTextColor(getResources().getColor(R.color.white));
-                break;
-            case 1:
-                setBackgroundResource(R.color.trans);
-                mTitleTv.setTextColor(getResources().getColor(R.color.white));
-                mRightTv.setTextColor(getResources().getColor(R.color.white));
-                break;
-        }
 
         String title = array.getString(R.styleable.MyActionBar_title_text);
         if (title!=null)mTitleTv.setText(title);
@@ -89,6 +75,9 @@ public class MyActionBar extends RelativeLayout {
             mRightTv.setText(rightText);
             mRightTv.setVisibility(VISIBLE);
         }
+
+        int bgColor = array.getInt(R.styleable.MyActionBar_ma_bg_color,R.color.blue);
+        setBackgroundResource(bgColor);
         array.recycle();
     }
 

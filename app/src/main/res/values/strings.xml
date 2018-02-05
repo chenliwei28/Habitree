@@ -7,6 +7,7 @@
     <string name="boil_yourself">把自己熬成金黄</string>
     <string name="plant_tree_long_text">不同背景颜色，不同外形，每一棵树都独一无二</string>
     <!--C-->
+    <string name="top_up">充值</string>
     <string name="resend">重新发送</string>
     <string name="resend_time">重新发送（%d秒）</string>
     <string name="repeat_day_count">重复天数</string>
@@ -18,7 +19,7 @@
     <!--D-->
     <string name="login">登录</string>
     <string name="punch_card">打卡</string>
-    <string name="rate_of_punch_card">签到率</string>
+    <string name="times_of_punch_card">打卡数</string>
     <string name="click_to_punch_card">点击打卡</string>
 
     <!--E-->
@@ -29,6 +30,7 @@
     <string name="send_auth_code">发送验证码</string>
     <string name="send_card_record">发送打卡记录</string>
     <!--G-->
+    <string name="about_app">关于学树</string>
     <string name="personal_info">个人资料</string>
     <string name="forfeit_setting_long_text">共收取%d次（总次数的一半）罚金作为押金，当全部%d次罚金扣除后，本次培养即告停止。</string>
     <!--H-->
@@ -43,6 +45,7 @@
     <string name="basic_setting">基本设置</string>
     <string name="recording_mode">记录方式</string>
     <string name="record_setting">记录设置</string>
+    <string name="transaction_record">交易记录</string>
     <string name="days_of_accession">加入天数</string>
     <string name="supervision_setting">监督设置</string>
     <string name="today_has_been_punch_card">今天已打卡（待审核）</string>
@@ -65,8 +68,11 @@
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
     <string name="to_pay">去支付</string>
+    <string name="rate_of_punch_card">签到率</string>
     <string name="qq_friends">QQ好友</string>
     <string name="other_sum">其他金额</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="wallet_balance">钱包余额</string>
     <string name="confirm_password">确认密码</string>
     <string name="rewards_for_all_the_work">全勤奖鼓励</string>
     <string name="please_enter_password">请输入登录密码</string>
@@ -75,7 +81,9 @@
     <string name="please_set_password_from_eight_to_sixteen">请设置8&#8211;16位密码，可包含数字、字母、字符</string>
     <!--S-->
     <string name="setting">设置</string>
+    <string name="log_out">退出登录</string>
     <string name="set_password">设置密码</string>
+    <string name="payment_record">罚金收支记录</string>
     <string name="note_auth_code">短信验证码</string>
     <string name="phone_auth_code">手机验证码</string>
     <string name="phone_number_must_be_not_empty">手机号不能为空</string>
@@ -83,6 +91,7 @@
     <string name="is_allow_other_people_see_this_habit">是否允许你的监督人之外的亲友看到这条习惯</string>
     <!--T-->
     <string name="statistics">统计</string>
+    <string name="withdraw_deposit">提现</string>
     <string name="reminder_time">提醒时间</string>
     <string name="wx_pay_long_text">推荐已安装微信的用户使用</string>
     <string name="ali_pay_long_text">推荐已安装支付宝的用户使用</string>
@@ -101,9 +110,11 @@
     <string name="next_step">下一步</string>
     <string name="habit_detail">习惯详情</string>
     <string name="habit_setting">习惯设置</string>
+    <string name="change_password">修改密码</string>
     <string name="habit_description">习惯描述</string>
     <string name="choose_supervisor">选择监督人</string>
     <string name="choose_plant_trees">选择成长树</string>
+    <string name="change_phone_number">修改手机号码</string>
     <string name="number_of_penalty_need_pay">需支付罚金</string>
     <string name="next_step_verify_phone">下一步，验证手机号码</string>
     <string name="next_step_set_password">下一步，设置密码</string>
@@ -143,6 +154,7 @@
     <string name="total_number_of_sign_in">总签到次数</string>
     <string name="the_best_time_is_now">最好的时间是现在</string>
     <string name="sliding_around_to_check_the_next">左右滑动查看下一棵</string>
+    <string name="sliding_around_to_watch_other">左右拖动画面浏览其他部分</string>
     <!--##-->
     <string name="zero">0</string>
     <string name="seven_days">7天</string>
