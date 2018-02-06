@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    tools:context="com.habitree.xueshu.mine.activity.PaymentRecordActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/payment_record"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/income_tv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="61dp"
+            android:background="@drawable/shape_rect_round_corner_stroke_white_bg"
+            android:gravity="center"
+            android:textColor="@color/orange"
+            android:textSize="17sp"
+            android:text="@string/income_num"/>
+
+        <TextView
+            android:id="@+id/expense_tv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="61dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/shape_rect_round_corner_stroke_white_bg"
+            android:gravity="center"
+            android:textColor="@color/orange"
+            android:textSize="17sp"
+            android:text="@string/expense_num"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/record_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="0.5dp"
+        android:divider="@color/line"/>
+</LinearLayout>

@@ -1,16 +1,36 @@
 package com.habitree.xueshu.punchcard.activity;
 
-import android.view.View;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.adapter.FriendsAdapter;
+import com.habitree.xueshu.message.bean.Friend;
 import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.util.AppManager;
-import com.habitree.xueshu.xs.view.CustomItemView;
-import com.habitree.xueshu.xs.view.MyActionBar;
+import com.habitree.xueshu.xs.util.CharacterParser;
+import com.habitree.xueshu.xs.util.CommUtil;
+import com.habitree.xueshu.xs.view.SideBar;
+
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+
 
 public class ChooseSupervisorActivity extends BaseActivity {
 
-    private MyActionBar mChooseMab;
+    private EditText mSearchEt;
+    private ListView mFriendsLv;
+    private SideBar mSideBar;
+    private FriendsAdapter mAdapter;
+
+    private List<Friend> mFriends;
 
     @Override
     protected int setLayoutId() {
@@ -19,21 +39,68 @@ public class ChooseSupervisorActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mChooseMab = findViewById(R.id.choose_mab);
+        mSearchEt = findViewById(R.id.search_et);
+        mFriendsLv = findViewById(R.id.friends_lv);
+        mSideBar = findViewById(R.id.side_bar);
+        TextView mCurrentTv = findViewById(R.id.current_tv);
+        mSideBar.setTextView(mCurrentTv);
     }
 
     @Override
     protected void initListener() {
-        mChooseMab.setBackIvClickListener(new View.OnClickListener() {
+        mSearchEt.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                AppManager.getAppManager().finishActivity(ChooseSupervisorActivity.this);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        mSideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
+            @Override
+            public void onTouchingLetterChanged(String s) {
+                int position = mAdapter.getPositionForSection(s.charAt(0));
+                if (position!=-1)mFriendsLv.setSelection(position);
             }
         });
     }
 
     @Override
     protected void initData() {
+        initFriendList();
+        mAdapter = new FriendsAdapter(this,mFriends);
+        mFriendsLv.setAdapter(mAdapter);
+    }
 
+    private void initFriendList(){
+        mFriends = new ArrayList<>();
+        mFriends.add(new Friend("张全蛋"));
+        mFriends.add(new Friend("李文忠"));
+        mFriends.add(new Friend("吴思博"));
+        mFriends.add(new Friend("王鹏超"));
+        mFriends.add(new Friend("鸡崽子"));
+        mFriends.add(new Friend("王逢年"));
+        mFriends.add(new Friend("郑容和"));
+        mFriends.add(new Friend("精灵王"));
+        mFriends.add(new Friend("马春燕"));
+        mFriends.add(new Friend("如梦令"));
+        mFriends.add(new Friend("大众车"));
+        for (Friend friend:mFriends){
+            friend.letter = CommUtil.getLetter(friend.name);
+        }
+        Collections.sort(mFriends, new Comparator<Friend>() {
+            @Override
+            public int compare(Friend l, Friend r) {
+                return Collator.getInstance(Locale.CHINESE).compare(l.name, r.name);
+            }
+        });
     }
 }

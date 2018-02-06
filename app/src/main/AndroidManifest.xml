@@ -29,20 +29,61 @@
             android:name=".login.activity.RegisterActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity android:name=".login.activity.SendAuthCodeActivity" />
-        <activity android:name=".login.activity.SetPasswordActivity" />
-        <activity android:name=".punchcard.activity.HabitDetailActivity" />
-        <activity android:name=".punchcard.activity.PlantTreeActivity" />
-        <activity android:name=".punchcard.activity.HabitSettingActivity" />
-        <activity android:name=".punchcard.activity.RepeatDayActivity" />
-        <activity android:name=".punchcard.activity.SupervisionSettingActivity" />
-        <activity android:name=".punchcard.activity.ChooseSupervisorActivity" />
-        <activity android:name=".punchcard.activity.SendRecordActivity" />
-        <activity android:name=".punchcard.activity.TimeSettingActivity" />
-        <activity android:name=".punchcard.activity.ForfeitSettingActivity" />
-        <activity android:name=".punchcard.activity.PayActivity" />
-        <activity android:name=".mine.activity.SettingActivity" />
-        <activity android:name=".mine.activity.MyWalletActivity"></activity>
+        <activity
+            android:name=".login.activity.SendAuthCodeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".login.activity.SetPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".punchcard.activity.HabitDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".punchcard.activity.PlantTreeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".punchcard.activity.HabitSettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".punchcard.activity.RepeatDayActivity" />
+        <activity
+            android:name=".punchcard.activity.SupervisionSettingActivity" />
+        <activity
+            android:name=".punchcard.activity.ChooseSupervisorActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name=".punchcard.activity.SendRecordActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".punchcard.activity.TimeSettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".punchcard.activity.ForfeitSettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".punchcard.activity.PayActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mine.activity.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mine.activity.MyWalletActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mine.activity.TransactionRecordActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mine.activity.PaymentRecordActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mine.activity.TopUpActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mine.activity.WithdrawActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mine.activity.ChangePhoneActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

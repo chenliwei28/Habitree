@@ -48,6 +48,7 @@
             android:layout_height="46dp">
 
             <TextView
+                android:id="@+id/top_up_tv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -62,6 +63,7 @@
                 android:background="@color/white"/>
 
             <TextView
+                android:id="@+id/withdraw_tv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -73,6 +75,7 @@
     </LinearLayout>
 
     <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/transaction_record_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="10dp"
@@ -81,6 +84,7 @@
         app:title="@string/transaction_record"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/payment_record_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="10dp"

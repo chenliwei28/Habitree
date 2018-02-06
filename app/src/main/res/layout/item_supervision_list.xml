@@ -72,6 +72,6 @@
     <ImageView
         android:layout_width="15dp"
         android:layout_height="30dp"
-        android:src="@drawable/bth_fanhui_nor"
+        android:src=" @drawable/bth_fanhui_nor"
         android:scaleType="center"/>
 </LinearLayout>

@@ -8,6 +8,7 @@
     <string name="plant_tree_long_text">不同背景颜色，不同外形，每一棵树都独一无二</string>
     <!--C-->
     <string name="top_up">充值</string>
+    <string name="top_up_num">充值金额</string>
     <string name="resend">重新发送</string>
     <string name="resend_time">重新发送（%d秒）</string>
     <string name="repeat_day_count">重复天数</string>
@@ -52,6 +53,7 @@
     <!--K-->
     <string name="quick_login">快速登录</string>
     <string name="quick_register">快速注册</string>
+    <string name="can_use_sum">可用余额：</string>
     <!--L-->
     <string name="pay_right_now">立即支付</string>
     <string name="continuous_of_punch_card">连续签到次数</string>
@@ -81,6 +83,8 @@
     <string name="please_set_password_from_eight_to_sixteen">请设置8&#8211;16位密码，可包含数字、字母、字符</string>
     <!--S-->
     <string name="setting">设置</string>
+    <string name="income_num">收入：¥ %d</string>
+    <string name="expense_num">支出：¥ %d</string>
     <string name="log_out">退出登录</string>
     <string name="set_password">设置密码</string>
     <string name="payment_record">罚金收支记录</string>
@@ -92,6 +96,7 @@
     <!--T-->
     <string name="statistics">统计</string>
     <string name="withdraw_deposit">提现</string>
+    <string name="withdraw_sum">提现金额</string>
     <string name="reminder_time">提醒时间</string>
     <string name="wx_pay_long_text">推荐已安装微信的用户使用</string>
     <string name="ali_pay_long_text">推荐已安装支付宝的用户使用</string>
@@ -115,6 +120,7 @@
     <string name="choose_supervisor">选择监督人</string>
     <string name="choose_plant_trees">选择成长树</string>
     <string name="change_phone_number">修改手机号码</string>
+    <string name="new_phone_number">新手机号码</string>
     <string name="number_of_penalty_need_pay">需支付罚金</string>
     <string name="next_step_verify_phone">下一步，验证手机号码</string>
     <string name="next_step_set_password">下一步，设置密码</string>
@@ -157,6 +163,7 @@
     <string name="sliding_around_to_watch_other">左右拖动画面浏览其他部分</string>
     <!--##-->
     <string name="zero">0</string>
+    <string name="rmb">¥</string>
     <string name="seven_days">7天</string>
     <string name="fifteen_days">15天</string>
     <string name="thirty_days">30天</string>

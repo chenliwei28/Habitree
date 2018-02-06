@@ -27,4 +27,18 @@ public class CommUtil {
         lastClickTime = time;
         return false;
     }
+
+
+    /**
+     * 获取字符串首字拼音
+     * @param text 字符串
+     * @return A-Z字母，首字母不匹配的返回 #
+     */
+    public static String getLetter(String text){
+        String pinyin = CharacterParser.getInstance().getSelling(text);
+        String sortString = pinyin.substring(1, 2).toUpperCase();
+        if (sortString.matches("[A-Z]"))
+            return sortString.toUpperCase();
+        else return "#";
+    }
 }

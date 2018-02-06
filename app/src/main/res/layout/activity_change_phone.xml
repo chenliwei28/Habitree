@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="com.habitree.xueshu.mine.activity.ChangePhoneActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/change_phone_number"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/num_et"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:background="@color/white"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textSize="15sp"
+            android:textColor="@color/black_text"
+            android:hint="@string/new_phone_number"/>
+        
+        <TextView
+            android:id="@+id/send_tv"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:background="@drawable/shape_rect_round_corner_blue_button"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:text="@string/send_auth_code"/>
+    </LinearLayout>
+
+    <View style="@style/Line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/code_et"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/white"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textSize="15sp"
+            android:textColor="@color/black_text"
+            android:hint="@string/phone_auth_code"/>
+    </LinearLayout>
+
+    <View style="@style/Line"/>
+
+    <TextView
+        android:id="@+id/completed_tv"
+        style="@style/RectButton"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/complete"/>
+</LinearLayout>

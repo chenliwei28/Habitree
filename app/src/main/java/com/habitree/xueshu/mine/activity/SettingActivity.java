@@ -54,7 +54,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(this,MyWalletActivity.class));
                 break;
             case R.id.change_phone_civ:
-
+                startActivity(new Intent(this,ChangePhoneActivity.class));
                 break;
             case R.id.change_password_civ:
 
