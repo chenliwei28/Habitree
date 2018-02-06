@@ -73,6 +73,11 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
         TextView letterTv;
     }
 
+    public void updateData(List<Friend> list){
+        mList = list;
+        notifyDataSetChanged();
+    }
+
     /**
      * 根据ListView的当前位置获取分类的首字母的Char ascii值
      */

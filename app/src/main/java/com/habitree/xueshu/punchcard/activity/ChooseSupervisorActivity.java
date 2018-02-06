@@ -2,6 +2,7 @@ package com.habitree.xueshu.punchcard.activity;
 
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -61,7 +62,7 @@ public class ChooseSupervisorActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                mAdapter.updateData(changeFriendList(s.toString()));
             }
         });
         mSideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
@@ -102,5 +103,26 @@ public class ChooseSupervisorActivity extends BaseActivity {
                 return Collator.getInstance(Locale.CHINESE).compare(l.name, r.name);
             }
         });
+    }
+
+    private List<Friend> changeFriendList(String s){
+        List<Friend> list = new ArrayList<>();
+        if (TextUtils.isEmpty(s))return mFriends;
+        else {
+            list.clear();
+            for (Friend friend:mFriends){
+                if (friend.name.toUpperCase().contains(s.toUpperCase())
+                        || CharacterParser.getInstance().getSelling(friend.name).toUpperCase().startsWith(s.toUpperCase())){
+                    list.add(friend);
+                }
+            }
+            Collections.sort(list, new Comparator<Friend>() {
+                @Override
+                public int compare(Friend l, Friend r) {
+                    return Collator.getInstance(Locale.CHINESE).compare(l.name, r.name);
+                }
+            });
+            return list;
+        }
     }
 }
