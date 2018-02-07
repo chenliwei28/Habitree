@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.activity.HabitOngoingOrNotActivity;
+import com.habitree.xueshu.mine.activity.MyHabitsActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
 import com.habitree.xueshu.mine.activity.SignedInNumberActivity;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
@@ -27,6 +28,7 @@ import com.habitree.xueshu.xs.view.RoundImageView;
 public class MyFragment extends BaseFragment implements MyView,View.OnClickListener{
 
     private TextView mNameTv;
+    private ImageView mHabitIv;
     private ImageView mSettingIv;
     private RoundImageView mHeadRiv;
     private TextView mDaysTv;
@@ -49,6 +51,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
 
     @Override
     protected void initView(View view) {
+        mHabitIv = view.findViewById(R.id.habit_iv);
         mSettingIv = view.findViewById(R.id.setting_iv);
         mHeadRiv = view.findViewById(R.id.head_riv);
         mNameTv = view.findViewById(R.id.name_tv);
@@ -68,6 +71,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
 
     @Override
     protected void initListener() {
+        mHabitIv.setOnClickListener(this);
         mSettingIv.setOnClickListener(this);
         mCountLl.setOnClickListener(this);
         mCompletedLl.setOnClickListener(this);
@@ -89,6 +93,9 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.habit_iv:
+                startActivity(new Intent(getContext(), MyHabitsActivity.class));
+                break;
             case R.id.setting_iv:
                 startActivity(new Intent(getContext(), SettingActivity.class));
                 break;

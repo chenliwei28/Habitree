@@ -10,8 +10,10 @@ import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
+import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyActionBar;
+import com.habitree.xueshu.xs.view.MyDialog;
 import com.habitree.xueshu.xs.view.RoundImageView;
 import com.habitree.xueshu.xs.view.calendarview.Calendar;
 import com.habitree.xueshu.xs.view.calendarview.CalendarView;
@@ -111,7 +113,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.abandon_tv:
-
+                showAbandonDialog();
                 break;
             case R.id.pre_month_iv:
                 mDetailCv.scrollToPre();
@@ -120,5 +122,18 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
                 mDetailCv.scrollToNext();
                 break;
         }
+    }
+
+    private void showAbandonDialog(){
+        MyDialog dialog = new MyDialog(this,R.style.MyDialog).builder()
+                .setTitle("aaa")
+                .setDetail("aaa")
+                .setConfirmClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+        dialog.show();
     }
 }

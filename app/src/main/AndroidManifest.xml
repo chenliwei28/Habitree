@@ -83,7 +83,8 @@
             android:name=".mine.activity.ChangePhoneActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".mine.activity.SignedInNumberActivity" />
-        <activity android:name=".mine.activity.HabitOngoingOrNotActivity"></activity>
+        <activity android:name=".mine.activity.HabitOngoingOrNotActivity" />
+        <activity android:name=".mine.activity.MyHabitsActivity"></activity>
     </application>
 
 </manifest>

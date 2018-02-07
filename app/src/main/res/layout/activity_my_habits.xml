@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="com.habitree.xueshu.mine.activity.MyHabitsActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/my_habits"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center_vertical"
+                android:textSize="13sp"
+                android:textColor="@color/gray_text"
+                android:text="@string/ongoing"/>
+
+            <com.habitree.xueshu.xs.view.NoScrollListView
+                android:id="@+id/ongoing_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View style="@style/Line"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center_vertical"
+                android:textSize="13sp"
+                android:textColor="@color/gray_text"
+                android:text="@string/completed"/>
+
+            <com.habitree.xueshu.xs.view.NoScrollListView
+                android:id="@+id/completed_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View style="@style/Line"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
