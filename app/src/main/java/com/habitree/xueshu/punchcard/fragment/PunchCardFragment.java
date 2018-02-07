@@ -80,9 +80,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mMonthTv.setText(s);
     }
 
-    public static PunchCardFragment newInstance(int position) {
+    public static PunchCardFragment newInstance() {
         Bundle args = new Bundle();
-        args.putInt(Constant.POSITION,position);
         PunchCardFragment fragment = new PunchCardFragment();
         fragment.setArguments(args);
         return fragment;

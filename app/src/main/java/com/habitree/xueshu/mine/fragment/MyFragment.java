@@ -79,9 +79,8 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
 
     }
 
-    public static MyFragment newInstance(int position) {
+    public static MyFragment newInstance() {
         Bundle args = new Bundle();
-        args.putInt(Constant.POSITION, position);
         MyFragment fragment = new MyFragment();
         fragment.setArguments(args);
         return fragment;

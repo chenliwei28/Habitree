@@ -52,9 +52,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         mMessageLv.setAdapter(adapter);
     }
 
-    public static MessageFragment newInstance(int position) {
+    public static MessageFragment newInstance() {
         Bundle args = new Bundle();
-        args.putInt(Constant.POSITION, position);
         MessageFragment fragment = new MessageFragment();
         fragment.setArguments(args);
         return fragment;

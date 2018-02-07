@@ -81,21 +81,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             case 0:
                 if (mPcFragment!=null) transaction.show(mPcFragment);
                 else {
-                    mPcFragment = PunchCardFragment.newInstance(0);
+                    mPcFragment = PunchCardFragment.newInstance();
                     transaction.add(R.id.fragment_fl,mPcFragment);
                 }
                 break;
             case 1:
                 if (mMsFragment!=null) transaction.show(mMsFragment);
                 else {
-                    mMsFragment = MessageFragment.newInstance(2);
+                    mMsFragment = MessageFragment.newInstance();
                     transaction.add(R.id.fragment_fl,mMsFragment);
                 }
                 break;
             case 2:
                 if (mMeFragment!=null) transaction.show(mMeFragment);
                 else {
-                    mMeFragment = MyFragment.newInstance(3);
+                    mMeFragment = MyFragment.newInstance();
                     transaction.add(R.id.fragment_fl,mMeFragment);
                 }
                 break;
