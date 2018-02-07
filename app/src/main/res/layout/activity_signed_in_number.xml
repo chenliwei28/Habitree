@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="com.habitree.xueshu.mine.activity.SignedInNumberActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/times_of_punch_card"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/pre_month_iv"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/ic_next"
+            android:rotation="180"/>
+
+        <TextView
+            android:id="@+id/month_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textColor="@color/black_text"
+            android:textSize="16sp"
+            tools:text="2018.02"/>
+
+        <ImageView
+            android:id="@+id/next_month_iv"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/ic_next"/>
+    </LinearLayout>
+
+    <com.habitree.xueshu.xs.view.calendarview.CalendarView
+        android:id="@+id/date_cv"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:background="@color/white"
+        app:calendar_card_view="com.habitree.xueshu.xs.view.calendarview.SimpleCalendarCardView"
+        app:calendar_height="@dimen/actionbar_height"
+        app:current_day_text_color="@color/white"
+        app:current_month_lunar_text_color="@color/gray_text"
+        app:current_month_text_color="@color/black_text"
+        app:min_year="2016"
+        app:other_month_text_color="@color/gray_text"
+        app:scheme_theme_color="@color/gray_text"
+        app:scheme_month_text_color="@color/black_text"
+        app:scheme_text_color="@color/black_text"
+        app:selected_lunar_text_color="@color/white"
+        app:selected_text_color="@color/white"
+        app:selected_theme_color="@color/blue"
+        app:week_background="@color/white"
+        app:week_text_color="@color/black_text" />
+
+    <View style="@style/Line"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="34sp"
+            android:text="888次"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black_text"
+            android:textSize="15sp"
+            android:text="@string/total_number_of_punch_card"/>
+    </LinearLayout>
+
+    <View style="@style/Line"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/msg_xiaoxi"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:text="@string/has_punch_card"
+                android:textSize="15sp"
+                android:textColor="@color/gray_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/ic_gray_circle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:text="@string/not_punch_card"
+                android:textSize="15sp"
+                android:textColor="@color/gray_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|start">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/ic_blue_circle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:text="@string/ongoing"
+                android:textSize="15sp"
+                android:textColor="@color/gray_text"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/Line"/>
+</LinearLayout>

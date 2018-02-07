@@ -15,7 +15,8 @@
         <com.habitree.xueshu.xs.view.calendarview.MonthViewPager
             android:id="@+id/vp_calendar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="41dp"/>
 
         <com.habitree.xueshu.xs.view.calendarview.WeekViewPager
             android:id="@+id/vp_week"
@@ -31,8 +32,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="40dp"
-            android:background="#cfcfcf"
-            android:visibility="gone"/>
+            android:background="#cfcfcf"/>
 
     </FrameLayout>
 

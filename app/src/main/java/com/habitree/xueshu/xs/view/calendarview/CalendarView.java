@@ -74,13 +74,13 @@ public class CalendarView extends FrameLayout {
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.cv_layout_calendar_view, this, true);
         FrameLayout frameContent = findViewById(R.id.frameContent);
-        this.mWeekPager =  findViewById(R.id.vp_week);
+        this.mWeekPager = findViewById(R.id.vp_week);
         this.mWeekPager.setup(mDelegate);
 
         if (TextUtils.isEmpty(mDelegate.getWeekBarClass())) {
             this.mWeekBar = new WeekBar(getContext());
             //顶部周几布局暂时不用，隐藏。若启用，记得布局的日历viewpager加上marginTop
-            mWeekBar.setVisibility(GONE);
+//            mWeekBar.setVisibility(GONE);
         } else {
             try {
                 Class cls = Class.forName(mDelegate.getWeekBarClass());
@@ -575,9 +575,10 @@ public class CalendarView extends FrameLayout {
 
     /**
      * 设置是否可以选择日期
+     *
      * @param canSelected boolean
      */
-    public void setCanSelected(boolean canSelected){
+    public void setCanSelected(boolean canSelected) {
         mDelegate.mCanSelected = canSelected;
     }
 
@@ -604,7 +605,6 @@ public class CalendarView extends FrameLayout {
         @Deprecated
         void onYearChange(int year);
     }
-
 
     /**
      * 内部日期选择，不暴露外部使用

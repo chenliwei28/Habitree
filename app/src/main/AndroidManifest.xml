@@ -31,59 +31,59 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".login.activity.SendAuthCodeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.activity.SetPasswordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".punchcard.activity.HabitDetailActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".punchcard.activity.PlantTreeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".punchcard.activity.HabitSettingActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".punchcard.activity.RepeatDayActivity" />
-        <activity
-            android:name=".punchcard.activity.SupervisionSettingActivity" />
+            android:screenOrientation="portrait" />
+        <activity android:name=".punchcard.activity.RepeatDayActivity" />
+        <activity android:name=".punchcard.activity.SupervisionSettingActivity" />
         <activity
             android:name=".punchcard.activity.ChooseSupervisorActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".punchcard.activity.SendRecordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".punchcard.activity.TimeSettingActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".punchcard.activity.ForfeitSettingActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".punchcard.activity.PayActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mine.activity.SettingActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mine.activity.MyWalletActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mine.activity.TransactionRecordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mine.activity.PaymentRecordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mine.activity.TopUpActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mine.activity.WithdrawActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mine.activity.ChangePhoneActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".mine.activity.SignedInNumberActivity" />
+        <activity android:name=".mine.activity.HabitOngoingOrNotActivity"></activity>
     </application>
 
 </manifest>

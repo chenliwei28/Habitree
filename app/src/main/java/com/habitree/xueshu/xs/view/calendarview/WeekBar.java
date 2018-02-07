@@ -29,7 +29,7 @@ import com.habitree.xueshu.R;
 public class WeekBar extends LinearLayout {
     public WeekBar(Context context) {
         super(context);
-        if ("com.haibin.calendarview.WeekBar".equals(getClass().getName())) {
+        if ("com.habitree.xueshu.xs.view.calendarview.WeekBar".equals(getClass().getName())) {
             LayoutInflater.from(context).inflate(R.layout.cv_week_bar, this, true);
         }
     }

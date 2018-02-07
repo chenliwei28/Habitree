@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.activity.HabitOngoingOrNotActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
+import com.habitree.xueshu.mine.activity.SignedInNumberActivity;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
@@ -35,6 +38,9 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
     private TextView mHabitTextTv;
     private TextView mStartTimeTv;
     private TextView mEndTimeTv;
+    private LinearLayout mCountLl;
+    private LinearLayout mCompletedLl;
+    private LinearLayout mOngoingLl;
 
     @Override
     protected int setLayoutId() {
@@ -55,11 +61,17 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         mHabitTextTv = view.findViewById(R.id.habit_text_tv);
         mStartTimeTv = view.findViewById(R.id.start_time_tv);
         mEndTimeTv = view.findViewById(R.id.end_time_tv);
+        mCountLl = view.findViewById(R.id.count_ll);
+        mCompletedLl = view.findViewById(R.id.completed_ll);
+        mOngoingLl = view.findViewById(R.id.ongoing_ll);
     }
 
     @Override
     protected void initListener() {
         mSettingIv.setOnClickListener(this);
+        mCountLl.setOnClickListener(this);
+        mCompletedLl.setOnClickListener(this);
+        mOngoingLl.setOnClickListener(this);
     }
 
     @Override
@@ -80,6 +92,15 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         switch (view.getId()){
             case R.id.setting_iv:
                 startActivity(new Intent(getContext(), SettingActivity.class));
+                break;
+            case R.id.count_ll:
+                startActivity(new Intent(getContext(), SignedInNumberActivity.class));
+                break;
+            case R.id.completed_ll:
+                HabitOngoingOrNotActivity.start(getContext(),true);
+                break;
+            case R.id.ongoing_ll:
+                HabitOngoingOrNotActivity.start(getContext(),false);
                 break;
         }
     }

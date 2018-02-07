@@ -150,4 +150,12 @@ public class Calendar implements Serializable {
     public String toString() {
         return year + "" + (month < 10 ? "0" + month : month) + "" + (day < 10 ? "0" + day : day);
     }
+
+    //yyyy-MM-dd
+    public void setDateString(String date){
+        String[] s = date.split("-");
+        year = Integer.valueOf(s[0]);
+        month = Integer.valueOf(s[1]);
+        day = Integer.valueOf(s[2]);
+    }
 }

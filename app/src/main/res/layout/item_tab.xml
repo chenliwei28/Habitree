@@ -8,7 +8,7 @@
         android:id="@+id/tab_iv"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        tools:src="@drawable/icon_dakai_nor"/>
+        tools:src="@drawable/ic_my_normal"/>
 
     <TextView
         android:id="@+id/tab_tv"
