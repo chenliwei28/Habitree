@@ -1,6 +1,7 @@
 package com.habitree.xueshu.message.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.activity.MyFriendsActivity;
 import com.habitree.xueshu.message.adapter.MessageAdapter;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
@@ -63,7 +65,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.friends_iv:
-
+                startActivity(new Intent(getContext(), MyFriendsActivity.class));
                 break;
             case R.id.add_iv:
 

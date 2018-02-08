@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
@@ -43,6 +44,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
     private LinearLayout mCountLl;
     private LinearLayout mCompletedLl;
     private LinearLayout mOngoingLl;
+    private SeekBar mTreeSb;
 
     @Override
     protected int setLayoutId() {
@@ -67,6 +69,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         mCountLl = view.findViewById(R.id.count_ll);
         mCompletedLl = view.findViewById(R.id.completed_ll);
         mOngoingLl = view.findViewById(R.id.ongoing_ll);
+        mTreeSb = view.findViewById(R.id.tree_sb);
     }
 
     @Override

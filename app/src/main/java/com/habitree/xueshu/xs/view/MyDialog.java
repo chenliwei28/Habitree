@@ -1,20 +1,27 @@
 package com.habitree.xueshu.xs.view;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 
 
-public class MyDialog extends AlertDialog {
+public class MyDialog extends Dialog {
 
     private Context mContext;
+    private LinearLayout mContentLl;
     private TextView mTitleTv;
     private TextView mDetailTv;
     private TextView mConfirmTv;
@@ -41,6 +48,7 @@ public class MyDialog extends AlertDialog {
         mDetailTv = view.findViewById(R.id.detail_tv);
         mConfirmTv = view.findViewById(R.id.confirm_tv);
         mCancelTv = view.findViewById(R.id.cancel_tv);
+        mContentLl = view.findViewById(R.id.content_ll);
         setContentView(view);
         mCancelTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +57,9 @@ public class MyDialog extends AlertDialog {
             }
         });
         getWindow().setGravity(Gravity.CENTER);
+        Display display = ((WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int width = (int) (display.getWidth()*0.8);
+        mContentLl.setLayoutParams(new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT));
         return this;
     }
 

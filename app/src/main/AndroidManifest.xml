@@ -82,9 +82,23 @@
         <activity
             android:name=".mine.activity.ChangePhoneActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mine.activity.SignedInNumberActivity" />
-        <activity android:name=".mine.activity.HabitOngoingOrNotActivity" />
-        <activity android:name=".mine.activity.MyHabitsActivity"></activity>
+        <activity
+            android:name=".mine.activity.SignedInNumberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mine.activity.HabitOngoingOrNotActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mine.activity.MyHabitsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".message.activity.MyFriendsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".message.activity.FriendDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".message.activity.FriendForestActivity"></activity>
     </application>
 
 </manifest>

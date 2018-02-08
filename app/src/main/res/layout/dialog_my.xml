@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="220dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/shape_rect_round_corner_stroke_white_bg">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_rect_round_corner_stroke_white_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:id="@+id/content_ll">
 
     <TextView
         android:id="@+id/title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:textSize="18sp"
         android:textColor="@color/black_text"
-        tools:text="这是标题这是标题"/>
+        android:textSize="18sp"
+        tools:text="这是标题这是标题" />
 
     <TextView
         android:id="@+id/detail_tv"
@@ -21,45 +23,42 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/title_tv"
-        android:layout_marginTop="30dp"
-        android:textSize="14sp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/black_text"
-        tools:text="这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容"/>
+        android:textSize="14sp"
+        tools:text="这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容" />
 
     <View style="@style/Line"
-        android:layout_above="@id/button_ll"/>
+        android:layout_marginTop="30dp"/>
 
     <LinearLayout
         android:id="@+id/button_ll"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true">
+        android:layout_height="40dp">
 
         <TextView
             android:id="@+id/confirm_tv"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:textSize="15sp"
-            android:textColor="@color/black_text"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/confirm"
-            android:gravity="center"/>
+            android:textColor="@color/black_text"
+            android:textSize="15sp" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:background="@color/line"/>
+            android:background="@color/line" />
 
         <TextView
             android:id="@+id/cancel_tv"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:textSize="15sp"
-            android:textColor="@color/blue"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/cancel"
-            android:gravity="center"/>
+            android:textColor="@color/blue"
+            android:textSize="15sp" />
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

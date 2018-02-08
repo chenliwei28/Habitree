@@ -8,8 +8,9 @@
     <string name="plant_tree_long_text">不同背景颜色，不同外形，每一棵树都独一无二</string>
     <!--C-->
     <string name="top_up">充值</string>
-    <string name="top_up_num">充值金额</string>
     <string name="resend">重新发送</string>
+    <string name="top_up_num">充值金额</string>
+    <string name="search_friends">查找好友</string>
     <string name="resend_time">重新发送（%d秒）</string>
     <string name="repeat_day_count">重复天数</string>
     <string name="time_of_duration">持续时间</string>
@@ -19,6 +20,7 @@
     <string name="begin_with_a_little_habit">从一个小习惯开始</string>
     <!--D-->
     <string name="login">登录</string>
+    <string name="dian_zan">点赞</string>
     <string name="punch_card">打卡</string>
     <string name="times_of_punch_card">打卡数</string>
     <string name="click_to_punch_card">点击打卡</string>
@@ -35,6 +37,7 @@
     <string name="personal_info">个人资料</string>
     <string name="forfeit_setting_long_text">共收取%d次（总次数的一半）罚金作为押金，当全部%d次罚金扣除后，本次培养即告停止。</string>
     <!--H-->
+    <string name="friend">好友</string>
     <string name="summation_money">合计 ¥ %d</string>
     <string name="friend_list">好友列表</string>
     <!--I-->
@@ -64,9 +67,14 @@
     <string name="describe_what_habit_that_you_want_to_foster">描述你想要培养的习惯</string>
     <string name="every_time_do_not_punch_card_will_deduct_money">*每次打卡缺勤将扣除一次罚金</string>
     <!--N-->
+    <string name="between_you">你们之间</string>
+    <string name="you_become_his_supervision">你作为TA的监督人</string>
+    <string name="your_tree_will_turn_gray">您的小树将永远变成灰色，剩余罚金也将会全部支付给你的监督人</string>
     <!--P-->
+    <string name="friends_circle">朋友圈</string>
     <string name="foster_state">培养状态</string>
     <!--Q-->
+    <string name="QQ">QQ</string>
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
     <string name="to_pay">去支付</string>
@@ -78,6 +86,7 @@
     <string name="confirm_password">确认密码</string>
     <string name="rewards_for_all_the_work">全勤奖鼓励</string>
     <string name="please_enter_password">请输入登录密码</string>
+    <string name="sure_abandon_habit">确认放弃习惯？</string>
     <string name="please_enter_phone_number">请输入手机号</string>
     <string name="please_enter_password_again">请再次输入密码</string>
     <string name="please_set_password_from_eight_to_sixteen">请设置8&#8211;16位密码，可包含数字、字母、字符</string>
@@ -98,6 +107,9 @@
     <string name="withdraw_deposit">提现</string>
     <string name="withdraw_sum">提现金额</string>
     <string name="reminder_time">提醒时间</string>
+    <string name="his_forest">TA的森林</string>
+    <string name="he_become_your_friend">TA成为你的好友</string>
+    <string name="he_become_your_supervision">TA成为你的监督人</string>
     <string name="wx_pay_long_text">推荐已安装微信的用户使用</string>
     <string name="ali_pay_long_text">推荐已安装支付宝的用户使用</string>
     <!--X-->
@@ -130,7 +142,9 @@
     <string name="choose_rational_time_is_helpful">选择合理的周期，有助于积累成就感和信息</string>
     <!--W-->
     <string name="mine">我</string>
+    <string name="sina_blog">微博</string>
     <string name="complete">完成</string>
+    <string name="we_chat">微信</string>
     <string name="wx_pay">微信支付</string>
     <string name="my_habits">我的习惯</string>
     <string name="not_punch_card">未打卡</string>

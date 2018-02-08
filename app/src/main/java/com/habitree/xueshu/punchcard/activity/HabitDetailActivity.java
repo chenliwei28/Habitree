@@ -126,8 +126,8 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
 
     private void showAbandonDialog(){
         MyDialog dialog = new MyDialog(this,R.style.MyDialog).builder()
-                .setTitle("aaa")
-                .setDetail("aaa")
+                .setTitle(getString(R.string.sure_abandon_habit))
+                .setDetail(getString(R.string.your_tree_will_turn_gray))
                 .setConfirmClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
