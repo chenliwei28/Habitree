@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.activity.MessageDetailActivity;
 import com.habitree.xueshu.message.activity.MyFriendsActivity;
 import com.habitree.xueshu.message.adapter.MessageAdapter;
 import com.habitree.xueshu.xs.Constant;
@@ -42,6 +44,12 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     protected void initListener() {
         mFriendsIv.setOnClickListener(this);
         mAddIv.setOnClickListener(this);
+        mMessageLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getContext(), MessageDetailActivity.class));
+            }
+        });
     }
 
     @Override
