@@ -9,6 +9,7 @@
     <!--C-->
     <string name="top_up">充值</string>
     <string name="resend">重新发送</string>
+    <string name="view_images">[查看图片]</string>
     <string name="top_up_num">充值金额</string>
     <string name="search_friends">查找好友</string>
     <string name="resend_time">重新发送（%d秒）</string>
@@ -46,6 +47,7 @@
     <string name="ongoing">进行中</string>
     <string name="supervisor">监督人</string>
     <string name="it_is_you">就是你了</string>
+    <string name="to_audit">进行审核</string>
     <string name="basic_setting">基本设置</string>
     <string name="recording_mode">记录方式</string>
     <string name="record_setting">记录设置</string>

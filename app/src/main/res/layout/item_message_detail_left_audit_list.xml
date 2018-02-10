@@ -29,8 +29,7 @@
             android:layout_marginRight="12dp"
             android:src="@drawable/ic_circle" />
 
-        <TextView
-            android:id="@+id/detail_tv"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="85dp"
@@ -40,8 +39,33 @@
             android:paddingBottom="10dp"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
-            android:paddingTop="10dp"
-            android:text="@string/plant_tree_long_text"
-            android:textColor="@color/black_text"/>
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/detail_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_text"
+                android:text="@string/forfeit_setting_long_text"/>
+
+            <TextView
+                android:id="@+id/view_images_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:gravity="center"
+                android:layout_below="@id/detail_tv"
+                android:textColor="@color/blue"
+                android:text="@string/view_images"/>
+
+            <TextView
+                android:id="@+id/audit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:gravity="center"
+                android:layout_below="@id/detail_tv"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/orange"
+                android:text="@string/to_audit"/>
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

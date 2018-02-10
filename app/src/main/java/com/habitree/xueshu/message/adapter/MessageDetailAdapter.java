@@ -34,7 +34,8 @@ public class MessageDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                 View view = LayoutInflater.from(mContext).inflate(R.layout.item_message_detail_left_list,parent,false);
                 return new MessageDetailRightViewHolder(view);
             case MESSAGE_GET_AUDIT:
-                return null;
+                View w = LayoutInflater.from(mContext).inflate(R.layout.item_message_detail_left_audit_list,parent,false);
+                return new MessageDetailAuditViewHolder(w);
             default:
                 View v = LayoutInflater.from(mContext).inflate(R.layout.item_message_detail_right_list,parent,false);
                 return new MessageDetailLeftViewHolder(v);
@@ -103,6 +104,19 @@ public class MessageDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
             timeTv = itemView.findViewById(R.id.time_tv);
             detailTv = itemView.findViewById(R.id.detail_tv);
             headRiv = itemView.findViewById(R.id.head_riv);
+        }
+    }
+
+    class MessageDetailAuditViewHolder extends RecyclerView.ViewHolder{
+
+        TextView timeTv;
+        TextView detailTv;
+        RoundImageView headRiv;
+        TextView imagesTv;
+        TextView auditTv;
+
+        public MessageDetailAuditViewHolder(View itemView) {
+            super(itemView);
         }
     }
 }
