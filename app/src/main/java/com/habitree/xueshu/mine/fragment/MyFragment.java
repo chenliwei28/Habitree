@@ -4,6 +4,9 @@ package com.habitree.xueshu.mine.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +47,9 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
     private LinearLayout mCountLl;
     private LinearLayout mCompletedLl;
     private LinearLayout mOngoingLl;
-    private SeekBar mTreeSb;
+    private ViewPager mTreeVp;
+
+    private Fragment[] mFragments;
 
     @Override
     protected int setLayoutId() {
@@ -69,7 +74,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         mCountLl = view.findViewById(R.id.count_ll);
         mCompletedLl = view.findViewById(R.id.completed_ll);
         mOngoingLl = view.findViewById(R.id.ongoing_ll);
-        mTreeSb = view.findViewById(R.id.tree_sb);
+        mTreeVp = view.findViewById(R.id.tree_vp);
     }
 
     @Override
@@ -83,7 +88,13 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
 
     @Override
     protected void initData() {
-
+        mFragments = new Fragment[3];
+        mFragments[0] = new LeftTreeFragment();
+        mFragments[1] = new MidTreeFragment();
+        mFragments[2] = new RightTreeFragment();
+        TreePagerAdapter adapter = new TreePagerAdapter(getChildFragmentManager());
+        mTreeVp.setAdapter(adapter);
+        mTreeVp.setCurrentItem(1);
     }
 
     public static MyFragment newInstance() {
@@ -111,6 +122,23 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
             case R.id.ongoing_ll:
                 HabitOngoingOrNotActivity.start(getContext(),false);
                 break;
+        }
+    }
+
+    private class TreePagerAdapter extends FragmentPagerAdapter{
+
+        public TreePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments[position];
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
         }
     }
 }

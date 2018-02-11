@@ -3,7 +3,7 @@ package com.habitree.xueshu.xs;
 
 
 public class Constant {
-    public final static String HOST = "http://betterme.easyhrp.cn/doct-openapi";
+    public final static String HOST = "http://betterme.easyhrp.cn";
 
     public final static String POSITION = "position";
 

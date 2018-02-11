@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_right"
+    tools:context="com.habitree.xueshu.mine.fragment.RightTreeFragment">
+
+    <ImageView
+        android:id="@+id/tree_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="150dp"
+        android:layout_marginLeft="116dp"
+        android:src="@drawable/tree_right1" />
+
+    <ImageView
+        android:id="@+id/tree_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="180dp"
+        android:src="@drawable/tree_right2" />
+
+    <ImageView
+        android:id="@+id/tree_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="270dp"
+        android:src="@drawable/tree_right3" />
+</RelativeLayout>

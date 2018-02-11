@@ -11,6 +11,7 @@
     <string name="resend">重新发送</string>
     <string name="view_images">[查看图片]</string>
     <string name="top_up_num">充值金额</string>
+    <string name="view_details">查看详情</string>
     <string name="search_friends">查找好友</string>
     <string name="resend_time">重新发送（%d秒）</string>
     <string name="repeat_day_count">重复天数</string>
@@ -43,6 +44,8 @@
     <string name="friend_list">好友列表</string>
     <!--I-->
     <!--J-->
+    <string name="accept">接受</string>
+    <string name="refuse">拒绝</string>
     <string name="supervision">监督</string>
     <string name="ongoing">进行中</string>
     <string name="supervisor">监督人</string>
@@ -127,6 +130,8 @@
     <string name="saturday">星期六</string>
     <string name="sunday">星期日</string>
     <string name="next_step">下一步</string>
+    <string name="habit_name">习惯名称</string>
+    <string name="habit_invite">习惯邀请</string>
     <string name="habit_detail">习惯详情</string>
     <string name="habit_setting">习惯设置</string>
     <string name="change_password">修改密码</string>

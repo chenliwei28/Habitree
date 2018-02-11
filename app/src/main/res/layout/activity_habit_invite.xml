@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.habitree.xueshu.message.activity.HabitInviteActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/habit_invite" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <com.habitree.xueshu.xs.view.RoundImageView
+            android:id="@+id/head_riv"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:src="@drawable/ic_circle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张全蛋"
+                android:textColor="@color/black_text"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2018-01-29  13:00"
+                    android:textColor="@color/gray_text"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/rest_time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="剩余01:00"
+                    android:textColor="@color/gray_text"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/Line" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/detail_tv"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/forfeit_setting_long_text"
+                android:textColor="@color/black_text"
+                android:textSize="15sp" />
+
+            <View style="@style/Line" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/habit_name_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:detail_text="啪啪啪"
+                app:detail_text_color="@color/gray_text"
+                app:head_img="@drawable/ic_jewel"
+                app:next_visible="false"
+                app:title="@string/habit_name" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/repeat_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:detail_text="每天"
+                app:detail_text_color="@color/gray_text"
+                app:head_img="@drawable/ic_sign"
+                app:next_visible="false"
+                app:title="@string/repeat_day_count" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/duration_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:detail_text="30天"
+                app:detail_text_color="@color/gray_text"
+                app:head_img="@drawable/ic_time"
+                app:next_visible="false"
+                app:title="@string/time_of_duration" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/mod_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:detail_text="图片+文字"
+                app:detail_text_color="@color/gray_text"
+                app:head_img="@drawable/ic_pen"
+                app:next_visible="false"
+                app:title="@string/recording_mode" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/setting_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:detail_text="公开"
+                app:detail_text_color="@color/gray_text"
+                app:head_img="@drawable/ic_setting"
+                app:next_visible="false"
+                app:title="@string/privacy_settings" />
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/money_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:detail_text="5元/次"
+                app:detail_text_color="@color/gray_text"
+                app:head_img="@drawable/ic_money"
+                app:next_visible="false"
+                app:title="@string/penalty_settings" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/refuse_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:text="@string/refuse"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/accept_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:text="@string/accept"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
+</LinearLayout>
