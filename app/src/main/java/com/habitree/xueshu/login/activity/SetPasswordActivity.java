@@ -2,16 +2,12 @@ package com.habitree.xueshu.login.activity;
 
 
 
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.login.presenter.RegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.util.AppManager;
-import com.habitree.xueshu.xs.view.MyActionBar;
 
 public class SetPasswordActivity extends BaseActivity implements RegisterView {
 

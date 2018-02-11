@@ -1,17 +1,30 @@
 package com.habitree.xueshu.xs.util;
 
-
-
+import android.content.Context;
 import android.text.TextUtils;
+
+import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
 
 
 public class CommUtil {
 
-    public static int checkPhoneNumber(String phone){
-        if (TextUtils.isEmpty(phone))return Constant.PHONE_EMPTY;
-        else if (!phone.matches(Constant.PHONE_REGEX)) return Constant.PHONE_ERROR;
-        else return Constant.PHONE_RIGHT;
+    public static boolean isPhoneNumber(Context context, String phone){
+        if (TextUtils.isEmpty(phone.trim())){
+            ToastUtil.showToast(context, R.string.phone_number_must_be_not_empty);
+            return false;
+        } else if (!phone.trim().matches(Constant.PHONE_REGEX)) {
+            ToastUtil.showToast(context,R.string.error_phone_number);
+            return false;
+        }
+        else return true;
+    }
+
+    public static boolean isPassword(Context context, String password){
+        if (TextUtils.isEmpty(password)){
+            ToastUtil.showToast(context,R.string.password_must_not_be_empty);
+            return false;
+        }else return true;
     }
 
     /**

@@ -2,14 +2,17 @@ package com.habitree.xueshu.login.activity;
 
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.login.presenter.LoginPresenter;
+import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.LoginView;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.LoginEditText;
 
@@ -25,7 +28,7 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     private ImageView mWeiboBtn;
     private ImageView mQQBtn;
 
-    private LoginPresenter mPresenter;
+    private LoginAndRegisterPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
@@ -61,14 +64,14 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
 
     @Override
     protected void initData() {
-        mPresenter = new LoginPresenter(this);
+        mPresenter = new LoginAndRegisterPresenter(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_btn:
-                mPresenter.login(mPhoneLet.getContentText(),mPasswLet.getContentText());
+                mPresenter.login(mPhoneLet.getContentText(),mPasswLet.getContentText(),this);
                 break;
             case R.id.register_btn:
                 startActivity(new Intent(this,RegisterActivity.class));
@@ -92,5 +95,15 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.onDetach();
+    }
+
+    @Override
+    public void onLoginSuccess(User user) {
+        Log.i("chen","result is:"+user.name);
+    }
+
+    @Override
+    public void onLoginFailed() {
+
     }
 }

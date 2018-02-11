@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     protected void initData() {
         mManager = getSupportFragmentManager();
         changeTab(mPcTiv,0);
-//        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override

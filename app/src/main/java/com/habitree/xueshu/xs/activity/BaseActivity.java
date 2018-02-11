@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 
 
@@ -32,4 +33,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initListener();
 
     protected abstract void initData();
+
+    protected void showToast(String s){
+        ToastUtil.showToast(this,s);
+    }
+
+    protected void showToast(int stringId){
+        ToastUtil.showToast(this,stringId);
+    }
 }
