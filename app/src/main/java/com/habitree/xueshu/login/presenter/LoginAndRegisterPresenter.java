@@ -27,7 +27,7 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 .enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        view.onLoginSuccess(response.body().content);
+                        view.onLoginSuccess(response.body().content.user);
                     }
 
                     @Override
