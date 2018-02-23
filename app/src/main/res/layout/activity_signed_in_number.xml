@@ -25,8 +25,7 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:scaleType="center"
-            android:src="@drawable/ic_next"
-            android:rotation="180"/>
+            android:src="@drawable/pre"/>
 
         <TextView
             android:id="@+id/month_tv"
@@ -43,7 +42,7 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:scaleType="center"
-            android:src="@drawable/ic_next"/>
+            android:src="@drawable/next"/>
     </LinearLayout>
 
     <com.habitree.xueshu.xs.view.calendarview.CalendarView
