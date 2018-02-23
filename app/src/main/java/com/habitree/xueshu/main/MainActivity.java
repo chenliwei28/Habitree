@@ -121,4 +121,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
         }
     }
+
+    public void onMyTreeClick(String s){
+        mMeFragment.onTreeClick(s);
+    }
 }

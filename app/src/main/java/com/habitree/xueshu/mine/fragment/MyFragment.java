@@ -104,6 +104,11 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         return fragment;
     }
 
+    public void onTreeClick(String s){
+        mHabitNameTv.setText(s);
+        mHabitTextTv.setText(s);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
