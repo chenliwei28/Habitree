@@ -2,6 +2,7 @@ package com.habitree.xueshu.xs.util;
 
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class TimeUtil {
     /**
@@ -13,5 +14,13 @@ public class TimeUtil {
         Calendar cal = Calendar.getInstance();
         if (mode==Calendar.MONTH)return String.valueOf(cal.get(mode)+1);
         else return String.valueOf(cal.get(mode));
+    }
+
+    /**
+     * 获取当前时间毫秒数
+     * @return 当前时间
+     */
+    public static int getCurrentMillis(){
+        return (int) (System.currentTimeMillis()/1000);
     }
 }

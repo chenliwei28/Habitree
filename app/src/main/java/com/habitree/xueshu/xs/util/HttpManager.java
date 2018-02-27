@@ -18,7 +18,11 @@ public class HttpManager {
     private HttpManager(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient().newBuilder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient()
+                .newBuilder()
+                .addInterceptor(interceptor)
+                .addInterceptor(new HeadInterceptor())
+                .build();
         Retrofit retrofit = new Retrofit
                 .Builder()
                 .baseUrl(Constant.HOST)
