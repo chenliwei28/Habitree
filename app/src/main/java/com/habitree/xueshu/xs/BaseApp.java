@@ -9,6 +9,7 @@ import com.habitree.xueshu.xs.util.LogUtil;
 
 public class BaseApp extends Application {
     public static String imei;
+    public static String deviceInfo;
     public static String userua;
     public static String versionCode;
     public static String versionName;
@@ -17,12 +18,14 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         imei = CommUtil.getIMEI(this);
+        deviceInfo = CommUtil.getDeviceInfo();
         userua = CommUtil.getUserAgent(this);
         versionCode = CommUtil.getVersionCode(this);
         versionName = CommUtil.getVersionName(this);
-        LogUtil.i("imei: "+ imei);
-        LogUtil.i("user agent: "+ userua);
-        LogUtil.i("version code: "+ versionCode);
-        LogUtil.i("version name: "+ versionName);
+        LogUtil.d("imei: "+ imei);
+        LogUtil.d("device info:"+deviceInfo);
+        LogUtil.d("user agent: "+ userua);
+        LogUtil.d("version code: "+ versionCode);
+        LogUtil.d("version name: "+ versionName);
     }
 }

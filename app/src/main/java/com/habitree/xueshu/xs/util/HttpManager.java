@@ -1,7 +1,7 @@
 package com.habitree.xueshu.xs.util;
 
 
-import com.habitree.xueshu.xs.Apis;
+import com.habitree.xueshu.xs.apis.Api;
 import com.habitree.xueshu.xs.Constant;
 
 import okhttp3.OkHttpClient;
@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpManager {
 
     private static HttpManager mManager;
-    private Apis mApis;
+    private Api mApis;
 
     private HttpManager(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -21,7 +21,7 @@ public class HttpManager {
         OkHttpClient client = new OkHttpClient()
                 .newBuilder()
                 .addInterceptor(interceptor)
-                .addInterceptor(new HeadInterceptor())
+                .addInterceptor(new HeaderInterceptor())
                 .build();
         Retrofit retrofit = new Retrofit
                 .Builder()
@@ -29,7 +29,7 @@ public class HttpManager {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        mApis = retrofit.create(Apis.class);
+        mApis = retrofit.create(Api.class);
     }
 
     public static HttpManager getManager(){
@@ -42,7 +42,7 @@ public class HttpManager {
         return mManager;
     }
 
-    public Apis getService(){
+    public Api getService(){
         return mApis;
     }
 }

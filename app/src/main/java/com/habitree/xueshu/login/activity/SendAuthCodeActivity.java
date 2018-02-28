@@ -1,17 +1,20 @@
 package com.habitree.xueshu.login.activity;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
-public class SendAuthCodeActivity extends BaseActivity implements RegisterView,View.OnClickListener{
+public class SendAuthCodeActivity extends BaseActivity implements RegisterView.AuthCodeView,View.OnClickListener{
 
     private MyActionBar mSendMab;
     private EditText mCodeEt;
@@ -20,14 +23,24 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView,V
 
     private final static int AUTH_RESET_TIME = 60;
     private int mTime = AUTH_RESET_TIME;
+    private String mPhone;
+    private LoginAndRegisterPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
         return R.layout.activity_send_auth_code;
     }
 
+    public static void start(Context context,String phone){
+        Intent intent = new Intent(context,SendAuthCodeActivity.class);
+        intent.putExtra(Constant.PHONE,phone);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void initView() {
+        mPhone = getIntent().getStringExtra(Constant.PHONE);
+        mPresenter = new LoginAndRegisterPresenter(this);
         mSendMab = findViewById(R.id.send_mab);
         mCodeEt = findViewById(R.id.code_et);
         mSendTv = findViewById(R.id.send_tv);
@@ -49,7 +62,7 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView,V
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.send_tv:
-                countDown();
+                mPresenter.sendAuthCode(mPhone,1,this);
                 break;
             case R.id.next_tv:
                 startActivity(new Intent(this,SetPasswordActivity.class));
@@ -73,5 +86,15 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView,V
                 }
             }
         },1000);
+    }
+
+    @Override
+    public void onSendSuccess() {
+        countDown();
+    }
+
+    @Override
+    public void onSendFail() {
+
     }
 }

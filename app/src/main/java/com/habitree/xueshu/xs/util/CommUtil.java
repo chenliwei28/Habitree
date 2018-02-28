@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -66,10 +67,13 @@ public class CommUtil {
      * @param context context
      * @return imei string
      */
-    @SuppressLint({"HardwareIds", "MissingPermission"})
+//    @SuppressLint({"HardwareIds", "MissingPermission"})
     public static String getIMEI(Context context) {
         TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return manager==null?"null":manager.getDeviceId();
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            return "null";
+        }
+        return manager == null ? "null" : manager.getDeviceId();
     }
 
 
@@ -132,5 +136,27 @@ public class CommUtil {
      */
     public static String getUserAgent(Context context){
         return new WebView(context).getSettings().getUserAgentString();
+    }
+
+    /**
+     * 获取sign
+     * @param function 方法名如：v1/index/index
+     * @param timestamp 时间戳
+     * @return sign
+     */
+    public static String getSign(String function,String timestamp){
+        return bytes2HexString(function+timestamp+Constant.CLIENT_KEY);
+    }
+
+    /**
+     * 获取设备信息
+     * @return 设备信息
+     */
+    public static String getDeviceInfo(){
+        return  "brand:"+Build.BRAND+"\t"
+                +"model:"+Build.MODEL+"\t"
+                +"release:"+Build.VERSION.RELEASE+"\t"
+                +"device:"+Build.DEVICE+"\t"
+                +"product:"+Build.PRODUCT;
     }
 }

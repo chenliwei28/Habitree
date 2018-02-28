@@ -10,6 +10,7 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
 public class RegisterActivity extends BaseActivity implements RegisterView,View.OnClickListener {
@@ -45,8 +46,15 @@ public class RegisterActivity extends BaseActivity implements RegisterView,View.
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.next_tv:
-                startActivity(new Intent(RegisterActivity.this,SendAuthCodeActivity.class));
+                checkPhoneAndToNext();
                 break;
+        }
+    }
+
+    private void checkPhoneAndToNext(){
+        String phone = mPhoneEt.getText().toString();
+        if (CommUtil.isPhoneNumber(this,phone)){
+            SendAuthCodeActivity.start(this,phone);
         }
     }
 }
