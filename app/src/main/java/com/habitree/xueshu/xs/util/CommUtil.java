@@ -14,6 +14,9 @@ import android.webkit.WebView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class CommUtil {
 
@@ -51,6 +54,7 @@ public class CommUtil {
 
     /**
      * 获取字符串首字拼音
+     *
      * @param text 字符串
      * @return A-Z字母，首字母不匹配的返回 #
      */
@@ -64,6 +68,7 @@ public class CommUtil {
 
     /**
      * 获取手机IMEI
+     *
      * @param context context
      * @return imei string
      */
@@ -79,34 +84,47 @@ public class CommUtil {
 
     private static final char HEX_DIGITS[] =
             {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
     /**
      * 获取字符串对应MD5
-     * @param data 要加密字符串
+     *
+     * @param string 要加密字符串
      * @return MD5字符串
      */
-    private static String bytes2HexString(String data) {
-        if (data==null)return null;
-        byte[] bytes = data.getBytes();
-        int len = bytes.length;
-        if (len <= 0) return null;
-        char[] ret = new char[len << 1];
-        for (int i = 0, j = 0; i < len; i++) {
-            ret[j++] = HEX_DIGITS[bytes[i] >>> 4 & 0x0f];
-            ret[j++] = HEX_DIGITS[bytes[i] & 0x0f];
+    public static String md5(String string) {
+        if (TextUtils.isEmpty(string)) {
+            return "";
         }
-        return new String(ret);
+        MessageDigest md5 = null;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+            byte[] bytes = md5.digest(string.getBytes());
+            String result = "";
+            for (byte b : bytes) {
+                String temp = Integer.toHexString(b & 0xff);
+                if (temp.length() == 1) {
+                    temp = "0" + temp;
+                }
+                result += temp;
+            }
+            return result;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     /**
      * 获取APP版本号
+     *
      * @param context context
      * @return 版本号string
      */
-    public static String getVersionCode(Context context){
+    public static String getVersionCode(Context context) {
         PackageManager pm = context.getPackageManager();
         try {
-            PackageInfo info = pm.getPackageInfo(context.getPackageName(),0);
-            return info==null? "-1":String.valueOf(info.versionCode);
+            PackageInfo info = pm.getPackageInfo(context.getPackageName(), 0);
+            return info == null ? "-1" : String.valueOf(info.versionCode);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             return "-1";
@@ -115,14 +133,15 @@ public class CommUtil {
 
     /**
      * 获取APP版本名称
+     *
      * @param context context
      * @return 版本名称
      */
-    public static String getVersionName(Context context){
+    public static String getVersionName(Context context) {
         PackageManager pm = context.getPackageManager();
         try {
-            PackageInfo info = pm.getPackageInfo(context.getPackageName(),0);
-            return info==null? "null":info.versionName;
+            PackageInfo info = pm.getPackageInfo(context.getPackageName(), 0);
+            return info == null ? "null" : info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             return "null";
@@ -131,32 +150,64 @@ public class CommUtil {
 
     /**
      * 获取user agent (user ua)
+     *
      * @param context context
      * @return user agent
      */
-    public static String getUserAgent(Context context){
+    public static String getUserAgent(Context context) {
         return new WebView(context).getSettings().getUserAgentString();
     }
 
     /**
      * 获取sign
-     * @param function 方法名如：v1/index/index
+     *
+     * @param function  方法名如：v1/index/index
      * @param timestamp 时间戳
      * @return sign
      */
-    public static String getSign(String function,String timestamp){
-        return bytes2HexString(function+timestamp+Constant.CLIENT_KEY);
+    public static String getSign(String function, String timestamp) {
+        return md5(function + timestamp + Constant.CLIENT_KEY);
     }
 
     /**
      * 获取设备信息
+     *
      * @return 设备信息
      */
-    public static String getDeviceInfo(){
-        return  "brand:"+Build.BRAND+"\t"
-                +"model:"+Build.MODEL+"\t"
-                +"release:"+Build.VERSION.RELEASE+"\t"
-                +"device:"+Build.DEVICE+"\t"
-                +"product:"+Build.PRODUCT;
+    public static String getDeviceInfo() {
+        return "brand:" + Build.BRAND + "\t"
+                + "model:" + Build.MODEL + "\t"
+                + "release:" + Build.VERSION.RELEASE + "\t"
+                + "device:" + Build.DEVICE + "\t"
+                + "product:" + Build.PRODUCT;
+    }
+
+    /**
+     * unicode转中文
+     * @param unicodeStr unicode 字符串
+     * @return 中文字符串
+     */
+    public static String unicode2Chinese(String unicodeStr) {
+        if (unicodeStr == null) {
+            return null;
+        }
+        StringBuilder retBuf = new StringBuilder();
+        int maxLoop = unicodeStr.length();
+        for (int i = 0; i < maxLoop; i++) {
+            if (unicodeStr.charAt(i) == '\\') {
+                if ((i < maxLoop - 5) && ((unicodeStr.charAt(i + 1) == 'u') || (unicodeStr.charAt(i + 1) == 'U')))
+                    try {
+                        retBuf.append((char) Integer.parseInt(unicodeStr.substring(i + 2, i + 6), 16));
+                        i += 5;
+                    } catch (NumberFormatException localNumberFormatException) {
+                        retBuf.append(unicodeStr.charAt(i));
+                    }
+                else
+                    retBuf.append(unicodeStr.charAt(i));
+            } else {
+                retBuf.append(unicodeStr.charAt(i));
+            }
+        }
+        return retBuf.toString();
     }
 }

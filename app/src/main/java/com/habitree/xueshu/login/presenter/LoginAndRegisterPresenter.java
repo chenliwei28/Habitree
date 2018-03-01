@@ -12,6 +12,7 @@ import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.presenter.BasePresenter;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.HttpManager;
+import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
 
 import retrofit2.Call;

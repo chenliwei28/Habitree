@@ -6,6 +6,7 @@ public class Constant {
     public final static String HOST = "http://tapi.habitree.cn";
 
     public final static String PHONE = "phone";
+    public final static String CODE = "code";
     public final static String POSITION = "position";
     public final static String TYPE = "type";
     public final static String TITLE = "title";
@@ -19,4 +20,5 @@ public class Constant {
     //functions
     public final static String LOGIN_FUNCTION = " ";
     public final static String AUTH_CODE_FUNCTION = "v1/sms/send";
+    public final static String PLANT_TREE_FUNCTION = "v1/habit/tree/list";
 }

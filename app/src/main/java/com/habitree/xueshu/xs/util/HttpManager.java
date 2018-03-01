@@ -14,14 +14,15 @@ public class HttpManager {
 
     private static HttpManager mManager;
     private Api mApis;
+    private OkHttpClient client;
 
     private HttpManager(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient()
-                .newBuilder()
+        client = new OkHttpClient
+                .Builder()
+                .addInterceptor(new BodyInterceptor())
                 .addInterceptor(interceptor)
-                .addInterceptor(new HeaderInterceptor())
                 .build();
         Retrofit retrofit = new Retrofit
                 .Builder()
@@ -34,10 +35,7 @@ public class HttpManager {
 
     public static HttpManager getManager(){
         if (mManager==null){
-            synchronized (HttpManager.class){
-                if (mManager==null)
-                    mManager = new HttpManager();
-            }
+            mManager = new HttpManager();
         }
         return mManager;
     }

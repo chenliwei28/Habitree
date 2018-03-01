@@ -3,6 +3,7 @@ package com.habitree.xueshu.login.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
 public class SendAuthCodeActivity extends BaseActivity implements RegisterView.AuthCodeView,View.OnClickListener{
@@ -65,12 +67,13 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
                 mPresenter.sendAuthCode(mPhone,1,this);
                 break;
             case R.id.next_tv:
-                startActivity(new Intent(this,SetPasswordActivity.class));
+                checkCodeAndToNext();
                 break;
         }
     }
 
     private void countDown(){
+        mSendTv.setBackgroundResource(R.drawable.shape_rect_round_corner_gray_button);
         mSendTv.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -78,6 +81,7 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
                     mTime = AUTH_RESET_TIME;
                     mSendTv.setClickable(true);
                     mSendTv.setText(R.string.resend);
+                    mSendTv.setBackgroundResource(R.drawable.shape_rect_round_corner_orange_button);
                 }else {
                     mSendTv.setClickable(false);
                     mTime--;
@@ -86,6 +90,17 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
                 }
             }
         },1000);
+    }
+
+    private void checkCodeAndToNext(){
+        String code = mCodeEt.getText().toString();
+        if (TextUtils.isEmpty(code)){
+            ToastUtil.showToast(this,getString(R.string.auth_code_empty));
+        }else if (code.length()!=4){
+            ToastUtil.showToast(this,getString(R.string.wrong_auth_code));
+        }else {
+            SetPasswordActivity.start(this,mPhone,code);
+        }
     }
 
     @Override

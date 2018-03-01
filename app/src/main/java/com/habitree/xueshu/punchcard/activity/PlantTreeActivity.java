@@ -8,15 +8,23 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.adapter.PlantTreeAdapter;
+import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
+import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
+import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
-public class PlantTreeActivity extends BaseActivity implements View.OnClickListener{
+import java.util.ArrayList;
+import java.util.List;
+
+public class PlantTreeActivity extends BaseActivity implements View.OnClickListener,HabitView.PlantTreeView{
 
     private ViewPager mCardVp;
     private TextView mChooseTv;
+    private HabitPresenter mPresenter;
+    private PlantTreeAdapter mAdapter;
 
     @Override
     protected int setLayoutId() {
@@ -29,6 +37,7 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
         mChooseTv = findViewById(R.id.choose_tv);
         mCardVp.setPageMargin(100);
         mCardVp.setOffscreenPageLimit(3);
+        mPresenter = new HabitPresenter(this);
     }
 
     @Override
@@ -38,9 +47,10 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initData() {
-        PlantTreeAdapter adapter = new PlantTreeAdapter(this);
-        mCardVp.setAdapter(adapter);
+        mAdapter = new PlantTreeAdapter(this);
+        mCardVp.setAdapter(mAdapter);
         mCardVp.setPageTransformer(false,new CardPagerTransformer());
+        mPresenter.getPlantTree(this);
     }
 
     @Override
@@ -50,5 +60,15 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
                 startActivity(new Intent(PlantTreeActivity.this,HabitSettingActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onPlantTreeGetSuccess(List<PlantTreeResponse.DataBean> list) {
+        mAdapter.updateData(list);
+    }
+
+    @Override
+    public void onPlantTreeGetFail() {
+
     }
 }

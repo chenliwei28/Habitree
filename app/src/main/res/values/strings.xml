@@ -170,6 +170,8 @@
     <string name="yuan_every_time">元/次</string>
     <string name="invite_friends">邀请好友</string>
     <string name="privacy_settings">隐私设置</string>
+    <string name="auth_code_empty">验证码不能为空</string>
+    <string name="wrong_auth_code">验证码错误</string>
     <string name="already_send_code_to_your_phone">已经向您的手机发送验证码，请查收</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--Z-->
