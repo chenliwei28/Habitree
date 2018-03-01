@@ -11,7 +11,9 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.LoginView;
+import com.habitree.xueshu.main.MainActivity;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.LoginEditText;
@@ -99,11 +101,13 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
 
     @Override
     public void onLoginSuccess(User user) {
-        Log.i("chen","result is:"+user.name);
+        ToastUtil.showToast(this,getString(R.string.login_success));
+        startActivity(new Intent(this, MainActivity.class));
+        AppManager.getAppManager().finishActivity(this);
     }
 
     @Override
-    public void onLoginFailed() {
-
+    public void onLoginFailed(String reason) {
+        ToastUtil.showToast(this,reason);
     }
 }

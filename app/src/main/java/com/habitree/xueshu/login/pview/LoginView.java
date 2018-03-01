@@ -7,5 +7,5 @@ import com.habitree.xueshu.xs.presenter.BaseView;
 
 public interface LoginView extends BaseView {
     void onLoginSuccess(User user);
-    void onLoginFailed();
+    void onLoginFailed(String reason);
 }

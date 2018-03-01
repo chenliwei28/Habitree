@@ -19,6 +19,7 @@ public class Constant {
 
     //functions
     public final static String LOGIN_FUNCTION = " ";
+    public final static String REGISTER_FUNCTION = "v1/user/registermobile";
     public final static String AUTH_CODE_FUNCTION = "v1/sms/send";
     public final static String PLANT_TREE_FUNCTION = "v1/habit/tree/list";
 }

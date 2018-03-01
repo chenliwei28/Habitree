@@ -112,4 +112,10 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
     public void onSendFail() {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDetach();
+    }
 }

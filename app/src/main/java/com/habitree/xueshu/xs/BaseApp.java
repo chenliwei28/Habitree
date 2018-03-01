@@ -6,8 +6,10 @@ import android.webkit.WebView;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 
+import org.litepal.LitePalApplication;
 
-public class BaseApp extends Application {
+
+public class BaseApp extends LitePalApplication {
     public static String imei;
     public static String deviceInfo;
     public static String userua;

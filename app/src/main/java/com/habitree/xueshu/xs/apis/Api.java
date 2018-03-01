@@ -20,10 +20,10 @@ import retrofit2.http.POST;
 
 public interface Api {
     @FormUrlEncoded
-    @POST("")
+    @POST("v1/user/login")
     Call<LoginResponse> login(@Field("timestamp") String timestamp,
                               @Field("sign") String sign,
-                              @Field("mobile") String phone,
+                              @Field("username") String phone,
                               @Field("password") String password);
 
     @FormUrlEncoded

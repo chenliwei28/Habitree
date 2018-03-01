@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="xueshu" />
+
+    <version value="1" />
+
+    <list>
+        <mapping class="com.habitree.xueshu.login.bean.User"/>
+    </list>
+
+</litepal>

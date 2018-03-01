@@ -13,7 +13,7 @@ import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
-public class RegisterActivity extends BaseActivity implements RegisterView,View.OnClickListener {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
     private MyActionBar mRegisterMab;
     private EditText mPhoneEt;

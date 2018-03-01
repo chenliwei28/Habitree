@@ -7,11 +7,14 @@ import android.view.View;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.activity.LoginActivity;
+import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.message.fragment.MessageFragment;
 import com.habitree.xueshu.mine.fragment.MyFragment;
 import com.habitree.xueshu.punchcard.fragment.PunchCardFragment;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.UIUtil;
+import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.TabItemView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
@@ -54,8 +57,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void initData() {
         mManager = getSupportFragmentManager();
-        changeTab(mPcTiv,0);
-        startActivity(new Intent(this, LoginActivity.class));
+        User user = UserManager.getManager().getUser();
+        if (user==null){
+            startActivity(new Intent(this, LoginActivity.class));
+            AppManager.getAppManager().finishActivity(this);
+        }else {
+            changeTab(mPcTiv,0);
+        }
     }
 
     @Override
@@ -79,11 +87,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         hideFragment(transaction);
         switch (position){
             case 0:
-                if (mPcFragment!=null) transaction.show(mPcFragment);
+                if (mPcFragment!=null) {
+                    transaction.show(mPcFragment);
+                }
                 else {
                     mPcFragment = PunchCardFragment.newInstance();
                     transaction.add(R.id.fragment_fl,mPcFragment);
                 }
+                mPcFragment.updateData();
                 break;
             case 1:
                 if (mMsFragment!=null) transaction.show(mMsFragment);
@@ -124,5 +135,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     public void onMyTreeClick(String s){
         mMeFragment.onTreeClick(s);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 }

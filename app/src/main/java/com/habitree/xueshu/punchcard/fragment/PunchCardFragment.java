@@ -96,4 +96,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                 break;
         }
     }
+
+    public void updateData(){
+
+    }
 }
