@@ -76,10 +76,10 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
                 mPresenter.login(mPhoneLet.getContentText(),mPasswLet.getContentText(),this);
                 break;
             case R.id.register_btn:
-                startActivity(new Intent(this,RegisterActivity.class));
+                RegisterActivity.start(this,1);
                 break;
             case R.id.forget_btn:
-
+                RegisterActivity.start(this,2);
                 break;
             case R.id.wx_btn:
 

@@ -26,6 +26,7 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
     private final static int AUTH_RESET_TIME = 60;
     private int mTime = AUTH_RESET_TIME;
     private String mPhone;
+    private int mType;
     private LoginAndRegisterPresenter mPresenter;
 
     @Override
@@ -33,15 +34,17 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
         return R.layout.activity_send_auth_code;
     }
 
-    public static void start(Context context,String phone){
+    public static void start(Context context,String phone,int type){
         Intent intent = new Intent(context,SendAuthCodeActivity.class);
         intent.putExtra(Constant.PHONE,phone);
+        intent.putExtra(Constant.TYPE,type);
         context.startActivity(intent);
     }
 
     @Override
     protected void initView() {
         mPhone = getIntent().getStringExtra(Constant.PHONE);
+        mType = getIntent().getIntExtra(Constant.TYPE,1);
         mPresenter = new LoginAndRegisterPresenter(this);
         mSendMab = findViewById(R.id.send_mab);
         mCodeEt = findViewById(R.id.code_et);
@@ -64,7 +67,7 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.send_tv:
-                mPresenter.sendAuthCode(mPhone,1,this);
+                mPresenter.sendAuthCode(mPhone,mType,this);
                 break;
             case R.id.next_tv:
                 checkCodeAndToNext();
@@ -99,7 +102,7 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
         }else if (code.length()!=4){
             ToastUtil.showToast(this,getString(R.string.wrong_auth_code));
         }else {
-            SetPasswordActivity.start(this,mPhone,code);
+            SetPasswordActivity.start(this,mPhone,code,mType);
         }
     }
 
@@ -109,8 +112,8 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
     }
 
     @Override
-    public void onSendFail() {
-
+    public void onSendFail(String reason) {
+        ToastUtil.showToast(this,reason);
     }
 
     @Override

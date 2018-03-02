@@ -24,6 +24,7 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
     private TextView mNextTv;
     private String mPhone;
     private String mCode;
+    private int mType;
     private LoginAndRegisterPresenter mPresenter;
 
     @Override
@@ -31,10 +32,11 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
         return R.layout.activity_set_password;
     }
 
-    public static void start(Context context,String phone,String code){
+    public static void start(Context context,String phone,String code,int type){
         Intent intent = new Intent(context,SetPasswordActivity.class);
         intent.putExtra(Constant.PHONE,phone);
         intent.putExtra(Constant.CODE,code);
+        intent.putExtra(Constant.TYPE,type);
         context.startActivity(intent);
     }
 
@@ -42,6 +44,7 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
     protected void initView() {
         mPhone = getIntent().getStringExtra(Constant.PHONE);
         mCode = getIntent().getStringExtra(Constant.CODE);
+        mType = getIntent().getIntExtra(Constant.TYPE,1);
         mPasswordEt = findViewById(R.id.password_et);
         mAgainEt = findViewById(R.id.again_et);
         mNextTv = findViewById(R.id.next_tv);
@@ -69,9 +72,18 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
 
     @Override
     public void onRegisterSuccess() {
-        ToastUtil.showToast(this,getString(R.string.register_success));
-        AppManager.getAppManager().finishActivity(this);
-        startActivity(new Intent(this,LoginActivity.class));
+        switch (mType){
+            case 1:
+                ToastUtil.showToast(this,getString(R.string.register_success));
+                AppManager.getAppManager().finishActivity(this);
+                startActivity(new Intent(this,LoginActivity.class));
+                break;
+            case 2:
+                ToastUtil.showToast(this,getString(R.string.find_password_success));
+                AppManager.getAppManager().finishActivity(this);
+                startActivity(new Intent(this,LoginActivity.class));
+                break;
+        }
     }
 
     @Override
@@ -88,7 +100,14 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
             ToastUtil.showToast(this,getString(R.string.different_password));
             return;
         }
-        mPresenter.register(mPhone,pas,mCode,this);
+        switch (mType){
+            case 1:
+                mPresenter.register(mPhone,pas,mCode,this);
+                break;
+            case 2:
+                mPresenter.findPassword(mPhone,pas,mCode,this);
+                break;
+        }
     }
 
     @Override

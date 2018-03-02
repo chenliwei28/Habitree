@@ -71,6 +71,7 @@
     <string name="password">密码</string>
     <string name="start_it_right_now">马上开始</string>
     <string name="password_must_not_be_empty">密码不能为空</string>
+    <string name="find_password_success">密码已修改，请使用新密码登录</string>
     <string name="describe_what_habit_that_you_want_to_foster">描述你想要培养的习惯</string>
     <string name="every_time_do_not_punch_card_will_deduct_money">*每次打卡缺勤将扣除一次罚金</string>
     <!--N-->
@@ -137,6 +138,7 @@
     <string name="habit_detail">习惯详情</string>
     <string name="habit_setting">习惯设置</string>
     <string name="change_password">修改密码</string>
+    <string name="change_success">修改成功</string>
     <string name="habit_description">习惯描述</string>
     <string name="choose_supervisor">选择监督人</string>
     <string name="choose_plant_trees">选择成长树</string>
@@ -175,8 +177,8 @@
     <string name="privacy_settings">隐私设置</string>
     <string name="auth_code_empty">验证码不能为空</string>
     <string name="wrong_auth_code">验证码错误</string>
+    <string name="auth_code_not_fit_phone">验证码与手机号不匹配，请重新发送</string>
     <string name="already_send_code_to_your_phone">已经向您的手机发送验证码，请查收</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--Z-->
     <string name="pay">支付</string>
     <string name="total_sum">总金额</string>

@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.AuthCodeResponse;
+import com.habitree.xueshu.login.bean.ChangeBindPhoneResponse;
+import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
 import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.login.pview.LoginView;
@@ -39,12 +41,12 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     @Override
                     public void onResponse(Call<AuthCodeResponse> call, Response<AuthCodeResponse> response) {
                         if (response.body().status==200)view.onSendSuccess();
-                        else view.onSendFail();
+                        else view.onSendFail(CommUtil.unicode2Chinese(response.body().info));
                     }
 
                     @Override
                     public void onFailure(Call<AuthCodeResponse> call, Throwable t) {
-                        view.onSendFail();
+                        view.onSendFail(mContext.getString(R.string.network_error));
                     }
                 });
     }
@@ -89,6 +91,44 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<RegisterResponse> call, Throwable t) {
                         view.onRegisterFail(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void findPassword(String phone, String password, String code, final RegisterView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager()
+                .getService()
+                .findPassword(timestamp,CommUtil.getSign(Constant.FIND_PASSWORD_FUNCTION,timestamp),phone,password,2,code)
+                .enqueue(new Callback<FindPasswordResponse>() {
+                    @Override
+                    public void onResponse(Call<FindPasswordResponse> call, Response<FindPasswordResponse> response) {
+                        if (response.body().status==200) view.onRegisterSuccess();
+                        else view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
+                    }
+
+                    @Override
+                    public void onFailure(Call<FindPasswordResponse> call, Throwable t) {
+                        view.onRegisterFail(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void changeBindPhone(String phone, String code, final RegisterView.ChangeBindView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager()
+                .getService()
+                .changeBindPhone(timestamp,CommUtil.getSign(Constant.CHANGE_PHONE_FUNCTION,timestamp),phone,UserManager.getManager().getUser().user_token,3,code)
+                .enqueue(new Callback<ChangeBindPhoneResponse>() {
+                    @Override
+                    public void onResponse(Call<ChangeBindPhoneResponse> call, Response<ChangeBindPhoneResponse> response) {
+                        if (response.body().status==200) view.onChangeSuccess();
+                        else view.onChangeFail(CommUtil.unicode2Chinese(response.body().info));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChangeBindPhoneResponse> call, Throwable t) {
+                        view.onChangeFail(mContext.getString(R.string.network_error));
                     }
                 });
     }

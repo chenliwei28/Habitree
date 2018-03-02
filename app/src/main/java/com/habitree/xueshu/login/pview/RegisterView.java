@@ -10,6 +10,11 @@ public interface RegisterView extends BaseView {
 
     interface AuthCodeView{
         void onSendSuccess();
-        void onSendFail();
+        void onSendFail(String reason);
+    }
+
+    interface ChangeBindView{
+        void onChangeSuccess();
+        void onChangeFail(String reason);
     }
 }

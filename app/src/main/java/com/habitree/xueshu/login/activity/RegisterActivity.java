@@ -1,6 +1,7 @@
 package com.habitree.xueshu.login.activity;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
@@ -18,10 +19,17 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private MyActionBar mRegisterMab;
     private EditText mPhoneEt;
     private TextView mNextTv;
+    private int mType;
 
     @Override
     protected int setLayoutId() {
         return R.layout.activity_register;
+    }
+
+    public static void start(Context context,int type){
+        Intent intent = new Intent(context,RegisterActivity.class);
+        intent.putExtra(Constant.TYPE,type);
+        context.startActivity(intent);
     }
 
     @Override
@@ -38,8 +46,15 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
-        String title = getIntent().getStringExtra(Constant.TITLE);
-        if (title!=null)mRegisterMab.setTitle(title);
+        mType = getIntent().getIntExtra(Constant.TYPE,1);
+        switch (mType){
+            case 1:
+                mRegisterMab.setTitle(getString(R.string.register_account));
+                break;
+            case 2:
+                mRegisterMab.setTitle(getString(R.string.forget_password));
+                break;
+        }
     }
 
     @Override
@@ -54,7 +69,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private void checkPhoneAndToNext(){
         String phone = mPhoneEt.getText().toString();
         if (CommUtil.isPhoneNumber(this,phone)){
-            SendAuthCodeActivity.start(this,phone);
+            SendAuthCodeActivity.start(this,phone,mType);
         }
     }
 }

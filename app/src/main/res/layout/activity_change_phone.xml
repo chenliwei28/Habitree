@@ -63,7 +63,7 @@
             android:layout_height="30dp"
             android:background="@color/white"
             android:inputType="number"
-            android:maxLength="6"
+            android:maxLength="4"
             android:textSize="15sp"
             android:textColor="@color/black_text"
             android:hint="@string/phone_auth_code"/>
