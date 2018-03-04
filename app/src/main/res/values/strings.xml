@@ -17,6 +17,7 @@
     <string name="repeat_day_count">重复天数</string>
     <string name="time_of_duration">持续时间</string>
     <string name="error_phone_number">错误的手机号</string>
+    <string name="choose_from_gallery">从相册选择</string>
     <string name="the_growing_up_habits">成长中的习惯：%d</string>
     <string name="create_your_first_habit">创建您的第一个习惯</string>
     <string name="begin_with_a_little_habit">从一个小习惯开始</string>
@@ -75,10 +76,12 @@
     <string name="describe_what_habit_that_you_want_to_foster">描述你想要培养的习惯</string>
     <string name="every_time_do_not_punch_card_will_deduct_money">*每次打卡缺勤将扣除一次罚金</string>
     <!--N-->
+    <string name="nickname">昵称</string>
     <string name="between_you">你们之间</string>
     <string name="you_become_his_supervision">你作为TA的监督人</string>
     <string name="your_tree_will_turn_gray">您的小树将永远变成灰色，剩余罚金也将会全部支付给你的监督人</string>
     <!--P-->
+    <string name="take_photo">拍照</string>
     <string name="friends_circle">朋友圈</string>
     <string name="foster_state">培养状态</string>
     <!--Q-->
@@ -97,8 +100,10 @@
     <string name="sure_abandon_habit">确认放弃习惯？</string>
     <string name="please_enter_phone_number">请输入手机号</string>
     <string name="please_enter_password_again">请再次输入密码</string>
+    <string name="please_accept_the_permission_of_camera">请打开照相权限及存储权限</string>
     <string name="please_set_password_from_eight_to_sixteen">请设置8&#8211;16位密码，可包含数字、字母、字符</string>
     <!--S-->
+    <string name="birthday">生日</string>
     <string name="setting">设置</string>
     <string name="income_num">收入：¥ %d</string>
     <string name="expense_num">支出：¥ %d</string>
@@ -107,10 +112,12 @@
     <string name="payment_record">罚金收支记录</string>
     <string name="note_auth_code">短信验证码</string>
     <string name="phone_auth_code">手机验证码</string>
+    <string name="sd_card_can_not_use">SD卡不可用，无法进行拍照</string>
     <string name="phone_number_must_be_not_empty">手机号不能为空</string>
     <string name="is_must_upload_photos_as_record">是否必须上传照片作为打卡记录</string>
     <string name="is_allow_other_people_see_this_habit">是否允许你的监督人之外的亲友看到这条习惯</string>
     <!--T-->
+    <string name="head">头像</string>
     <string name="statistics">统计</string>
     <string name="withdraw_deposit">提现</string>
     <string name="withdraw_sum">提现金额</string>
@@ -121,6 +128,7 @@
     <string name="wx_pay_long_text">推荐已安装微信的用户使用</string>
     <string name="ali_pay_long_text">推荐已安装支付宝的用户使用</string>
     <!--X-->
+    <string name="sex">性别</string>
     <string name="habit">习惯</string>
     <string name="xue_shu">学·树</string>
     <string name="detail">详情</string>

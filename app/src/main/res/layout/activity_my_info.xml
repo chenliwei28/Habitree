@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.habitree.xueshu.mine.activity.MyInfoActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/personal_info" />
+
+    <RelativeLayout
+        android:id="@+id/head_rl"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/white"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/head"
+            android:textColor="@color/black_text"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/next_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:minWidth="6dp"
+            android:src="@drawable/ic_next" />
+
+        <com.habitree.xueshu.xs.view.RoundImageView
+            android:id="@+id/head_riv"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/next_iv" />
+    </RelativeLayout>
+
+    <View style="@style/Line" />
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/name_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="12dp"
+        app:head_img_visible="false"
+        app:title="@string/nickname"
+        app:next_visible="true" />
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/sex_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:title="@string/sex"
+        app:next_visible="true" />
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/birthday_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:title="@string/birthday"
+        app:next_visible="true" />
+</LinearLayout>

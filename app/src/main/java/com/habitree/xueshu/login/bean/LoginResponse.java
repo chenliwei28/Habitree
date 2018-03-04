@@ -1,6 +1,7 @@
 package com.habitree.xueshu.login.bean;
 
 
+import java.util.List;
 
 public class LoginResponse {
     /**
@@ -12,6 +13,6 @@ public class LoginResponse {
 
     public int status;
     public String info;
-    public User data;
+    public List<User> data;
     public int timestamp;
 }

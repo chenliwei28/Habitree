@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.activity.HabitOngoingOrNotActivity;
 import com.habitree.xueshu.mine.activity.MyHabitsActivity;
+import com.habitree.xueshu.mine.activity.MyInfoActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
 import com.habitree.xueshu.mine.activity.SignedInNumberActivity;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
@@ -47,6 +48,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
     private LinearLayout mCountLl;
     private LinearLayout mCompletedLl;
     private LinearLayout mOngoingLl;
+    private LinearLayout mHeadLl;
     private ViewPager mTreeVp;
 
     private Fragment[] mFragments;
@@ -75,6 +77,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         mCompletedLl = view.findViewById(R.id.completed_ll);
         mOngoingLl = view.findViewById(R.id.ongoing_ll);
         mTreeVp = view.findViewById(R.id.tree_vp);
+        mHeadLl = view.findViewById(R.id.head_ll);
     }
 
     @Override
@@ -84,6 +87,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         mCountLl.setOnClickListener(this);
         mCompletedLl.setOnClickListener(this);
         mOngoingLl.setOnClickListener(this);
+        mHeadLl.setOnClickListener(this);
     }
 
     @Override
@@ -126,6 +130,9 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
                 break;
             case R.id.ongoing_ll:
                 HabitOngoingOrNotActivity.start(getContext(),false);
+                break;
+            case R.id.head_ll:
+                startActivity(new Intent(getContext(), MyInfoActivity.class));
                 break;
         }
     }

@@ -17,6 +17,10 @@ public class Constant {
 
     public final static String CLIENT_KEY = "47d54d76fa4cbd376f551f38852b7bf6";
 
+    public final static int NUM_109 = 109;
+    public final static int NUM_110 = 110;
+    public final static int NUM_111 = 111;
+
     //functions
     public final static String LOGIN_FUNCTION = " ";
     public final static String REGISTER_FUNCTION = "v1/user/registermobile";

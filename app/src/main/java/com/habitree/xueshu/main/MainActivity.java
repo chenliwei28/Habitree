@@ -1,6 +1,8 @@
 package com.habitree.xueshu.main;
 
+import android.Manifest;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -13,9 +15,16 @@ import com.habitree.xueshu.mine.fragment.MyFragment;
 import com.habitree.xueshu.punchcard.fragment.PunchCardFragment;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.TabItemView;
+
+import java.util.List;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+import pub.devrel.easypermissions.PermissionRequest;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
@@ -59,8 +68,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         mManager = getSupportFragmentManager();
         User user = UserManager.getManager().getUser();
         if (user==null){
-            startActivity(new Intent(this, LoginActivity.class));
-            AppManager.getAppManager().finishActivity(this);
+//            startActivity(new Intent(this, LoginActivity.class));
+//            AppManager.getAppManager().finishActivity(this);
         }else {
             changeTab(mPcTiv,0);
         }

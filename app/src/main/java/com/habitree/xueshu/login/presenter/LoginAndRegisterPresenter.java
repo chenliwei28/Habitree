@@ -62,8 +62,8 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.body().status==200){
-                            UserManager.getManager().saveUser(response.body().data);
-                            view.onLoginSuccess(response.body().data);
+                            UserManager.getManager().saveUser(response.body().data.get(0));
+                            view.onLoginSuccess(response.body().data.get(0));
                         }else {
                             view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
                         }
@@ -103,8 +103,9 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 .enqueue(new Callback<FindPasswordResponse>() {
                     @Override
                     public void onResponse(Call<FindPasswordResponse> call, Response<FindPasswordResponse> response) {
-                        if (response.body().status==200) view.onRegisterSuccess();
-                        else view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
+                        if (response.body()!=null&&response.body().status==200) view.onRegisterSuccess();
+                        else if (response.body()!=null)view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
+                        else view.onRegisterFail(mContext.getString(R.string.network_error));
                     }
 
                     @Override

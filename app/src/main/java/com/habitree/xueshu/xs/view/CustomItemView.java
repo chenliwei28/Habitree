@@ -69,6 +69,8 @@ public class CustomItemView extends RelativeLayout{
         mImgIv.setImageResource(leftImg);
         int detailColor = array.getColor(R.styleable.CustomItemView_detail_text_color,getResources().getColor(R.color.black_text));
         mDetailTv.setTextColor(detailColor);
+        boolean imgVisiable= array.getBoolean(R.styleable.CustomItemView_head_img_visible,true);
+        mImgIv.setVisibility(imgVisiable?VISIBLE:GONE);
         array.recycle();
     }
 
