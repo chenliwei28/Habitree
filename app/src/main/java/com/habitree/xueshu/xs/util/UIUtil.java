@@ -1,12 +1,11 @@
 package com.habitree.xueshu.xs.util;
 
-
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 
 public class UIUtil {
+
     /**
      * 设置状态栏颜色
      * @param context activity

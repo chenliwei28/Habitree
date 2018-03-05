@@ -37,7 +37,7 @@ public class UserManager {
 
     public User getUser(){
         if (user==null){
-            user = DataSupport.find(User.class,0);
+            user = DataSupport.findFirst(User.class);
         }
         return user;
     }

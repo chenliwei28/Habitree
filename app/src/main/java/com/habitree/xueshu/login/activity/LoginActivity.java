@@ -112,15 +112,15 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     }
 
     @Override
-    public void onLoginSuccess(User user) {
-        ToastUtil.showToast(this,getString(R.string.login_success));
+    public void onLoginSuccess() {
+        showToast(getString(R.string.login_success));
         startActivity(new Intent(this, MainActivity.class));
         AppManager.getAppManager().finishActivity(this);
     }
 
     @Override
     public void onLoginFailed(String reason) {
-        ToastUtil.showToast(this,reason);
+        showToast(reason);
     }
 
     @Override

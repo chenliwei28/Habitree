@@ -29,7 +29,7 @@ public class HabitPresenter extends BasePresenter {
                 .enqueue(new Callback<PlantTreeResponse>() {
                     @Override
                     public void onResponse(Call<PlantTreeResponse> call, Response<PlantTreeResponse> response) {
-                        if (response.body().status==200){
+                        if (response.body()!=null&&response.body().status==200){
                             view.onPlantTreeGetSuccess(response.body().data);
                         }else {
                             view.onPlantTreeGetFail();

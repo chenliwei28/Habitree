@@ -1,8 +1,8 @@
 package com.habitree.xueshu.login.bean;
 
-/**
- * Created by Administrator on 2018/2/28.
- */
+import java.util.List;
+
+
 
 public class RegisterResponse {
 
@@ -14,16 +14,6 @@ public class RegisterResponse {
 
     public int status;
     public String info;
-    public Data data;
-
-    public static class Data {
-        /**
-         * mem_id : 20
-         * user_token : asfdsfsafsafsfsf
-         */
-
-        public String mem_id;
-        public String user_token;
-        public String agent;
-    }
+    public List<User> data;
+    public int timestamp;
 }

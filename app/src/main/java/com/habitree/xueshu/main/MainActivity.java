@@ -68,8 +68,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         mManager = getSupportFragmentManager();
         User user = UserManager.getManager().getUser();
         if (user==null){
-//            startActivity(new Intent(this, LoginActivity.class));
-//            AppManager.getAppManager().finishActivity(this);
+            startActivity(new Intent(this, LoginActivity.class));
+            AppManager.getAppManager().finishActivity(this);
         }else {
             changeTab(mPcTiv,0);
         }

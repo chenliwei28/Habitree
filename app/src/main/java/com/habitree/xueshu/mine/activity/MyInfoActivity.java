@@ -1,6 +1,7 @@
 package com.habitree.xueshu.mine.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -10,9 +11,12 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.presenter.MyPresenter;
+import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.ImageUtil;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.RoundImageView;
@@ -26,7 +30,7 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class MyInfoActivity extends BaseActivity implements View.OnClickListener,EasyPermissions.PermissionCallbacks{
+public class MyInfoActivity extends BaseActivity implements View.OnClickListener,EasyPermissions.PermissionCallbacks,MyView.UploadFileView{
 
     private RoundImageView mHeadRiv;
     private RelativeLayout mHeadRl;
@@ -34,6 +38,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private CustomItemView mSexCiv;
     private CustomItemView mBirthdayCiv;
     private AppleDialog mHeadDialog;
+    private MyPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
@@ -47,6 +52,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         mNameCiv = findViewById(R.id.name_civ);
         mSexCiv = findViewById(R.id.sex_civ);
         mBirthdayCiv = findViewById(R.id.birthday_civ);
+        mPresenter = new MyPresenter(this);
     }
 
     @Override
@@ -163,9 +169,21 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             switch (requestCode){
                 case PictureConfig.CHOOSE_REQUEST:
                     List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
-                    ImageUtil.loadImage(this,selectList.get(0).getCompressPath(),mHeadRiv);
+                    showLoadingDialog();
+                    mPresenter.uploadHeadImg(selectList.get(0).getCompressPath(),this);
                     break;
             }
         }
+    }
+
+    @Override
+    public void onUploadSuccess() {
+//        hideLoadingDialog();
+        showToast("上传头像成功");
+    }
+
+    @Override
+    public void onUploadFailed(String reason) {
+        showToast(reason);
     }
 }

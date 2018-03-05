@@ -61,9 +61,9 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 .enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        if (response.body().status==200){
-                            UserManager.getManager().saveUser(response.body().data.get(0));
-                            view.onLoginSuccess(response.body().data.get(0));
+                        if (response.body()!=null&&response.body().status==200){
+                            UserManager.getManager().saveUser(response.body().data);
+                            view.onLoginSuccess();
                         }else {
                             view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
                         }
@@ -84,7 +84,10 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 .enqueue(new Callback<RegisterResponse>() {
                     @Override
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                        if (response.body().status==200) view.onRegisterSuccess();
+                        if (response.body()!=null&&response.body().status==200) {
+//                            UserManager.getManager().saveUser(response.body().data.get(0));
+                            view.onRegisterSuccess();
+                        }
                         else view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
                     }
 

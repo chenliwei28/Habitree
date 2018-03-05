@@ -28,4 +28,5 @@ public class Constant {
     public final static String FIND_PASSWORD_FUNCTION = "v1/user/passwd/find";
     public final static String CHANGE_PHONE_FUNCTION = "v1/user/phone/bind";
     public final static String PLANT_TREE_FUNCTION = "v1/habit/tree/list";
+    public final static String UPLOAD_FILE_FUNCTION = "v1/user/portrait/update";
 }

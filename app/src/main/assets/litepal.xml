@@ -3,7 +3,7 @@
 
     <dbname value="xueshu" />
 
-    <version value="1" />
+    <version value="2" />
 
     <list>
         <mapping class="com.habitree.xueshu.login.bean.User"/>

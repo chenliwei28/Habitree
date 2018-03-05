@@ -89,6 +89,7 @@
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
     <string name="to_pay">去支付</string>
+    <string name="please_wait">请稍后</string>
     <string name="rate_of_punch_card">签到率</string>
     <string name="qq_friends">QQ好友</string>
     <string name="other_sum">其他金额</string>
