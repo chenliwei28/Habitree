@@ -103,7 +103,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                     mPcFragment = PunchCardFragment.newInstance();
                     transaction.add(R.id.fragment_fl,mPcFragment);
                 }
-                mPcFragment.updateData();
                 break;
             case 1:
                 if (mMsFragment!=null) transaction.show(mMsFragment);
@@ -149,6 +148,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onResume() {
         super.onResume();
+        switch (mCurrentTab){
+            case 0:
 
+                break;
+            case 1:
+
+                break;
+            case 2:
+                if (mMeFragment!=null) mMeFragment.updateData();
+                break;
+        }
     }
 }

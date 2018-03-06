@@ -41,4 +41,9 @@ public class UserManager {
         }
         return user;
     }
+
+    public void updateUserHead(String imageUrl){
+        user.portrait = imageUrl;
+        user.update(1);
+    }
 }

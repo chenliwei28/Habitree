@@ -207,6 +207,9 @@
     <!--##-->
     <string name="zero">0</string>
     <string name="rmb">¥</string>
+    <string name="num_days">%d天</string>
+    <string name="num_times">%d次</string>
+    <string name="num_number">%d个</string>
     <string name="seven_days">7天</string>
     <string name="fifteen_days">15天</string>
     <string name="thirty_days">30天</string>

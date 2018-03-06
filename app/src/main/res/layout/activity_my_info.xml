@@ -57,8 +57,8 @@
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="12dp"
         app:head_img_visible="false"
-        app:title="@string/nickname"
-        app:next_visible="true" />
+        app:next_visible="true"
+        app:title="@string/nickname" />
 
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/sex_civ"

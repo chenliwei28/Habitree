@@ -69,7 +69,13 @@ public class HttpManager {
         return builder.build();
     }
 
-    public RequestBody imageFileToRequestBody(String filePath){
-        return RequestBody.create(MediaType.parse("image/jpg"), new File(filePath));
+    public MultipartBody.Part imageFileToRequestBody(String filePath){
+        File file = new File(filePath);
+        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), new File(filePath));
+        return MultipartBody.Part.createFormData("portrait", file.getName(), body);
+    }
+
+    public RequestBody stringToRequestBody(String s){
+        return RequestBody.create(MediaType.parse("multipart/form-data"), s);
     }
 }

@@ -75,15 +75,15 @@ public interface Api {
     //上传头像
     @Multipart
     @POST("v1/user/portrait/update")
-    Call<UploadFileResponse> uploadFile(@Part("timestamp") String timestamp,
-                                        @Part("sign") String sign,
-                                        @Part("from") String from,
-                                        @Part("client_id")String client_id,
-                                        @Part("device_id")String device_id,
-                                        @Part("device_info")String device_info,
-                                        @Part("userua")String userua,
-                                        @Part("verid")String verid,
-                                        @Part("version")String version,
-                                        @Part("user_token") String token,
-                                        @Part("portrait") RequestBody file);
+    Call<UploadFileResponse> uploadFile(@Part("timestamp") RequestBody timestamp,
+                                        @Part("sign") RequestBody sign,
+                                        @Part("from") RequestBody from,
+                                        @Part("client_id")RequestBody client_id,
+                                        @Part("device_id")RequestBody device_id,
+                                        @Part("device_info")RequestBody device_info,
+                                        @Part("userua")RequestBody userua,
+                                        @Part("verid")RequestBody verid,
+                                        @Part("version")RequestBody version,
+                                        @Part("user_token") RequestBody token,
+                                        @Part MultipartBody.Part file);
 }

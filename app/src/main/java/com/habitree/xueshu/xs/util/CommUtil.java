@@ -81,10 +81,6 @@ public class CommUtil {
         return manager == null ? "null" : manager.getDeviceId();
     }
 
-
-    private static final char HEX_DIGITS[] =
-            {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-
     /**
      * 获取字符串对应MD5
      *

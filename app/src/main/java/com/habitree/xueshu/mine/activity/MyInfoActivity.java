@@ -11,12 +11,14 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
+import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.RoundImageView;
@@ -65,7 +67,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
-
+        User user = UserManager.getManager().getUser();
+        ImageUtil.loadImage(this, user.portrait,mHeadRiv);
+        mNameCiv.setDetail(user.nickname);
     }
 
     @Override
@@ -178,8 +182,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onUploadSuccess() {
-//        hideLoadingDialog();
+        hideLoadingDialog();
         showToast("上传头像成功");
+        ImageUtil.loadImage(this, UserManager.getManager().getUser().portrait,mHeadRiv);
     }
 
     @Override

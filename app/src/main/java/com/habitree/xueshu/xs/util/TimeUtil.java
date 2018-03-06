@@ -1,8 +1,10 @@
 package com.habitree.xueshu.xs.util;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class TimeUtil {
     /**
@@ -22,5 +24,15 @@ public class TimeUtil {
      */
     public static int getCurrentMillis(){
         return (int) (System.currentTimeMillis()/1000);
+    }
+
+    /**
+     * 时间戳转换成时间字符串
+     * @param type 要转的时间格式，如 yyyy-MM-dd HH:mm:ss
+     * @param millis 时间戳
+     * @return 时间字符串
+     */
+    public static String millisToString(String type,int millis){
+        return new SimpleDateFormat(type, Locale.CHINA).format(new Date(millis));
     }
 }

@@ -27,14 +27,14 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_thumb"/>
+                android:src="@drawable/ic_info"/>
 
             <TextView
                 android:id="@+id/name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="张全蛋"
+                tools:text="张全蛋"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
 
@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="200天"
+                    tools:text="200天"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>

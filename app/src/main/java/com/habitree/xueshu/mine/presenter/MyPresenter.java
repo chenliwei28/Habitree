@@ -28,17 +28,23 @@ public class MyPresenter extends BasePresenter{
 
     public void uploadHeadImg(String imgPath, final MyView.UploadFileView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        String[] paths = {imgPath};
         HttpManager.getManager().getService()
-                .uploadFile(timestamp, CommUtil.getSign(Constant.UPLOAD_FILE_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,"3","1",
-                        BaseApp.imei, BaseApp.deviceInfo,BaseApp.userua,BaseApp.versionCode,BaseApp.versionName,
-//                        HttpManager.getManager().filesToMultipartBody("portrait",paths, MediaType.parse("image/jpg")))
+                .uploadFile(HttpManager.getManager().stringToRequestBody(timestamp),
+                        HttpManager.getManager().stringToRequestBody(CommUtil.getSign(Constant.UPLOAD_FILE_FUNCTION,timestamp)),
+                        HttpManager.getManager().stringToRequestBody("3"),
+                        HttpManager.getManager().stringToRequestBody("1"),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.imei),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.deviceInfo),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.userua),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.versionCode),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.versionName),
+                        HttpManager.getManager().stringToRequestBody(UserManager.getManager().getUser().user_token),
                         HttpManager.getManager().imageFileToRequestBody(imgPath))
                 .enqueue(new Callback<UploadFileResponse>() {
                     @Override
                     public void onResponse(Call<UploadFileResponse> call, Response<UploadFileResponse> response) {
                         if (response.body()!=null&&response.body().status==200){
+                            UserManager.getManager().updateUserHead(response.body().data.portrait);
                             view.onUploadSuccess();
                         }else if (response.body()!=null&&response.body().info!=null){
                             view.onUploadFailed(CommUtil.unicode2Chinese(response.body().info));

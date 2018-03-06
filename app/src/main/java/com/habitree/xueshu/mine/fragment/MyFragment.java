@@ -16,6 +16,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.mine.activity.HabitOngoingOrNotActivity;
 import com.habitree.xueshu.mine.activity.MyHabitsActivity;
 import com.habitree.xueshu.mine.activity.MyInfoActivity;
@@ -25,6 +26,8 @@ import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
+import com.habitree.xueshu.xs.util.ImageUtil;
+import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.RoundImageView;
@@ -99,6 +102,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         TreePagerAdapter adapter = new TreePagerAdapter(getChildFragmentManager());
         mTreeVp.setAdapter(adapter);
         mTreeVp.setCurrentItem(1);
+        updateData();
     }
 
     public static MyFragment newInstance() {
@@ -135,6 +139,32 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
                 startActivity(new Intent(getContext(), MyInfoActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            updateData();
+        }
+    }
+
+    //要刷新的UI操作放这里
+    public void updateData(){
+        User user = UserManager.getManager().getUser();
+        mNameTv.setText(user.nickname);
+        ImageUtil.loadImage(getActivity(),user.portrait,mHeadRiv);
+        mDaysTv.setText(String.format(getString(R.string.num_days),user.join_days));
+        mCountTv.setText(String.format(getString(R.string.num_times),user.sign_cnt));
+        mRateTv.setText(String.valueOf(user.sign_rate));
+        mCompletedTv.setText(String.format(getString(R.string.num_number),user.finish_cnt));
+        mOngoingTv.setText(String.format(getString(R.string.num_number),user.going_cnt));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
     }
 
     private class TreePagerAdapter extends FragmentPagerAdapter{
