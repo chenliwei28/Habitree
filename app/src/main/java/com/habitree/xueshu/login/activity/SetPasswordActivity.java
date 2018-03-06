@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
+import com.habitree.xueshu.main.MainActivity;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
@@ -74,12 +75,12 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
     public void onRegisterSuccess() {
         switch (mType){
             case 1:
-                ToastUtil.showToast(this,getString(R.string.register_success));
-                AppManager.getAppManager().finishActivity(this);
-                startActivity(new Intent(this,LoginActivity.class));
+                showToast(getString(R.string.register_success));
+                AppManager.getAppManager().finishAllActivity();
+                startActivity(new Intent(this,MainActivity.class));
                 break;
             case 2:
-                ToastUtil.showToast(this,getString(R.string.find_password_success));
+                showToast(getString(R.string.find_password_success));
                 AppManager.getAppManager().finishActivity(this);
                 startActivity(new Intent(this,LoginActivity.class));
                 break;
@@ -88,7 +89,7 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
 
     @Override
     public void onRegisterFail(String reason) {
-        ToastUtil.showToast(this,reason);
+        showToast(reason);
     }
 
     private void registerAndDone(){
@@ -97,7 +98,7 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
         if (!CommUtil.isPassword(this,pas))return;
         if (!CommUtil.isPassword(this,pasag))return;
         if (!pas.equals(pasag)) {
-            ToastUtil.showToast(this,getString(R.string.different_password));
+            showToast(getString(R.string.different_password));
             return;
         }
         switch (mType){

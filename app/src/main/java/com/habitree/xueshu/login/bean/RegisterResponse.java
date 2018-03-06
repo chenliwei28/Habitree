@@ -14,6 +14,6 @@ public class RegisterResponse {
 
     public int status;
     public String info;
-    public List<User> data;
+    public User data;
     public int timestamp;
 }

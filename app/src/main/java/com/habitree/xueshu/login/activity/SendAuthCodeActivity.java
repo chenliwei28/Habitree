@@ -113,7 +113,7 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
 
     @Override
     public void onSendFail(String reason) {
-        ToastUtil.showToast(this,reason);
+        showToast(reason);
     }
 
     @Override

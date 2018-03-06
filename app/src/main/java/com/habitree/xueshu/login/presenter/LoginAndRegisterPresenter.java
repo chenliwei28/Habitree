@@ -85,7 +85,7 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     @Override
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                         if (response.body()!=null&&response.body().status==200) {
-//                            UserManager.getManager().saveUser(response.body().data.get(0));
+                            UserManager.getManager().saveUser(response.body().data);
                             view.onRegisterSuccess();
                         }
                         else view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
