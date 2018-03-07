@@ -14,6 +14,8 @@ import android.widget.ListView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.adapter.FriendsAdapter;
 import com.habitree.xueshu.message.bean.Friend;
+import com.habitree.xueshu.message.presenter.FriendsPresenter;
+import com.habitree.xueshu.message.pview.FriendsView;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.CharacterParser;
 import com.habitree.xueshu.xs.util.CommUtil;
@@ -25,7 +27,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-public class MyFriendsActivity extends BaseActivity implements View.OnClickListener{
+public class MyFriendsActivity extends BaseActivity implements View.OnClickListener,FriendsView.FriendsListView{
 
     private EditText mSearchEt;
     private ListView mFriendsLv;
@@ -36,6 +38,7 @@ public class MyFriendsActivity extends BaseActivity implements View.OnClickListe
 
     private FriendsAdapter mAdapter;
     private List<Friend> mFriends;
+    private FriendsPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
@@ -50,6 +53,7 @@ public class MyFriendsActivity extends BaseActivity implements View.OnClickListe
         mWbLl = findViewById(R.id.wb_ll);
         mQQLl = findViewById(R.id.qq_ll);
         mCircleLl = findViewById(R.id.circle_ll);
+        mPresenter = new FriendsPresenter(this);
     }
 
     @Override
@@ -84,31 +88,18 @@ public class MyFriendsActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initData() {
-        initFriendList();
-        mAdapter = new FriendsAdapter(this,mFriends);
-        mFriendsLv.setAdapter(mAdapter);
+        showLoadingDialog();
+        mPresenter.getFriendsList(2,1,100,this);
     }
 
     private void initFriendList(){
-        mFriends = new ArrayList<>();
-        mFriends.add(new Friend("张全蛋"));
-        mFriends.add(new Friend("李文忠"));
-        mFriends.add(new Friend("吴思博"));
-        mFriends.add(new Friend("王鹏超"));
-        mFriends.add(new Friend("鸡崽子"));
-        mFriends.add(new Friend("王逢年"));
-        mFriends.add(new Friend("郑容和"));
-        mFriends.add(new Friend("精灵王"));
-        mFriends.add(new Friend("马春燕"));
-        mFriends.add(new Friend("如梦令"));
-        mFriends.add(new Friend("大众车"));
         for (Friend friend:mFriends){
-            friend.letter = CommUtil.getLetter(friend.name);
+            friend.letter = CommUtil.getLetter(friend.nickname);
         }
         Collections.sort(mFriends, new Comparator<Friend>() {
             @Override
             public int compare(Friend l, Friend r) {
-                return Collator.getInstance(Locale.CHINESE).compare(l.name, r.name);
+                return Collator.getInstance(Locale.CHINESE).compare(l.nickname, r.nickname);
             }
         });
     }
@@ -119,15 +110,15 @@ public class MyFriendsActivity extends BaseActivity implements View.OnClickListe
         else {
             list.clear();
             for (Friend friend:mFriends){
-                if (friend.name.toUpperCase().contains(s.toUpperCase())
-                        || CharacterParser.getInstance().getSelling(friend.name).toUpperCase().startsWith(s.toUpperCase())){
+                if (friend.nickname.toUpperCase().contains(s.toUpperCase())
+                        || CharacterParser.getInstance().getSelling(friend.nickname).toUpperCase().startsWith(s.toUpperCase())){
                     list.add(friend);
                 }
             }
             Collections.sort(list, new Comparator<Friend>() {
                 @Override
                 public int compare(Friend l, Friend r) {
-                    return Collator.getInstance(Locale.CHINESE).compare(l.name, r.name);
+                    return Collator.getInstance(Locale.CHINESE).compare(l.nickname, r.nickname);
                 }
             });
             return list;
@@ -150,5 +141,24 @@ public class MyFriendsActivity extends BaseActivity implements View.OnClickListe
 
                 break;
         }
+    }
+
+    @Override
+    public void onGetFriendsListSuccess(List<Friend> list) {
+        mFriends = list;
+        initFriendList();
+        if (mAdapter==null){
+            mAdapter = new FriendsAdapter(this,mFriends);
+            mFriendsLv.setAdapter(mAdapter);
+        }else {
+            mAdapter.updateData(mFriends);
+        }
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void onGetFriendsListFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
     }
 }

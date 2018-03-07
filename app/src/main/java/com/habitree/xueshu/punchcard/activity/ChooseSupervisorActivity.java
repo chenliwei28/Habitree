@@ -83,24 +83,13 @@ public class ChooseSupervisorActivity extends BaseActivity {
 
     private void initFriendList(){
         mFriends = new ArrayList<>();
-        mFriends.add(new Friend("张全蛋"));
-        mFriends.add(new Friend("李文忠"));
-        mFriends.add(new Friend("吴思博"));
-        mFriends.add(new Friend("王鹏超"));
-        mFriends.add(new Friend("鸡崽子"));
-        mFriends.add(new Friend("王逢年"));
-        mFriends.add(new Friend("郑容和"));
-        mFriends.add(new Friend("精灵王"));
-        mFriends.add(new Friend("马春燕"));
-        mFriends.add(new Friend("如梦令"));
-        mFriends.add(new Friend("大众车"));
         for (Friend friend:mFriends){
-            friend.letter = CommUtil.getLetter(friend.name);
+            friend.letter = CommUtil.getLetter(friend.nickname);
         }
         Collections.sort(mFriends, new Comparator<Friend>() {
             @Override
             public int compare(Friend l, Friend r) {
-                return Collator.getInstance(Locale.CHINESE).compare(l.name, r.name);
+                return Collator.getInstance(Locale.CHINESE).compare(l.nickname, r.nickname);
             }
         });
     }
@@ -111,15 +100,15 @@ public class ChooseSupervisorActivity extends BaseActivity {
         else {
             list.clear();
             for (Friend friend:mFriends){
-                if (friend.name.toUpperCase().contains(s.toUpperCase())
-                        || CharacterParser.getInstance().getSelling(friend.name).toUpperCase().startsWith(s.toUpperCase())){
+                if (friend.nickname.toUpperCase().contains(s.toUpperCase())
+                        || CharacterParser.getInstance().getSelling(friend.nickname).toUpperCase().startsWith(s.toUpperCase())){
                     list.add(friend);
                 }
             }
             Collections.sort(list, new Comparator<Friend>() {
                 @Override
                 public int compare(Friend l, Friend r) {
-                    return Collator.getInstance(Locale.CHINESE).compare(l.name, r.name);
+                    return Collator.getInstance(Locale.CHINESE).compare(l.nickname, r.nickname);
                 }
             });
             return list;

@@ -17,8 +17,11 @@ import com.habitree.xueshu.xs.presenter.BasePresenter;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.HttpManager;
 import com.habitree.xueshu.xs.util.LogUtil;
+import com.habitree.xueshu.xs.util.MainHandler;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UserManager;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,7 +66,7 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.body()!=null&&response.body().status==200){
                             UserManager.getManager().saveUser(response.body().data);
-                            view.onLoginSuccess();
+                            EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view);
                         }else {
                             view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
                         }
@@ -74,6 +77,38 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                         view.onLoginFailed(mContext.getString(R.string.network_error));
                     }
                 });
+    }
+
+    private void EMLogin(String id, String pw, final LoginView view){
+        EMClient.getInstance().login(id, pw, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                EMClient.getInstance().chatManager().loadAllConversations();
+                EMClient.getInstance().groupManager().loadAllGroups();
+                MainHandler.getInstance().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.onLoginSuccess();
+                    }
+                });
+            }
+
+            @Override
+            public void onError(int code, String error) {
+                LogUtil.d(error);
+                MainHandler.getInstance().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.onLoginFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+        });
     }
 
     public void register(String phone, String password, String code, final RegisterView view){

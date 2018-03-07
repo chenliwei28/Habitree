@@ -1,5 +1,6 @@
 package com.habitree.xueshu.message.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.bean.Friend;
+import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
 import java.util.List;
@@ -53,7 +55,8 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
         }else {
             holder = (FriendViewHolder) convertView.getTag();
         }
-        holder.nameTv.setText(mList.get(position).name);
+        holder.nameTv.setText(mList.get(position).nickname);
+        ImageUtil.loadImage((Activity) mContext,mList.get(position).portrait,holder.headRiv);
 
         // 根据position获取分类的首字母的Char ascii值
         int section = getSectionForPosition(position);

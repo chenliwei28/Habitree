@@ -2,6 +2,8 @@ package com.habitree.xueshu.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,12 +15,19 @@ import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.message.fragment.MessageFragment;
 import com.habitree.xueshu.mine.fragment.MyFragment;
 import com.habitree.xueshu.punchcard.fragment.PunchCardFragment;
+import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.LogUtil;
+import com.habitree.xueshu.xs.util.MainHandler;
+import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.TabItemView;
+import com.hyphenate.EMConnectionListener;
+import com.hyphenate.EMError;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.util.NetUtils;
 
 import java.util.List;
 
@@ -72,6 +81,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             AppManager.getAppManager().finishActivity(this);
         }else {
             changeTab(mPcTiv,0);
+            registerEMConnectionListener();
+            EMClient.getInstance().chatManager().loadAllConversations();
+            EMClient.getInstance().groupManager().loadAllGroups();
         }
     }
 
@@ -159,5 +171,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 if (mMeFragment!=null) mMeFragment.updateData();
                 break;
         }
+    }
+
+    //注册环信连接状态监听
+    private void registerEMConnectionListener(){
+        EMClient.getInstance().addConnectionListener(new EMConnectionListener() {
+            @Override
+            public void onConnected() {
+
+            }
+
+            @Override
+            public void onDisconnected(final int errorCode) {
+                MainHandler.getInstance().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(errorCode == EMError.USER_REMOVED){
+                            // 显示帐号已经被移除
+                            LogUtil.d("环信帐号已经被移除");
+                        }else if (errorCode == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+                            // 显示帐号在其他设备登录
+                            LogUtil.d("环信帐号在其他设备登录");
+                        } else {
+                            if (NetUtils.hasNetwork(MainActivity.this))
+                                showToast("网络已连接");
+                            else showToast("网络已断开");
+                        }
+                    }
+                });
+            }
+        });
     }
 }

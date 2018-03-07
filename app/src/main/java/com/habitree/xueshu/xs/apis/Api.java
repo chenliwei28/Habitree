@@ -7,8 +7,10 @@ import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.LoginResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
 import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.message.bean.FriendsResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.util.TimeUtil;
 
 import okhttp3.MultipartBody;
@@ -27,21 +29,21 @@ import retrofit2.http.Part;
 public interface Api {
     //登录
     @FormUrlEncoded
-    @POST("v1/user/login")
+    @POST(Constant.LOGIN_FUNCTION)
     Call<LoginResponse> login(@Field("timestamp") String timestamp,
                               @Field("sign") String sign,
                               @Field("username") String phone,
                               @Field("password") String password);
     //发送验证码
     @FormUrlEncoded
-    @POST("/v1/sms/send")
+    @POST(Constant.AUTH_CODE_FUNCTION)
     Call<AuthCodeResponse> sendAuthCode(@Field("timestamp") String timestamp,
                                         @Field("sign") String sign,
                                         @Field("mobile") String mobile,
                                         @Field("smstype") int type);
     //注册
     @FormUrlEncoded
-    @POST("/v1/user/registermobile")
+    @POST(Constant.REGISTER_FUNCTION)
     Call<RegisterResponse> register(@Field("timestamp") String timestamp,
                                     @Field("sign") String sign,
                                     @Field("mobile") String mobile,
@@ -50,7 +52,7 @@ public interface Api {
                                     @Field("smscode") String code);
     //找回密码
     @FormUrlEncoded
-    @POST("/v1/user/passwd/find")
+    @POST(Constant.FIND_PASSWORD_FUNCTION)
     Call<FindPasswordResponse> findPassword(@Field("timestamp") String timestamp,
                                             @Field("sign") String sign,
                                             @Field("mobile") String mobile,
@@ -59,7 +61,7 @@ public interface Api {
                                             @Field("smscode") String code);
     //手机换绑
     @FormUrlEncoded
-    @POST("/v1/user/phone/bind")
+    @POST(Constant.CHANGE_PHONE_FUNCTION)
     Call<ChangeBindPhoneResponse> changeBindPhone(@Field("timestamp") String timestamp,
                                                   @Field("sign") String sign,
                                                   @Field("mobile") String mobile,
@@ -68,13 +70,13 @@ public interface Api {
                                                   @Field("smscode") String code);
     //新建习惯树列表
     @FormUrlEncoded
-    @POST("/v1/habit/tree/list")
+    @POST(Constant.PLANT_TREE_FUNCTION)
     Call<PlantTreeResponse> getPlantTree(@Field("timestamp") String timestamp,
                                          @Field("sign") String sign);
 
     //上传头像
     @Multipart
-    @POST("v1/user/portrait/update")
+    @POST(Constant.UPLOAD_FILE_FUNCTION)
     Call<UploadFileResponse> uploadFile(@Part("timestamp") RequestBody timestamp,
                                         @Part("sign") RequestBody sign,
                                         @Part("from") RequestBody from,
@@ -86,4 +88,13 @@ public interface Api {
                                         @Part("version")RequestBody version,
                                         @Part("user_token") RequestBody token,
                                         @Part MultipartBody.Part file);
+
+    @FormUrlEncoded
+    @POST(Constant.GET_FRIENDS_LIST_FUNCTION)
+    Call<FriendsResponse> getFriendsList(@Field("timestamp") String timestamp,
+                                         @Field("sign") String sign,
+                                         @Field("user_token") String token,
+                                         @Field("ftype")int type,
+                                         @Field("page")int page,
+                                         @Field("offset")int offset);
 }

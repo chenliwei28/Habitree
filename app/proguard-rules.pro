@@ -31,3 +31,8 @@
 # for DexGuard only
 -keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 #Glide混淆配置
+
+#环信混淆配置
+-keep class com.hyphenate.** {*;}
+-dontwarn  com.hyphenate.**
+#环信混淆配置

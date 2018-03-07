@@ -85,6 +85,7 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_btn:
+                showLoadingDialog();
                 mPresenter.login(mPhoneLet.getContentText(),mPasswLet.getContentText(),this);
                 break;
             case R.id.register_btn:
@@ -113,6 +114,7 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
 
     @Override
     public void onLoginSuccess() {
+        hideLoadingDialog();
         showToast(getString(R.string.login_success));
         startActivity(new Intent(this, MainActivity.class));
         AppManager.getAppManager().finishActivity(this);
@@ -120,6 +122,7 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
 
     @Override
     public void onLoginFailed(String reason) {
+        hideLoadingDialog();
         showToast(reason);
     }
 
