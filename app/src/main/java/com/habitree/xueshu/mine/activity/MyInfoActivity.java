@@ -105,7 +105,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                         public void onClick(int which) {
                             openGallery();
                         }
-                    });
+                    })
+            .commit();
         }
         mHeadDialog.show();
     }

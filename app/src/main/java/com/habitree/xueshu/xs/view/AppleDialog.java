@@ -187,8 +187,12 @@ public class AppleDialog {
         }
     }
 
-    public void show() {
+    public AppleDialog commit(){
         setSheetItems();
+        return this;
+    }
+
+    public void show() {
         dialog.show();
     }
 

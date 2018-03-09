@@ -25,18 +25,20 @@ public class FriendsPresenter extends BasePresenter{
 
     public void getFriendsList(int type, int page, int offset, final FriendsView.FriendsListView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        HttpManager.getManager().getService()
+        HttpManager.getManager()
+                .getService()
                 .getFriendsList(timestamp,CommUtil.getSign(Constant.GET_FRIENDS_LIST_FUNCTION,timestamp),
                         UserManager.getManager().getUser().user_token, type,page,offset)
                 .enqueue(new Callback<FriendsResponse>() {
                     @Override
                     public void onResponse(Call<FriendsResponse> call, Response<FriendsResponse> response) {
-                        if (response.body()!=null&&response.body().status==Constant.RESPONSE_SUCCESS){
-                            view.onGetFriendsListSuccess(response.body().data);
-                        }else if (response.body()!=null&&response.body().info!=null){
-                            view.onGetFriendsListFailed(CommUtil.unicode2Chinese(response.body().info));
-                        }else {
-                            view.onGetFriendsListFailed(mContext.getString(R.string.network_error));
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onGetFriendsListSuccess(response.body().data);
+                            }else {
+                                view.onGetFriendsListFailed(response.body().info==null?
+                                        mContext.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
+                            }
                         }
                     }
 

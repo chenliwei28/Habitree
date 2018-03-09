@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.view.RoundImageView;
+import com.hyphenate.chat.EMConversation;
 
 import java.util.List;
 
@@ -18,9 +19,9 @@ import java.util.List;
 public class MessageAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<String> mList;
+    private List<EMConversation> mList;
 
-    public MessageAdapter(Context context, List<String> list){
+    public MessageAdapter(Context context, List<EMConversation> list){
         mContext = context;
         mList = list;
     }

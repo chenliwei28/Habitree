@@ -22,6 +22,7 @@ public class Constant {
     public final static int NUM_111 = 111;
 
     public final static int RESPONSE_SUCCESS = 200;
+    public final static int RESPONSE_OVERDUE = 1002;
 
     //functions
     public final static String LOGIN_FUNCTION = "v1/user/login";

@@ -12,12 +12,14 @@ import android.view.View;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.activity.LoginActivity;
 import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.message.activity.MessageDetailActivity;
 import com.habitree.xueshu.message.fragment.MessageFragment;
 import com.habitree.xueshu.mine.fragment.MyFragment;
 import com.habitree.xueshu.punchcard.fragment.PunchCardFragment;
 import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.MainHandler;
 import com.habitree.xueshu.xs.util.ToastUtil;
@@ -26,7 +28,12 @@ import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.TabItemView;
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
+import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
+import com.hyphenate.chat.EMMessage;
+import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.util.NetUtils;
 
 import java.util.List;
@@ -117,7 +124,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 }
                 break;
             case 1:
-                if (mMsFragment!=null) transaction.show(mMsFragment);
+                if (mMsFragment!=null) {
+                    transaction.show(mMsFragment);
+                }
                 else {
                     mMsFragment = MessageFragment.newInstance();
                     transaction.add(R.id.fragment_fl,mMsFragment);
@@ -173,7 +182,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
-    //注册环信连接状态监听
+    //注册环信连接状态监听、消息监听
     private void registerEMConnectionListener(){
         EMClient.getInstance().addConnectionListener(new EMConnectionListener() {
             @Override
@@ -192,6 +201,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                         }else if (errorCode == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                             // 显示帐号在其他设备登录
                             LogUtil.d("环信帐号在其他设备登录");
+                            showToast("帐号在其他设备登录");
+                            CommUtil.toLogin(MainActivity.this);
                         } else {
                             if (NetUtils.hasNetwork(MainActivity.this))
                                 showToast("网络已连接");
@@ -199,6 +210,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                         }
                     }
                 });
+            }
+        });
+
+        EMClient.getInstance().chatManager().addMessageListener(new EMMessageListener() {
+            @Override
+            public void onMessageReceived(List<EMMessage> list) {
+                mMsFragment.refresh();
+            }
+
+            @Override
+            public void onCmdMessageReceived(List<EMMessage> list) {
+
+            }
+
+            @Override
+            public void onMessageRead(List<EMMessage> list) {
+
+            }
+
+            @Override
+            public void onMessageDelivered(List<EMMessage> list) {
+
+            }
+
+            @Override
+            public void onMessageRecalled(List<EMMessage> list) {
+
+            }
+
+            @Override
+            public void onMessageChanged(EMMessage emMessage, Object o) {
+
             }
         });
     }

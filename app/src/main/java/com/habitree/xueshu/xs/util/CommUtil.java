@@ -3,6 +3,7 @@ package com.habitree.xueshu.xs.util;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.text.TextUtils;
 import android.webkit.WebView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.login.activity.LoginActivity;
 import com.habitree.xueshu.xs.Constant;
 
 import java.security.MessageDigest;
@@ -35,6 +37,23 @@ public class CommUtil {
             ToastUtil.showToast(context, R.string.password_must_not_be_empty);
             return false;
         } else return true;
+    }
+
+    public static boolean isSuccess(Context context,int status){
+        switch (status){
+            case Constant.RESPONSE_SUCCESS:
+                return true;
+            case Constant.RESPONSE_OVERDUE:
+                ToastUtil.showToast(context,context.getString(R.string.login_overdue));
+                toLogin(context);
+                return false;
+            default:return false;
+        }
+    }
+
+    public static void toLogin(Context context){
+        context.startActivity(new Intent(context, LoginActivity.class));
+        AppManager.getAppManager().finishAllActivity();
     }
 
     /**

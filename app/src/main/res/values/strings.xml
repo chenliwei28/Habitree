@@ -28,6 +28,7 @@
     <string name="login_success">登录成功</string>
     <string name="times_of_punch_card">打卡数</string>
     <string name="click_to_punch_card">点击打卡</string>
+    <string name="login_overdue">登录过期，请重新登录</string>
 
     <!--E-->
     <!--F-->

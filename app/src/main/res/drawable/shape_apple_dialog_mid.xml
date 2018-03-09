@@ -9,7 +9,7 @@
                 android:topLeftRadius="0dp"
                 android:topRightRadius="0dp" />
 
-            <solid android:color="@color/line_color" />
+            <solid android:color="@color/line" />
         </shape>
     </item>
     <item android:top="1dp">

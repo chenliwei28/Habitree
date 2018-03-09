@@ -5,6 +5,7 @@ import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
+import com.hyphenate.easeui.EaseUI;
 
 import org.litepal.LitePalApplication;
 
@@ -39,7 +40,7 @@ public class BaseApp extends LitePalApplication {
         // 是否自动下载附件类消息的缩略图等，默认为 true 这里和上边这个参数相关联
         options.setAutoDownloadThumbnail(true);
         //初始化
-        EMClient.getInstance().init(this, options);
+        EaseUI.getInstance().init(this,options);
         //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         EMClient.getInstance().setDebugMode(true);
 
