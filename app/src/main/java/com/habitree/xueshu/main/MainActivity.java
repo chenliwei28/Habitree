@@ -213,36 +213,44 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             }
         });
 
-        EMClient.getInstance().chatManager().addMessageListener(new EMMessageListener() {
-            @Override
-            public void onMessageReceived(List<EMMessage> list) {
-                mMsFragment.refresh();
-            }
+        EMClient.getInstance().chatManager().addMessageListener(mMessageListener);
+    }
 
-            @Override
-            public void onCmdMessageReceived(List<EMMessage> list) {
+    private EMMessageListener mMessageListener = new EMMessageListener() {
+        @Override
+        public void onMessageReceived(List<EMMessage> list) {
+            mMsFragment.refresh();
+        }
 
-            }
+        @Override
+        public void onCmdMessageReceived(List<EMMessage> list) {
 
-            @Override
-            public void onMessageRead(List<EMMessage> list) {
+        }
 
-            }
+        @Override
+        public void onMessageRead(List<EMMessage> list) {
 
-            @Override
-            public void onMessageDelivered(List<EMMessage> list) {
+        }
 
-            }
+        @Override
+        public void onMessageDelivered(List<EMMessage> list) {
 
-            @Override
-            public void onMessageRecalled(List<EMMessage> list) {
+        }
 
-            }
+        @Override
+        public void onMessageRecalled(List<EMMessage> list) {
 
-            @Override
-            public void onMessageChanged(EMMessage emMessage, Object o) {
+        }
 
-            }
-        });
+        @Override
+        public void onMessageChanged(EMMessage emMessage, Object o) {
+
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EMClient.getInstance().chatManager().removeMessageListener(mMessageListener);
     }
 }
