@@ -32,7 +32,7 @@ public class UserManager {
 
     public void deleteUser(){
         user = null;
-        DataSupport.delete(User.class,0);
+        DataSupport.deleteAll(User.class);
     }
 
     public User getUser(){

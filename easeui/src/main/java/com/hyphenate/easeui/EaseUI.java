@@ -207,7 +207,7 @@ public final class EaseUI {
     
     /**
      * set user profile provider
-     * @param provider
+     * @param
      */
     public void setUserProfileProvider(EaseUserProfileProvider userProvider){
         this.userProvider = userProvider;
@@ -329,7 +329,6 @@ public final class EaseUI {
 
         @Override
         public boolean isMsgNotifyAllowed(EMMessage message) {
-            // TODO Auto-generated method stub
             return true;
         }
 

@@ -18,4 +18,5 @@
     <color name="gray">#999999</color>
     <color name="white_50">#50FFFFFF</color>
     <color name="black_20">#20000000</color>
+    <color name="red">#ffff4444</color>
 </resources>

@@ -14,6 +14,7 @@ import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.presenter.BasePresenter;
+import com.habitree.xueshu.xs.presenter.BaseView;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.HttpManager;
 import com.habitree.xueshu.xs.util.LogUtil;
@@ -66,7 +67,7 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.body()!=null&&response.body().status==200){
                             UserManager.getManager().saveUser(response.body().data);
-                            EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view);
+                            EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view,false);
                         }else {
                             view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
                         }
@@ -79,7 +80,7 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 });
     }
 
-    private void EMLogin(String id, String pw, final LoginView view){
+    private void EMLogin(String id, String pw, final BaseView view, final boolean isRegisterLogin){
         EMClient.getInstance().login(id, pw, new EMCallBack() {
             @Override
             public void onSuccess() {
@@ -88,7 +89,11 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 MainHandler.getInstance().post(new Runnable() {
                     @Override
                     public void run() {
-                        view.onLoginSuccess();
+                        if (isRegisterLogin){
+                            ((RegisterView)view).onRegisterSuccess();
+                        }else {
+                            ((LoginView)view).onLoginSuccess();
+                        }
                     }
                 });
             }
@@ -99,7 +104,11 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 MainHandler.getInstance().post(new Runnable() {
                     @Override
                     public void run() {
-                        view.onLoginFailed(mContext.getString(R.string.network_error));
+                        if (isRegisterLogin){
+                            ((RegisterView)view).onRegisterFail(mContext.getString(R.string.network_error));
+                        }else {
+                            ((LoginView)view).onLoginFailed(mContext.getString(R.string.network_error));
+                        }
                     }
                 });
             }
@@ -121,6 +130,7 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                         if (response.body()!=null&&response.body().status==200) {
                             UserManager.getManager().saveUser(response.body().data);
+                            EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view,true);
                             view.onRegisterSuccess();
                         }
                         else view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));

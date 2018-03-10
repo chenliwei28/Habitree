@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:background="@color/white"
     android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:paddingLeft="12dp"
     android:paddingRight="12dp">
-    
-    <com.habitree.xueshu.xs.view.RoundImageView
-        android:id="@+id/head_riv"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/img_yepao"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <com.habitree.xueshu.xs.view.RoundImageView
+            android:id="@+id/head_riv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/img_yepao"
+            app:type="circle" />
+
+        <TextView
+            android:id="@+id/unread_tv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_circle_red_unread_bg"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:text="9"
+            android:visibility="gone"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_marginLeft="10dp"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -33,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black_text"
                 android:textSize="17sp"
-                android:text="张全蛋"/>
+                tools:text="张全蛋" />
 
             <TextView
                 android:id="@+id/time_tv"
@@ -44,18 +65,31 @@
                 android:gravity="end"
                 android:textColor="@color/gray_text"
                 android:textSize="13sp"
-                android:text="10:00"/>
+                tools:text="10:00" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/detail_tv"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textSize="14sp"
-            android:textColor="@color/gray_text"
-            android:text="1月9日夜跑：环岛路这边，晚上很凉爽，大家有空来吹西北风"/>
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/send_failed_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nim_ic_failed"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/detail_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp"
+                tools:text="1月9日夜跑：环岛路这边，晚上很凉爽，大家有空来吹西北风" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

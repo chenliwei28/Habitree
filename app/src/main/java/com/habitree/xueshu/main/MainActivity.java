@@ -1,10 +1,6 @@
 package com.habitree.xueshu.main;
 
-import android.Manifest;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -12,17 +8,14 @@ import android.view.View;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.activity.LoginActivity;
 import com.habitree.xueshu.login.bean.User;
-import com.habitree.xueshu.message.activity.MessageDetailActivity;
 import com.habitree.xueshu.message.fragment.MessageFragment;
 import com.habitree.xueshu.mine.fragment.MyFragment;
 import com.habitree.xueshu.punchcard.fragment.PunchCardFragment;
-import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.MainHandler;
-import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.TabItemView;
@@ -30,17 +23,10 @@ import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
-import com.hyphenate.easeui.EaseConstant;
-import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.util.NetUtils;
 
 import java.util.List;
-
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
-import pub.devrel.easypermissions.PermissionRequest;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
@@ -174,7 +160,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
                 break;
             case 1:
-
+                if (mMsFragment!=null) mMsFragment.updateData();
                 break;
             case 2:
                 if (mMeFragment!=null) mMeFragment.updateData();
@@ -202,7 +188,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                             // 显示帐号在其他设备登录
                             LogUtil.d("环信帐号在其他设备登录");
                             showToast("帐号在其他设备登录");
-                            CommUtil.toLogin(MainActivity.this);
+                            CommUtil.logoutToLogin(MainActivity.this);
                         } else {
                             if (NetUtils.hasNetwork(MainActivity.this))
                                 showToast("网络已连接");
@@ -219,7 +205,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private EMMessageListener mMessageListener = new EMMessageListener() {
         @Override
         public void onMessageReceived(List<EMMessage> list) {
-            mMsFragment.refresh();
+            mMsFragment.updateData();
         }
 
         @Override

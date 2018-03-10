@@ -16,6 +16,7 @@ import com.habitree.xueshu.message.adapter.FriendsAdapter;
 import com.habitree.xueshu.message.bean.Friend;
 import com.habitree.xueshu.message.presenter.FriendsPresenter;
 import com.habitree.xueshu.message.pview.FriendsView;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.CharacterParser;
 import com.habitree.xueshu.xs.util.CommUtil;
@@ -81,7 +82,7 @@ public class MyFriendsActivity extends BaseActivity implements View.OnClickListe
         mFriendsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(MyFriendsActivity.this,FriendDetailsActivity.class));
+                startActivity(new Intent(MyFriendsActivity.this,FriendDetailsActivity.class).putExtra(Constant.ID,((Friend)mAdapter.getItem(position)).mem_id));
             }
         });
     }

@@ -135,7 +135,6 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         chatType = fragmentArgs.getInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         // userId you are chat with or group id
         toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
-
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -206,7 +205,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
                     titleBar.setTitle(user.getNick());
                 }
             }
-            titleBar.setRightImageResource(R.drawable.ease_mm_title_remove);
+//            titleBar.setRightImageResource(R.drawable.ease_mm_title_remove);
         } else {
         	titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
             if (chatType == EaseConstant.CHATTYPE_GROUP) {
@@ -236,17 +235,17 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
                 onBackPressed();
             }
         });
-        titleBar.setRightLayoutClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (chatType == EaseConstant.CHATTYPE_SINGLE) {
-                    emptyHistory();
-                } else {
-                    toGroupDetails();
-                }
-            }
-        });
+//        titleBar.setRightLayoutClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                if (chatType == EaseConstant.CHATTYPE_SINGLE) {
+//                    emptyHistory();
+//                } else {
+//                    toGroupDetails();
+//                }
+//            }
+//        });
 
         setRefreshLayoutListener();
         
@@ -560,7 +559,6 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
 
             @Override
             public void onError(final int error, String errorMsg) {
-                // TODO Auto-generated method stub
                 EMLog.d(TAG, "join room failure : " + error);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override

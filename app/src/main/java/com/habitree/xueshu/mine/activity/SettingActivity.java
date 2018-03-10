@@ -6,9 +6,11 @@ import android.view.View;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
+import com.habitree.xueshu.xs.view.MyDialog;
 
-public class SettingActivity extends BaseActivity implements View.OnClickListener{
+public class SettingActivity extends BaseActivity implements View.OnClickListener {
 
     private CustomItemView mMyWalletCiv;
     private CustomItemView mChangePhoneCiv;
@@ -16,6 +18,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private CustomItemView mAboutCiv;
     private CustomItemView mClearCacheCiv;
     private CustomItemView mLogOutCiv;
+    private MyDialog mDialog;
 
     @Override
     protected int setLayoutId() {
@@ -49,12 +52,12 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.my_wallet_civ:
-                startActivity(new Intent(this,MyWalletActivity.class));
+                startActivity(new Intent(this, MyWalletActivity.class));
                 break;
             case R.id.change_phone_civ:
-                startActivity(new Intent(this,ChangePhoneActivity.class));
+                startActivity(new Intent(this, ChangePhoneActivity.class));
                 break;
             case R.id.change_password_civ:
 
@@ -66,8 +69,24 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
                 break;
             case R.id.log_out_civ:
-
+                showExitDialog(true);
                 break;
         }
+    }
+
+    private void showExitDialog(final boolean isExit) {
+        if (mDialog == null) {
+            mDialog = new MyDialog(this)
+                    .builder()
+                    .setTitle(getString(R.string.remind))
+                    .setConfirmClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (isExit) CommUtil.logoutToLogin(SettingActivity.this);
+                        }
+                    });
+        }
+        mDialog.setDetail(isExit?getString(R.string.sure_logout):getString(R.string.sure_clear_cache));
+        mDialog.show();
     }
 }

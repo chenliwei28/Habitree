@@ -26,6 +26,7 @@
     <string name="dian_zan">点赞</string>
     <string name="punch_card">打卡</string>
     <string name="login_success">登录成功</string>
+    <string name="pending_matters">待处理事项</string>
     <string name="times_of_punch_card">打卡数</string>
     <string name="click_to_punch_card">点击打卡</string>
     <string name="login_overdue">登录过期，请重新登录</string>
@@ -33,6 +34,7 @@
     <!--E-->
     <!--F-->
     <string name="send">发送</string>
+    <string name="send_message">发消息</string>
     <string name="abandon_habit">放弃习惯</string>
     <string name="penalty_settings">罚金设置</string>
     <string name="send_auth_code">发送验证码</string>
@@ -96,6 +98,8 @@
     <string name="other_sum">其他金额</string>
     <string name="clear_cache">清除缓存</string>
     <string name="wallet_balance">钱包余额</string>
+    <string name="sure_logout">确定退出？</string>
+    <string name="sure_clear_cache">确定清除缓存？</string>
     <string name="confirm_password">确认密码</string>
     <string name="rewards_for_all_the_work">全勤奖鼓励</string>
     <string name="please_enter_password">请输入登录密码</string>
@@ -120,6 +124,7 @@
     <string name="is_allow_other_people_see_this_habit">是否允许你的监督人之外的亲友看到这条习惯</string>
     <!--T-->
     <string name="head">头像</string>
+    <string name="remind">提示</string>
     <string name="statistics">统计</string>
     <string name="withdraw_deposit">提现</string>
     <string name="withdraw_sum">提现金额</string>
@@ -225,6 +230,7 @@
     <string name="fifty_yuan">50元/次</string>
     <string name="phone_head">+86</string>
     <string name="num_habits">%d个习惯</string>
+    <string name="number_of_pending_matters">%d个请求待处理</string>
     <string name="count_of_not_punch_card">（%d个未打卡）</string>
     <string name="twenty_four_un_processed">24小时未处理的打开记录将视为通过；24小时未处理的监督要求视为拒绝</string>
 </resources>

@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -28,26 +28,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- 设置环信应用的AppKey 开始-->
-        <meta-data android:name="EASEMOB_APPKEY"  android:value="1135180305253419#habitree" />
-        <!-- 声明SDK所需的service SDK核心功能-->
-        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
-        <service android:name="com.hyphenate.chat.EMJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
+        <!-- 设置环信应用的AppKey 开始 -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1135180305253419#habitree" />
+        <!-- 声明SDK所需的service SDK核心功能 -->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
             android:exported="true" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <!-- 声明SDK所需的receiver -->
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <data android:scheme="package"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
             </intent-filter>
             <!-- 可选filter -->
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-        <!-- 设置环信应用的AppKey 结束-->
+        <!-- 设置环信应用的AppKey 结束 -->
 
         <activity
             android:name=".main.MainActivity"
@@ -140,7 +146,8 @@
         <activity android:name=".message.activity.FriendForestActivity" />
         <activity android:name=".message.activity.MessageDetailActivity" />
         <activity android:name=".message.activity.HabitInviteActivity" />
-        <activity android:name=".mine.activity.MyInfoActivity"/>
+        <activity android:name=".mine.activity.MyInfoActivity" />
+        <activity android:name=".message.activity.PendingMattersActivity"></activity>
     </application>
 
 </manifest>

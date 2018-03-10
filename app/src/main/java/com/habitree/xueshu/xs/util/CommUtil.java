@@ -1,7 +1,6 @@
 package com.habitree.xueshu.xs.util;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -15,6 +14,7 @@ import android.webkit.WebView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.activity.LoginActivity;
 import com.habitree.xueshu.xs.Constant;
+import com.hyphenate.chat.EMClient;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -45,13 +45,15 @@ public class CommUtil {
                 return true;
             case Constant.RESPONSE_OVERDUE:
                 ToastUtil.showToast(context,context.getString(R.string.login_overdue));
-                toLogin(context);
+                logoutToLogin(context);
                 return false;
             default:return false;
         }
     }
 
-    public static void toLogin(Context context){
+    public static void logoutToLogin(Context context){
+        UserManager.getManager().deleteUser();
+        EMClient.getInstance().logout(true);
         context.startActivity(new Intent(context, LoginActivity.class));
         AppManager.getAppManager().finishAllActivity();
     }

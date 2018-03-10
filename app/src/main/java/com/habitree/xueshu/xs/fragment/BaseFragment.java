@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.habitree.xueshu.xs.util.ToastUtil;
+
 public abstract class BaseFragment extends Fragment{
 
     protected abstract int setLayoutId();
@@ -31,5 +33,13 @@ public abstract class BaseFragment extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initData();
+    }
+
+    protected void showToast(String s){
+        ToastUtil.showToast(getContext(),s);
+    }
+
+    protected void showToast(int stringId){
+        ToastUtil.showToast(getContext(),stringId);
     }
 }
