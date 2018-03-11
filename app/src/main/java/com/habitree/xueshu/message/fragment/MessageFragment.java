@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.activity.MessageDetailActivity;
 import com.habitree.xueshu.message.activity.MyFriendsActivity;
+import com.habitree.xueshu.message.activity.PendingMattersActivity;
 import com.habitree.xueshu.message.adapter.MessageAdapter;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.util.MessageManager;
@@ -48,7 +49,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position==0){
-
+                    startActivity(new Intent(getContext(), PendingMattersActivity.class));
                 }else {
                     startActivity(new Intent(getContext(), MessageDetailActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, mAdapter.getItem(position).conversationId()));
                 }
