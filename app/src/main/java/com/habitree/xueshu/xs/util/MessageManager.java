@@ -7,6 +7,7 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.bean.IMInfo;
 import com.habitree.xueshu.message.bean.IMInfoResponse;
 import com.habitree.xueshu.message.bean.MsgCountResponse;
+import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.presenter.BasePresenter;
@@ -35,10 +36,10 @@ import retrofit2.Response;
 
 public class MessageManager {
     private static MessageManager manager;
-    private List<IMInfo> infos;
-    private List<EMConversation> conversations;
+    private List<IMInfo> infos;                 //回话列表对应的用户头像名字信息
+    private List<EMConversation> conversations; //会话列表
     private boolean isInfoTableCreate = false;
-    private int doCount;
+    private int doCount;                        //待处理消息数量
 
     private MessageManager(){
         initProvider();
@@ -74,6 +75,7 @@ public class MessageManager {
         return doCount;
     }
 
+    //先获取待处理消息数量
     public void getAllInfo(final Context context, final MessageView.CvsListView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
@@ -97,6 +99,7 @@ public class MessageManager {
                 });
     }
 
+    //再获取会话列表
     private void getInfo(final Context context, final MessageView.CvsListView view){
         if (conversations==null||conversations.size()==0)return;
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
@@ -127,6 +130,33 @@ public class MessageManager {
                     @Override
                     public void onFailure(Call<IMInfoResponse> call, Throwable t) {
                         ToastUtil.showToast(context,context.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    //获取待处理消息列表
+    //type 1好友邀请 2习惯监督邀请 3打卡审核
+    //status 2 已查看,1未查看
+    public void getMsgList(final Context context, int page, int offset, int type, int status, int doType){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .getMsgList(timestamp,CommUtil.getSign(Constant.GET_MSG_LIST_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,page,offset,type,status,doType)
+                .enqueue(new Callback<MsgListResponse>() {
+                    @Override
+                    public void onResponse(Call<MsgListResponse> call, Response<MsgListResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(context,response.body().status)){
+
+                            }else {
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MsgListResponse> call, Throwable t) {
+
                     }
                 });
     }
@@ -166,6 +196,7 @@ public class MessageManager {
         return user;
     }
 
+    //环信API获取会话列表
     private List<EMConversation> loadConversationList(){
         // get all conversations
         Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();

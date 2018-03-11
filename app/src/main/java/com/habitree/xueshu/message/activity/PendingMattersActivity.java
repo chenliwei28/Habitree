@@ -1,10 +1,9 @@
 package com.habitree.xueshu.message.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.MessageManager;
 
 public class PendingMattersActivity extends BaseActivity {
 
@@ -16,7 +15,7 @@ public class PendingMattersActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        MessageManager.getManager().getMsgList(this,1,100,0,1,1);
     }
 
     @Override

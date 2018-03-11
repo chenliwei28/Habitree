@@ -56,8 +56,14 @@ public class LoginAndRegisterPresenter extends BasePresenter {
     }
 
     public void login(String phone, String password, final LoginView view){
-        if (!CommUtil.isPhoneNumber(mContext,phone))return;
-        if (!CommUtil.isPassword(mContext,password))return;
+        if (!CommUtil.isPhoneNumber(mContext,phone)){
+            view.onLoginFailed(null);
+            return;
+        }
+        if (!CommUtil.isPassword(mContext,password)){
+            view.onLoginFailed(null);
+            return;
+        }
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()

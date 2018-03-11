@@ -10,6 +10,7 @@ import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.message.bean.FriendsResponse;
 import com.habitree.xueshu.message.bean.IMInfoResponse;
 import com.habitree.xueshu.message.bean.MsgCountResponse;
+import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.xs.Constant;
@@ -188,14 +189,14 @@ public interface Api {
     //获取消息列表
     @FormUrlEncoded
     @POST(Constant.GET_MSG_LIST_FUNCTION)
-    Call getMsgList(@Field("timestamp") String timestamp,
-                    @Field("sign") String sign,
-                    @Field("user_token") String token,
-                    @Field("page") int page,
-                    @Field("offset") int offset,
-                    @Field("type") int type,
-                    @Field("status") int status,
-                    @Field("do_type") int doType);
+    Call<MsgListResponse> getMsgList(@Field("timestamp") String timestamp,
+                                     @Field("sign") String sign,
+                                     @Field("user_token") String token,
+                                     @Field("page") int page,
+                                     @Field("offset") int offset,
+                                     @Field("type") int type,
+                                     @Field("status") int status,
+                                     @Field("do_type") int doType);
 
     //获取消息详情
     @FormUrlEncoded
