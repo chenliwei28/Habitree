@@ -59,4 +59,15 @@
         android:textColor="@color/blue"
         android:background="@drawable/shape_rect_check_blue_bg"
         android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/result_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="@string/accepted"
+        android:textColor="@color/blue"
+        android:visibility="gone"/>
 </LinearLayout>

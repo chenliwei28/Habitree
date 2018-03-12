@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
@@ -17,6 +18,8 @@ import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.ImageUtil;
+import com.habitree.xueshu.xs.util.LogUtil;
+import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.AppleDialog;
@@ -27,12 +30,14 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class MyInfoActivity extends BaseActivity implements View.OnClickListener,EasyPermissions.PermissionCallbacks,MyView.UploadFileView{
+public class MyInfoActivity extends BaseActivity implements View.OnClickListener,EasyPermissions.PermissionCallbacks,MyView.ChangeInfoView{
 
     private RoundImageView mHeadRiv;
     private RelativeLayout mHeadRl;
@@ -40,6 +45,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private CustomItemView mSexCiv;
     private CustomItemView mBirthdayCiv;
     private AppleDialog mHeadDialog;
+    private AppleDialog mGenderDialog;
+    private TimePickerView mTimePicker;
     private MyPresenter mPresenter;
 
     @Override
@@ -67,9 +74,24 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
+        updateData();
+    }
+
+    private void updateData(){
         User user = UserManager.getManager().getUser();
         ImageUtil.loadImage(this, user.portrait,mHeadRiv);
         mNameCiv.setDetail(user.nickname);
+        switch (user.sex){
+            case 1:
+                mSexCiv.setDetail(getString(R.string.female));
+                break;
+            case 2:
+                mSexCiv.setDetail(getString(R.string.male));
+                break;
+            default:
+                mSexCiv.setDetail(getString(R.string.secrecy));
+        }
+        mBirthdayCiv.setDetail(TimeUtil.millisToString("yyyy-MM-dd",user.birthday));
     }
 
     @Override
@@ -82,12 +104,34 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
                 break;
             case R.id.sex_civ:
-
+                showGenderDialog();
                 break;
             case R.id.birthday_civ:
-
+                showTimePicker();
                 break;
         }
+    }
+
+    private void showGenderDialog(){
+        if (mGenderDialog==null){
+            AppleDialog.OnSheetItemClickListener listener = new AppleDialog.OnSheetItemClickListener() {
+                @Override
+                public void onClick(int which) {
+                    setGender(which);
+                }
+            };
+            mGenderDialog = new AppleDialog(this)
+                    .builder()
+                    .addSheetItem(getString(R.string.female), R.color.red,listener)
+                    .addSheetItem(getString(R.string.male), 0, listener)
+                    .addSheetItem(getString(R.string.secrecy), R.color.gray_text,listener).commit();
+        }
+        mGenderDialog.show();
+    }
+
+    private void setGender(int gender){
+        showLoadingDialog();
+        mPresenter.updateGenderAndBirth(gender,UserManager.getManager().getUser().birthday,this);
     }
 
     private void showHeadDialog(){
@@ -109,6 +153,26 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             .commit();
         }
         mHeadDialog.show();
+    }
+
+    private void showTimePicker(){
+        if (mTimePicker==null){
+            mTimePicker = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+                @Override
+                public void onTimeSelect(Date date, View v) {
+                    showLoadingDialog();
+                    int birth = (int) (date.getTime()/1000);
+                    mPresenter.updateGenderAndBirth(UserManager.getManager().getUser().sex,birth,MyInfoActivity.this);
+                }
+            })
+                    .setType(new boolean[]{true,true,true,false,false,false})
+                    .setOutSideCancelable(true)
+                    .setSubmitColor(getResources().getColor(R.color.blue))
+                    .setCancelColor(getResources().getColor(R.color.blue))
+                    .setRange(1900,Integer.valueOf(TimeUtil.getTodayInfo(Calendar.YEAR)))
+                    .build();
+        }
+        mTimePicker.show();
     }
 
     @AfterPermissionGranted(Constant.NUM_111)
@@ -182,14 +246,15 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     }
 
     @Override
-    public void onUploadSuccess() {
+    public void onChangeSuccess() {
         hideLoadingDialog();
-        showToast("上传头像成功");
-        ImageUtil.loadImage(this, UserManager.getManager().getUser().portrait,mHeadRiv);
+        showToast(getString(R.string.change_success));
+        updateData();
     }
 
     @Override
-    public void onUploadFailed(String reason) {
+    public void onChangeFailed(String reason) {
+        hideLoadingDialog();
         showToast(reason);
     }
 }

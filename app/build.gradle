@@ -43,4 +43,5 @@ dependencies {
     //    compile 'com.hyphenate:hyphenate-sdk-lite:3.3.9'
     implementation project(':easeui')
     compile 'com.android.support:multidex:1.0.3'
+    compile 'com.contrarywind:Android-PickerView:3.2.7'
 }

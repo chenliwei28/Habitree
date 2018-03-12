@@ -4,17 +4,15 @@ import android.content.Context;
 import android.util.Pair;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.adapter.PendingMattersAdapter;
+import com.habitree.xueshu.message.bean.AgreeFriendResponse;
 import com.habitree.xueshu.message.bean.IMInfo;
 import com.habitree.xueshu.message.bean.IMInfoResponse;
+import com.habitree.xueshu.message.bean.Message;
 import com.habitree.xueshu.message.bean.MsgCountResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.presenter.BasePresenter;
-import com.habitree.xueshu.xs.util.CommUtil;
-import com.habitree.xueshu.xs.util.HttpManager;
-import com.habitree.xueshu.xs.util.TimeUtil;
-import com.habitree.xueshu.xs.util.UserManager;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.EaseUI;
@@ -86,7 +84,7 @@ public class MessageManager {
                     public void onResponse(Call<MsgCountResponse> call, Response<MsgCountResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(context,response.body().status)){
-                                doCount = response.body().data;
+                                doCount = response.body().data.count;
                             }
                         }
                         getInfo(context,view);
@@ -103,15 +101,14 @@ public class MessageManager {
     private void getInfo(final Context context, final MessageView.CvsListView view){
         if (conversations==null||conversations.size()==0)return;
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        String[] ids = new String[conversations.size()+1];
+        StringBuilder builder = new StringBuilder(String.valueOf(UserManager.getManager().getUser().mem_id));
         for (int i=0,len=conversations.size();i<len;i++){
-            ids[i] = conversations.get(i).conversationId();
+            builder.append(",").append(conversations.get(i).conversationId());
         }
-        ids[conversations.size()] = String.valueOf(UserManager.getManager().getUser().mem_id);
         HttpManager.getManager()
                 .getService()
                 .getImInfo(timestamp, CommUtil.getSign(Constant.GET_IM_INFO_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,ids)
+                        UserManager.getManager().getUser().user_token,builder.toString())
                 .enqueue(new Callback<IMInfoResponse>() {
                     @Override
                     public void onResponse(Call<IMInfoResponse> call, Response<IMInfoResponse> response) {
@@ -137,7 +134,7 @@ public class MessageManager {
     //获取待处理消息列表
     //type 1好友邀请 2习惯监督邀请 3打卡审核
     //status 2 已查看,1未查看
-    public void getMsgList(final Context context, int page, int offset, int type, int status, int doType){
+    public void getMsgList(final Context context, int page, int offset, int type, int status, int doType, final MessageView.MsgListView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .getMsgList(timestamp,CommUtil.getSign(Constant.GET_MSG_LIST_FUNCTION,timestamp),
@@ -147,16 +144,40 @@ public class MessageManager {
                     public void onResponse(Call<MsgListResponse> call, Response<MsgListResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(context,response.body().status)){
-
+                                view.onListGetSuccess(response.body().data.list);
                             }else {
-
+                                view.onListGetFailed(response.body().info==null?context.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
                             }
                         }
                     }
 
                     @Override
                     public void onFailure(Call<MsgListResponse> call, Throwable t) {
+                        view.onListGetFailed(context.getString(R.string.network_error));
+                    }
+                });
+    }
 
+    public void handleFriendRequestMessage(final Context context, Message message, final int ftype, final MessageView.HandleFriendRequestMsgView view, final PendingMattersAdapter.PendingMattersViewHolder holder){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .handleMsg(timestamp,CommUtil.getSign(Constant.HANDLE_MSG_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,message.sender_id,message.id,message.type,message.haibit_id,ftype,message.sign_id)
+                .enqueue(new Callback<AgreeFriendResponse>() {
+                    @Override
+                    public void onResponse(Call<AgreeFriendResponse> call, Response<AgreeFriendResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(context,response.body().status)){
+                                view.onHandleSuccess(holder,ftype);
+                            }else {
+                                view.onHandleFailed();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AgreeFriendResponse> call, Throwable t) {
+                        view.onHandleFailed();
                     }
                 });
     }

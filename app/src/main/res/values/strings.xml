@@ -4,6 +4,7 @@
 
     <!--A-->
     <!--B-->
+    <string name="secrecy">保密</string>
     <string name="boil_yourself">把自己熬成金黄</string>
     <string name="plant_tree_long_text">不同背景颜色，不同外形，每一棵树都独一无二</string>
     <!--C-->
@@ -80,6 +81,8 @@
     <string name="describe_what_habit_that_you_want_to_foster">描述你想要培养的习惯</string>
     <string name="every_time_do_not_punch_card_will_deduct_money">*每次打卡缺勤将扣除一次罚金</string>
     <!--N-->
+    <string name="male">男</string>
+    <string name="female">女</string>
     <string name="nickname">昵称</string>
     <string name="between_you">你们之间</string>
     <string name="you_become_his_supervision">你作为TA的监督人</string>
@@ -183,6 +186,8 @@
     <!--Y-->
     <string name="auth_code">验证码</string>
     <string name="completed">已完成</string>
+    <string name="accepted">已接受</string>
+    <string name="refused">已拒绝</string>
     <string name="now_completed">已完成：</string>
     <string name="has_punch_card">已打卡</string>
     <string name="balance_pay">余额支付</string>

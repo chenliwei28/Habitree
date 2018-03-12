@@ -3,7 +3,9 @@ package com.habitree.xueshu.mine.presenter;
 
 import android.content.Context;
 
+import com.baidu.platform.comapi.map.N;
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.BaseApp;
@@ -26,7 +28,7 @@ public class MyPresenter extends BasePresenter{
         super(context);
     }
 
-    public void uploadHeadImg(String imgPath, final MyView.UploadFileView view){
+    public void uploadHeadImg(String imgPath, final MyView.ChangeInfoView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .uploadFile(HttpManager.getManager().stringToRequestBody(timestamp),
@@ -43,19 +45,44 @@ public class MyPresenter extends BasePresenter{
                 .enqueue(new Callback<UploadFileResponse>() {
                     @Override
                     public void onResponse(Call<UploadFileResponse> call, Response<UploadFileResponse> response) {
-                        if (response.body()!=null&&response.body().status==200){
-                            UserManager.getManager().updateUserHead(response.body().data.portrait);
-                            view.onUploadSuccess();
-                        }else if (response.body()!=null&&response.body().info!=null){
-                            view.onUploadFailed(CommUtil.unicode2Chinese(response.body().info));
-                        }else {
-                            view.onUploadFailed(mContext.getString(R.string.network_error));
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                UserManager.getManager().updateUserHead(response.body().data.portrait);
+                                view.onChangeSuccess();
+                            }else {
+                                view.onChangeFailed(response.body().info==null?mContext.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
+                            }
                         }
                     }
 
                     @Override
                     public void onFailure(Call<UploadFileResponse> call, Throwable t) {
-                        view.onUploadFailed(mContext.getString(R.string.network_error));
+                        view.onChangeFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void updateGenderAndBirth(int gender,int birth, final MyView.ChangeInfoView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .changeSexOrBirth(timestamp,CommUtil.getSign(Constant.CHANGE_SEX_BIRTH_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,gender,birth)
+                .enqueue(new Callback<ChangeInfoResponse>() {
+                    @Override
+                    public void onResponse(Call<ChangeInfoResponse> call, Response<ChangeInfoResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                UserManager.getManager().updateUserGenderAndBirth(response.body().data.sex,response.body().data.birthday);
+                                view.onChangeSuccess();
+                            }else {
+                                view.onChangeFailed(response.body().info==null?mContext.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChangeInfoResponse> call, Throwable t) {
+                        view.onChangeFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

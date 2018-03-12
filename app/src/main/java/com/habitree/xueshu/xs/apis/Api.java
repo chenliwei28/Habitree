@@ -6,11 +6,13 @@ import com.habitree.xueshu.login.bean.ChangeBindPhoneResponse;
 import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.LoginResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
+import com.habitree.xueshu.message.bean.AgreeFriendResponse;
 import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.message.bean.FriendsResponse;
 import com.habitree.xueshu.message.bean.IMInfoResponse;
 import com.habitree.xueshu.message.bean.MsgCountResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
+import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.xs.Constant;
@@ -104,7 +106,7 @@ public interface Api {
     //修改昵称
     @FormUrlEncoded
     @POST(Constant.CHANGE_NICKNAME_FUNCTION)
-    Call changeNickname(@Field("timestamp") String timestamp,
+    Call<ChangeInfoResponse> changeNickname(@Field("timestamp") String timestamp,
                         @Field("sign") String sign,
                         @Field("user_token") String token,
                         @Field("nickname") String nickname);
@@ -112,11 +114,11 @@ public interface Api {
     //修改性别生日
     @FormUrlEncoded
     @POST(Constant.CHANGE_SEX_BIRTH_FUNCTION)
-    Call changeSexOrBirth(@Field("timestamp") String timestamp,
-                          @Field("sign") String sign,
-                          @Field("user_token") String token,
-                          @Field("sex") int sex,
-                          @Field("birthday") int birth);
+    Call<ChangeInfoResponse> changeSexOrBirth(@Field("timestamp") String timestamp,
+                                              @Field("sign") String sign,
+                                              @Field("user_token") String token,
+                                              @Field("sex") int sex,
+                                              @Field("birthday") int birth);
 
     //获取好友列表
     @FormUrlEncoded
@@ -142,7 +144,7 @@ public interface Api {
     Call<IMInfoResponse> getImInfo(@Field("timestamp") String timestamp,
                                    @Field("sign") String sign,
                                    @Field("user_token") String token,
-                                   @Field("mem_ids") String[] ids);
+                                   @Field("mem_ids") String ids);
 
     //创建习惯惩金支付订单
     @FormUrlEncoded
@@ -217,15 +219,15 @@ public interface Api {
     //处理消息
     @FormUrlEncoded
     @POST(Constant.HANDLE_MSG_FUNCTION)
-    Call handleMsg(@Field("timestamp") String timestamp,
-                   @Field("sign") String sign,
-                   @Field("user_token") String token,
-                   @Field("sender_id")int sender_id,
-                   @Field("msg_id")int msg_id,
-                   @Field("type")int type,
-                   @Field("habit_id")int habit_id,
-                   @Field("ftype")int ftype,
-                   @Field("sign_id")int sign_id);
+    Call<AgreeFriendResponse> handleMsg(@Field("timestamp") String timestamp,
+                                        @Field("sign") String sign,
+                                        @Field("user_token") String token,
+                                        @Field("sender_id")int sender_id,
+                                        @Field("msg_id")int msg_id,
+                                        @Field("type")int type,
+                                        @Field("habit_id")int habit_id,
+                                        @Field("ftype")int ftype,
+                                        @Field("sign_id")int sign_id);
 
     //获取我的习惯列表
     @FormUrlEncoded

@@ -105,11 +105,11 @@ public class ChangePhoneActivity extends BaseActivity implements View.OnClickLis
         String phone = mNumEt.getText().toString();
         if (!CommUtil.isPhoneNumber(this,phone))return;
         if (mCodeEt.getText().length()!=4){
-            ToastUtil.showToast(this,getString(R.string.wrong_auth_code));
+            showToast(getString(R.string.wrong_auth_code));
             return;
         }
         if (!mPhone.equals(phone)) {
-            ToastUtil.showToast(this,getString(R.string.auth_code_not_fit_phone));
+            showToast(getString(R.string.auth_code_not_fit_phone));
             return;
         }
         mPresenter.changeBindPhone(mPhone,mCodeEt.getText().toString(),this);
@@ -117,12 +117,12 @@ public class ChangePhoneActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onChangeSuccess() {
-        ToastUtil.showToast(this,getString(R.string.change_success));
+        showToast(getString(R.string.change_success));
         AppManager.getAppManager().finishActivity(this);
     }
 
     @Override
     public void onChangeFail(String reason) {
-
+        showToast(reason);
     }
 }

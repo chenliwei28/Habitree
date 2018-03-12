@@ -46,4 +46,10 @@ public class UserManager {
         user.portrait = imageUrl;
         user.update(1);
     }
+
+    public void updateUserGenderAndBirth(int gender,int birthday){
+        user.sex = gender;
+        user.birthday = birthday;
+        user.update(1);
+    }
 }

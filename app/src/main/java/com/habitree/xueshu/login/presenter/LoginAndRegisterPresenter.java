@@ -177,8 +177,13 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 .enqueue(new Callback<ChangeBindPhoneResponse>() {
                     @Override
                     public void onResponse(Call<ChangeBindPhoneResponse> call, Response<ChangeBindPhoneResponse> response) {
-                        if (response.body().status==200) view.onChangeSuccess();
-                        else view.onChangeFail(CommUtil.unicode2Chinese(response.body().info));
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onChangeSuccess();
+                            }else {
+                                view.onChangeFail(response.body().info==null?mContext.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
                     }
 
                     @Override
