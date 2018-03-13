@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.activity.AddFriendActivity;
 import com.habitree.xueshu.message.activity.MessageDetailActivity;
 import com.habitree.xueshu.message.activity.MyFriendsActivity;
 import com.habitree.xueshu.message.activity.PendingMattersActivity;
@@ -83,7 +84,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 startActivity(new Intent(getContext(), MyFriendsActivity.class));
                 break;
             case R.id.add_iv:
-
+                startActivity(new Intent(getContext(), AddFriendActivity.class));
                 break;
         }
     }

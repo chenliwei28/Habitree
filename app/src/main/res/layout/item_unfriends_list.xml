@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:gravity="center_vertical">
+
+    <com.habitree.xueshu.xs.view.RoundImageView
+        android:id="@+id/head_riv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/ic_circle"
+        app:type="circle"/>
+
+    <TextView
+        android:id="@+id/name_tv"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_text"
+        android:textSize="18sp"
+        tools:text="啊啊啊" />
+
+    <TextView
+        android:id="@+id/add_tv"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:background="@drawable/shape_rect_corner_green_bg"
+        android:text="@string/add_friends"
+        android:textSize="14sp"
+        android:textColor="@color/white"/>
+</LinearLayout>

@@ -1,11 +1,12 @@
 package com.habitree.xueshu.message.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.RoundImageView;
@@ -29,6 +30,12 @@ public class HabitInviteActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected int setLayoutId() {
         return R.layout.activity_habit_invite;
+    }
+
+    public static void start(Context context, int msgId){
+        Intent intent = new Intent(context,HabitInviteActivity.class);
+        intent.putExtra(Constant.CODE,msgId);
+        context.startActivity(intent);
     }
 
     @Override

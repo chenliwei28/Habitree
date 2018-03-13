@@ -22,4 +22,14 @@ public interface MessageView extends BaseView {
         void onHandleSuccess(PendingMattersAdapter.PendingMattersViewHolder holder,int dotype);
         void onHandleFailed();
     }
+
+    interface MsgDetailView{
+        void onMsgDetailGetSuccess();
+        void onMsgDetailGetFailed(String reason);
+    }
+
+    interface SendMsgView{
+        void onSendSuccess();
+        void onSendFailed(String reason);
+    }
 }

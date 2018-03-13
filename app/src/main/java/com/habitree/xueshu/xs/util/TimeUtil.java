@@ -35,7 +35,7 @@ public class TimeUtil {
      */
     public static String millisToString(String type,int millis){
         if (type==null||type.isEmpty()) type = "yyyy-MM-dd HH:mm:ss";
-        return new SimpleDateFormat(type, Locale.CHINA).format(new Date(millis*1000));
+        return new SimpleDateFormat(type, Locale.CHINA).format(new Date(millis*1000L));
     }
 
     /**

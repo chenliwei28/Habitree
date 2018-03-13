@@ -4,6 +4,7 @@
 
     <!--A-->
     <!--B-->
+    <string name="no_pass">不通过</string>
     <string name="secrecy">保密</string>
     <string name="boil_yourself">把自己熬成金黄</string>
     <string name="plant_tree_long_text">不同背景颜色，不同外形，每一棵树都独一无二</string>
@@ -27,6 +28,7 @@
     <string name="login">登录</string>
     <string name="dian_zan">点赞</string>
     <string name="punch_card">打卡</string>
+    <string name="audit_record">打卡审核</string>
     <string name="login_success">登录成功</string>
     <string name="pending_matters">待处理事项</string>
     <string name="times_of_punch_card">打卡数</string>
@@ -36,6 +38,7 @@
     <!--E-->
     <!--F-->
     <string name="send">发送</string>
+    <string name="send_success">发送成功</string>
     <string name="send_message">发消息</string>
     <string name="abandon_habit">放弃习惯</string>
     <string name="penalty_settings">罚金设置</string>
@@ -47,6 +50,7 @@
     <string name="forfeit_setting_long_text">共收取%d次（总次数的一半）罚金作为押金，当全部%d次罚金扣除后，本次培养即告停止。</string>
     <!--H-->
     <string name="friend">好友</string>
+    <string name="be_friend_request">好友请求</string>
     <string name="summation_money">合计 ¥ %d</string>
     <string name="friend_list">好友列表</string>
     <!--I-->
@@ -127,12 +131,14 @@
     <string name="is_must_upload_photos_as_record">是否必须上传照片作为打卡记录</string>
     <string name="is_allow_other_people_see_this_habit">是否允许你的监督人之外的亲友看到这条习惯</string>
     <!--T-->
+    <string name="pass">通过</string>
     <string name="head">头像</string>
     <string name="remind">提示</string>
     <string name="statistics">统计</string>
     <string name="withdraw_deposit">提现</string>
     <string name="withdraw_sum">提现金额</string>
     <string name="reminder_time">提醒时间</string>
+    <string name="add_friends">添加好友</string>
     <string name="his_forest">TA的森林</string>
     <string name="he_become_your_friend">TA成为你的好友</string>
     <string name="he_become_your_supervision">TA成为你的监督人</string>

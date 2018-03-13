@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.activity.AuditRecordActivity;
+import com.habitree.xueshu.message.activity.HabitInviteActivity;
 import com.habitree.xueshu.message.bean.Message;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.util.ImageUtil;
@@ -37,9 +39,10 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
     }
 
     @Override
-    public void onBindViewHolder(PendingMattersViewHolder holder, int position) {
-        ImageUtil.loadImage((Activity) mContext, mList.get(position).sender_user.portrait, holder.mHeadRiv, R.drawable.ic_default_head);
-        String detail = mList.get(position).message + "：" + mList.get(position).sender_user.nickname;
+    public void onBindViewHolder(final PendingMattersViewHolder holder, int position) {
+        final Message message = mList.get(position);
+        ImageUtil.loadImage((Activity) mContext, message.sender_user.portrait, holder.mHeadRiv, R.drawable.ic_default_head);
+        String detail = message.message + "：" + message.sender_user.nickname;
         holder.mDetailTv.setText(detail);
         if (mList.get(position).type == 1) {
             switch (mList.get(position).do_type){
@@ -47,10 +50,10 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
                     showNormal(holder);
                     break;
                 case 2:
-
+                    showAccepted(holder);
                     break;
                 case 3:
-
+                    showRefused(holder);
                     break;
             }
 
@@ -62,7 +65,11 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
             holder.mLookOverTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    if (message.type==2){
+                        HabitInviteActivity.start(mContext,message.id);
+                    }else {
+                        AuditRecordActivity.start(mContext,message.id);
+                    }
                 }
             });
         }

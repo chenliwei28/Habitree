@@ -147,7 +147,9 @@
         <activity android:name=".message.activity.MessageDetailActivity" />
         <activity android:name=".message.activity.HabitInviteActivity" />
         <activity android:name=".mine.activity.MyInfoActivity" />
-        <activity android:name=".message.activity.PendingMattersActivity"></activity>
+        <activity android:name=".message.activity.PendingMattersActivity" />
+        <activity android:name=".message.activity.AuditRecordActivity" />
+        <activity android:name=".message.activity.AddFriendActivity"></activity>
     </application>
 
 </manifest>

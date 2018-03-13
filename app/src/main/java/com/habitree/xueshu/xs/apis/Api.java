@@ -11,7 +11,9 @@ import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.message.bean.FriendsResponse;
 import com.habitree.xueshu.message.bean.IMInfoResponse;
 import com.habitree.xueshu.message.bean.MsgCountResponse;
+import com.habitree.xueshu.message.bean.MsgDetailResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
+import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
@@ -200,13 +202,26 @@ public interface Api {
                                      @Field("status") int status,
                                      @Field("do_type") int doType);
 
+    //发送消息
+    @FormUrlEncoded
+    @POST(Constant.SEND_MSG_FUNCTION)
+    Call<SendMsgResponse> sendMsg(@Field("timestamp") String timestamp,
+                                  @Field("sign") String sign,
+                                  @Field("user_token") String token,
+                                  @Field("to_uid")int toId,
+                                  @Field("title")String title,
+                                  @Field("message")String message,
+                                  @Field("type")int type,
+                                  @Field("habit_id")int habitId,
+                                  @Field("sign_id")int signId);
+
     //获取消息详情
     @FormUrlEncoded
     @POST(Constant.GET_MSG_DETAIL_FUNCTION)
-    Call getMsgDetail(@Field("timestamp") String timestamp,
-                      @Field("sign") String sign,
-                      @Field("user_token") String token,
-                      @Field("msg_id")int id);
+    Call<MsgDetailResponse> getMsgDetail(@Field("timestamp") String timestamp,
+                                         @Field("sign") String sign,
+                                         @Field("user_token") String token,
+                                         @Field("msg_id")int id);
 
     //删除消息
     @FormUrlEncoded

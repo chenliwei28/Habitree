@@ -6,11 +6,14 @@ import android.util.Pair;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.adapter.PendingMattersAdapter;
 import com.habitree.xueshu.message.bean.AgreeFriendResponse;
+import com.habitree.xueshu.message.bean.Friend;
 import com.habitree.xueshu.message.bean.IMInfo;
 import com.habitree.xueshu.message.bean.IMInfoResponse;
 import com.habitree.xueshu.message.bean.Message;
 import com.habitree.xueshu.message.bean.MsgCountResponse;
+import com.habitree.xueshu.message.bean.MsgDetailResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
+import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.Constant;
 import com.hyphenate.chat.EMClient;
@@ -158,6 +161,7 @@ public class MessageManager {
                 });
     }
 
+    //处理好友请求消息
     public void handleFriendRequestMessage(final Context context, Message message, final int ftype, final MessageView.HandleFriendRequestMsgView view, final PendingMattersAdapter.PendingMattersViewHolder holder){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
@@ -178,6 +182,55 @@ public class MessageManager {
                     @Override
                     public void onFailure(Call<AgreeFriendResponse> call, Throwable t) {
                         view.onHandleFailed();
+                    }
+                });
+    }
+
+    //获取消息详情
+    public void getMsgDetail(final Context context, int msgId, final MessageView.MsgDetailView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .getMsgDetail(timestamp,CommUtil.getSign(Constant.GET_MSG_DETAIL_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,msgId)
+                .enqueue(new Callback<MsgDetailResponse>() {
+                    @Override
+                    public void onResponse(Call<MsgDetailResponse> call, Response<MsgDetailResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(context,response.body().status)){
+                                view.onMsgDetailGetSuccess();
+                            }else {
+                                view.onMsgDetailGetFailed(response.body().info==null?context.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MsgDetailResponse> call, Throwable t) {
+                        view.onMsgDetailGetFailed(context.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void sendMessage(final Context context, int toId, String title, String message, int type, int habitId, int signId, final MessageView.SendMsgView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .sendMsg(timestamp,CommUtil.getSign(Constant.SEND_MSG_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,toId,title,message,type,habitId,signId)
+                .enqueue(new Callback<SendMsgResponse>() {
+                    @Override
+                    public void onResponse(Call<SendMsgResponse> call, Response<SendMsgResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(context,response.body().status)){
+                                view.onSendSuccess();
+                            }else {
+                                view.onSendFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SendMsgResponse> call, Throwable t) {
+                        view.onSendFailed(context.getString(R.string.network_error));
                     }
                 });
     }

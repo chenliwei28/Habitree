@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.habitree.xueshu.message.activity.AuditRecordActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/audit_record" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <com.habitree.xueshu.xs.view.RoundImageView
+                    android:id="@+id/head_riv"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@drawable/ic_circle" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_text"
+                        android:textSize="16sp"
+                        tools:text="张全蛋" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/time_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gray_text"
+                            android:textSize="14sp"
+                            tools:text="2018-01-29  13:00" />
+
+                        <TextView
+                            android:id="@+id/rest_time_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/gray_text"
+                            android:textSize="14sp"
+                            tools:text="剩余01:00" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/Line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp"
+                    tools:text="3月3日打卡“画魂画”" />
+
+                <TextView
+                    android:id="@+id/detail_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black_text"
+                    android:textSize="14sp"
+                    tools:text="哈哈哈哈哈哈"/>
+
+                <ImageView
+                    android:id="@+id/photo_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:minHeight="180dp"
+                    android:visibility="gone"/>
+
+                <com.habitree.xueshu.xs.view.NoScrollRecyclerView
+                    android:id="@+id/photos_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <View style="@style/Line" />
+
+            <TextView
+                android:id="@+id/state_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:layout_marginTop="10dp"
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:textSize="14sp"
+                android:textColor="@color/black_text"
+                tools:text="审核已通过：哈哈哈哈哈哈"/>
+
+            <View style="@style/Line" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/refuse_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:text="@string/no_pass"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/accept_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:text="@string/pass"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
+</LinearLayout>
