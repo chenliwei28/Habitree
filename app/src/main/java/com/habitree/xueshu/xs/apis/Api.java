@@ -16,6 +16,7 @@ import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
+import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.xs.Constant;
 
@@ -247,16 +248,16 @@ public interface Api {
     //获取我的习惯列表
     @FormUrlEncoded
     @POST(Constant.GET_HABIT_LIST_FUNCTION)
-    Call getMyHabitList(@Field("timestamp") String timestamp,
-                      @Field("sign") String sign,
-                      @Field("user_token") String token,
-                      @Field("page")int page,
-                      @Field("offset")int offset);
+    Call<HabitListResponse> getMyHabitList(@Field("timestamp") String timestamp,
+                                           @Field("sign") String sign,
+                                           @Field("user_token") String token,
+                                           @Field("page")int page,
+                                           @Field("offset")int offset);
 
     //获取别人的习惯列表
     @FormUrlEncoded
     @POST(Constant.GET_HABIT_LIST_FUNCTION)
-    Call getOthersHabitList(@Field("timestamp") String timestamp,
+    Call<HabitListResponse> getOthersHabitList(@Field("timestamp") String timestamp,
                       @Field("sign") String sign,
                       @Field("user_token") String token,
                       @Field("user_id")String userid,

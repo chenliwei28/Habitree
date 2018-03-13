@@ -15,131 +15,145 @@
         android:layout_height="@dimen/actionbar_height"
         app:title_text="@string/habit_setting" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:minHeight="@dimen/custom_item_height"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/img_iv"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:src="@drawable/ic_jewel"/>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/habit_description"
-            android:textColor="@color/black_text"
-            android:textSize="15sp" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/describe_et"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:background="@color/white"
-            android:hint="@string/describe_what_habit_that_you_want_to_foster"
-            android:textSize="15sp"
-            android:textColor="@color/black_text"/>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:minHeight="@dimen/custom_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-    <View style="@style/Line"/>
+                <ImageView
+                    android:id="@+id/img_iv"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/ic_jewel"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/black_text"
-        android:textSize="14sp"
-        android:text="@string/basic_setting"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/habit_description"
+                    android:textColor="@color/black_text"
+                    android:textSize="15sp" />
 
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/remind_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/reminder_time"
-        app:next_visible="true"
-        app:head_img="@drawable/ic_time"/>
+                <EditText
+                    android:id="@+id/describe_et"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@color/white"
+                    android:hint="@string/describe_what_habit_that_you_want_to_foster"
+                    android:maxLength="40"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/black_text"/>
+            </LinearLayout>
 
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/repeat_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/repeat_day_count"
-        app:next_visible="true"
-        app:head_img="@drawable/ic_sign"/>
+            <View style="@style/Line"/>
 
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/duration_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/time_of_duration"
-        app:next_visible="true"
-        app:head_img="@drawable/ic_alarm"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black_text"
+                android:textSize="14sp"
+                android:text="@string/basic_setting"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/gray_text"
-        android:textSize="14sp"
-        android:text="@string/choose_rational_time_is_helpful"/>
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/remind_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/reminder_time"
+                app:next_visible="true"
+                app:head_img="@drawable/ic_time"/>
 
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/privacy_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/privacy_settings"
-        app:next_visible="true"
-        app:head_img="@drawable/ic_me"/>
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/repeat_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/repeat_day_count"
+                app:next_visible="true"
+                app:head_img="@drawable/ic_sign"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/gray_text"
-        android:textSize="14sp"
-        android:text="@string/is_allow_other_people_see_this_habit"/>
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/duration_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/time_of_duration"
+                app:next_visible="true"
+                app:head_img="@drawable/ic_alarm"/>
 
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/record_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/record_setting"
-        app:next_visible="true"
-        app:head_img="@drawable/ic_note"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp"
+                android:text="@string/choose_rational_time_is_helpful"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/gray_text"
-        android:textSize="14sp"
-        android:text="@string/is_must_upload_photos_as_record"/>
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/privacy_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/privacy_settings"
+                app:next_visible="true"
+                app:head_img="@drawable/ic_me"/>
 
-    <TextView
-        android:id="@+id/next_tv"
-        style="@style/RectButton"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/next_step"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp"
+                android:text="@string/is_allow_other_people_see_this_habit"/>
+
+            <com.habitree.xueshu.xs.view.CustomItemView
+                android:id="@+id/record_civ"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                app:title="@string/record_setting"
+                app:next_visible="true"
+                app:head_img="@drawable/ic_note"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp"
+                android:text="@string/is_must_upload_photos_as_record"/>
+
+            <TextView
+                android:id="@+id/next_tv"
+                style="@style/RectButton"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/next_step"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

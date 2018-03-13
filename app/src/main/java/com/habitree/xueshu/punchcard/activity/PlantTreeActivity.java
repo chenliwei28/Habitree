@@ -25,6 +25,7 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
     private TextView mChooseTv;
     private HabitPresenter mPresenter;
     private PlantTreeAdapter mAdapter;
+    private List<PlantTreeResponse.Data> mList;
 
     @Override
     protected int setLayoutId() {
@@ -57,18 +58,19 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choose_tv:
-                startActivity(new Intent(PlantTreeActivity.this,HabitSettingActivity.class));
+                HabitSettingActivity.start(PlantTreeActivity.this,mList.get(mCardVp.getCurrentItem()).ht_id);
                 break;
         }
     }
 
     @Override
-    public void onPlantTreeGetSuccess(List<PlantTreeResponse.DataBean> list) {
-        mAdapter.updateData(list);
+    public void onPlantTreeGetSuccess(List<PlantTreeResponse.Data> list) {
+        mList = list;
+        mAdapter.updateData(mList);
     }
 
     @Override
     public void onPlantTreeGetFail() {
-
+        showToast(getString(R.string.network_error));
     }
 }

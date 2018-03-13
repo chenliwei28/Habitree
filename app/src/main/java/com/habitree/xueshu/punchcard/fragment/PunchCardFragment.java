@@ -17,6 +17,7 @@ import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
 import com.habitree.xueshu.punchcard.activity.PlantTreeActivity;
 import com.habitree.xueshu.punchcard.activity.SendRecordActivity;
 import com.habitree.xueshu.punchcard.adapter.CardPagerAdapter;
+import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
 import com.habitree.xueshu.xs.util.TimeUtil;
@@ -34,6 +35,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     private TextView mCountTv;
     private CardView mEmptyCv;
     private TextView mStartTv;
+    private HabitPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
@@ -51,6 +53,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mStartTv = view.findViewById(R.id.start_tv);
         mCardVp.setPageMargin(100);
         mCardVp.setOffscreenPageLimit(3);
+        mPresenter = new HabitPresenter(getContext());
     }
 
     @Override
@@ -78,6 +81,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mDateTv.setText(TimeUtil.getTodayInfo(Calendar.DATE));
         String s = TimeUtil.getTodayInfo(Calendar.YEAR)+"."+TimeUtil.getTodayInfo(Calendar.MONTH);
         mMonthTv.setText(s);
+//        mPresenter.getMyHabitList();
     }
 
     public static PunchCardFragment newInstance() {

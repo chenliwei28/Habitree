@@ -2,6 +2,7 @@ package com.habitree.xueshu.punchcard.presenter;
 
 import android.content.Context;
 
+import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
@@ -9,6 +10,7 @@ import com.habitree.xueshu.xs.presenter.BasePresenter;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.HttpManager;
 import com.habitree.xueshu.xs.util.TimeUtil;
+import com.habitree.xueshu.xs.util.UserManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +41,26 @@ public class HabitPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<PlantTreeResponse> call, Throwable t) {
                         view.onPlantTreeGetFail();
+                    }
+                });
+    }
+
+    public void getMyHabitList(){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .getMyHabitList(timestamp,CommUtil.getSign(Constant.GET_HABIT_LIST_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,1,10)
+                .enqueue(new Callback<HabitListResponse>() {
+                    @Override
+                    public void onResponse(Call<HabitListResponse> call, Response<HabitListResponse> response) {
+                        if (response.body()!=null){
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<HabitListResponse> call, Throwable t) {
+
                     }
                 });
     }

@@ -8,7 +8,12 @@ import java.util.List;
 
 public interface HabitView extends BaseView {
     interface PlantTreeView{
-        void onPlantTreeGetSuccess(List<PlantTreeResponse.DataBean> list);
+        void onPlantTreeGetSuccess(List<PlantTreeResponse.Data> list);
         void onPlantTreeGetFail();
+    }
+
+    interface HabitListView{
+        void onListGetSuccess();
+        void onListGetFailed(String reason);
     }
 }

@@ -49,4 +49,27 @@ public class TimeUtil {
         res = String.valueOf(ts);
         return res;
     }
+
+    /**
+     * 获取时间字符串
+     * @param type 要转的时间格式，如 yyyy-MM-dd HH:mm:ss
+     * @param date date
+     * @return 字符串
+     */
+    public static String getTimeString(String type,Date date){
+        if (type==null||type.isEmpty()) type = "yyyy-MM-dd HH:mm:ss";
+        return new SimpleDateFormat(type,Locale.CHINA).format(date);
+    }
+
+    /**
+     * 获取相应时间的秒数
+     * @param time 时间，必须是HH：mm ，如21:00
+     * @return 总秒数，如 00:02 返回 120s
+     */
+    public static int getStringTimeSeconds(String time){
+        String[] times = time.split(":");
+        int h = Integer.valueOf(times[0])*3600;
+        int m = Integer.valueOf(times[1])*60;
+        return h+m;
+    }
 }

@@ -1,8 +1,10 @@
 package com.habitree.xueshu.punchcard.activity;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
@@ -48,7 +50,17 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
         mDayMab.setRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                StringBuilder builder = new StringBuilder()
+                        .append(mMondayCiv.mIsSelected?"1,":"0,")
+                        .append(mTuesdayCiv.mIsSelected?"1,":"0,")
+                        .append(mWednesdayCiv.mIsSelected?"1,":"0,")
+                        .append(mThursdayCiv.mIsSelected?"1,":"0,")
+                        .append(mFridayCiv.mIsSelected?"1,":"0,")
+                        .append(mSaturdayCiv.mIsSelected?"1,":"0,")
+                        .append(mSundayCiv.mIsSelected?"1":"0");
+                setResult(Constant.NUM_110,new Intent(RepeatDayActivity.this,HabitSettingActivity.class).putExtra(Constant.TYPE,builder.toString()));
+                AppManager.getAppManager().finishActivity(RepeatDayActivity.this);
+//                finish();
             }
         });
     }
