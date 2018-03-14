@@ -19,6 +19,9 @@ public class Constant {
     public final static String RECORD = "record";
     public final static String MEMID = "mem_id";
     public final static String NAME = "name";
+    public final static String NUMBER = "number";
+    public final static String TOTAL = "total";
+    public final static String PER = "per";
 
     //手机号正则表达式
     public final static String PHONE_REGEX = "[1][3578]\\d{9}";

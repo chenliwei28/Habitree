@@ -55,7 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void hideLoadingDialog(){
-        if (dialog.isShowing()){
+        if (dialog!=null&&dialog.isShowing()){
             dialog.dismiss();
         }
     }

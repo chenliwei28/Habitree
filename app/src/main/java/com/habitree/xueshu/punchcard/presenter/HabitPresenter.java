@@ -2,7 +2,10 @@ package com.habitree.xueshu.punchcard.presenter;
 
 import android.content.Context;
 
+import com.habitree.xueshu.R;
+import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
@@ -61,6 +64,54 @@ public class HabitPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<HabitListResponse> call, Throwable t) {
 
+                    }
+                });
+    }
+
+    public void getPayMode(final HabitView.PayWayView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .getPayWay(timestamp,CommUtil.getSign(Constant.GET_PAYWAY_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token)
+                .enqueue(new Callback<PayWayResponse>() {
+                    @Override
+                    public void onResponse(Call<PayWayResponse> call, Response<PayWayResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onPayWayGetSuccess(response.body().data);
+                            }else {
+                                view.onPayWayGetFailed(mContext.getString(R.string.network_error));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PayWayResponse> call, Throwable t) {
+                        view.onPayWayGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void createOrder(int totalMoney, String payName, String title, final HabitView.CreateOrderView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .createHabitOrder(timestamp,CommUtil.getSign(Constant.CREATE_HABIT_ORDER_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,totalMoney,payName,title+"罚金支付",title+"罚金支付")
+                .enqueue(new Callback<CreateOrderResponse>() {
+                    @Override
+                    public void onResponse(Call<CreateOrderResponse> call, Response<CreateOrderResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onOrderCreateSuccess(response.body().data);
+                            }else {
+                                view.onOrderCreateFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CreateOrderResponse> call, Throwable t) {
+                        view.onOrderCreateFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

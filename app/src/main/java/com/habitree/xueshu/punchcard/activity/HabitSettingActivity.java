@@ -179,7 +179,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         }else if (mRecordType==0){
             showToast(getString(R.string.please_choose_record_setting));
         }else {
-            startActivity(new Intent(HabitSettingActivity.this,SupervisionSettingActivity.class));
+            SupervisionSettingActivity.start(this,mTreeId,describe,mRemindTime,mRepeatDays,mRecycleDays,mPrivacyType,mRecordType);
         }
     }
 

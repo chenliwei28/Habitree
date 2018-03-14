@@ -16,7 +16,9 @@ import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
+import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.xs.Constant;
 
@@ -152,13 +154,13 @@ public interface Api {
     //创建习惯惩金支付订单
     @FormUrlEncoded
     @POST(Constant.CREATE_HABIT_ORDER_FUNCTION)
-    Call createHabitOrder(@Field("timestamp") String timestamp,
-                          @Field("sign") String sign,
-                          @Field("user_token") String token,
-                          @Field("amount") int amount,
-                          @Field("payway") String payway,
-                          @Field("product_name") String product_name,
-                          @Field("product_desc") String product_desc);
+    Call<CreateOrderResponse> createHabitOrder(@Field("timestamp") String timestamp,
+                                               @Field("sign") String sign,
+                                               @Field("user_token") String token,
+                                               @Field("amount") int amount,
+                                               @Field("payway") String payway,
+                                               @Field("product_name") String product_name,
+                                               @Field("product_desc") String product_desc);
 
     //创建习惯
     @FormUrlEncoded
@@ -180,9 +182,9 @@ public interface Api {
     //获取支付方式
     @FormUrlEncoded
     @POST(Constant.GET_PAYWAY_FUNCTION)
-    Call getPayWay(@Field("timestamp") String timestamp,
-                   @Field("sign") String sign,
-                   @Field("user_token") String token);
+    Call<PayWayResponse> getPayWay(@Field("timestamp") String timestamp,
+                                   @Field("sign") String sign,
+                                   @Field("user_token") String token);
 
     //获取待处理消息数量
     @FormUrlEncoded

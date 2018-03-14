@@ -1,6 +1,8 @@
 package com.habitree.xueshu.punchcard.activity;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -13,7 +15,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CustomRadioGroup;
 
 public class ForfeitSettingActivity extends BaseActivity implements View.OnClickListener{
@@ -22,13 +26,20 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
     private EditText mSumEt;
     private TextView mNumTv;
     private TextView mPayTv;
+    private TextView mNoteTv;
 
-    private int mTotalTimes = 30;
+    private int mTotalTimes;
     private int mTotalMoney;
 
     @Override
     protected int setLayoutId() {
         return R.layout.activity_forfeit_setting;
+    }
+
+    public static void start(Activity context, int totalTimes, int requestCode){
+        Intent intent = new Intent(context,ForfeitSettingActivity.class);
+        intent.putExtra(Constant.RECYCLE,totalTimes);
+        context.startActivityForResult(intent,requestCode);
     }
 
     @Override
@@ -37,6 +48,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
         mSumEt = findViewById(R.id.sum_et);
         mNumTv = findViewById(R.id.num_tv);
         mPayTv = findViewById(R.id.pay_tv);
+        mNoteTv = findViewById(R.id.note_tv);
     }
 
     @Override
@@ -94,14 +106,25 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initData() {
-
+        mTotalTimes = getIntent().getIntExtra(Constant.RECYCLE,0);
+        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text),mTotalTimes));
+        mNumTv.setText(String.format(getString(R.string.summation_money),mTotalMoney));
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.pay_tv:
-                startActivity(new Intent(ForfeitSettingActivity.this,PayActivity.class));
+                if (mTotalMoney==0){
+                    showToast(getString(R.string.please_choose_price));
+                }else {
+                    int per = mTotalMoney/mTotalTimes;
+                    Intent intent = new Intent(ForfeitSettingActivity.this,SupervisionSettingActivity.class);
+                    intent.putExtra(Constant.NUMBER,mTotalMoney);
+                    intent.putExtra(Constant.POSITION,per);
+                    setResult(Constant.NUM_110,intent);
+                    AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
+                }
                 break;
         }
     }

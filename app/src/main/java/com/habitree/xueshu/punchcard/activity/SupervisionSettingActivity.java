@@ -9,6 +9,7 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.view.CustomItemView;
+import com.habitree.xueshu.xs.view.MyDialog;
 
 public class SupervisionSettingActivity extends BaseActivity implements View.OnClickListener{
 
@@ -22,9 +23,13 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
 //    private int mRecycleDays;
 //    private int mPrivacyType;
 //    private int mRecordType;
-    private int mMemId;
+    private int mMemId; //监督人ID
     private boolean mHasSupervision;
-    private String mName;
+    private String mName; //监督人名称
+    private int mTotalMoney;
+    private int mPerMoney;
+    private Intent mIntent;
+    private MyDialog mNoteDialog;
 
     @Override
     protected int setLayoutId() {
@@ -59,7 +64,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
 
     @Override
     protected void initData() {
-
+        mIntent = getIntent();
     }
 
     @Override
@@ -69,12 +74,31 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
                 startActivityForResult(new Intent(SupervisionSettingActivity.this,ChooseSupervisorActivity.class),Constant.NUM_109);
                 break;
             case R.id.penalty_civ:
-                startActivity(new Intent(SupervisionSettingActivity.this,ForfeitSettingActivity.class));
+                if (!mHasSupervision){
+                    showNoteDialog();
+                }else {
+                    ForfeitSettingActivity.start(SupervisionSettingActivity.this,mIntent.getIntExtra(Constant.RECYCLE,0),Constant.NUM_110);
+                }
                 break;
             case R.id.confirm_tv:
-
+                confirmAndToNext();
                 break;
         }
+    }
+
+    private void showNoteDialog(){
+        if (mNoteDialog==null){
+            mNoteDialog = new MyDialog(this).builder()
+                    .setTitle(getString(R.string.remind))
+                    .setDetail(getString(R.string.you_has_no_choose_supervision))
+                    .setConfirmClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ForfeitSettingActivity.start(SupervisionSettingActivity.this,mIntent.getIntExtra(Constant.RECYCLE,0),Constant.NUM_110);
+                        }
+                    });
+        }
+        mNoteDialog.show();
     }
 
     @Override
@@ -86,6 +110,12 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
                     switchSupervision(data);
                 }
                 break;
+            case Constant.NUM_110:
+                if (resultCode==Constant.NUM_110){
+                    switchPrice(data);
+                    confirmAndToNext();
+                }
+                break;
         }
     }
 
@@ -94,5 +124,25 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
         mHasSupervision = true;
         mName = data.getStringExtra(Constant.NAME);
         mSuperCiv.setDetail(mName);
+    }
+
+    private void switchPrice(Intent data){
+        mTotalMoney = data.getIntExtra(Constant.NUMBER,0);
+        mPerMoney = data.getIntExtra(Constant.POSITION,0);
+        mPenaltyCiv.setDetail(String.format(getString(R.string.num_price),mPerMoney));
+    }
+
+    private void confirmAndToNext(){
+        if (mTotalMoney==0){
+            showToast(getString(R.string.please_choose_price));
+        }else if (!mHasSupervision){
+            showNoteDialog();
+        }else {
+            mIntent.putExtra(Constant.MEMID,mMemId)
+                    .putExtra(Constant.TOTAL,mTotalMoney)
+                    .putExtra(Constant.PER,mPerMoney);
+            mIntent.setClass(this,PayActivity.class);
+            startActivity(mIntent);
+        }
     }
 }
