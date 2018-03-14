@@ -12,6 +12,13 @@ public class Constant {
     public final static String TYPE = "type";
     public final static String TITLE = "title";
     public final static String IS_PROCESSED = "isProcessed";
+    public final static String REMIND = "remind";
+    public final static String REPEAT = "repeat";
+    public final static String RECYCLE = "recycle";
+    public final static String PRIVACY = "privacy";
+    public final static String RECORD = "record";
+    public final static String MEMID = "mem_id";
+    public final static String NAME = "name";
 
     //手机号正则表达式
     public final static String PHONE_REGEX = "[1][3578]\\d{9}";

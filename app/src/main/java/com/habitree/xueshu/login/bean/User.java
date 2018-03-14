@@ -4,35 +4,34 @@ package com.habitree.xueshu.login.bean;
 import org.litepal.crud.DataSupport;
 
 public class User extends DataSupport{
-
-
         /**
-         * username : 18682
+         * username : 17585
          * email :
-         * mobile : 13063146899
-         * nickname : 学树QL94744Y
+         * mobile : 18559022862
+         * nickname : 学树DTNXNCN3
          * status : 2
-         * reg_time : 1520606488
-         * update_time : 2018-03-12 22:23:39
-         * portrait : http://img.habitree.cn/uploads/portrait/20180310/5aa3974186b33.jpeg
+         * reg_time : 1519908634
+         * update_time : 2018-03-14 10:11:29
+         * portrait : http://img.habitree.cn/uploads/portrait/20180309/5aa164899d81f.jpeg
          * portrait_review : 0
          * is_official : null
-         * mem_id : 7
+         * mem_id : 3
          * realname : null
          * oneword : null
          * idcard : null
-         * sex : 1
+         * sex : 2
          * auth_status : null
          * qq : null
-         * birthday : 1520606488
+         * birthday : 715746259
          * habit_cnt : 0
-         * user_token : e72584498c0d8ab37a2684f2de35d615
-         * expire_time : 1523456619
-         * join_days : 3
+         * user_token : d105217cc068dcb7382911514cf2b50e
+         * expire_time : 1523585489
+         * join_days : 13
          * sign_cnt : 0
          * sign_rate : 0
          * going_cnt : 0
          * finish_cnt : 0
+         * wallet : {"mem_id":3,"balance":"1000.00","frozen_money":"0.00","sum_money":"0.00","last_charge_time":0,"last_pay_time":0,"last_money":0,"update_time":"2018-03-01 23:17:04"}
          */
 
         public String username;
@@ -61,4 +60,27 @@ public class User extends DataSupport{
         public int sign_rate;
         public int going_cnt;
         public int finish_cnt;
+        public WalletBean wallet;
+
+        public class WalletBean {
+                /**
+                 * mem_id : 3
+                 * balance : 1000.00
+                 * frozen_money : 0.00
+                 * sum_money : 0.00
+                 * last_charge_time : 0
+                 * last_pay_time : 0
+                 * last_money : 0
+                 * update_time : 2018-03-01 23:17:04
+                 */
+
+                public int mem_id;
+                public String balance;
+                public String frozen_money;
+                public String sum_money;
+                public int last_charge_time;
+                public int last_pay_time;
+                public int last_money;
+                public String update_time;
+        }
 }

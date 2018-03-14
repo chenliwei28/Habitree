@@ -1,9 +1,12 @@
 package com.habitree.xueshu.punchcard.activity;
 
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -11,7 +14,11 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.adapter.FriendsAdapter;
 import com.habitree.xueshu.message.bean.Friend;
+import com.habitree.xueshu.message.presenter.FriendsPresenter;
+import com.habitree.xueshu.message.pview.FriendsView;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CharacterParser;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.view.SideBar;
@@ -24,14 +31,14 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class ChooseSupervisorActivity extends BaseActivity {
+public class ChooseSupervisorActivity extends BaseActivity implements FriendsView.FriendsListView{
 
     private EditText mSearchEt;
     private ListView mFriendsLv;
     private SideBar mSideBar;
     private FriendsAdapter mAdapter;
-
     private List<Friend> mFriends;
+    private FriendsPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
@@ -45,6 +52,7 @@ public class ChooseSupervisorActivity extends BaseActivity {
         mSideBar = findViewById(R.id.side_bar);
         TextView mCurrentTv = findViewById(R.id.current_tv);
         mSideBar.setTextView(mCurrentTv);
+        mPresenter = new FriendsPresenter(this);
     }
 
     @Override
@@ -72,17 +80,29 @@ public class ChooseSupervisorActivity extends BaseActivity {
                 if (position!=-1)mFriendsLv.setSelection(position);
             }
         });
+        mFriendsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                returnToPer(position);
+            }
+        });
+    }
+
+    private void returnToPer(int position){
+        Intent intent = new Intent(this,SupervisionSettingActivity.class);
+        intent.putExtra(Constant.MEMID,mFriends.get(position).mem_id);
+        intent.putExtra(Constant.NAME,mFriends.get(position).nickname);
+        setResult(Constant.NUM_110,intent);
+        AppManager.getAppManager().finishActivity(this);
     }
 
     @Override
     protected void initData() {
-        initFriendList();
-        mAdapter = new FriendsAdapter(this,mFriends);
-        mFriendsLv.setAdapter(mAdapter);
+        showLoadingDialog();
+        mPresenter.getFriendsList(2,1,100,this);
     }
 
     private void initFriendList(){
-        mFriends = new ArrayList<>();
         for (Friend friend:mFriends){
             friend.letter = CommUtil.getLetter(friend.nickname);
         }
@@ -113,5 +133,24 @@ public class ChooseSupervisorActivity extends BaseActivity {
             });
             return list;
         }
+    }
+
+    @Override
+    public void onGetFriendsListSuccess(List<Friend> list) {
+        mFriends = list;
+        initFriendList();
+        if (mAdapter==null){
+            mAdapter = new FriendsAdapter(this,mFriends);
+            mFriendsLv.setAdapter(mAdapter);
+        }else {
+            mAdapter.updateData(mFriends);
+        }
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void onGetFriendsListFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
     }
 }

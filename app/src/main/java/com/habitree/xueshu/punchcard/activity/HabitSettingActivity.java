@@ -4,6 +4,7 @@ package com.habitree.xueshu.punchcard.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,9 +13,9 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
+import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
@@ -22,7 +23,6 @@ import java.util.Date;
 
 public class HabitSettingActivity extends BaseActivity implements View.OnClickListener{
 
-    private MyActionBar mSettingMab;
     private EditText mDescribeEt;
     private CustomItemView mRemindCiv;
     private CustomItemView mRepeatCiv;
@@ -33,7 +33,13 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     private int mTreeId;
     private int mRemindTime;
     private String mRepeatDays;
+    private int mRecycleDays;
+    private int mPrivacyType;
+    private int mRecordType;
+    private boolean mHasRemindTime;
     private TimePickerView mTimePicker;
+    private AppleDialog mPrivacyDialog;
+    private AppleDialog mRecordDialog;
 
 
     @Override
@@ -49,7 +55,6 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initView() {
-        mSettingMab = findViewById(R.id.setting_mab);
         mDescribeEt = findViewById(R.id.describe_et);
         mRemindCiv = findViewById(R.id.remind_civ);
         mRepeatCiv = findViewById(R.id.repeat_civ);
@@ -72,7 +77,6 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initData() {
         mTreeId = getIntent().getIntExtra(Constant.CODE,1);
-
     }
 
     @Override
@@ -85,16 +89,16 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
                 startActivityForResult(new Intent(HabitSettingActivity.this,RepeatDayActivity.class),Constant.NUM_109);
                 break;
             case R.id.duration_civ:
-                startActivity(new Intent(HabitSettingActivity.this,TimeSettingActivity.class));
+                startActivityForResult(new Intent(HabitSettingActivity.this,TimeSettingActivity.class),Constant.NUM_110);
                 break;
             case R.id.privacy_civ:
-
+                showPrivacyDialog();
                 break;
             case R.id.record_civ:
-
+                showRecordDialog();
                 break;
             case R.id.next_tv:
-                startActivity(new Intent(HabitSettingActivity.this,SupervisionSettingActivity.class));
+                checkInfoAndToNext();
                 break;
         }
     }
@@ -107,7 +111,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
                     String t = TimeUtil.getTimeString("HH:mm",date);
                     mRemindTime = TimeUtil.getStringTimeSeconds(t);
                     mRemindCiv.setDetail(t);
-                    LogUtil.d("pick time is:"+t+",seconds :"+mRemindTime);
+                    mHasRemindTime = true;
                 }
             }).setType(new boolean[]{false,false,false,true,true,false})
                     .setSubmitColor(getResources().getColor(R.color.blue))
@@ -117,40 +121,109 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         mTimePicker.show();
     }
 
+    private void showPrivacyDialog(){
+        if (mPrivacyDialog==null){
+            AppleDialog.OnSheetItemClickListener listener = new AppleDialog.OnSheetItemClickListener() {
+                @Override
+                public void onClick(int which) {
+                    mPrivacyType = which;
+                    if (mPrivacyType ==1){
+                        mPrivacyCiv.setDetail(getString(R.string.only_you_can_see));
+                    }else if (mPrivacyType ==2){
+                        mPrivacyCiv.setDetail(getString(R.string.public_to_everyone));
+                    }
+                }
+            };
+            mPrivacyDialog = new AppleDialog(this)
+                    .builder()
+                    .addSheetItem(getString(R.string.only_you_can_see),0,listener)
+                    .addSheetItem(getString(R.string.public_to_everyone),0,listener)
+                    .commit();
+        }
+        mPrivacyDialog.show();
+    }
+
+    private void showRecordDialog(){
+        if (mRecordDialog==null){
+            AppleDialog.OnSheetItemClickListener listener = new AppleDialog.OnSheetItemClickListener() {
+                @Override
+                public void onClick(int which) {
+                    mRecordType = which;
+                    if (mRecordType==1){
+                        mRecordCiv.setDetail(getString(R.string.text));
+                    }else if (mRecordType==2){
+                        mRecordCiv.setDetail(getString(R.string.text_and_image));
+                    }
+                }
+            };
+            mRecordDialog = new AppleDialog(this).builder()
+                    .addSheetItem(getString(R.string.text),0,listener)
+                    .addSheetItem(getString(R.string.text_and_image),0,listener)
+                    .commit();
+        }
+        mRecordDialog.show();
+    }
+
+    private void checkInfoAndToNext(){
+        String describe = mDescribeEt.getText().toString().trim();
+        if (describe.length()<2){
+            showToast(getString(R.string.please_enter_habit_describe));
+        }else if (!mHasRemindTime){
+            showToast(getString(R.string.please_set_remind_time));
+        }else if (mRepeatDays==null||TextUtils.isEmpty(mRepeatDays)){
+            showToast(getString(R.string.please_set_repeat_days));
+        }else if (mRecycleDays==0){
+            showToast(getString(R.string.please_set_recycle_days));
+        }else if (mPrivacyType==0){
+            showToast(getString(R.string.please_choose_privacy_setting));
+        }else if (mRecordType==0){
+            showToast(getString(R.string.please_choose_record_setting));
+        }else {
+            startActivity(new Intent(HabitSettingActivity.this,SupervisionSettingActivity.class));
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case Constant.NUM_109:
                 if (resultCode==Constant.NUM_110){
-                    mRepeatDays = data.getStringExtra(Constant.TYPE);
-                    LogUtil.d(mRepeatDays);
-                    switchDays();
+                    switchDays(data.getBooleanArrayExtra(Constant.TYPE));
+                }
+                break;
+            case Constant.NUM_110:
+                if (resultCode==Constant.NUM_110){
+                    mRecycleDays = data.getIntExtra(Constant.POSITION,0);
+                    mDurationCiv.setDetail(String.format(getString(R.string.num_days),mRecycleDays));
                 }
                 break;
         }
     }
 
-    private void switchDays(){
-        String[] days = mRepeatDays.split(",");
-        boolean[] booleans = new boolean[days.length];
-        for (int i=0,len=days.length;i<len;i++){
-            booleans[i] = days[i].equals("1");
-        }
-        if (booleans[0]&&booleans[1]&&booleans[2]&&booleans[3]&&booleans[4]&&booleans[5]&&booleans[6]){
-            mRepeatCiv.setDetail("每天");
-        }else if (booleans[0]&&booleans[1]&&booleans[2]&&booleans[3]&&booleans[4]&&!booleans[5]&&!booleans[6]){
-            mRepeatCiv.setDetail("工作日");
+    private void switchDays(boolean[] b){
+        String[] wes = {"一","二","三","四","五","六","日"};
+        StringBuilder builder = new StringBuilder();
+        StringBuilder ds = new StringBuilder();
+        if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&b[6]){
+            builder.append("每天");
+            ds.append("1,1,1,1,1,1,1");
+        }else if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&!b[5]&&!b[6]){
+            builder.append("工作日");
+            ds.append("1,1,1,1,1,0,0");
         }else {
-            StringBuilder builder = new StringBuilder()
-                    .append(booleans[0]?"周一":"")
-                    .append(booleans[0]?"周二":"")
-                    .append(booleans[0]?"周三":"")
-                    .append(booleans[0]?"周四":"")
-                    .append(booleans[0]?"周五":"")
-                    .append(booleans[0]?"周六":"")
-                    .append(booleans[0]?"周日":"");
-            mRepeatCiv.setDetail(builder.toString());
+            builder.append("周");
+            for (int i=0;i<7;i++){
+                builder.append(b[i]?wes[i]:"");
+                ds.append(b[i]?1:0);
+                if (i<6){
+                    builder.append(b[i]?"、":"");
+                    ds.append(",");
+                }
+            }
         }
+        mRepeatCiv.setDetail(builder.toString());
+        mRepeatDays = ds.toString();
+        LogUtil.d(mRepeatDays);
     }
 }

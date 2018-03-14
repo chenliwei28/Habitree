@@ -15,6 +15,7 @@
         app:title_text="@string/time_of_duration"/>
 
     <com.habitree.xueshu.xs.view.CustomRadioGroup
+        android:id="@+id/days_crg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="19dp"
@@ -28,6 +29,7 @@
             android:gravity="center">
 
             <RadioButton
+                android:id="@+id/seven"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="76dp"
@@ -39,6 +41,7 @@
                 android:text="@string/seven_days"/>
 
             <RadioButton
+                android:id="@+id/fifteen"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="76dp"
@@ -58,6 +61,7 @@
             android:gravity="center">
 
             <RadioButton
+                android:id="@+id/thirty"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="76dp"
@@ -69,6 +73,7 @@
                 android:text="@string/thirty_days"/>
 
             <RadioButton
+                android:id="@+id/sixty"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="76dp"
@@ -88,6 +93,7 @@
             android:gravity="center">
 
             <RadioButton
+                android:id="@+id/ninety"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="76dp"
@@ -99,6 +105,7 @@
                 android:text="@string/ninety_days" />
 
             <RadioButton
+                android:id="@+id/hundred"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="76dp"

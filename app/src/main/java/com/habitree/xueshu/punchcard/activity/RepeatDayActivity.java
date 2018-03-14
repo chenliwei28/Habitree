@@ -50,17 +50,16 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
         mDayMab.setRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringBuilder builder = new StringBuilder()
-                        .append(mMondayCiv.mIsSelected?"1,":"0,")
-                        .append(mTuesdayCiv.mIsSelected?"1,":"0,")
-                        .append(mWednesdayCiv.mIsSelected?"1,":"0,")
-                        .append(mThursdayCiv.mIsSelected?"1,":"0,")
-                        .append(mFridayCiv.mIsSelected?"1,":"0,")
-                        .append(mSaturdayCiv.mIsSelected?"1,":"0,")
-                        .append(mSundayCiv.mIsSelected?"1":"0");
-                setResult(Constant.NUM_110,new Intent(RepeatDayActivity.this,HabitSettingActivity.class).putExtra(Constant.TYPE,builder.toString()));
+                boolean[] bs = new boolean[7];
+                bs[0] = mMondayCiv.mIsSelected;
+                bs[1] = mTuesdayCiv.mIsSelected;
+                bs[2] = mWednesdayCiv.mIsSelected;
+                bs[3] = mThursdayCiv.mIsSelected;
+                bs[4] = mFridayCiv.mIsSelected;
+                bs[5] = mSaturdayCiv.mIsSelected;
+                bs[6] = mSundayCiv.mIsSelected;
+                setResult(Constant.NUM_110,new Intent(RepeatDayActivity.this,HabitSettingActivity.class).putExtra(Constant.TYPE,bs));
                 AppManager.getAppManager().finishActivity(RepeatDayActivity.this);
-//                finish();
             }
         });
     }

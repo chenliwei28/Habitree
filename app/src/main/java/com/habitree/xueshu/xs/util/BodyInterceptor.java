@@ -26,7 +26,7 @@ public class BodyInterceptor implements Interceptor {
                     .add("client_id","1")
                     .add("device_id", BaseApp.imei)
                     .add("device_info",BaseApp.deviceInfo)
-                    .add("userua",BaseApp.userua)
+                    .add("userua","okhttp/habitree.cn")
                     .add("verid",BaseApp.versionCode)
                     .add("version",BaseApp.versionName);
             builder.method(originalRequest.method(),newForm.build());
