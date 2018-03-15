@@ -24,8 +24,8 @@ public interface HabitView extends BaseView {
         void onPayWayGetFailed(String reason);
     }
 
-    interface CreateOrderView{
-        void onOrderCreateSuccess(CreateOrderResponse.Order order);
-        void onOrderCreateFailed(String reason);
+    interface CreateHabitView {
+        void onHabitCreateSuccess();
+        void onHabitCreateFailed(String reason);
     }
 }

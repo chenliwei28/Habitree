@@ -16,8 +16,10 @@ import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
+import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.xs.Constant;
@@ -112,9 +114,9 @@ public interface Api {
     @FormUrlEncoded
     @POST(Constant.CHANGE_NICKNAME_FUNCTION)
     Call<ChangeInfoResponse> changeNickname(@Field("timestamp") String timestamp,
-                        @Field("sign") String sign,
-                        @Field("user_token") String token,
-                        @Field("nickname") String nickname);
+                                            @Field("sign") String sign,
+                                            @Field("user_token") String token,
+                                            @Field("nickname") String nickname);
 
     //修改性别生日
     @FormUrlEncoded
@@ -165,19 +167,19 @@ public interface Api {
     //创建习惯
     @FormUrlEncoded
     @POST(Constant.CREATE_HABIT_FUNCTION)
-    Call createHabit(@Field("timestamp") String timestamp,
-                     @Field("sign") String sign,
-                     @Field("user_token") String token,
-                     @Field("ht_id") int id,
-                     @Field("order_id") String orderId,
-                     @Field("title") String title,
-                     @Field("private") int pri,
-                     @Field("recycle") String recycle,
-                     @Field("remind_time") int time,
-                     @Field("recycle_days") int days,
-                     @Field("record_type") int type,
-                     @Field("check_mem_id") int memid,
-                     @Field("unit_price") int price);
+    Call<CreateHabitResponse> createHabit(@Field("timestamp") String timestamp,
+                                          @Field("sign") String sign,
+                                          @Field("user_token") String token,
+                                          @Field("ht_id") int id,
+                                          @Field("order_id") String orderId,
+                                          @Field("title") String title,
+                                          @Field("private") int pri,
+                                          @Field("recycle") String recycle,
+                                          @Field("remind_time") int time,
+                                          @Field("recycle_days") int days,
+                                          @Field("record_type") int type,
+                                          @Field("check_mem_id") int memid,
+                                          @Field("unit_price") int price);
 
     //获取支付方式
     @FormUrlEncoded
@@ -211,12 +213,12 @@ public interface Api {
     Call<SendMsgResponse> sendMsg(@Field("timestamp") String timestamp,
                                   @Field("sign") String sign,
                                   @Field("user_token") String token,
-                                  @Field("to_uid")int toId,
-                                  @Field("title")String title,
-                                  @Field("message")String message,
-                                  @Field("type")int type,
-                                  @Field("habit_id")int habitId,
-                                  @Field("sign_id")int signId);
+                                  @Field("to_uid") int toId,
+                                  @Field("title") String title,
+                                  @Field("message") String message,
+                                  @Field("type") int type,
+                                  @Field("habit_id") int habitId,
+                                  @Field("sign_id") int signId);
 
     //获取消息详情
     @FormUrlEncoded
@@ -224,7 +226,7 @@ public interface Api {
     Call<MsgDetailResponse> getMsgDetail(@Field("timestamp") String timestamp,
                                          @Field("sign") String sign,
                                          @Field("user_token") String token,
-                                         @Field("msg_id")int id);
+                                         @Field("msg_id") int id);
 
     //删除消息
     @FormUrlEncoded
@@ -232,7 +234,7 @@ public interface Api {
     Call deleteMsg(@Field("timestamp") String timestamp,
                    @Field("sign") String sign,
                    @Field("user_token") String token,
-                   @Field("msg_id")int id);
+                   @Field("msg_id") int id);
 
     //处理消息
     @FormUrlEncoded
@@ -240,12 +242,12 @@ public interface Api {
     Call<AgreeFriendResponse> handleMsg(@Field("timestamp") String timestamp,
                                         @Field("sign") String sign,
                                         @Field("user_token") String token,
-                                        @Field("sender_id")int sender_id,
-                                        @Field("msg_id")int msg_id,
-                                        @Field("type")int type,
-                                        @Field("habit_id")int habit_id,
-                                        @Field("ftype")int ftype,
-                                        @Field("sign_id")int sign_id);
+                                        @Field("sender_id") int sender_id,
+                                        @Field("msg_id") int msg_id,
+                                        @Field("type") int type,
+                                        @Field("habit_id") int habit_id,
+                                        @Field("ftype") int ftype,
+                                        @Field("sign_id") int sign_id);
 
     //获取我的习惯列表
     @FormUrlEncoded
@@ -253,16 +255,25 @@ public interface Api {
     Call<HabitListResponse> getMyHabitList(@Field("timestamp") String timestamp,
                                            @Field("sign") String sign,
                                            @Field("user_token") String token,
-                                           @Field("page")int page,
-                                           @Field("offset")int offset);
+                                           @Field("page") int page,
+                                           @Field("offset") int offset);
 
     //获取别人的习惯列表
     @FormUrlEncoded
     @POST(Constant.GET_HABIT_LIST_FUNCTION)
     Call<HabitListResponse> getOthersHabitList(@Field("timestamp") String timestamp,
-                      @Field("sign") String sign,
-                      @Field("user_token") String token,
-                      @Field("user_id")String userid,
-                      @Field("page")int page,
-                      @Field("offset")int offset);
+                                               @Field("sign") String sign,
+                                               @Field("user_token") String token,
+                                               @Field("user_id") String userid,
+                                               @Field("page") int page,
+                                               @Field("offset") int offset);
+
+    //余额支付
+    @FormUrlEncoded
+    @POST(Constant.BALANCE_PAY_FUNCTION)
+    Call<PayResultResponse> balancePay(@Field("timestamp") String timestamp,
+                                       @Field("sign") String sign,
+                                       @Field("user_token") String token,
+                                       @Field("order_id")String orderId,
+                                       @Field("payway")String payway);
 }

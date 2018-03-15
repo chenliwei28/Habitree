@@ -1,10 +1,13 @@
 package com.habitree.xueshu.punchcard.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.pview.HabitView;
@@ -22,8 +25,33 @@ import retrofit2.Response;
 
 public class HabitPresenter extends BasePresenter {
 
+    private int mTreeId;        //树ID
+    private String mDescribe;   //习惯描述
+    private int mRemindTime;    //提醒时间
+    private String mRepeatDays; //重复日期
+    private int mRecycleDays;   //习惯天数
+    private int mPrivacyType;   //隐私模式
+    private int mRecordType;    //记录方式
+    private int mPerMoney;      //罚金单价
+    private int mTotalMoney;    //罚金总价
+    private String mOrderId;       //订单ID
+    private int mMemId;
+
     public HabitPresenter(Context context) {
         super(context);
+    }
+
+    public void initCreateHabitData(Intent intent){
+        mTreeId = intent.getIntExtra(Constant.ID,0);
+        mDescribe = intent.getStringExtra(Constant.TITLE);
+        mRemindTime = intent.getIntExtra(Constant.REMIND,0);
+        mRepeatDays = intent.getStringExtra(Constant.REPEAT);
+        mRecycleDays = intent.getIntExtra(Constant.RECYCLE,0);
+        mPrivacyType = intent.getIntExtra(Constant.PRIVACY,0);
+        mRecordType = intent.getIntExtra(Constant.RECORD,0);
+        mTotalMoney = intent.getIntExtra(Constant.TOTAL,0);
+        mPerMoney = intent.getIntExtra(Constant.PER,0);
+        mMemId = intent.getIntExtra(Constant.MEMID,0);
     }
 
     public void getPlantTree(final HabitView.PlantTreeView view){
@@ -92,26 +120,86 @@ public class HabitPresenter extends BasePresenter {
                 });
     }
 
-    public void createOrder(int totalMoney, String payName, String title, final HabitView.CreateOrderView view){
+    public void createOrder(final String payName, final HabitView.CreateHabitView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .createHabitOrder(timestamp,CommUtil.getSign(Constant.CREATE_HABIT_ORDER_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,totalMoney,payName,title+"罚金支付",title+"罚金支付")
+                        UserManager.getManager().getUser().user_token,mTotalMoney,payName,mDescribe+"罚金支付",mDescribe+"罚金支付")
                 .enqueue(new Callback<CreateOrderResponse>() {
                     @Override
                     public void onResponse(Call<CreateOrderResponse> call, Response<CreateOrderResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(mContext,response.body().status)){
-                                view.onOrderCreateSuccess(response.body().data);
+                                mOrderId = response.body().data.order_id;
+                                switch (payName){
+                                    case "balancepay":
+                                        payOrderUseBalance(mOrderId,payName,view);
+                                        break;
+                                    case "wxpay":
+
+                                        break;
+                                    case "alipay":
+
+                                        break;
+                                }
                             }else {
-                                view.onOrderCreateFailed(CommUtil.unicode2Chinese(response.body().info));
+                                view.onHabitCreateFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
                         }
                     }
 
                     @Override
                     public void onFailure(Call<CreateOrderResponse> call, Throwable t) {
-                        view.onOrderCreateFailed(mContext.getString(R.string.network_error));
+                        view.onHabitCreateFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    private void payOrderUseBalance(String orderId, String payway, final HabitView.CreateHabitView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .balancePay(timestamp,CommUtil.getSign(Constant.BALANCE_PAY_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,orderId,payway)
+                .enqueue(new Callback<PayResultResponse>() {
+                    @Override
+                    public void onResponse(Call<PayResultResponse> call, Response<PayResultResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                createHabit(view);
+                            }else {
+                                view.onHabitCreateFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PayResultResponse> call, Throwable t) {
+                        view.onHabitCreateFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    private void createHabit(final HabitView.CreateHabitView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .createHabit(timestamp,CommUtil.getSign(Constant.CREATE_HABIT_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,mTreeId,mOrderId,mDescribe,mPrivacyType,
+                        mRepeatDays,mRemindTime,mRecycleDays,mRecordType,mMemId,mPerMoney)
+                .enqueue(new Callback<CreateHabitResponse>() {
+                    @Override
+                    public void onResponse(Call<CreateHabitResponse> call, Response<CreateHabitResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onHabitCreateSuccess();
+                            }else {
+                                view.onHabitCreateFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CreateHabitResponse> call, Throwable t) {
+                        view.onHabitCreateFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

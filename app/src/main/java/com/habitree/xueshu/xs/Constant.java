@@ -59,4 +59,5 @@ public class Constant {
     public final static String HANDLE_MSG_FUNCTION = "v1/user/msg/handle";
     public final static String GET_HABIT_LIST_FUNCTION = "v1/habit/list";
     public final static String SEND_MSG_FUNCTION = "v1/user/send/message";
+    public final static String BALANCE_PAY_FUNCTION = "v1/habit/pay/balance";
 }

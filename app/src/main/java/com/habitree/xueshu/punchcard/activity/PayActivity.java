@@ -1,23 +1,26 @@
 package com.habitree.xueshu.punchcard.activity;
 
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.main.MainActivity;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
 
 import java.util.List;
 
-public class PayActivity extends BaseActivity implements View.OnClickListener,HabitView.PayWayView,HabitView.CreateOrderView{
+public class PayActivity extends BaseActivity implements View.OnClickListener,HabitView.PayWayView,HabitView.CreateHabitView {
 
     private LinearLayout mWxCheckLl;
     private LinearLayout mAliCheckLl;
@@ -32,17 +35,6 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
     private PayWayResponse.Payway mBalance;
     private PayWayResponse.Payway mWX;
     private PayWayResponse.Payway mAli;
-
-    private int mTreeId;        //树ID
-    private String mDescribe;   //习惯描述
-    private int mRemindTime;    //提醒时间
-    private String mRepeatDays; //重复日期
-    private int mRecycleDays;   //习惯天数
-    private int mPrivacyType;   //隐私模式
-    private int mRecordType;    //记录方式
-    private int mPerMoney;      //罚金单价
-    private int mTotalMoney;    //罚金总价
-    private String mOrderId;       //订单ID
 
     @Override
     protected int setLayoutId() {
@@ -72,17 +64,9 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
 
     @Override
     protected void initData() {
-//        showLoadingDialog();
-        mTreeId = getIntent().getIntExtra(Constant.ID,0);
-        mDescribe = getIntent().getStringExtra(Constant.TITLE);
-        mRemindTime = getIntent().getIntExtra(Constant.REMIND,0);
-        mRepeatDays = getIntent().getStringExtra(Constant.REPEAT);
-        mRecycleDays = getIntent().getIntExtra(Constant.RECYCLE,0);
-        mPrivacyType = getIntent().getIntExtra(Constant.PRIVACY,0);
-        mRecordType = getIntent().getIntExtra(Constant.RECORD,0);
-        mTotalMoney = getIntent().getIntExtra(Constant.TOTAL,0);
-        mPerMoney = getIntent().getIntExtra(Constant.PER,0);
-        mTotalCiv.setDetail("¥"+mTotalMoney);
+        showLoadingDialog();
+        mPresenter.initCreateHabitData(getIntent());
+        mTotalCiv.setDetail("¥"+getIntent().getIntExtra(Constant.TOTAL,0));
         mPresenter.getPayMode(this);
     }
 
@@ -124,7 +108,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
 
     private void useBalancePay(){
         showLoadingDialog();
-        mPresenter.createOrder(mTotalMoney,mBalance.payname,mDescribe,this);
+        mPresenter.createOrder(mBalance.payname,this);
     }
 
     private void selectMode(int position){
@@ -151,8 +135,8 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
 
     @Override
     public void onPayWayGetSuccess(List<PayWayResponse.Payway> list) {
-        hideLoadingDialog();
         initPayWay(list);
+        hideLoadingDialog();
     }
 
     @Override
@@ -181,23 +165,16 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
     }
 
     @Override
-    public void onOrderCreateSuccess(CreateOrderResponse.Order order) {
-        mOrderId = order.order_id;
-        switch (mCurrentMode){
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-        }
+    public void onHabitCreateSuccess() {
+        hideLoadingDialog();
+        showToast(getString(R.string.habit_create_success));
+        Intent intent =new Intent(this, MainActivity.class);
+        startActivity(intent);
+        AppManager.getAppManager().finishActivity(this);
     }
 
     @Override
-    public void onOrderCreateFailed(String reason) {
+    public void onHabitCreateFailed(String reason) {
         hideLoadingDialog();
         showToast(reason);
     }

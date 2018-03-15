@@ -207,10 +207,10 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         StringBuilder ds = new StringBuilder();
         if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&b[6]){
             builder.append("每天");
-            ds.append("1,1,1,1,1,1,1");
+            ds.append("1111111");
         }else if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&!b[5]&&!b[6]){
             builder.append("工作日");
-            ds.append("1,1,1,1,1,0,0");
+            ds.append("1111100");
         }else {
             builder.append("周");
             for (int i=0;i<7;i++){
@@ -218,7 +218,6 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
                 ds.append(b[i]?1:0);
                 if (i<6){
                     builder.append(b[i]?"、":"");
-                    ds.append(",");
                 }
             }
         }

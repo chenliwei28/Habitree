@@ -16,13 +16,6 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
     private CustomItemView mSuperCiv;
     private CustomItemView mPenaltyCiv;
     private TextView mConfirmTv;
-//    private int mTreeId;
-//    private String mDescribe;
-//    private int mRemindTime;
-//    private String mRepeatDays;
-//    private int mRecycleDays;
-//    private int mPrivacyType;
-//    private int mRecordType;
     private int mMemId; //监督人ID
     private boolean mHasSupervision;
     private String mName; //监督人名称

@@ -181,6 +181,7 @@
     <string name="choose_plant_trees">选择成长树</string>
     <string name="change_phone_number">修改手机号码</string>
     <string name="new_phone_number">新手机号码</string>
+    <string name="habit_create_success">习惯创建成功</string>
     <string name="number_of_penalty_need_pay">需支付罚金</string>
     <string name="next_step_verify_phone">下一步，验证手机号码</string>
     <string name="next_step_set_password">下一步，设置密码</string>
