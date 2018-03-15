@@ -76,22 +76,24 @@ public class HabitPresenter extends BasePresenter {
                 });
     }
 
-    public void getMyHabitList(){
+    public void getMyHabitList(final HabitView.HabitListView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .getMyHabitList(timestamp,CommUtil.getSign(Constant.GET_HABIT_LIST_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,1,10)
+                        UserManager.getManager().getUser().user_token,1,10,1)
                 .enqueue(new Callback<HabitListResponse>() {
                     @Override
                     public void onResponse(Call<HabitListResponse> call, Response<HabitListResponse> response) {
                         if (response.body()!=null){
-
+                            view.onListGetSuccess(response.body().data);
+                        }else {
+                            view.onListGetFailed(CommUtil.unicode2Chinese(response.body().info));
                         }
                     }
 
                     @Override
                     public void onFailure(Call<HabitListResponse> call, Throwable t) {
-
+                        view.onListGetFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

@@ -116,7 +116,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:text="成长中的习惯：3（2个未打卡）"
         android:textColor="@color/gray_text"
         android:textSize="14sp" />
 </RelativeLayout>

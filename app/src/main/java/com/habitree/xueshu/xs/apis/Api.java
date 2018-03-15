@@ -256,7 +256,8 @@ public interface Api {
                                            @Field("sign") String sign,
                                            @Field("user_token") String token,
                                            @Field("page") int page,
-                                           @Field("offset") int offset);
+                                           @Field("offset") int offset,
+                                           @Field("type")int type);
 
     //获取别人的习惯列表
     @FormUrlEncoded

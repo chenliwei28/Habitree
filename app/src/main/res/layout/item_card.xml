@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="画一幅画"
+            tools:text="画一幅画"
             android:textColor="@color/black_text"
             android:textSize="17sp" />
 
@@ -29,7 +29,7 @@
             android:layout_below="@id/title_tv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="第 3/30天"
+            tools:text="第 3/30天"
             android:textColor="@color/black_text"
             android:textSize="15sp" />
 

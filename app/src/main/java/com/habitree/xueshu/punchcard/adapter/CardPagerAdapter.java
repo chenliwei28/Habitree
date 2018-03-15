@@ -9,23 +9,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 
 import java.util.List;
 
 
 public class CardPagerAdapter extends PagerAdapter {
 
-    private String[] list = {"1", "2", "3", "4", "5"};
+    private List<HabitListResponse.Data.Habit> mList;
     private Context context;
     private CardClickListener listener;
 
-    public CardPagerAdapter(Context context) {
+    public CardPagerAdapter(Context context,List<HabitListResponse.Data.Habit> list) {
         this.context = context;
+        mList = list;
     }
 
     @Override
     public int getCount() {
-        return list.length;
+        return mList.size();
     }
 
     @Override
@@ -37,6 +39,8 @@ public class CardPagerAdapter extends PagerAdapter {
     @NonNull
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_card,container,false);
+        TextView titleTv = view.findViewById(R.id.title_tv);
+        titleTv.setText(mList.get(position).title);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +64,11 @@ public class CardPagerAdapter extends PagerAdapter {
 
     public void setListener(CardClickListener listener){
         this.listener = listener;
+    }
+
+    public void updateData(List<HabitListResponse.Data.Habit> list){
+        mList = list;
+        notifyDataSetChanged();
     }
 
     public interface CardClickListener{
