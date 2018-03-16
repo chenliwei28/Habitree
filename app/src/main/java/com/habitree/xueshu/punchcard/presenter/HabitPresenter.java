@@ -10,7 +10,9 @@ import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
+import com.habitree.xueshu.punchcard.bean.PunchCardResponse;
 import com.habitree.xueshu.punchcard.pview.HabitView;
+import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.presenter.BasePresenter;
 import com.habitree.xueshu.xs.util.CommUtil;
@@ -80,7 +82,7 @@ public class HabitPresenter extends BasePresenter {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .getMyHabitList(timestamp,CommUtil.getSign(Constant.GET_HABIT_LIST_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,1,10,1)
+                        UserManager.getManager().getUser().user_token,1,100,1)
                 .enqueue(new Callback<HabitListResponse>() {
                     @Override
                     public void onResponse(Call<HabitListResponse> call, Response<HabitListResponse> response) {
@@ -202,6 +204,41 @@ public class HabitPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<CreateHabitResponse> call, Throwable t) {
                         view.onHabitCreateFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void punchCard(int habitId, String detail, String[] imagePaths, final HabitView.SendRecordView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .punchCard(HttpManager.getManager().stringToRequestBody(timestamp),
+                        HttpManager.getManager().stringToRequestBody(CommUtil.getSign(Constant.UPLOAD_FILE_FUNCTION,timestamp)),
+                        HttpManager.getManager().stringToRequestBody("3"),
+                        HttpManager.getManager().stringToRequestBody("1"),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.imei),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.deviceInfo),
+                        HttpManager.getManager().stringToRequestBody("okhttp/habitree.cn"),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.versionCode),
+                        HttpManager.getManager().stringToRequestBody(BaseApp.versionName),
+                        HttpManager.getManager().stringToRequestBody(UserManager.getManager().getUser().user_token),
+                        HttpManager.getManager().stringToRequestBody(String.valueOf(habitId)),
+                        HttpManager.getManager().stringToRequestBody(detail),
+                        HttpManager.getManager().filesToMultipartBody("images",imagePaths))
+                .enqueue(new Callback<PunchCardResponse>() {
+                    @Override
+                    public void onResponse(Call<PunchCardResponse> call, Response<PunchCardResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onRecordSendSuccess();
+                            }else {
+                                view.onRecordSendFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PunchCardResponse> call, Throwable t) {
+                        view.onRecordSendFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

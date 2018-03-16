@@ -25,7 +25,7 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
     private TextView mChooseTv;
     private HabitPresenter mPresenter;
     private PlantTreeAdapter mAdapter;
-    private List<PlantTreeResponse.Data> mList;
+    private List<PlantTreeResponse.Tree> mList;
 
     @Override
     protected int setLayoutId() {
@@ -64,7 +64,7 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
     }
 
     @Override
-    public void onPlantTreeGetSuccess(List<PlantTreeResponse.Data> list) {
+    public void onPlantTreeGetSuccess(List<PlantTreeResponse.Tree> list) {
         mList = list;
         mAdapter.updateData(mList);
     }

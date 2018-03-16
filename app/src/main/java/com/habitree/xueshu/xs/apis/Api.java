@@ -22,6 +22,7 @@ import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
+import com.habitree.xueshu.punchcard.bean.PunchCardResponse;
 import com.habitree.xueshu.xs.Constant;
 
 import okhttp3.MultipartBody;
@@ -277,4 +278,21 @@ public interface Api {
                                        @Field("user_token") String token,
                                        @Field("order_id")String orderId,
                                        @Field("payway")String payway);
+
+    //习惯打卡
+    @Multipart
+    @POST(Constant.PUNCH_CARD_FUNCTION)
+    Call<PunchCardResponse> punchCard(@Part("timestamp") RequestBody timestamp,
+                                      @Part("sign") RequestBody sign,
+                                      @Part("from") RequestBody from,
+                                      @Part("client_id") RequestBody client_id,
+                                      @Part("device_id") RequestBody device_id,
+                                      @Part("device_info") RequestBody device_info,
+                                      @Part("userua") RequestBody userua,
+                                      @Part("verid") RequestBody verid,
+                                      @Part("version") RequestBody version,
+                                      @Part("user_token") RequestBody token,
+                                      @Part("habit_id") RequestBody id,
+                                      @Part("content") RequestBody content,
+                                      @Part("images") MultipartBody files);
 }

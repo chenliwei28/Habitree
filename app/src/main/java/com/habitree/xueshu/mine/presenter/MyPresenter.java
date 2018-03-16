@@ -37,7 +37,7 @@ public class MyPresenter extends BasePresenter{
                         HttpManager.getManager().stringToRequestBody("1"),
                         HttpManager.getManager().stringToRequestBody(BaseApp.imei),
                         HttpManager.getManager().stringToRequestBody(BaseApp.deviceInfo),
-                        HttpManager.getManager().stringToRequestBody(BaseApp.userua),
+                        HttpManager.getManager().stringToRequestBody("okhttp/habitree.cn"),
                         HttpManager.getManager().stringToRequestBody(BaseApp.versionCode),
                         HttpManager.getManager().stringToRequestBody(BaseApp.versionName),
                         HttpManager.getManager().stringToRequestBody(UserManager.getManager().getUser().user_token),

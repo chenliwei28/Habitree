@@ -21,7 +21,7 @@ import java.util.List;
 
 public class PlantTreeAdapter extends PagerAdapter {
 
-    private List<PlantTreeResponse.Data> list = new ArrayList<>();
+    private List<PlantTreeResponse.Tree> list = new ArrayList<>();
     private Context context;
 
     public PlantTreeAdapter(Context context){
@@ -43,7 +43,7 @@ public class PlantTreeAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_plant_tree_card,container,false);
         ImageView imageView = view.findViewById(R.id.img_iv);
-        ImageUtil.loadImage((Activity) context,list.get(position).youth_img_one,imageView);
+        ImageUtil.loadImage((Activity) context,list.get(position).youth_img,imageView);
         ((TextView)view.findViewById(R.id.text_tv)).setText(CommUtil.unicode2Chinese(list.get(position).title));
         container.addView(view);
         return view;
@@ -54,7 +54,7 @@ public class PlantTreeAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    public void updateData(List<PlantTreeResponse.Data> list){
+    public void updateData(List<PlantTreeResponse.Tree> list){
         this.list = list;
         notifyDataSetChanged();
     }

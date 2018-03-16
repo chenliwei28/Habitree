@@ -16,6 +16,7 @@
     <string name="top_up_num">充值金额</string>
     <string name="view_details">查看详情</string>
     <string name="search_friends">查找好友</string>
+    <string name="retry_punch_card">重新打卡</string>
     <string name="resend_time">重新发送（%d秒）</string>
     <string name="repeat_day_count">重复天数</string>
     <string name="time_of_duration">持续时间</string>
@@ -33,6 +34,7 @@
     <string name="pending_matters">待处理事项</string>
     <string name="times_of_punch_card">打卡数</string>
     <string name="click_to_punch_card">点击打卡</string>
+    <string name="punch_card_no_pass">打卡未通过</string>
     <string name="login_overdue">登录过期，请重新登录</string>
 
     <!--E-->
@@ -70,7 +72,8 @@
     <string name="days_of_accession">加入天数</string>
     <string name="supervision_setting">监督设置</string>
     <string name="only_you_can_see">仅自己和监督人可见</string>
-    <string name="today_has_been_punch_card">今天已打卡（待审核）</string>
+    <string name="today_has_been_punch_card_no_check">今天已打卡（待审核）</string>
+    <string name="today_has_been_punch_card_and_checked">今天已打卡（已审核）</string>
     <!--K-->
     <string name="quick_login">快速登录</string>
     <string name="quick_register">快速注册</string>
@@ -83,6 +86,7 @@
     <string name="password">密码</string>
     <string name="start_it_right_now">马上开始</string>
     <string name="password_must_not_be_empty">密码不能为空</string>
+    <string name="describe_can_not_be_empty">描述内容不能为空</string>
     <string name="find_password_success">密码已修改，请使用新密码登录</string>
     <string name="describe_what_habit_that_you_want_to_foster">描述你想要培养的习惯</string>
     <string name="every_time_do_not_punch_card_will_deduct_money">*每次打卡缺勤将扣除一次罚金</string>
@@ -115,6 +119,8 @@
     <string name="rewards_for_all_the_work">全勤奖鼓励</string>
     <string name="please_enter_password">请输入登录密码</string>
     <string name="sure_abandon_habit">确认放弃习惯？</string>
+    <string name="sure_upload">确认上传？</string>
+    <string name="sure_to_quit_this_edit">确定要退出此次打卡编辑吗？</string>
     <string name="please_choose_recycle_days">请选择天数</string>
     <string name="please_enter_phone_number">请输入手机号</string>
     <string name="please_enter_password_again">请再次输入密码</string>
@@ -125,6 +131,7 @@
     <string name="please_choose_pay_way">请选择支付方式</string>
     <string name="please_choose_privacy_setting">请选择隐私设置</string>
     <string name="please_choose_record_setting">请选择记录设置</string>
+    <string name="please_upload_one_photo_at_least">请至少上传一张照片</string>
     <string name="please_enter_habit_describe">请填写至少两个字的习惯描述</string>
     <string name="please_accept_the_permission_of_camera">请打开照相权限及存储权限</string>
     <string name="please_set_password_from_eight_to_sixteen">请设置8&#8211;16位密码，可包含数字、字母、字符</string>

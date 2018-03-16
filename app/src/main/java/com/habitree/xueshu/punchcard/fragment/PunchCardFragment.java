@@ -65,9 +65,6 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     protected void initData() {
-        mDateTv.setText(TimeUtil.getTodayInfo(Calendar.DATE));
-        String s = TimeUtil.getTodayInfo(Calendar.YEAR)+"."+TimeUtil.getTodayInfo(Calendar.MONTH);
-        mMonthTv.setText(s);
         updateData();
     }
 
@@ -89,6 +86,9 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     }
 
     public void updateData(){
+        mDateTv.setText(TimeUtil.getTodayInfo(Calendar.DATE));
+        String s = TimeUtil.getTodayInfo(Calendar.YEAR)+"·"+TimeUtil.getTodayInfo(Calendar.MONTH);
+        mMonthTv.setText(s);
         mPresenter.getMyHabitList(this);
     }
 
@@ -103,7 +103,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
 
                 @Override
                 public void punchClick(int position) {
-                    startActivity(new Intent(getContext(), SendRecordActivity.class));
+                    HabitListResponse.Data.Habit habit = mHabits.list.get(position);
+                    SendRecordActivity.start(getContext(),habit.habit_id,habit.record_type,habit.check_meminfo.nickname);
                 }
             });
             mCardVp.setAdapter(mAdapter);
@@ -132,7 +133,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
             mEmptyCv.setVisibility(View.GONE);
             initCardViewPager();
         }
-        String s = "成长中的习惯："+data.count+"（2"+"个未打卡）";
+        String s = "成长中的习惯："+data.count+"（"+data.nosign_count+"个未打卡）";
         mCountTv.setText(s);
     }
 

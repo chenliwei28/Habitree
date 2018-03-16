@@ -6,6 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
@@ -41,13 +42,53 @@ public class CardPagerAdapter extends PagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.item_card,container,false);
         TextView titleTv = view.findViewById(R.id.title_tv);
         titleTv.setText(mList.get(position).title);
+        TextView punchBtn = view.findViewById(R.id.punch_btn);
+        ImageView markIv = view.findViewById(R.id.mark_iv);
+        TextView stateTv = view.findViewById(R.id.state_tv);
+        TextView countTv = view.findViewById(R.id.count_tv);
+        String s = "第"+mList.get(position).now_days+"/"+mList.get(position).recycle_days+"天";
+        countTv.setText(s);
+        switch (mList.get(position).sign_status){
+            case 1:
+                punchBtn.setVisibility(View.GONE);
+                markIv.setVisibility(View.GONE);
+                stateTv.setVisibility(View.GONE);
+                break;
+            case 2:
+                punchBtn.setVisibility(View.VISIBLE);
+                markIv.setVisibility(View.GONE);
+                stateTv.setVisibility(View.GONE);
+                punchBtn.setText(context.getString(R.string.click_to_punch_card));
+                break;
+            case 3:
+                punchBtn.setVisibility(View.GONE);
+                markIv.setVisibility(View.VISIBLE);
+                stateTv.setVisibility(View.VISIBLE);
+                markIv.setImageResource(R.drawable.ic_mark_question);
+                stateTv.setText(context.getString(R.string.today_has_been_punch_card_no_check));
+                break;
+            case 4:
+                punchBtn.setVisibility(View.GONE);
+                markIv.setVisibility(View.VISIBLE);
+                stateTv.setVisibility(View.VISIBLE);
+                markIv.setImageResource(R.drawable.ic_mark_pass);
+                stateTv.setText(context.getString(R.string.today_has_been_punch_card_and_checked));
+                break;
+            case 5:
+                punchBtn.setVisibility(View.VISIBLE);
+                markIv.setVisibility(View.GONE);
+                stateTv.setVisibility(View.VISIBLE);
+                stateTv.setText(context.getString(R.string.punch_card_no_pass));
+                punchBtn.setText(context.getString(R.string.retry_punch_card));
+                break;
+        }
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener!=null)listener.detailClick(position);
             }
         });
-        view.findViewById(R.id.punch_btn).setOnClickListener(new View.OnClickListener() {
+        punchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener!=null)listener.punchClick(position);

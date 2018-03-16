@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface HabitView extends BaseView {
     interface PlantTreeView{
-        void onPlantTreeGetSuccess(List<PlantTreeResponse.Data> list);
+        void onPlantTreeGetSuccess(List<PlantTreeResponse.Tree> list);
         void onPlantTreeGetFail();
     }
 
@@ -27,5 +27,10 @@ public interface HabitView extends BaseView {
     interface CreateHabitView {
         void onHabitCreateSuccess();
         void onHabitCreateFailed(String reason);
+    }
+
+    interface SendRecordView{
+        void onRecordSendSuccess();
+        void onRecordSendFailed(String reason);
     }
 }

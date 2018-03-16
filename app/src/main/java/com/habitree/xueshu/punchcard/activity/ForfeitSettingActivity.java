@@ -107,7 +107,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
     @Override
     protected void initData() {
         mTotalTimes = getIntent().getIntExtra(Constant.RECYCLE,0);
-        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text),mTotalTimes));
+        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text),mTotalTimes/2));
         mNumTv.setText(String.format(getString(R.string.summation_money),mTotalMoney));
     }
 
