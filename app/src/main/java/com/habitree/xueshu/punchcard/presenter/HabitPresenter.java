@@ -7,6 +7,7 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
@@ -18,6 +19,7 @@ import com.habitree.xueshu.xs.presenter.BasePresenter;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.HttpManager;
 import com.habitree.xueshu.xs.util.TimeUtil;
+import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 
 import retrofit2.Call;
@@ -35,7 +37,7 @@ public class HabitPresenter extends BasePresenter {
     private int mPrivacyType;   //隐私模式
     private int mRecordType;    //记录方式
     private int mPerMoney;      //罚金单价
-    private int mTotalMoney;    //罚金总价
+    private double mTotalMoney;    //罚金总价
     private String mOrderId;       //订单ID
     private int mMemId;
 
@@ -51,9 +53,29 @@ public class HabitPresenter extends BasePresenter {
         mRecycleDays = intent.getIntExtra(Constant.RECYCLE,0);
         mPrivacyType = intent.getIntExtra(Constant.PRIVACY,0);
         mRecordType = intent.getIntExtra(Constant.RECORD,0);
-        mTotalMoney = intent.getIntExtra(Constant.TOTAL,0);
+        mTotalMoney = intent.getDoubleExtra(Constant.TOTAL,0);
         mPerMoney = intent.getIntExtra(Constant.PER,0);
         mMemId = intent.getIntExtra(Constant.MEMID,0);
+    }
+
+    public void initInfo(){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().initInfo(timestamp,CommUtil.getSign(Constant.INIT_FUNCTION,timestamp))
+                .enqueue(new Callback<InitResponse>() {
+                    @Override
+                    public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
+                        if (response.body()!=null){
+                            BaseApp.normalData = response.body().data;
+                        }else {
+                            ToastUtil.showToast(mContext,"初始化信息出错，请重新登录重试");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<InitResponse> call, Throwable t) {
+                        ToastUtil.showToast(mContext,"初始化信息出错，请重新登录重试");
+                    }
+                });
     }
 
     public void getPlantTree(final HabitView.PlantTreeView view){

@@ -36,6 +36,7 @@ public class Constant {
     public final static int RESPONSE_OVERDUE = 1002;
 
     //functions
+    public final static String INIT_FUNCTION = "v1/system/appinit";
     public final static String LOGIN_FUNCTION = "v1/user/login";
     public final static String REGISTER_FUNCTION = "v1/user/registermobile";
     public final static String AUTH_CODE_FUNCTION = "v1/sms/send";

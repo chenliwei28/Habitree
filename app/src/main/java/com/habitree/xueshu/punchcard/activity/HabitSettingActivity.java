@@ -202,15 +202,15 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void switchDays(boolean[] b){
-        String[] wes = {"一","二","三","四","五","六","日"};
+        String[] wes = {"日","一","二","三","四","五","六"};
         StringBuilder builder = new StringBuilder();
         StringBuilder ds = new StringBuilder();
         if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&b[6]){
             builder.append("每天");
             ds.append("1111111");
-        }else if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&!b[5]&&!b[6]){
+        }else if (!b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&!b[6]){
             builder.append("工作日");
-            ds.append("1111100");
+            ds.append("0111110");
         }else {
             builder.append("周");
             for (int i=0;i<7;i++){

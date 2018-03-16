@@ -36,7 +36,7 @@ public class PendingMattersActivity extends BaseActivity implements MessageView.
 
     @Override
     protected void initData() {
-        MessageManager.getManager().getMsgList(this,1,100,0,1,1,this);
+
     }
 
     @Override
@@ -46,11 +46,19 @@ public class PendingMattersActivity extends BaseActivity implements MessageView.
             mListRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
             mListRv.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
             mListRv.setAdapter(mAdapter);
+        }else {
+            mAdapter.updateData(list);
         }
     }
 
     @Override
     public void onListGetFailed(String reason) {
         showToast(reason);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MessageManager.getManager().getMsgList(this,1,100,0,1,1,this);
     }
 }

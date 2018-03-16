@@ -6,12 +6,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.bean.Message;
+import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.util.ImageUtil;
+import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
-public class HabitInviteActivity extends BaseActivity implements View.OnClickListener{
+public class HabitInviteActivity extends BaseActivity implements View.OnClickListener,MessageView.HandleOtherMsgView{
 
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
@@ -26,15 +31,16 @@ public class HabitInviteActivity extends BaseActivity implements View.OnClickLis
     private CustomItemView mMoneyCiv;
     private TextView mRefuseTv;
     private TextView mAcceptTv;
+    private Message mMessage;
 
     @Override
     protected int setLayoutId() {
         return R.layout.activity_habit_invite;
     }
 
-    public static void start(Context context, int msgId){
+    public static void start(Context context, Message message){
         Intent intent = new Intent(context,HabitInviteActivity.class);
-        intent.putExtra(Constant.CODE,msgId);
+        intent.putExtra(Constant.CODE,message);
         context.startActivity(intent);
     }
 
@@ -63,18 +69,42 @@ public class HabitInviteActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
-
+//        MessageManager.getManager().getMsgDetail(this,getIntent().getIntExtra(Constant.CODE,0),this);
+        mMessage = (Message) getIntent().getSerializableExtra(Constant.CODE);
+        ImageUtil.loadImage(this,mMessage.sender_user.portrait,mHeadRiv,R.drawable.ic_default_head);
+        mNameTv.setText(mMessage.sender_user.nickname);
+        mDetailTv.setText(mMessage.message);
+        mHabitNameCiv.setDetail(mMessage.habit_info.title);
+        mDurationCiv.setDetail(String.valueOf(mMessage.habit_info.recycle_days));
+        mModCiv.setDetail(mMessage.habit_info.record_type==2?"文字+图片":"文字");
+        mSettingCiv.setDetail(mMessage.habit_info.is_private==1?"仅自己和监督人可见":"公开");
+        mMoneyCiv.setDetail(String.format(getString(R.string.num_price),mMessage.habit_info.amount));
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.refuse_tv:
-
+                showLoadingDialog();
+                MessageManager.getManager().handleOtherMessage(this,mMessage,3,this);
                 break;
             case R.id.accept_tv:
-
+                showLoadingDialog();
+                MessageManager.getManager().handleOtherMessage(this,mMessage,2,this);
                 break;
         }
+    }
+
+    @Override
+    public void onHandleSuccess() {
+        hideLoadingDialog();
+        showToast(getString(R.string.send_success));
+        AppManager.getAppManager().finishActivity(this);
+    }
+
+    @Override
+    public void onHandleFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
     }
 }

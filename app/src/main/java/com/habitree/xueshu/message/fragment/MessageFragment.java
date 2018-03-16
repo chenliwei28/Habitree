@@ -60,13 +60,11 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void initData() {
-        mAdapter = new MessageAdapter(getContext(),MessageManager.getManager().getConversationList());
-        mMessageLv.setAdapter(mAdapter);
-        MessageManager.getManager().getAllInfo(getContext(),this);
+        updateData();
     }
 
     public void updateData(){
-        mAdapter.updateData(MessageManager.getManager().getConversationList(),MessageManager.getManager().getDoCount());
+        showLoadingDialog();
         MessageManager.getManager().getAllInfo(getContext(),this);
     }
 
@@ -99,11 +97,18 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onInfoGetSuccess() {
-        mAdapter.notifyDataSetChanged();
+        if (mAdapter==null){
+            mAdapter = new MessageAdapter(getContext(),MessageManager.getManager().getConversationList(),MessageManager.getManager().getDoCount());
+            mMessageLv.setAdapter(mAdapter);
+        }else {
+            mAdapter.updateData(MessageManager.getManager().getConversationList(),MessageManager.getManager().getDoCount());
+        }
+        hideLoadingDialog();
     }
 
     @Override
     public void onInfoGetFailed(String reason) {
+        hideLoadingDialog();
         showToast(reason);
     }
 }

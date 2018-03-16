@@ -23,6 +23,11 @@ public interface MessageView extends BaseView {
         void onHandleFailed();
     }
 
+    interface HandleOtherMsgView{
+        void onHandleSuccess();
+        void onHandleFailed(String reason);
+    }
+
     interface MsgDetailView{
         void onMsgDetailGetSuccess();
         void onMsgDetailGetFailed(String reason);

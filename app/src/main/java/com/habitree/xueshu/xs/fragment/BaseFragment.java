@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.habitree.xueshu.xs.util.ToastUtil;
+import com.habitree.xueshu.xs.view.MyProgressDialog;
 
 public abstract class BaseFragment extends Fragment{
+
+    private MyProgressDialog dialog;
 
     protected abstract int setLayoutId();
 
@@ -41,5 +44,18 @@ public abstract class BaseFragment extends Fragment{
 
     protected void showToast(int stringId){
         ToastUtil.showToast(getContext(),stringId);
+    }
+
+    public void showLoadingDialog(){
+        if (dialog==null){
+            dialog = new MyProgressDialog(getContext()).builder();
+        }
+        dialog.show();
+    }
+
+    public void hideLoadingDialog(){
+        if (dialog!=null&&dialog.isShowing()){
+            dialog.dismiss();
+        }
     }
 }

@@ -32,6 +32,11 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
         mList = list;
     }
 
+    public void updateData(List<Message> list){
+        mList = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public PendingMattersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_pending_matters_list, parent, false);
@@ -66,7 +71,7 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
                 @Override
                 public void onClick(View view) {
                     if (message.type==2){
-                        HabitInviteActivity.start(mContext,message.id);
+                        HabitInviteActivity.start(mContext,message);
                     }else {
                         AuditRecordActivity.start(mContext,message.id);
                     }

@@ -19,6 +19,7 @@ import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
@@ -90,6 +91,12 @@ public interface Api {
                         @Field("old_pwd") String old,
                         @Field("new_pwd") String npw);
 
+    //初始化信息
+    @FormUrlEncoded
+    @POST(Constant.INIT_FUNCTION)
+    Call<InitResponse> initInfo(@Field("timestamp") String timestamp,
+                                @Field("sign") String sign);
+
     //新建习惯树列表
     @FormUrlEncoded
     @POST(Constant.PLANT_TREE_FUNCTION)
@@ -160,7 +167,7 @@ public interface Api {
     Call<CreateOrderResponse> createHabitOrder(@Field("timestamp") String timestamp,
                                                @Field("sign") String sign,
                                                @Field("user_token") String token,
-                                               @Field("amount") int amount,
+                                               @Field("amount") double amount,
                                                @Field("payway") String payway,
                                                @Field("product_name") String product_name,
                                                @Field("product_desc") String product_desc);

@@ -102,7 +102,11 @@ public class MessageManager {
 
     //再获取会话列表
     private void getInfo(final Context context, final MessageView.CvsListView view){
-        if (conversations==null||conversations.size()==0)return;
+        getConversationList();
+        if (conversations==null||conversations.size()==0){
+            view.onInfoGetSuccess();
+            return;
+        }
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         StringBuilder builder = new StringBuilder(String.valueOf(UserManager.getManager().getUser().mem_id));
         for (int i=0,len=conversations.size();i<len;i++){
@@ -182,6 +186,30 @@ public class MessageManager {
                     @Override
                     public void onFailure(Call<AgreeFriendResponse> call, Throwable t) {
                         view.onHandleFailed();
+                    }
+                });
+    }
+
+    public void handleOtherMessage(final Context context, Message message, final int ftype, final MessageView.HandleOtherMsgView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .handleMsg(timestamp,CommUtil.getSign(Constant.HANDLE_MSG_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,message.sender_id,message.id,message.type,message.haibit_id,ftype,message.sign_id)
+                .enqueue(new Callback<AgreeFriendResponse>() {
+                    @Override
+                    public void onResponse(Call<AgreeFriendResponse> call, Response<AgreeFriendResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(context,response.body().status)){
+                                view.onHandleSuccess();
+                            }else {
+                                view.onHandleFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AgreeFriendResponse> call, Throwable t) {
+                        view.onHandleFailed(context.getString(R.string.network_error));
                     }
                 });
     }

@@ -51,13 +51,13 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 boolean[] bs = new boolean[7];
-                bs[0] = mMondayCiv.mIsSelected;
-                bs[1] = mTuesdayCiv.mIsSelected;
-                bs[2] = mWednesdayCiv.mIsSelected;
-                bs[3] = mThursdayCiv.mIsSelected;
-                bs[4] = mFridayCiv.mIsSelected;
-                bs[5] = mSaturdayCiv.mIsSelected;
-                bs[6] = mSundayCiv.mIsSelected;
+                bs[0] = mSundayCiv.mIsSelected;
+                bs[1] = mMondayCiv.mIsSelected;
+                bs[2] = mTuesdayCiv.mIsSelected;
+                bs[3] = mWednesdayCiv.mIsSelected;
+                bs[4] = mThursdayCiv.mIsSelected;
+                bs[5] = mFridayCiv.mIsSelected;
+                bs[6] = mSaturdayCiv.mIsSelected;
                 setResult(Constant.NUM_110,new Intent(RepeatDayActivity.this,HabitSettingActivity.class).putExtra(Constant.TYPE,bs));
                 AppManager.getAppManager().finishActivity(RepeatDayActivity.this);
             }

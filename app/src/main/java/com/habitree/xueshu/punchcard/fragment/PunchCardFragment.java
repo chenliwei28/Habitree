@@ -65,6 +65,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     protected void initData() {
+        mPresenter.initInfo();
         updateData();
     }
 
@@ -86,6 +87,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     }
 
     public void updateData(){
+        showLoadingDialog();
         mDateTv.setText(TimeUtil.getTodayInfo(Calendar.DATE));
         String s = TimeUtil.getTodayInfo(Calendar.YEAR)+"·"+TimeUtil.getTodayInfo(Calendar.MONTH);
         mMonthTv.setText(s);
@@ -135,10 +137,12 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         }
         String s = "成长中的习惯："+data.count+"（"+data.nosign_count+"个未打卡）";
         mCountTv.setText(s);
+        hideLoadingDialog();
     }
 
     @Override
     public void onListGetFailed(String reason) {
+        hideLoadingDialog();
         showToast(reason);
     }
 }

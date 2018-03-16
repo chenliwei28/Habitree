@@ -50,11 +50,11 @@
     <string name="public_to_everyone">公开</string>
     <string name="about_app">关于学树</string>
     <string name="personal_info">个人资料</string>
-    <string name="forfeit_setting_long_text">共收取%d次（总次数的一半）罚金作为押金，当全部罚金扣除后，本次培养即告停止。</string>
+    <string name="forfeit_setting_long_text">共收取%f元罚金作为押金，当全部罚金扣除后，本次培养即告停止。</string>
     <!--H-->
     <string name="friend">好友</string>
     <string name="be_friend_request">好友请求</string>
-    <string name="summation_money">合计 ¥ %d</string>
+    <string name="summation_money">合计 ¥ %f</string>
     <string name="friend_list">好友列表</string>
     <!--I-->
     <!--J-->

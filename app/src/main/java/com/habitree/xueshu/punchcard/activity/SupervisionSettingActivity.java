@@ -19,7 +19,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
     private int mMemId; //监督人ID
     private boolean mHasSupervision;
     private String mName; //监督人名称
-    private int mTotalMoney;
+    private double mTotalMoney;
     private int mPerMoney;
     private Intent mIntent;
     private MyDialog mNoteDialog;
@@ -120,7 +120,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
     }
 
     private void switchPrice(Intent data){
-        mTotalMoney = data.getIntExtra(Constant.NUMBER,0);
+        mTotalMoney = data.getDoubleExtra(Constant.NUMBER,0);
         mPerMoney = data.getIntExtra(Constant.POSITION,0);
         mPenaltyCiv.setDetail(String.format(getString(R.string.num_price),mPerMoney));
     }

@@ -1,5 +1,6 @@
 package com.habitree.xueshu.punchcard.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.xs.util.ImageUtil;
 
 import java.util.List;
 
@@ -46,6 +48,8 @@ public class CardPagerAdapter extends PagerAdapter {
         ImageView markIv = view.findViewById(R.id.mark_iv);
         TextView stateTv = view.findViewById(R.id.state_tv);
         TextView countTv = view.findViewById(R.id.count_tv);
+        ImageView imgIv = view.findViewById(R.id.img_iv);
+        ImageUtil.loadImage((Activity) context,mList.get(position).youth_img,imgIv);
         String s = "第"+mList.get(position).now_days+"/"+mList.get(position).recycle_days+"天";
         countTv.setText(s);
         switch (mList.get(position).sign_status){

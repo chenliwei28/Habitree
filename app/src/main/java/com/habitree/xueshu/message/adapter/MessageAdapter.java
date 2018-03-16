@@ -33,9 +33,10 @@ public class MessageAdapter extends BaseAdapter {
     private List<EMConversation> mList;
     private int dealCount = 0;
 
-    public MessageAdapter(Context context, List<EMConversation> list) {
+    public MessageAdapter(Context context, List<EMConversation> list,int count) {
         mContext = context;
         mList = list;
+        dealCount = count;
     }
 
     @Override

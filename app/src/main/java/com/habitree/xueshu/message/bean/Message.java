@@ -2,7 +2,9 @@ package com.habitree.xueshu.message.bean;
 
 
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
     /**
      * id : 2
      * admin_id : 0
@@ -34,8 +36,9 @@ public class Message {
     public int send_time;
     public int is_delete;
     public SenderUser sender_user;
+    public HabitInfo habit_info;
 
-    public class SenderUser {
+    public class SenderUser implements Serializable{
         /**
          * mem_id : 2
          * username : 14026
@@ -53,5 +56,30 @@ public class Message {
         public String portrait;
         public Object is_official;
         public int status;
+    }
+
+    public class HabitInfo implements Serializable{
+
+        /**
+         * habit_id : 11
+         * title : aaaaaaaaa
+         * is_private : 1
+         * record_type : 2
+         * remind_time : 85260
+         * recycle : 1111111
+         * recycle_days : 7
+         * amount : 4
+         * left_money : 4
+         */
+
+        public int habit_id;
+        public String title;
+        public int is_private;
+        public int record_type;
+        public int remind_time;
+        public String recycle;
+        public int recycle_days;
+        public int amount;
+        public int left_money;
     }
 }

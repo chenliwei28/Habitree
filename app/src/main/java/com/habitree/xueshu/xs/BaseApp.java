@@ -1,6 +1,7 @@
 package com.habitree.xueshu.xs;
 
 
+import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.hyphenate.chat.EMClient;
@@ -16,6 +17,7 @@ public class BaseApp extends LitePalApplication {
     public static String userua;
     public static String versionCode;
     public static String versionName;
+    public static InitResponse.Data normalData;
 
     @Override
     public void onCreate() {

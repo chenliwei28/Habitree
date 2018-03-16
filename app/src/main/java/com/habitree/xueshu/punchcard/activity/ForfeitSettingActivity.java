@@ -15,10 +15,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.punchcard.bean.InitResponse;
+import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CustomRadioGroup;
+
+import java.util.List;
 
 public class ForfeitSettingActivity extends BaseActivity implements View.OnClickListener{
 
@@ -29,7 +33,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
     private TextView mNoteTv;
 
     private int mTotalTimes;
-    private int mTotalMoney;
+    private double mTotalMoney;
 
     @Override
     protected int setLayoutId() {
@@ -60,22 +64,22 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
                 if (!TextUtils.isEmpty(mSumEt.getText().toString()))mSumEt.setText("");
                 switch (button.getId()){
                     case R.id.one:
-                        mTotalMoney = mTotalTimes;
+                        mTotalMoney = mTotalTimes*BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.five:
-                        mTotalMoney = mTotalTimes*5;
+                        mTotalMoney = mTotalTimes*5*BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.ten:
-                        mTotalMoney = mTotalTimes*10;
+                        mTotalMoney = mTotalTimes*10*BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.fifteen:
-                        mTotalMoney = mTotalTimes*15;
+                        mTotalMoney = mTotalTimes*15*BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.twenty:
-                        mTotalMoney = mTotalTimes*20;
+                        mTotalMoney = mTotalTimes*20*BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.fifty:
-                        mTotalMoney = mTotalTimes*50;
+                        mTotalMoney = mTotalTimes*50*BaseApp.normalData.config.pay_rate;
                         break;
                 }
                 mNumTv.setText(String.format(getString(R.string.summation_money),mTotalMoney));
@@ -97,7 +101,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
                 String s = editable.toString();
                 if (!TextUtils.isEmpty(s)){
                     mNumCrg.clearCheck();
-                    mTotalMoney = mTotalTimes*Integer.valueOf(s);
+                    mTotalMoney = mTotalTimes*Integer.valueOf(s)*BaseApp.normalData.config.pay_rate;
                     mNumTv.setText(String.format(getString(R.string.summation_money),mTotalMoney));
                 }
             }
@@ -107,7 +111,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
     @Override
     protected void initData() {
         mTotalTimes = getIntent().getIntExtra(Constant.RECYCLE,0);
-        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text),mTotalTimes/2));
+        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text),mTotalMoney));
         mNumTv.setText(String.format(getString(R.string.summation_money),mTotalMoney));
     }
 
@@ -118,7 +122,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
                 if (mTotalMoney==0){
                     showToast(getString(R.string.please_choose_price));
                 }else {
-                    int per = mTotalMoney/mTotalTimes;
+                    int per = (int) (mTotalMoney/(mTotalTimes*BaseApp.normalData.config.pay_rate));
                     Intent intent = new Intent(ForfeitSettingActivity.this,SupervisionSettingActivity.class);
                     intent.putExtra(Constant.NUMBER,mTotalMoney);
                     intent.putExtra(Constant.POSITION,per);

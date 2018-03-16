@@ -66,7 +66,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
     protected void initData() {
         showLoadingDialog();
         mPresenter.initCreateHabitData(getIntent());
-        mTotalCiv.setDetail("¥"+getIntent().getIntExtra(Constant.TOTAL,0));
+        mTotalCiv.setDetail("¥"+getIntent().getDoubleExtra(Constant.TOTAL,0));
         mPresenter.getPayMode(this);
     }
 

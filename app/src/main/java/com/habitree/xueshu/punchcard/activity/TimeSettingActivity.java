@@ -8,16 +8,21 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.punchcard.bean.InitResponse;
+import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CustomRadioGroup;
+
+import java.util.List;
 
 public class TimeSettingActivity extends BaseActivity implements OnClickListener{
 
     private TextView mConfirmTv;
     private CustomRadioGroup mDaysCrg;
     private int mDays;
+    private List<InitResponse.Data.RecycleDays> mList;
 
     @Override
     protected int setLayoutId() {
@@ -33,27 +38,32 @@ public class TimeSettingActivity extends BaseActivity implements OnClickListener
     @Override
     protected void initListener() {
         mConfirmTv.setOnClickListener(this);
+        int[] ids = {R.id.seven,R.id.fifteen,R.id.thirty,R.id.sixty,R.id.ninety,R.id.hundred};
+        mList = BaseApp.normalData.recycle_days;
+        for (int i = 0;i<6;i++){
+            ((RadioButton)findViewById(ids[i])).setText(mList.get(i).title);
+        }
         mDaysCrg.setOnCheckedChangeListener(new CustomRadioGroup.OnCheckChangeListener() {
             @Override
             public void onCheckChange(RadioButton button) {
                 switch (button.getId()){
                     case R.id.seven:
-                        mDays = 7;
+                        mDays = mList.get(0).day;
                         break;
                     case R.id.fifteen:
-                        mDays = 15;
+                        mDays = mList.get(1).day;
                         break;
                     case R.id.thirty:
-                        mDays = 30;
+                        mDays = mList.get(2).day;
                         break;
                     case R.id.sixty:
-                        mDays = 60;
+                        mDays = mList.get(3).day;
                         break;
                     case R.id.ninety:
-                        mDays = 90;
+                        mDays = mList.get(4).day;
                         break;
                     case R.id.hundred:
-                        mDays = 100;
+                        mDays = mList.get(5).day;
                         break;
                 }
             }

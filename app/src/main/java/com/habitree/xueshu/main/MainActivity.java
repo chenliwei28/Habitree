@@ -157,7 +157,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         super.onResume();
         switch (mCurrentTab){
             case 0:
-
+                if (mPcFragment!=null)mPcFragment.updateData();
                 break;
             case 1:
                 if (mMsFragment!=null) mMsFragment.updateData();
