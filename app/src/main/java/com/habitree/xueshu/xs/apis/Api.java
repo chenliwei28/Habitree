@@ -29,6 +29,9 @@ import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.bean.PunchCardResponse;
 import com.habitree.xueshu.xs.Constant;
 
+import java.util.List;
+import java.util.Map;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -37,6 +40,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 
 public interface Api {
     //登录
@@ -304,7 +308,7 @@ public interface Api {
                                       @Part("user_token") RequestBody token,
                                       @Part("habit_id") RequestBody id,
                                       @Part("content") RequestBody content,
-                                      @Part("images") MultipartBody files);
+                                      @Part List<MultipartBody.Part> files);
 
     //获取我的钱包
     @FormUrlEncoded

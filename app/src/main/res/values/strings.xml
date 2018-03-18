@@ -36,6 +36,7 @@
     <string name="times_of_punch_card">打卡数</string>
     <string name="click_to_punch_card">点击打卡</string>
     <string name="punch_card_no_pass">打卡未通过</string>
+    <string name="click_tree_to_watch_detail">点击小树查看习惯</string>
     <string name="login_overdue">登录过期，请重新登录</string>
 
     <!--E-->
@@ -217,6 +218,7 @@
     <string name="completed">已完成</string>
     <string name="accepted">已接受</string>
     <string name="refused">已拒绝</string>
+    <string name="abandoned">已放弃</string>
     <string name="now_completed">已完成：</string>
     <string name="has_punch_card">已打卡</string>
     <string name="balance_pay">余额支付</string>

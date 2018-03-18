@@ -6,25 +6,134 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.main.MainActivity;
+import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.xs.fragment.BaseFragment;
+import com.habitree.xueshu.xs.util.ImageUtil;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MidTreeFragment extends Fragment {
+import java.util.List;
 
 
-    public MidTreeFragment() {
-        // Required empty public constructor
-    }
+public class MidTreeFragment extends BaseFragment implements View.OnClickListener {
 
+    private ImageView mTreeOne;
+    private ImageView mTreeTwo;
+    private ImageView mTreeThree;
+    private ImageView mTreeFour;
+    private TextView mTitleOne;
+    private TextView mTitleTwo;
+    private TextView mTitleThree;
+    private TextView mTitleFour;
+    private List<HabitListResponse.Data.Habit> mList;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mid_tree, container, false);
+    protected int setLayoutId() {
+        return R.layout.fragment_mid_tree;
     }
 
+    @Override
+    protected void initView(View view) {
+        mTreeOne = view.findViewById(R.id.tree_one);
+        mTreeTwo = view.findViewById(R.id.tree_two);
+        mTreeThree = view.findViewById(R.id.tree_three);
+        mTreeFour = view.findViewById(R.id.tree_four);
+        mTitleOne = view.findViewById(R.id.title_one);
+        mTitleTwo = view.findViewById(R.id.title_two);
+        mTitleThree = view.findViewById(R.id.title_three);
+        mTitleFour = view.findViewById(R.id.title_four);
+    }
+
+    @Override
+    protected void initListener() {
+        mTreeOne.setOnClickListener(this);
+        mTreeTwo.setOnClickListener(this);
+        mTreeThree.setOnClickListener(this);
+        mTreeFour.setOnClickListener(this);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    public void updateData(List<HabitListResponse.Data.Habit> list) {
+        mList = list;
+        int len = mList.size();
+        switch (len) {
+            case 0:
+                break;
+            case 1:
+                mTreeOne.setVisibility(View.VISIBLE);
+                mTitleOne.setVisibility(View.VISIBLE);
+                mTitleOne.setText(list.get(0).title);
+                ImageUtil.loadImage(this, mList.get(0).youth_img, mTreeOne, R.drawable.tree_mid1);
+                break;
+            case 2:
+                mTreeOne.setVisibility(View.VISIBLE);
+                mTreeTwo.setVisibility(View.VISIBLE);
+                mTitleOne.setVisibility(View.VISIBLE);
+                mTitleTwo.setVisibility(View.VISIBLE);
+                mTitleOne.setText(list.get(0).title);
+                mTitleTwo.setText(list.get(1).title);
+                ImageUtil.loadImage(this, mList.get(0).youth_img, mTreeOne, R.drawable.tree_mid1);
+                ImageUtil.loadImage(this, mList.get(1).youth_img, mTreeTwo, R.drawable.tree_mid2);
+                break;
+            case 3:
+                mTreeOne.setVisibility(View.VISIBLE);
+                mTreeTwo.setVisibility(View.VISIBLE);
+                mTreeThree.setVisibility(View.VISIBLE);
+                mTitleOne.setVisibility(View.VISIBLE);
+                mTitleTwo.setVisibility(View.VISIBLE);
+                mTitleThree.setVisibility(View.VISIBLE);
+                mTitleOne.setText(list.get(0).title);
+                mTitleTwo.setText(list.get(1).title);
+                mTitleThree.setText(list.get(2).title);
+                ImageUtil.loadImage(this, mList.get(0).youth_img, mTreeOne, R.drawable.tree_mid1);
+                ImageUtil.loadImage(this, mList.get(1).youth_img, mTreeTwo, R.drawable.tree_mid2);
+                ImageUtil.loadImage(this, mList.get(2).youth_img, mTreeThree, R.drawable.tree_mid3);
+                break;
+            default:
+                mTreeOne.setVisibility(View.VISIBLE);
+                mTreeTwo.setVisibility(View.VISIBLE);
+                mTreeThree.setVisibility(View.VISIBLE);
+                mTreeFour.setVisibility(View.VISIBLE);
+
+                mTitleOne.setVisibility(View.VISIBLE);
+                mTitleTwo.setVisibility(View.VISIBLE);
+                mTreeThree.setVisibility(View.VISIBLE);
+                mTitleFour.setVisibility(View.VISIBLE);
+
+                mTitleOne.setText(list.get(0).title);
+                mTitleTwo.setText(list.get(1).title);
+                mTitleThree.setText(list.get(2).title);
+                mTitleFour.setText(list.get(3).title);
+
+                ImageUtil.loadImage(this, mList.get(0).youth_img, mTreeOne, R.drawable.tree_mid1);
+                ImageUtil.loadImage(this, mList.get(1).youth_img, mTreeTwo, R.drawable.tree_mid2);
+                ImageUtil.loadImage(this, mList.get(2).youth_img, mTreeThree, R.drawable.tree_mid3);
+                ImageUtil.loadImage(this, mList.get(3).youth_img, mTreeFour, R.drawable.tree_mid4);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tree_one:
+                ((MainActivity) getActivity()).onMyTreeClick(2, 1);
+                break;
+            case R.id.tree_two:
+                ((MainActivity) getActivity()).onMyTreeClick(2, 2);
+                break;
+            case R.id.tree_three:
+                ((MainActivity) getActivity()).onMyTreeClick(2, 3);
+                break;
+            case R.id.tree_four:
+                ((MainActivity) getActivity()).onMyTreeClick(2, 4);
+                break;
+        }
+    }
 }

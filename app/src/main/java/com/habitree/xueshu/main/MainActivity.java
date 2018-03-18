@@ -148,8 +148,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
-    public void onMyTreeClick(String s){
-        mMeFragment.onTreeClick(s);
+    public void onMyTreeClick(int whichView,int whichTree){
+        mMeFragment.onTreeClick(whichView,whichTree);
     }
 
     @Override

@@ -7,8 +7,10 @@ import com.habitree.xueshu.xs.apis.Api;
 import com.habitree.xueshu.xs.Constant;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -55,37 +57,17 @@ public class HttpManager {
         return mApis;
     }
 
-    /**
-     * 其实也是将File封装成RequestBody，然后再封装成Part，<br>
-     * 不同的是使用MultipartBody.Builder来构建MultipartBody
-     * @param key 同上
-     * @param filePaths 同
-     */
-    public MultipartBody filesToMultipartBody(String key, String[] filePaths) {
+    public List<MultipartBody.Part> filesToList(String key, String[] filePaths){
         if (filePaths==null){
             return null;
         }
-        MultipartBody.Builder builder = new MultipartBody.Builder();
+        List<MultipartBody.Part> list = new ArrayList<>();
         for (String filePath : filePaths) {
             File file = new File(filePath);
-            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-            builder.addFormDataPart(key, file.getName(), requestBody);
+            RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+            list.add(MultipartBody.Part.createFormData("images", file.getName(), body));
         }
-        builder.setType(MultipartBody.FORM);
-        return builder.build();
-    }
-
-    public Map<String,RequestBody> filesToMap(String key, String[] filePaths){
-        if (filePaths==null){
-            return null;
-        }
-        Map<String,RequestBody> bodyMap = new HashMap<>();
-        for (String filePath : filePaths) {
-            File file = new File(filePath);
-            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-            bodyMap.put(key,requestBody);
-        }
-        return bodyMap;
+        return list;
     }
 
     public MultipartBody.Part imageFileToRequestBody(String filePath){

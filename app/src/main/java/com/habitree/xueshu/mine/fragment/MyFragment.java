@@ -7,12 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
@@ -22,18 +19,19 @@ import com.habitree.xueshu.mine.activity.MyHabitsActivity;
 import com.habitree.xueshu.mine.activity.MyInfoActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
 import com.habitree.xueshu.mine.activity.SignedInNumberActivity;
-import com.habitree.xueshu.mine.presenter.MyPresenter;
-import com.habitree.xueshu.mine.pview.MyView;
-import com.habitree.xueshu.xs.Constant;
+import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
+import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
+import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.UserManager;
-import com.habitree.xueshu.xs.view.CustomItemView;
-import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
+import java.util.List;
 
-public class MyFragment extends BaseFragment implements MyView,View.OnClickListener{
+
+public class MyFragment extends BaseFragment implements HabitView.HabitListView,View.OnClickListener{
 
     private TextView mNameTv;
     private ImageView mHabitIv;
@@ -48,13 +46,16 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
     private TextView mHabitTextTv;
     private TextView mStartTimeTv;
     private TextView mEndTimeTv;
-    private LinearLayout mCountLl;
+    private TextView mWatchTv;
+//    private LinearLayout mCountLl;
     private LinearLayout mCompletedLl;
     private LinearLayout mOngoingLl;
     private LinearLayout mHeadLl;
     private ViewPager mTreeVp;
-
     private Fragment[] mFragments;
+    private HabitPresenter mPresenter;
+    private List<HabitListResponse.Data.Habit> mHabits;
+    private HabitListResponse.Data.Habit mCurrentHabit;
 
     @Override
     protected int setLayoutId() {
@@ -76,21 +77,23 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         mHabitTextTv = view.findViewById(R.id.habit_text_tv);
         mStartTimeTv = view.findViewById(R.id.start_time_tv);
         mEndTimeTv = view.findViewById(R.id.end_time_tv);
-        mCountLl = view.findViewById(R.id.count_ll);
+//        mCountLl = view.findViewById(R.id.count_ll);
         mCompletedLl = view.findViewById(R.id.completed_ll);
         mOngoingLl = view.findViewById(R.id.ongoing_ll);
         mTreeVp = view.findViewById(R.id.tree_vp);
         mHeadLl = view.findViewById(R.id.head_ll);
+        mWatchTv = view.findViewById(R.id.watch_tv);
+        mPresenter = new HabitPresenter(getContext());
     }
 
     @Override
     protected void initListener() {
         mHabitIv.setOnClickListener(this);
         mSettingIv.setOnClickListener(this);
-        mCountLl.setOnClickListener(this);
         mCompletedLl.setOnClickListener(this);
         mOngoingLl.setOnClickListener(this);
         mHeadLl.setOnClickListener(this);
+        mWatchTv.setOnClickListener(this);
     }
 
     @Override
@@ -112,9 +115,20 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         return fragment;
     }
 
-    public void onTreeClick(String s){
-        mHabitNameTv.setText(s);
-        mHabitTextTv.setText(s);
+    public void onTreeClick(int whichView,int whichTree){
+        switch (whichView){
+            case 1:
+                mCurrentHabit = mHabits.get(whichTree+3);
+                break;
+            case 2:
+                mCurrentHabit = mHabits.get(whichTree-1);
+                break;
+            case 3:
+                mCurrentHabit = mHabits.get(whichTree+6);
+                break;
+        }
+        mWatchTv.setVisibility(View.VISIBLE);
+        mHabitNameTv.setText(mCurrentHabit.title);
     }
 
     @Override
@@ -126,9 +140,6 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
             case R.id.setting_iv:
                 startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
-            case R.id.count_ll:
-                startActivity(new Intent(getContext(), SignedInNumberActivity.class));
-                break;
             case R.id.completed_ll:
                 HabitOngoingOrNotActivity.start(getContext(),true);
                 break;
@@ -137,6 +148,13 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
                 break;
             case R.id.head_ll:
                 startActivity(new Intent(getContext(), MyInfoActivity.class));
+                break;
+            case R.id.watch_tv:
+                if (mCurrentHabit==null){
+                    showToast("请选择一棵树");
+                }else {
+                    HabitDetailActivity.start(getContext(),mCurrentHabit.habit_id);
+                }
                 break;
         }
     }
@@ -151,6 +169,7 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
 
     //要刷新的UI操作放这里
     public void updateData(){
+        showLoadingDialog();
         User user = UserManager.getManager().getUser();
         mNameTv.setText(user.nickname);
         ImageUtil.loadImage(getActivity(),user.portrait,mHeadRiv);
@@ -159,12 +178,20 @@ public class MyFragment extends BaseFragment implements MyView,View.OnClickListe
         mRateTv.setText(String.valueOf(user.sign_rate));
         mCompletedTv.setText(String.format(getString(R.string.num_number),user.finish_cnt));
         mOngoingTv.setText(String.format(getString(R.string.num_number),user.going_cnt));
+        mPresenter.getHabitListGoing(this);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        updateData();
+    public void onListGetSuccess(HabitListResponse.Data data) {
+        mHabits = data.list;
+        ((MidTreeFragment)mFragments[1]).updateData(mHabits);
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void onListGetFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
     }
 
     private class TreePagerAdapter extends FragmentPagerAdapter{

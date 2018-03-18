@@ -146,7 +146,7 @@
             </LinearLayout>
 
             <com.habitree.xueshu.xs.view.CustomItemView
-                android:id="@+id/duration_civ"
+                android:id="@+id/super_civ"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_item_height"
                 app:title="@string/supervisor"

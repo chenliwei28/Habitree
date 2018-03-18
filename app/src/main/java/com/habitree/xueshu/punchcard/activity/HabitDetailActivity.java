@@ -2,7 +2,6 @@ package com.habitree.xueshu.punchcard.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,19 +12,13 @@ import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.util.AppManager;
-import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ImageUtil;
-import com.habitree.xueshu.xs.view.AppleDialog;
+import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
-import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.MyDialog;
 import com.habitree.xueshu.xs.view.RoundImageView;
 import com.habitree.xueshu.xs.view.calendarview.Calendar;
 import com.habitree.xueshu.xs.view.calendarview.CalendarView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HabitDetailActivity extends BaseActivity implements HabitView.HabitDetailView,View.OnClickListener {
 
@@ -36,11 +29,11 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
     private TextView mCountTv;
     private CustomItemView mReminderCiv;
     private CustomItemView mRepeatCiv;
-    private CustomItemView mDurationCiv;
+    private CustomItemView mSuperCiv;
     private CustomItemView mPrivacyCiv;
     private CustomItemView mModCiv;
     private CustomItemView mPenaltyCiv;
-    private CustomItemView mPaidCiv;
+//    private CustomItemView mPaidCiv;
     private CustomItemView mFosterCiv;
     private CustomItemView mTotalCiv;
     private CustomItemView mContinuousCiv;
@@ -72,11 +65,11 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         mCountTv = findViewById(R.id.count_tv);
         mReminderCiv = findViewById(R.id.reminder_civ);
         mRepeatCiv = findViewById(R.id.repeat_civ);
-        mDurationCiv = findViewById(R.id.duration_civ);
+        mSuperCiv = findViewById(R.id.super_civ);
         mPrivacyCiv = findViewById(R.id.privacy_civ);
         mModCiv = findViewById(R.id.mod_civ);
         mPenaltyCiv = findViewById(R.id.penalty_civ);
-        mPaidCiv = findViewById(R.id.paid_civ);
+//        mPaidCiv = findViewById(R.id.paid_civ);
         mFosterCiv = findViewById(R.id.foster_civ);
         mTotalCiv = findViewById(R.id.total_civ);
         mContinuousCiv = findViewById(R.id.continuous_civ);
@@ -169,10 +162,49 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         mNameTv.setText(detail.title);
         String count = detail.now_days+"/"+detail.recycle_days;
         mCountTv.setText(count);
-        mDurationCiv.setDetail(String.format(getString(R.string.num_days),detail.recycle_days));
+        mSuperCiv.setDetail(detail.check_meminfo.nickname);
+        mReminderCiv.setDetail(TimeUtil.millisToString("HH:mm",detail.remind_time));
+        String[] rs = detail.recycle.split("");
+        boolean[] b = new boolean[rs.length];
+        String[] wes = {"日","一","二","三","四","五","六"};
+        for (int i = 0;i<7;i++){
+            if (rs[i].equals("1")){
+                b[i] = true;
+            }else {
+                b[i] = false;
+            }
+        }
+        StringBuilder builder = new StringBuilder();
+        if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&b[6]){
+            builder.append("每天");
+        }else if (!b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&!b[6]){
+            builder.append("工作日");
+        }else {
+            builder.append("周");
+            for (int i=0;i<7;i++){
+                builder.append(b[i]?wes[i]:"");
+                if (i<6){
+                    builder.append(b[i]?"、":"");
+                }
+            }
+        }
+        mRepeatCiv.setDetail(builder.toString());
         mModCiv.setDetail(detail.record_type==1?getString(R.string.text):getString(R.string.text_and_image));
         mPrivacyCiv.setDetail(detail.is_private==1?getString(R.string.only_you_can_see):getString(R.string.public_to_everyone));
         mPenaltyCiv.setDetail(String.format(getString(R.string.num_price),detail.unit_price));
+        if (detail.status==1){
+            mFosterCiv.setDetail(getString(R.string.ongoing));
+        }else if (detail.status==2){
+            mFosterCiv.setDetail(getString(R.string.completed));
+        }else {
+            mFosterCiv.setDetail(getString(R.string.abandoned));
+        }
+        mTotalCiv.setDetail(String.valueOf(detail.sign_cnt));
+        mContinuousCiv.setDetail(String.valueOf(detail.keep_sign_cnt));
+        mRateCiv.setDetail((detail.sign_cnt/detail.now_days)*100+"%");
+        int c = detail.now_days-detail.sign_cnt;
+        int money = c>0?detail.unit_price*c:0;
+        mNeedCiv.setDetail(String.valueOf(money));
         hideLoadingDialog();
     }
 
