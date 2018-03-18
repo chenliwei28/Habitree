@@ -8,25 +8,29 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.bean.ChargeListResponse;
+
+import java.util.List;
 
 
 public class TransactionRecordAdapter extends BaseAdapter{
 
-    private String[] aa = {"1","2","3","4","5","6"};
+    private List<ChargeListResponse.Data> mList;
     private Context mContext;
 
-    public TransactionRecordAdapter(Context context){
+    public TransactionRecordAdapter(Context context,List<ChargeListResponse.Data> list){
         mContext = context;
+        mList = list;
     }
 
     @Override
     public int getCount() {
-        return aa.length;
+        return mList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return aa[position];
+        return mList.get(position);
     }
 
     @Override
@@ -47,9 +51,17 @@ public class TransactionRecordAdapter extends BaseAdapter{
         }else {
             holder = (TransactionRecordViewHolder) convertView.getTag();
         }
-
-        holder.numTv.setText("+999元");
+        ChargeListResponse.Data data = mList.get(position);
+        holder.numTv.setText(data.amount);
+        holder.nameTv.setText(data.payway);
+        holder.timeTv.setText(data.create_time);
         return convertView;
+    }
+
+    public void updateData(List<ChargeListResponse.Data> list){
+        if (mList==null)mList=list;
+        else mList.addAll(list);
+        notifyDataSetChanged();
     }
 
     class TransactionRecordViewHolder{

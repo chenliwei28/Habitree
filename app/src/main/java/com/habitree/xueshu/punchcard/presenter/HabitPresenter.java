@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
+import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
@@ -109,9 +110,11 @@ public class HabitPresenter extends BasePresenter {
                     @Override
                     public void onResponse(Call<HabitListResponse> call, Response<HabitListResponse> response) {
                         if (response.body()!=null){
-                            view.onListGetSuccess(response.body().data);
-                        }else {
-                            view.onListGetFailed(CommUtil.unicode2Chinese(response.body().info));
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onListGetSuccess(response.body().data);
+                            }else {
+                                view.onListGetFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
                         }
                     }
 
@@ -263,5 +266,32 @@ public class HabitPresenter extends BasePresenter {
                         view.onRecordSendFailed(mContext.getString(R.string.network_error));
                     }
                 });
+    }
+
+    public void getHabitDetail(int habitId, final HabitView.HabitDetailView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().getHabitDetail(timestamp,CommUtil.getSign(Constant.GET_HABIT_DETAIL_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,habitId)
+                .enqueue(new Callback<HabitDetailResponse>() {
+                    @Override
+                    public void onResponse(Call<HabitDetailResponse> call, Response<HabitDetailResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onHabitDetailGetSuccess(response.body().data);
+                            }else {
+                                view.onHabitDetailGetFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<HabitDetailResponse> call, Throwable t) {
+                        view.onHabitDetailGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    private void getRecordList(){
+
     }
 }

@@ -10,6 +10,7 @@
     tools:context="com.habitree.xueshu.message.activity.AuditRecordActivity">
 
     <com.habitree.xueshu.xs.view.MyActionBar
+        android:id="@+id/record_ma"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
         app:title_text="@string/audit_record" />
@@ -132,13 +133,13 @@
                 android:background="@color/white"
                 android:textSize="14sp"
                 android:textColor="@color/black_text"
-                tools:text="审核已通过：哈哈哈哈哈哈"/>
-
-            <View style="@style/Line" />
+                tools:text="审核已通过：哈哈哈哈哈哈"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/btn_ll"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 

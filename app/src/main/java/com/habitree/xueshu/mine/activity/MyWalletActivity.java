@@ -6,16 +6,21 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.bean.Wallet;
+import com.habitree.xueshu.mine.presenter.MyPresenter;
+import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
 
-public class MyWalletActivity extends BaseActivity implements View.OnClickListener {
+public class MyWalletActivity extends BaseActivity implements View.OnClickListener,MyView.MyWalletView {
 
     private TextView mTopUpTv;
     private TextView mWithdrawTv;
+    private TextView mBalanceTv;
     private CustomItemView mTransactionRecordCiv;
     private CustomItemView mPaymentRecordCiv;
+    private MyPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
@@ -31,8 +36,10 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
     protected void initView() {
         mTopUpTv = findViewById(R.id.top_up_tv);
         mWithdrawTv = findViewById(R.id.withdraw_tv);
+        mBalanceTv = findViewById(R.id.balance_tv);
         mTransactionRecordCiv = findViewById(R.id.transaction_record_civ);
         mPaymentRecordCiv = findViewById(R.id.payment_record_civ);
+        mPresenter = new MyPresenter(this);
     }
 
     @Override
@@ -46,6 +53,10 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void initData() {
 
+    }
+
+    private void updateData(){
+        mPresenter.getMyWalletInfo(this);
     }
 
     @Override
@@ -64,5 +75,21 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
                 startActivity(new Intent(this,PaymentRecordActivity.class));
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateData();
+    }
+
+    @Override
+    public void onWalletInfoGetSuccess(Wallet wallet) {
+        mBalanceTv.setText(wallet.balance);
+    }
+
+    @Override
+    public void onWalletInfoGetFailed(String reason) {
+        showToast(reason);
     }
 }

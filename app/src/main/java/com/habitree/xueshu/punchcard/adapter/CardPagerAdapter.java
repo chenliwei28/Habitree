@@ -22,6 +22,7 @@ public class CardPagerAdapter extends PagerAdapter {
     private List<HabitListResponse.Data.Habit> mList;
     private Context context;
     private CardClickListener listener;
+    private int mChildCount;
 
     public CardPagerAdapter(Context context,List<HabitListResponse.Data.Habit> list) {
         this.context = context;
@@ -105,6 +106,21 @@ public class CardPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position,@NonNull Object object) {
         container.removeView((View) object);
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        mChildCount = getCount();
+        super.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        if (mChildCount > 0) {
+            mChildCount--;
+            return POSITION_NONE;
+        }
+        return super.getItemPosition(object);
     }
 
     public void setListener(CardClickListener listener){

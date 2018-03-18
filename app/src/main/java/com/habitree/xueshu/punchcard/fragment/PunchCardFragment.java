@@ -66,7 +66,6 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     @Override
     protected void initData() {
         mPresenter.initInfo();
-        updateData();
     }
 
     public static PunchCardFragment newInstance() {
@@ -100,7 +99,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
             mAdapter.setListener(new CardPagerAdapter.CardClickListener() {
                 @Override
                 public void detailClick(int position) {
-                    startActivity(new Intent(getContext(), HabitDetailActivity.class));
+                    HabitDetailActivity.start(getContext(),mHabits.list.get(position).habit_id);
                 }
 
                 @Override

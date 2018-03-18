@@ -30,6 +30,7 @@
     <string name="dian_zan">点赞</string>
     <string name="punch_card">打卡</string>
     <string name="audit_record">打卡审核</string>
+    <string name="punch_card_record">打卡记录</string>
     <string name="login_success">登录成功</string>
     <string name="pending_matters">待处理事项</string>
     <string name="times_of_punch_card">打卡数</string>

@@ -1,5 +1,6 @@
 package com.habitree.xueshu.punchcard.pview;
 
+import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
@@ -32,5 +33,10 @@ public interface HabitView extends BaseView {
     interface SendRecordView{
         void onRecordSendSuccess();
         void onRecordSendFailed(String reason);
+    }
+
+    interface HabitDetailView{
+        void onHabitDetailGetSuccess(HabitDetailResponse.HabitDetail detail);
+        void onHabitDetailGetFailed(String reason);
     }
 }

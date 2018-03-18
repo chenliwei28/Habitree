@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
-
+//充值
 public class TopUpActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText mNumEt;

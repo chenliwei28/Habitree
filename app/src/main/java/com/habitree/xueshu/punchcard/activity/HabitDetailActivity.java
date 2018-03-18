@@ -1,15 +1,21 @@
 package com.habitree.xueshu.punchcard.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
+import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyActionBar;
@@ -21,7 +27,7 @@ import com.habitree.xueshu.xs.view.calendarview.CalendarView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HabitDetailActivity extends BaseActivity implements HabitView,View.OnClickListener {
+public class HabitDetailActivity extends BaseActivity implements HabitView.HabitDetailView,View.OnClickListener {
 
     private CalendarView mDetailCv;
     private RoundImageView mHeadRiv;
@@ -44,10 +50,17 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
     private ImageView mPreMonthIv;
     private ImageView mNextMonthIv;
     private TextView mMonthTv;
+    private HabitPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
         return R.layout.activity_habit_detail;
+    }
+
+    public static void start(Context context,int habitId){
+        Intent intent = new Intent(context,HabitDetailActivity.class);
+        intent.putExtra(Constant.ID,habitId);
+        context.startActivity(intent);
     }
 
     @Override
@@ -76,6 +89,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
         mDetailCv.setCanSelected(false);
         String da = mDetailCv.getCurYear()+"."+mDetailCv.getCurMonth();
         mMonthTv.setText(da);
+        mPresenter = new HabitPresenter(this);
     }
 
     @Override
@@ -99,14 +113,16 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
 
     @Override
     protected void initData() {
-        List<Calendar> calendars = new ArrayList<>();
-        Calendar c = new Calendar();
-        c.setYear(2017);
-        c.setMonth(12);
-        c.setDay(31);
-        c.setScheme(".");
-        calendars.add(c);
-        mDetailCv.setSchemeDate(calendars);
+//        List<Calendar> calendars = new ArrayList<>();
+//        Calendar c = new Calendar();
+//        c.setYear(2017);
+//        c.setMonth(12);
+//        c.setDay(31);
+//        c.setScheme(".");
+//        calendars.add(c);
+//        mDetailCv.setSchemeDate(calendars);
+        showLoadingDialog();
+        mPresenter.getHabitDetail(getIntent().getIntExtra(Constant.ID,0),this);
     }
 
     @Override
@@ -135,5 +151,34 @@ public class HabitDetailActivity extends BaseActivity implements HabitView,View.
                     }
                 });
         dialog.show();
+    }
+
+    @Override
+    public void onHabitDetailGetSuccess(HabitDetailResponse.HabitDetail detail) {
+        switch (detail.status){
+            case 1:
+                ImageUtil.loadImage(this,detail.youth_img,mHeadRiv);
+                break;
+            case 2:
+                ImageUtil.loadImage(this,detail.elder_img,mHeadRiv);
+                break;
+            case 3:
+                ImageUtil.loadImage(this,detail.death_img,mHeadRiv);
+                break;
+        }
+        mNameTv.setText(detail.title);
+        String count = detail.now_days+"/"+detail.recycle_days;
+        mCountTv.setText(count);
+        mDurationCiv.setDetail(String.format(getString(R.string.num_days),detail.recycle_days));
+        mModCiv.setDetail(detail.record_type==1?getString(R.string.text):getString(R.string.text_and_image));
+        mPrivacyCiv.setDetail(detail.is_private==1?getString(R.string.only_you_can_see):getString(R.string.public_to_everyone));
+        mPenaltyCiv.setDetail(String.format(getString(R.string.num_price),detail.unit_price));
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void onHabitDetailGetFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
     }
 }

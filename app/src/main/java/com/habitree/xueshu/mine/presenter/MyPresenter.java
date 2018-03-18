@@ -6,6 +6,8 @@ import android.content.Context;
 import com.baidu.platform.comapi.map.N;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
+import com.habitree.xueshu.mine.bean.ChargeListResponse;
+import com.habitree.xueshu.mine.bean.MyWalletResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.BaseApp;
@@ -83,6 +85,52 @@ public class MyPresenter extends BasePresenter{
                     @Override
                     public void onFailure(Call<ChangeInfoResponse> call, Throwable t) {
                         view.onChangeFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void getMyWalletInfo(final MyView.MyWalletView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().getMyWallet(timestamp,CommUtil.getSign(Constant.GET_MY_WALLET_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token)
+                .enqueue(new Callback<MyWalletResponse>() {
+                    @Override
+                    public void onResponse(Call<MyWalletResponse> call, Response<MyWalletResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onWalletInfoGetSuccess(response.body().data);
+                            }else {
+                                view.onWalletInfoGetFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MyWalletResponse> call, Throwable t) {
+                        view.onWalletInfoGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void getChargeList(int page, final MyView.ChargeListView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().getChargeList(timestamp,CommUtil.getSign(Constant.GET_CHARGE_LIST_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,page,100,0)
+                .enqueue(new Callback<ChargeListResponse>() {
+                    @Override
+                    public void onResponse(Call<ChargeListResponse> call, Response<ChargeListResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onChargeListGetSuccess(response.body().data);
+                            }else {
+                                view.onChargeListGetFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChargeListResponse> call, Throwable t) {
+                        view.onChargeListGetFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

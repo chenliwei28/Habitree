@@ -1,10 +1,16 @@
 package com.habitree.xueshu.xs.util;
 
 
+import android.support.annotation.NonNull;
+
 import com.habitree.xueshu.xs.apis.Api;
 import com.habitree.xueshu.xs.Constant;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -57,7 +63,7 @@ public class HttpManager {
      */
     public MultipartBody filesToMultipartBody(String key, String[] filePaths) {
         if (filePaths==null){
-            return new MultipartBody.Builder().build();
+            return null;
         }
         MultipartBody.Builder builder = new MultipartBody.Builder();
         for (String filePath : filePaths) {
@@ -67,6 +73,19 @@ public class HttpManager {
         }
         builder.setType(MultipartBody.FORM);
         return builder.build();
+    }
+
+    public Map<String,RequestBody> filesToMap(String key, String[] filePaths){
+        if (filePaths==null){
+            return null;
+        }
+        Map<String,RequestBody> bodyMap = new HashMap<>();
+        for (String filePath : filePaths) {
+            File file = new File(filePath);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            bodyMap.put(key,requestBody);
+        }
+        return bodyMap;
     }
 
     public MultipartBody.Part imageFileToRequestBody(String filePath){

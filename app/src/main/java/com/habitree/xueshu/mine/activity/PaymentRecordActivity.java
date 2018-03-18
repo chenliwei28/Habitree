@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.adapter.PaymentRecordAdapter;
 import com.habitree.xueshu.xs.activity.BaseActivity;
-
+//罚金收支记录
 public class PaymentRecordActivity extends BaseActivity {
 
     private TextView mIncomeTv;

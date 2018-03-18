@@ -15,9 +15,12 @@ import com.habitree.xueshu.message.bean.MsgDetailResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
+import com.habitree.xueshu.mine.bean.ChargeListResponse;
+import com.habitree.xueshu.mine.bean.MyWalletResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
+import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
@@ -302,4 +305,29 @@ public interface Api {
                                       @Part("habit_id") RequestBody id,
                                       @Part("content") RequestBody content,
                                       @Part("images") MultipartBody files);
+
+    //获取我的钱包
+    @FormUrlEncoded
+    @POST(Constant.GET_MY_WALLET_FUNCTION)
+    Call<MyWalletResponse> getMyWallet(@Field("timestamp") String timestamp,
+                                       @Field("sign") String sign,
+                                       @Field("user_token") String token);
+
+    //获取交易记录
+    @FormUrlEncoded
+    @POST(Constant.GET_CHARGE_LIST_FUNCTION)
+    Call<ChargeListResponse> getChargeList(@Field("timestamp") String timestamp,
+                                           @Field("sign") String sign,
+                                           @Field("user_token") String token,
+                                           @Field("page") int page,
+                                           @Field("offset") int offset,
+                                           @Field("type")int type);
+
+    //获取习惯详情
+    @FormUrlEncoded
+    @POST(Constant.GET_HABIT_DETAIL_FUNCTION)
+    Call<HabitDetailResponse> getHabitDetail(@Field("timestamp") String timestamp,
+                                             @Field("sign") String sign,
+                                             @Field("user_token") String token,
+                                             @Field("habit_id") int habitId);
 }

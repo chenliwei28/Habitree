@@ -22,13 +22,14 @@
             app:title_text="@string/my_wallet"/>
 
         <TextView
+            android:id="@+id/balance_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="30sp"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:text="888.00"/>
+            tools:text="888.00"/>
 
         <TextView
             android:layout_width="wrap_content"

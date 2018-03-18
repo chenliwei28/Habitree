@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@color/background"
     tools:context="com.habitree.xueshu.mine.activity.TransactionRecordActivity">
 
     <com.habitree.xueshu.xs.view.MyActionBar
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/transaction_record"/>
+        app:title_text="@string/transaction_record" />
+
 
     <ListView
         android:id="@+id/record_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/line"
-        android:dividerHeight="0.5dp"/>
+        android:dividerHeight="0.5dp" />
 </LinearLayout>
