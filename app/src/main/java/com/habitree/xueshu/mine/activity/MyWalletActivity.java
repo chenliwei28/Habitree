@@ -56,6 +56,7 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void updateData(){
+        showLoadingDialog();
         mPresenter.getMyWalletInfo(this);
     }
 
@@ -85,11 +86,13 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onWalletInfoGetSuccess(Wallet wallet) {
+        hideLoadingDialog();
         mBalanceTv.setText(wallet.balance);
     }
 
     @Override
     public void onWalletInfoGetFailed(String reason) {
+        hideLoadingDialog();
         showToast(reason);
     }
 }

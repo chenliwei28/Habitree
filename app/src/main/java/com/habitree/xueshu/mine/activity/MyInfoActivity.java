@@ -17,6 +17,7 @@ import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
@@ -24,6 +25,7 @@ import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
+import com.habitree.xueshu.xs.view.MyInputDialog;
 import com.habitree.xueshu.xs.view.RoundImageView;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -45,6 +47,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private CustomItemView mSexCiv;
     private CustomItemView mBirthdayCiv;
     private AppleDialog mHeadDialog;
+    private MyInputDialog mNameDialog;
     private AppleDialog mGenderDialog;
     private TimePickerView mTimePicker;
     private MyPresenter mPresenter;
@@ -101,7 +104,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 showHeadDialog();
                 break;
             case R.id.name_civ:
-
+                showNameDialog();
                 break;
             case R.id.sex_civ:
                 showGenderDialog();
@@ -153,6 +156,23 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             .commit();
         }
         mHeadDialog.show();
+    }
+
+    private void showNameDialog(){
+        if (mNameDialog==null){
+            mNameDialog = new MyInputDialog(this)
+                    .builder().setTitle("设置昵称")
+                    .setConfirmClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            CommUtil.hideSoftInput(MyInfoActivity.this);
+                            mNameDialog.dismiss();
+                            showLoadingDialog();
+                            mPresenter.changeNickname(mNameDialog.getInputText(),MyInfoActivity.this);
+                        }
+                    });
+        }
+        mNameDialog.show();
     }
 
     private void showTimePicker(){

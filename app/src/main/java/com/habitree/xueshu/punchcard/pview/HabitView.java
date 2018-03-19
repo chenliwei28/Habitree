@@ -39,4 +39,9 @@ public interface HabitView extends BaseView {
         void onHabitDetailGetSuccess(HabitDetailResponse.HabitDetail detail);
         void onHabitDetailGetFailed(String reason);
     }
+
+    interface GiveUpView{
+        void onGiveUpSuccess();
+        void onGiveUpFailed(String reason);
+    }
 }

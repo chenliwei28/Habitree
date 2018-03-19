@@ -1,5 +1,6 @@
 package com.habitree.xueshu.mine.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,25 +9,31 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.bean.ForfeitListResponse;
+import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
+
+import java.util.List;
 
 
 public class PaymentRecordAdapter extends BaseAdapter {
 
     private Context mContext;
+    private List<ForfeitListResponse.Data.Forfeit> mList;
 
-    public PaymentRecordAdapter(Context context){
+    public PaymentRecordAdapter(Context context,List<ForfeitListResponse.Data.Forfeit> list){
         mContext = context;
+        mList = list;
     }
 
     @Override
     public int getCount() {
-        return 6;
+        return mList.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return position;
+    public ForfeitListResponse.Data.Forfeit getItem(int position) {
+        return mList.get(position);
     }
 
     @Override
@@ -49,7 +56,18 @@ public class PaymentRecordAdapter extends BaseAdapter {
         }else {
             holder = (PaymentRecordViewHolder) convertView.getTag();
         }
+        ForfeitListResponse.Data.Forfeit forfeit = mList.get(position);
+        holder.nameTv.setText(forfeit.nickname);
+        holder.numTv.setText(forfeit.amount);
+        holder.timeTv.setText(forfeit.create_time);
+        holder.stateTv.setText(forfeit.title);
         return convertView;
+    }
+
+    public void updateData(List<ForfeitListResponse.Data.Forfeit> list){
+        if (mList==null)mList = list;
+        else mList.addAll(list);
+        notifyDataSetChanged();
     }
 
     class PaymentRecordViewHolder{

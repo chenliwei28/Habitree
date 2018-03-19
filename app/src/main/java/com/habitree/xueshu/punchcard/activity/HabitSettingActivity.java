@@ -13,6 +13,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.AppleDialog;
@@ -89,15 +90,19 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.remind_civ:
+                CommUtil.hideSoftInput(this);
                 showTimePicker();
                 break;
             case R.id.repeat_civ:
+                CommUtil.hideSoftInput(this);
                 startActivityForResult(new Intent(HabitSettingActivity.this,RepeatDayActivity.class),Constant.NUM_109);
                 break;
             case R.id.duration_civ:
+                CommUtil.hideSoftInput(this);
                 startActivityForResult(new Intent(HabitSettingActivity.this,TimeSettingActivity.class),Constant.NUM_110);
                 break;
             case R.id.privacy_civ:
+                CommUtil.hideSoftInput(this);
                 showPrivacyDialog();
                 break;
             case R.id.record_civ:

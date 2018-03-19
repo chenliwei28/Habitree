@@ -1,6 +1,7 @@
 package com.habitree.xueshu.mine.pview;
 
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
+import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.Wallet;
 import com.habitree.xueshu.xs.presenter.BaseView;
 
@@ -22,5 +23,10 @@ public interface MyView extends BaseView {
     interface ChargeListView{
         void onChargeListGetSuccess(List<ChargeListResponse.Data> list);
         void onChargeListGetFailed(String reason);
+    }
+
+    interface ForfeitListView{
+        void onForfeitListGetSuccess(ForfeitListResponse.Data data);
+        void onForfeitListGetFailed(String reason);
     }
 }

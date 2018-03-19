@@ -1,6 +1,7 @@
 package com.habitree.xueshu.xs.util;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -9,6 +10,8 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 
 import com.habitree.xueshu.R;
@@ -227,6 +230,20 @@ public class CommUtil {
             }
         }
         return retBuf.toString();
+    }
+
+    /**
+     * Hide the soft input.
+     *
+     * @param activity The activity.
+     */
+    public static void hideSoftInput(final Activity activity) {
+        InputMethodManager imm =
+                (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (imm == null) return;
+        View view = activity.getCurrentFocus();
+        if (view == null) view = new View(activity);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     public static String formatDigit(double d, String pattern) {

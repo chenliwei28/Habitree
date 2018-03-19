@@ -67,4 +67,6 @@ public class Constant {
     public final static String GET_HABIT_DETAIL_FUNCTION = "v1/habit/info";
     public final static String GET_RECORD_LIST_FUNCTION = "v1/habit/sign/list";
     public final static String GET_RECORD_DETAIL_FUNCTION = "v1/habit/sign/info";
+    public final static String GIVE_UP_HABIT_FUNCTION = "v1/habit/giveup";
+    public final static String GET_FORFEIT_LIST_FUNCTION = "v1/user/forfeit/list";
 }

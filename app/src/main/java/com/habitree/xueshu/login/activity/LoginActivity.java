@@ -85,6 +85,7 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_btn:
+                CommUtil.hideSoftInput(this);
                 showLoadingDialog();
                 mPresenter.login(mPhoneLet.getContentText(),mPasswLet.getContentText(),this);
                 break;

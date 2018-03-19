@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
+import com.habitree.xueshu.punchcard.bean.GiveUpHabitResponse;
 import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.InitResponse;
@@ -291,6 +292,29 @@ public class HabitPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<HabitDetailResponse> call, Throwable t) {
                         view.onHabitDetailGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void giveUpHabit(int habitId, final HabitView.GiveUpView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().giveUpHabit(timestamp,CommUtil.getSign(Constant.GIVE_UP_HABIT_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,habitId)
+                .enqueue(new Callback<GiveUpHabitResponse>() {
+                    @Override
+                    public void onResponse(Call<GiveUpHabitResponse> call, Response<GiveUpHabitResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onGiveUpSuccess();
+                            }else {
+                                view.onGiveUpFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GiveUpHabitResponse> call, Throwable t) {
+                        view.onGiveUpFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

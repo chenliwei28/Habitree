@@ -61,6 +61,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.next_tv:
+                CommUtil.hideSoftInput(this);
                 checkPhoneAndToNext();
                 break;
         }

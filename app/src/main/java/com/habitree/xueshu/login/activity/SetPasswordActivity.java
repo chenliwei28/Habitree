@@ -93,6 +93,7 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
     }
 
     private void registerAndDone(){
+        CommUtil.hideSoftInput(this);
         String pas = mPasswordEt.getText().toString();
         String pasag = mAgainEt.getText().toString();
         if (!CommUtil.isPassword(this,pas))return;

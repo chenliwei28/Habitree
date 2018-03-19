@@ -6,7 +6,9 @@ import android.content.Context;
 import com.baidu.platform.comapi.map.N;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
+import com.habitree.xueshu.mine.bean.ChangeNickResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
+import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.mine.pview.MyView;
@@ -89,6 +91,29 @@ public class MyPresenter extends BasePresenter{
                 });
     }
 
+    public void changeNickname(String nickname, final MyView.ChangeInfoView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService()
+                .changeNickname(timestamp,CommUtil.getSign(Constant.CHANGE_NICKNAME_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,nickname)
+                .enqueue(new Callback<ChangeNickResponse>() {
+                    @Override
+                    public void onResponse(Call<ChangeNickResponse> call, Response<ChangeNickResponse> response) {
+                        if (CommUtil.isSuccess(mContext,response.body().status)){
+                            UserManager.getManager().updateUserNickname(response.body().data.nickname);
+                            view.onChangeSuccess();
+                        }else {
+                            view.onChangeFailed(response.body().info==null?mContext.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChangeNickResponse> call, Throwable t) {
+                        view.onChangeFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
     public void getMyWalletInfo(final MyView.MyWalletView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService().getMyWallet(timestamp,CommUtil.getSign(Constant.GET_MY_WALLET_FUNCTION,timestamp),
@@ -131,6 +156,29 @@ public class MyPresenter extends BasePresenter{
                     @Override
                     public void onFailure(Call<ChargeListResponse> call, Throwable t) {
                         view.onChargeListGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void getForfeitList(int page, final MyView.ForfeitListView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().getForfeitList(timestamp,CommUtil.getSign(Constant.GET_CHARGE_LIST_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,page,100,0,0)
+                .enqueue(new Callback<ForfeitListResponse>() {
+                    @Override
+                    public void onResponse(Call<ForfeitListResponse> call, Response<ForfeitListResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onForfeitListGetSuccess(response.body().data);
+                            }else {
+                                view.onForfeitListGetFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ForfeitListResponse> call, Throwable t) {
+                        view.onForfeitListGetFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

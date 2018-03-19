@@ -16,11 +16,14 @@ import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
+import com.habitree.xueshu.mine.bean.ChangeNickResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
+import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
+import com.habitree.xueshu.punchcard.bean.GiveUpHabitResponse;
 import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.InitResponse;
@@ -129,7 +132,7 @@ public interface Api {
     //修改昵称
     @FormUrlEncoded
     @POST(Constant.CHANGE_NICKNAME_FUNCTION)
-    Call<ChangeInfoResponse> changeNickname(@Field("timestamp") String timestamp,
+    Call<ChangeNickResponse> changeNickname(@Field("timestamp") String timestamp,
                                             @Field("sign") String sign,
                                             @Field("user_token") String token,
                                             @Field("nickname") String nickname);
@@ -329,6 +332,17 @@ public interface Api {
                                            @Field("offset") int offset,
                                            @Field("type")int type);
 
+    //获取罚金收支记录
+    @FormUrlEncoded
+    @POST(Constant.GET_FORFEIT_LIST_FUNCTION)
+    Call<ForfeitListResponse> getForfeitList(@Field("timestamp") String timestamp,
+                                             @Field("sign") String sign,
+                                             @Field("user_token") String token,
+                                             @Field("page") int page,
+                                             @Field("offset") int offset,
+                                             @Field("type")int type,
+                                             @Field("status")int status);
+
     //获取习惯详情
     @FormUrlEncoded
     @POST(Constant.GET_HABIT_DETAIL_FUNCTION)
@@ -337,10 +351,19 @@ public interface Api {
                                              @Field("user_token") String token,
                                              @Field("habit_id") int habitId);
 
+    //获取习惯打卡记录
     @FormUrlEncoded
     @POST(Constant.GET_RECORD_DETAIL_FUNCTION)
     Call<SignDetailResponse> getSignRecordDetail(@Field("timestamp") String timestamp,
                                                  @Field("sign") String sign,
                                                  @Field("user_token") String token,
                                                  @Field("sign_id") int signId);
+
+    //放弃习惯
+    @FormUrlEncoded
+    @POST(Constant.GIVE_UP_HABIT_FUNCTION)
+    Call<GiveUpHabitResponse> giveUpHabit(@Field("timestamp") String timestamp,
+                                          @Field("sign") String sign,
+                                          @Field("user_token") String token,
+                                          @Field("habit_id") int habitId);
 }

@@ -52,4 +52,9 @@ public class UserManager {
         user.birthday = birthday;
         user.update(1);
     }
+
+    public void updateUserNickname(String nickname){
+        user.nickname = nickname;
+        user.update(1);
+    }
 }

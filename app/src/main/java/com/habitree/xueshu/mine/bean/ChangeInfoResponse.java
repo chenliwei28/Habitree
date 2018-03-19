@@ -22,12 +22,12 @@ public class ChangeInfoResponse {
          */
 
         public int mem_id;
-        public Object realname;
-        public Object oneword;
-        public Object idcard;
+        public String realname;
+        public String oneword;
+        public String idcard;
         public int sex;
-        public Object auth_status;
-        public Object qq;
+        public String auth_status;
+        public String qq;
         public int birthday;
     }
 }

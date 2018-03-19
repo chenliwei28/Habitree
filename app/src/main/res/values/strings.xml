@@ -143,8 +143,8 @@
     <!--S-->
     <string name="birthday">生日</string>
     <string name="setting">设置</string>
-    <string name="income_num">收入：¥ %d</string>
-    <string name="expense_num">支出：¥ %d</string>
+    <string name="income_num">收入：¥ %s</string>
+    <string name="expense_num">支出：¥ %s</string>
     <string name="log_out">退出登录</string>
     <string name="set_password">设置密码</string>
     <string name="payment_record">罚金收支记录</string>

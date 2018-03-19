@@ -12,6 +12,7 @@ import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
@@ -20,7 +21,7 @@ import com.habitree.xueshu.xs.view.RoundImageView;
 import com.habitree.xueshu.xs.view.calendarview.Calendar;
 import com.habitree.xueshu.xs.view.calendarview.CalendarView;
 
-public class HabitDetailActivity extends BaseActivity implements HabitView.HabitDetailView,View.OnClickListener {
+public class HabitDetailActivity extends BaseActivity implements HabitView.HabitDetailView,View.OnClickListener,HabitView.GiveUpView {
 
     private CalendarView mDetailCv;
     private RoundImageView mHeadRiv;
@@ -43,6 +44,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
     private ImageView mPreMonthIv;
     private ImageView mNextMonthIv;
     private TextView mMonthTv;
+    private MyDialog mGiveUpDialog;
     private HabitPresenter mPresenter;
 
     @Override
@@ -134,16 +136,20 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
     }
 
     private void showAbandonDialog(){
-        MyDialog dialog = new MyDialog(this,R.style.MyDialog).builder()
-                .setTitle(getString(R.string.sure_abandon_habit))
-                .setDetail(getString(R.string.your_tree_will_turn_gray))
-                .setConfirmClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
-        dialog.show();
+        if (mGiveUpDialog==null){
+            mGiveUpDialog = new MyDialog(this,R.style.MyDialog).builder()
+                    .setTitle(getString(R.string.sure_abandon_habit))
+                    .setDetail(getString(R.string.your_tree_will_turn_gray))
+                    .setConfirmClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mGiveUpDialog.dismiss();
+                            showLoadingDialog();
+                            mPresenter.giveUpHabit(getIntent().getIntExtra(Constant.ID,0),HabitDetailActivity.this);
+                        }
+                    });
+        }
+        mGiveUpDialog.show();
     }
 
     @Override
@@ -210,6 +216,19 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
 
     @Override
     public void onHabitDetailGetFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
+    }
+
+    @Override
+    public void onGiveUpSuccess() {
+        hideLoadingDialog();
+        showToast(getString(R.string.abandoned));
+        AppManager.getAppManager().finishActivity(this);
+    }
+
+    @Override
+    public void onGiveUpFailed(String reason) {
         hideLoadingDialog();
         showToast(reason);
     }

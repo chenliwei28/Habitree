@@ -34,23 +34,23 @@ public class TransactionRecordActivity extends BaseActivity implements MyView.Ch
 
     @Override
     protected void initListener() {
-        mRecordLv.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView absListView, int i) {
-                if (i==SCROLL_STATE_IDLE){
-                    if (mRecordLv.getLastVisiblePosition()==mRecordLv.getCount()-1){
-                        showLoadingDialog();
-                        mCurrentPage++;
-                        mPresenter.getChargeList(mCurrentPage,TransactionRecordActivity.this);
-                    }
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-
-            }
-        });
+//        mRecordLv.setOnScrollListener(new AbsListView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(AbsListView absListView, int i) {
+//                if (i==SCROLL_STATE_IDLE){
+//                    if (mRecordLv.getLastVisiblePosition()==mRecordLv.getCount()-1){
+//                        showLoadingDialog();
+//                        mCurrentPage++;
+//                        mPresenter.getChargeList(mCurrentPage,TransactionRecordActivity.this);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+//
+//            }
+//        });
     }
 
     @Override
