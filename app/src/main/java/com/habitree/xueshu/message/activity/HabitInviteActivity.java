@@ -79,6 +79,31 @@ public class HabitInviteActivity extends BaseActivity implements View.OnClickLis
         mModCiv.setDetail(mMessage.habit_info.record_type==2?"文字+图片":"文字");
         mSettingCiv.setDetail(mMessage.habit_info.is_private==1?"仅自己和监督人可见":"公开");
         mMoneyCiv.setDetail(String.format(getString(R.string.num_price),mMessage.habit_info.amount));
+        String[] rs = mMessage.habit_info.recycle.split("");
+        boolean[] b = new boolean[rs.length];
+        String[] wes = {"日","一","二","三","四","五","六"};
+        for (int i = 0;i<7;i++){
+            if (rs[i].equals("1")){
+                b[i] = true;
+            }else {
+                b[i] = false;
+            }
+        }
+        StringBuilder builder = new StringBuilder();
+        if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&b[6]){
+            builder.append("每天");
+        }else if (!b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&!b[6]){
+            builder.append("工作日");
+        }else {
+            builder.append("周");
+            for (int i=0;i<7;i++){
+                builder.append(b[i]?wes[i]:"");
+                if (i<6){
+                    builder.append(b[i]?"、":"");
+                }
+            }
+        }
+        mRepeatCiv.setDetail(builder.toString());
     }
 
     @Override
@@ -86,11 +111,11 @@ public class HabitInviteActivity extends BaseActivity implements View.OnClickLis
         switch (view.getId()){
             case R.id.refuse_tv:
                 showLoadingDialog();
-                MessageManager.getManager().handleOtherMessage(this,mMessage,3,this);
+                MessageManager.getManager().handleOtherMessage(this,mMessage,3,null,this);
                 break;
             case R.id.accept_tv:
                 showLoadingDialog();
-                MessageManager.getManager().handleOtherMessage(this,mMessage,2,this);
+                MessageManager.getManager().handleOtherMessage(this,mMessage,2,null,this);
                 break;
         }
     }

@@ -58,8 +58,8 @@ public class User extends DataSupport{
         public String user_token;
         public int expire_time;
         public int join_days;
-        public int sign_cnt;
-        public int sign_rate;
+        public String sign_cnt;
+        public String sign_rate;
         public int going_cnt;
         public int finish_cnt;
         public Wallet wallet;

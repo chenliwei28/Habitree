@@ -18,6 +18,7 @@ import com.hyphenate.chat.EMClient;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
 
 
 public class CommUtil {
@@ -226,5 +227,10 @@ public class CommUtil {
             }
         }
         return retBuf.toString();
+    }
+
+    public static String formatDigit(double d, String pattern) {
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+        return decimalFormat.format(d);
     }
 }

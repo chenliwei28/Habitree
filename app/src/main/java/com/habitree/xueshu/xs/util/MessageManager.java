@@ -14,6 +14,7 @@ import com.habitree.xueshu.message.bean.MsgCountResponse;
 import com.habitree.xueshu.message.bean.MsgDetailResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
+import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.Constant;
 import com.hyphenate.chat.EMClient;
@@ -166,11 +167,11 @@ public class MessageManager {
     }
 
     //处理好友请求消息
-    public void handleFriendRequestMessage(final Context context, Message message, final int ftype, final MessageView.HandleFriendRequestMsgView view, final PendingMattersAdapter.PendingMattersViewHolder holder){
+    public void handleFriendRequestMessage(final Context context, Message message, final int ftype, String content,final MessageView.HandleFriendRequestMsgView view, final PendingMattersAdapter.PendingMattersViewHolder holder){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .handleMsg(timestamp,CommUtil.getSign(Constant.HANDLE_MSG_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,message.sender_id,message.id,message.type,message.haibit_id,ftype,message.sign_id)
+                        UserManager.getManager().getUser().user_token,message.sender_id,message.id,message.type,message.haibit_id,ftype,message.sign_id,content)
                 .enqueue(new Callback<AgreeFriendResponse>() {
                     @Override
                     public void onResponse(Call<AgreeFriendResponse> call, Response<AgreeFriendResponse> response) {
@@ -190,11 +191,11 @@ public class MessageManager {
                 });
     }
 
-    public void handleOtherMessage(final Context context, Message message, final int ftype, final MessageView.HandleOtherMsgView view){
+    public void handleOtherMessage(final Context context, Message message, final int ftype, String content,final MessageView.HandleOtherMsgView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .handleMsg(timestamp,CommUtil.getSign(Constant.HANDLE_MSG_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,message.sender_id,message.id,message.type,message.haibit_id,ftype,message.sign_id)
+                        UserManager.getManager().getUser().user_token,message.sender_id,message.id,message.type,message.haibit_id,ftype,message.sign_id,content)
                 .enqueue(new Callback<AgreeFriendResponse>() {
                     @Override
                     public void onResponse(Call<AgreeFriendResponse> call, Response<AgreeFriendResponse> response) {
@@ -214,26 +215,26 @@ public class MessageManager {
                 });
     }
 
-    //获取消息详情
-    public void getMsgDetail(final Context context, int msgId, final MessageView.MsgDetailView view){
+    //获取打卡审核详情
+    public void getRecordDetail(final Context context, int signId, final MessageView.MsgDetailView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
-                .getMsgDetail(timestamp,CommUtil.getSign(Constant.GET_MSG_DETAIL_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,msgId)
-                .enqueue(new Callback<MsgDetailResponse>() {
+                .getSignRecordDetail(timestamp,CommUtil.getSign(Constant.GET_RECORD_DETAIL_FUNCTION,timestamp),
+                        UserManager.getManager().getUser().user_token,signId)
+                .enqueue(new Callback<SignDetailResponse>() {
                     @Override
-                    public void onResponse(Call<MsgDetailResponse> call, Response<MsgDetailResponse> response) {
+                    public void onResponse(Call<SignDetailResponse> call, Response<SignDetailResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(context,response.body().status)){
-                                view.onMsgDetailGetSuccess();
+                                view.onMsgDetailGetSuccess(response.body().data);
                             }else {
-                                view.onMsgDetailGetFailed(response.body().info==null?context.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
+                                view.onMsgDetailGetFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<MsgDetailResponse> call, Throwable t) {
+                    public void onFailure(Call<SignDetailResponse> call, Throwable t) {
                         view.onMsgDetailGetFailed(context.getString(R.string.network_error));
                     }
                 });

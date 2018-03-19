@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:id="@+id/message_ll"
-    tools:context="com.habitree.xueshu.message.activity.MessageDetailActivity">
+    tools:context="com.habitree.xueshu.message.activity.ChatActivity">
 
 
 </LinearLayout>

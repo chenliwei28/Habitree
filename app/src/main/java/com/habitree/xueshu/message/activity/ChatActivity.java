@@ -9,7 +9,7 @@ import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 
 
-public class MessageDetailActivity extends BaseActivity {
+public class ChatActivity extends BaseActivity {
 
 
     @Override

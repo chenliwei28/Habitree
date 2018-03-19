@@ -14,6 +14,7 @@ import com.habitree.xueshu.message.bean.MsgCountResponse;
 import com.habitree.xueshu.message.bean.MsgDetailResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
+import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
@@ -262,7 +263,8 @@ public interface Api {
                                         @Field("type") int type,
                                         @Field("habit_id") int habit_id,
                                         @Field("ftype") int ftype,
-                                        @Field("sign_id") int sign_id);
+                                        @Field("sign_id") int sign_id,
+                                        @Field("content")String content);
 
     //获取我的习惯列表
     @FormUrlEncoded
@@ -334,4 +336,11 @@ public interface Api {
                                              @Field("sign") String sign,
                                              @Field("user_token") String token,
                                              @Field("habit_id") int habitId);
+
+    @FormUrlEncoded
+    @POST(Constant.GET_RECORD_DETAIL_FUNCTION)
+    Call<SignDetailResponse> getSignRecordDetail(@Field("timestamp") String timestamp,
+                                                 @Field("sign") String sign,
+                                                 @Field("user_token") String token,
+                                                 @Field("sign_id") int signId);
 }

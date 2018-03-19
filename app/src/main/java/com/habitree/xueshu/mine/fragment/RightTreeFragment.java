@@ -55,17 +55,24 @@ public class RightTreeFragment extends BaseFragment implements View.OnClickListe
     }
 
     public void updateData(List<HabitListResponse.Data.Habit> list) {
+        if (list==null)return;
         int len = list.size();
         switch (len) {
             case 0:
-                break;
             case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                break;
+            case 7:
                 mTreeOne.setVisibility(View.VISIBLE);
                 mTitleOne.setVisibility(View.VISIBLE);
                 mTitleOne.setText(list.get(0).title);
                 ImageUtil.loadImage(this, list.get(7).youth_img, mTreeOne, R.drawable.tree_mid1);
                 break;
-            case 2:
+            case 8:
                 mTreeOne.setVisibility(View.VISIBLE);
                 mTreeTwo.setVisibility(View.VISIBLE);
                 mTitleOne.setVisibility(View.VISIBLE);

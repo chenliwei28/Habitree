@@ -73,7 +73,7 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
                     if (message.type==2){
                         HabitInviteActivity.start(mContext,message);
                     }else {
-                        AuditRecordActivity.start(mContext,message.id,true);
+                        AuditRecordActivity.start(mContext,message,true);
                     }
                 }
             });
@@ -89,14 +89,14 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
             @Override
             public void onClick(View view) {
                 Message message = mList.get(holder.getAdapterPosition());
-                MessageManager.getManager().handleFriendRequestMessage(mContext, message, 2, PendingMattersAdapter.this, holder);
+                MessageManager.getManager().handleFriendRequestMessage(mContext, message, 2,null, PendingMattersAdapter.this, holder);
             }
         });
         holder.mNoIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Message message = mList.get(holder.getAdapterPosition());
-                MessageManager.getManager().handleFriendRequestMessage(mContext, message, 3, PendingMattersAdapter.this, holder);
+                MessageManager.getManager().handleFriendRequestMessage(mContext, message, 3, null,PendingMattersAdapter.this, holder);
             }
         });
     }

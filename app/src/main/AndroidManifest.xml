@@ -144,7 +144,7 @@
             android:name=".message.activity.FriendDetailsActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".message.activity.FriendForestActivity" />
-        <activity android:name=".message.activity.MessageDetailActivity" />
+        <activity android:name=".message.activity.ChatActivity" />
         <activity android:name=".message.activity.HabitInviteActivity" />
         <activity android:name=".mine.activity.MyInfoActivity" />
         <activity android:name=".message.activity.PendingMattersActivity" />

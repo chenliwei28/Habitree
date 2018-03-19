@@ -10,17 +10,14 @@ import android.widget.ListView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.activity.AddFriendActivity;
-import com.habitree.xueshu.message.activity.MessageDetailActivity;
+import com.habitree.xueshu.message.activity.ChatActivity;
 import com.habitree.xueshu.message.activity.MyFriendsActivity;
 import com.habitree.xueshu.message.activity.PendingMattersActivity;
 import com.habitree.xueshu.message.adapter.MessageAdapter;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
-import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.EaseConstant;
-
-import java.util.List;
 
 
 public class MessageFragment extends BaseFragment implements View.OnClickListener,MessageView.CvsListView{
@@ -52,7 +49,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 if (position==0){
                     startActivity(new Intent(getContext(), PendingMattersActivity.class));
                 }else {
-                    startActivity(new Intent(getContext(), MessageDetailActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, mAdapter.getItem(position).conversationId()));
+                    startActivity(new Intent(getContext(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, mAdapter.getItem(position).conversationId()));
                 }
             }
         });

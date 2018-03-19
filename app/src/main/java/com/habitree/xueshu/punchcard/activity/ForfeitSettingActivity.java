@@ -20,12 +20,15 @@ import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.view.CustomRadioGroup;
+import com.habitree.xueshu.xs.view.MyActionBar;
 
 import java.util.List;
 
 public class ForfeitSettingActivity extends BaseActivity implements View.OnClickListener{
 
+    private MyActionBar mActionBar;
     private CustomRadioGroup mNumCrg;
     private EditText mSumEt;
     private TextView mNumTv;
@@ -53,10 +56,27 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
         mNumTv = findViewById(R.id.num_tv);
         mPayTv = findViewById(R.id.pay_tv);
         mNoteTv = findViewById(R.id.note_tv);
+        mActionBar = findViewById(R.id.action_bar);
     }
 
     @Override
     protected void initListener() {
+        mActionBar.setBackIvClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mTotalMoney==0){
+                    setResult(Constant.NUM_111);
+                    AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
+                }else {
+                    int per = (int) (mTotalMoney/(mTotalTimes*BaseApp.normalData.config.pay_rate));
+                    Intent intent = new Intent(ForfeitSettingActivity.this,SupervisionSettingActivity.class);
+                    intent.putExtra(Constant.NUMBER,mTotalMoney);
+                    intent.putExtra(Constant.POSITION,per);
+                    setResult(Constant.NUM_109,intent);
+                    AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
+                }
+            }
+        });
         mPayTv.setOnClickListener(this);
         mNumCrg.setOnCheckedChangeListener(new CustomRadioGroup.OnCheckChangeListener() {
             @Override
@@ -82,7 +102,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
                         mTotalMoney = mTotalTimes*50*BaseApp.normalData.config.pay_rate;
                         break;
                 }
-                mNumTv.setText(String.format(getString(R.string.summation_money),mTotalMoney));
+                mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney,"0.00")));
             }
         });
         mSumEt.addTextChangedListener(new TextWatcher() {
@@ -102,7 +122,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
                 if (!TextUtils.isEmpty(s)){
                     mNumCrg.clearCheck();
                     mTotalMoney = mTotalTimes*Integer.valueOf(s)*BaseApp.normalData.config.pay_rate;
-                    mNumTv.setText(String.format(getString(R.string.summation_money),mTotalMoney));
+                    mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney,"0.00")));
                 }
             }
         });
@@ -111,8 +131,8 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
     @Override
     protected void initData() {
         mTotalTimes = getIntent().getIntExtra(Constant.RECYCLE,0);
-        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text),mTotalMoney));
-        mNumTv.setText(String.format(getString(R.string.summation_money),mTotalMoney));
+        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text),mTotalTimes));
+        mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney,"0.00")));
     }
 
     @Override

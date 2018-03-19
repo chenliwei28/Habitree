@@ -87,6 +87,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
                     .setConfirmClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            mNoteDialog.dismiss();
                             ForfeitSettingActivity.start(SupervisionSettingActivity.this,mIntent.getIntExtra(Constant.RECYCLE,0),Constant.NUM_110);
                         }
                     });
@@ -107,6 +108,8 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
                 if (resultCode==Constant.NUM_110){
                     switchPrice(data);
                     confirmAndToNext();
+                }else if (resultCode==Constant.NUM_109){
+                    switchPrice(data);
                 }
                 break;
         }

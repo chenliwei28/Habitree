@@ -104,7 +104,7 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.send_message_tv:
-                startActivity(new Intent(this, MessageDetailActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, String.valueOf(mDetail.mem_id)));
+                startActivity(new Intent(this, ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, String.valueOf(mDetail.mem_id)));
                 break;
         }
     }

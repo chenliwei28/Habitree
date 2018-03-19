@@ -10,9 +10,10 @@
     tools:context="com.habitree.xueshu.punchcard.activity.ForfeitSettingActivity">
 
     <com.habitree.xueshu.xs.view.MyActionBar
+        android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/time_of_duration" />
+        app:title_text="@string/penalty_settings" />
 
     <LinearLayout
         android:layout_width="match_parent"

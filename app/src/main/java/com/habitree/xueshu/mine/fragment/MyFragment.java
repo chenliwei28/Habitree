@@ -104,6 +104,7 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         mFragments[2] = new RightTreeFragment();
         TreePagerAdapter adapter = new TreePagerAdapter(getChildFragmentManager());
         mTreeVp.setAdapter(adapter);
+        mTreeVp.setOffscreenPageLimit(2);
         mTreeVp.setCurrentItem(1);
         updateData();
     }
@@ -174,7 +175,7 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         mNameTv.setText(user.nickname);
         ImageUtil.loadImage(getActivity(),user.portrait,mHeadRiv);
         mDaysTv.setText(String.format(getString(R.string.num_days),user.join_days));
-        mCountTv.setText(String.format(getString(R.string.num_times),user.sign_cnt));
+        mCountTv.setText(user.sign_cnt+"次");
         mRateTv.setText(String.valueOf(user.sign_rate));
         mCompletedTv.setText(String.format(getString(R.string.num_number),user.finish_cnt));
         mOngoingTv.setText(String.format(getString(R.string.num_number),user.going_cnt));
@@ -182,9 +183,11 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
     }
 
     @Override
-    public void onListGetSuccess(HabitListResponse.Data data) {
+    public void onListGetSuccess(HabitListResponse.Data data,int type) {
         mHabits = data.list;
         ((MidTreeFragment)mFragments[1]).updateData(mHabits);
+        ((LeftTreeFragment)mFragments[0]).updateData(mHabits);
+        ((RightTreeFragment)mFragments[2]).updateData(mHabits);
         hideLoadingDialog();
     }
 

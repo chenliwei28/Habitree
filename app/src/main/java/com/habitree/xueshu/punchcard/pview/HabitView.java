@@ -16,7 +16,7 @@ public interface HabitView extends BaseView {
     }
 
     interface HabitListView{
-        void onListGetSuccess(HabitListResponse.Data data);
+        void onListGetSuccess(HabitListResponse.Data data,int type);
         void onListGetFailed(String reason);
     }
 

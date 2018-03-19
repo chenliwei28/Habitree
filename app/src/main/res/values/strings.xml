@@ -35,6 +35,8 @@
     <string name="pending_matters">待处理事项</string>
     <string name="times_of_punch_card">打卡数</string>
     <string name="click_to_punch_card">点击打卡</string>
+    <string name="punch_card_accept">打卡通过</string>
+    <string name="punch_card_refused">打卡不通过</string>
     <string name="punch_card_no_pass">打卡未通过</string>
     <string name="click_tree_to_watch_detail">点击小树查看习惯</string>
     <string name="login_overdue">登录过期，请重新登录</string>
@@ -52,11 +54,12 @@
     <string name="public_to_everyone">公开</string>
     <string name="about_app">关于学树</string>
     <string name="personal_info">个人资料</string>
-    <string name="forfeit_setting_long_text">共收取%f元罚金作为押金，当全部罚金扣除后，本次培养即告停止。</string>
+    <string name="tell_him_why_refused">告诉TA不通过的理由吧</string>
+    <string name="forfeit_setting_long_text">共收取%d次罚金作为押金，当全部罚金扣除后，本次培养即告停止。</string>
     <!--H-->
     <string name="friend">好友</string>
     <string name="be_friend_request">好友请求</string>
-    <string name="summation_money">合计 ¥ %f</string>
+    <string name="summation_money">合计 ¥ %s</string>
     <string name="friend_list">好友列表</string>
     <!--I-->
     <!--J-->
@@ -194,6 +197,7 @@
     <string name="number_of_penalty_need_pay">需支付罚金</string>
     <string name="next_step_verify_phone">下一步，验证手机号码</string>
     <string name="next_step_set_password">下一步，设置密码</string>
+    <string name="write_something_to_make_him_up">写点什么给TA加油吧</string>
     <string name="choose_a_tree_with_you">选一棵小树陪你度过难忘的日子吧</string>
     <string name="send_card_record_to_someone">向监督人（%s）发送打卡记录</string>
     <string name="choose_time_long_text">选择时间，将作为习惯养成的时间长度。</string>
@@ -212,7 +216,7 @@
     <string name="my_wallet">我的钱包</string>
     <string name="wx_friends">微信好友</string>
     <string name="forget_password">忘记密码</string>
-    <string name="network_error">网络错误，请稍后重试</string>
+    <string name="network_error">系统异常，请稍后再试</string>
     <!--Y-->
     <string name="auth_code">验证码</string>
     <string name="completed">已完成</string>
@@ -271,4 +275,7 @@
     <string name="number_of_pending_matters">%d个请求待处理</string>
     <string name="count_of_not_punch_card">（%d个未打卡）</string>
     <string name="twenty_four_un_processed">24小时未处理的打开记录将视为通过；24小时未处理的监督要求视为拒绝</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

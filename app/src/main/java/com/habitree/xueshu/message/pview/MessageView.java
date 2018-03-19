@@ -2,6 +2,7 @@ package com.habitree.xueshu.message.pview;
 
 import com.habitree.xueshu.message.adapter.PendingMattersAdapter;
 import com.habitree.xueshu.message.bean.Message;
+import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.xs.presenter.BaseView;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public interface MessageView extends BaseView {
     }
 
     interface MsgDetailView{
-        void onMsgDetailGetSuccess();
+        void onMsgDetailGetSuccess(SignDetailResponse.DataBean dataBean);
         void onMsgDetailGetFailed(String reason);
     }
 

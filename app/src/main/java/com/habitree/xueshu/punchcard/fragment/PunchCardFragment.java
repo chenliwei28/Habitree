@@ -124,7 +124,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     }
 
     @Override
-    public void onListGetSuccess(HabitListResponse.Data data) {
+    public void onListGetSuccess(HabitListResponse.Data data,int type) {
         mHabits = data;
         if (mHabits.list==null||mHabits.list.isEmpty()){
             mCardVp.setVisibility(View.GONE);

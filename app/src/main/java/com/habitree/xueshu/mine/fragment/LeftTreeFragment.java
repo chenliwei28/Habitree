@@ -55,17 +55,21 @@ public class LeftTreeFragment extends BaseFragment implements View.OnClickListen
     }
 
     public void updateData(List<HabitListResponse.Data.Habit> list) {
+        if (list==null)return;
         int len = list.size();
         switch (len) {
             case 0:
-                break;
             case 1:
+            case 2:
+            case 3:
+                break;
+            case 4:
                 mTreeOne.setVisibility(View.VISIBLE);
                 mTitleOne.setVisibility(View.VISIBLE);
                 mTitleOne.setText(list.get(0).title);
                 ImageUtil.loadImage(this, list.get(4).youth_img, mTreeOne, R.drawable.tree_mid1);
                 break;
-            case 2:
+            case 5:
                 mTreeOne.setVisibility(View.VISIBLE);
                 mTreeTwo.setVisibility(View.VISIBLE);
                 mTitleOne.setVisibility(View.VISIBLE);

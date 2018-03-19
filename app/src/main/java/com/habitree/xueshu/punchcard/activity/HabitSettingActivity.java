@@ -77,6 +77,12 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initData() {
         mTreeId = getIntent().getIntExtra(Constant.CODE,1);
+        mPrivacyType = 1;
+        mPrivacyCiv.setDetail(getString(R.string.only_you_can_see));
+        mRepeatDays = "1111111";
+        mRepeatCiv.setDetail("每天");
+        mRecordType = 2;
+        mRecordCiv.setDetail(getString(R.string.text_and_image));
     }
 
     @Override

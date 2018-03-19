@@ -105,7 +105,7 @@ public class HabitPresenter extends BasePresenter {
                 });
     }
 
-    public void getMyHabitList(int type,final HabitView.HabitListView view){
+    public void getMyHabitList(final int type, final HabitView.HabitListView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .getMyHabitList(timestamp,CommUtil.getSign(Constant.GET_HABIT_LIST_FUNCTION,timestamp),
@@ -115,7 +115,7 @@ public class HabitPresenter extends BasePresenter {
                     public void onResponse(Call<HabitListResponse> call, Response<HabitListResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(mContext,response.body().status)){
-                                view.onListGetSuccess(response.body().data);
+                                view.onListGetSuccess(response.body().data,type);
                             }else {
                                 view.onListGetFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
@@ -339,7 +339,7 @@ public class HabitPresenter extends BasePresenter {
                                     mOngoing.addAll(data.list);
                                 }
                                 data.list = mOngoing;
-                                view.onListGetSuccess(data);
+                                view.onListGetSuccess(data,2);
                             }else {
                                 view.onListGetFailed(CommUtil.unicode2Chinese(response.body().info));
                             }

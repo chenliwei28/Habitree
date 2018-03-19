@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="60dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:gravity="center_vertical"
     android:paddingLeft="12dp"
@@ -12,7 +13,7 @@
         android:id="@+id/head_riv"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/img_yepao"
+        tools:src="@drawable/img_yepao"
         app:corner_radius="4dp"
         app:type="round" />
 
@@ -27,7 +28,7 @@
             android:id="@+id/name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="啪啪啪"
+            tools:text="啪啪啪"
             android:textColor="@color/black_text"
             android:textSize="16sp" />
 
@@ -35,7 +36,7 @@
             android:id="@+id/days_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="第1/90天 "
+            tools:text="第1/90天 "
             android:textColor="@color/gray_text"
             android:textSize="14sp" />
     </LinearLayout>

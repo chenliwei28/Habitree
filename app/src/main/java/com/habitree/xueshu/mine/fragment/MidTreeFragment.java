@@ -61,6 +61,7 @@ public class MidTreeFragment extends BaseFragment implements View.OnClickListene
     }
 
     public void updateData(List<HabitListResponse.Data.Habit> list) {
+        if(list==null)return;
         mList = list;
         int len = mList.size();
         switch (len) {
