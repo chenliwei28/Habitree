@@ -13,6 +13,7 @@ import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.MessageManager;
+import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
@@ -73,17 +74,18 @@ public class HabitInviteActivity extends BaseActivity implements View.OnClickLis
         mMessage = (Message) getIntent().getSerializableExtra(Constant.CODE);
         ImageUtil.loadImage(this,mMessage.sender_user.portrait,mHeadRiv,R.drawable.ic_default_head);
         mNameTv.setText(mMessage.sender_user.nickname);
+        mTimeTv.setText(TimeUtil.millisToString(null,mMessage.send_time));
         mDetailTv.setText(mMessage.message);
         mHabitNameCiv.setDetail(mMessage.habit_info.title);
-        mDurationCiv.setDetail(String.valueOf(mMessage.habit_info.recycle_days));
+        mDurationCiv.setDetail(mMessage.habit_info.recycle_days+"天");
         mModCiv.setDetail(mMessage.habit_info.record_type==2?"文字+图片":"文字");
         mSettingCiv.setDetail(mMessage.habit_info.is_private==1?"仅自己和监督人可见":"公开");
-        mMoneyCiv.setDetail(String.format(getString(R.string.num_price),mMessage.habit_info.amount));
-        String[] rs = mMessage.habit_info.recycle.split("");
-        boolean[] b = new boolean[rs.length];
+        mMoneyCiv.setDetail(String.format(getString(R.string.num_price),mMessage.habit_info.unit_price));
+        String rs = mMessage.habit_info.recycle;
+        boolean[] b = new boolean[7];
         String[] wes = {"日","一","二","三","四","五","六"};
         for (int i = 0;i<7;i++){
-            if (rs[i].equals("1")){
+            if (rs.substring(i,i+1).equals("1")){
                 b[i] = true;
             }else {
                 b[i] = false;

@@ -26,7 +26,7 @@ import com.habitree.xueshu.xs.view.MyActionBar;
 
 import java.util.List;
 
-public class ForfeitSettingActivity extends BaseActivity implements View.OnClickListener{
+public class ForfeitSettingActivity extends BaseActivity implements View.OnClickListener {
 
     private MyActionBar mActionBar;
     private CustomRadioGroup mNumCrg;
@@ -34,6 +34,7 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
     private TextView mNumTv;
     private TextView mPayTv;
     private TextView mNoteTv;
+    private List<InitResponse.Data.HabitMoney> mList;
 
     private int mTotalTimes;
     private double mTotalMoney;
@@ -43,10 +44,10 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
         return R.layout.activity_forfeit_setting;
     }
 
-    public static void start(Activity context, int totalTimes, int requestCode){
-        Intent intent = new Intent(context,ForfeitSettingActivity.class);
-        intent.putExtra(Constant.RECYCLE,totalTimes);
-        context.startActivityForResult(intent,requestCode);
+    public static void start(Activity context, int totalTimes, int requestCode) {
+        Intent intent = new Intent(context, ForfeitSettingActivity.class);
+        intent.putExtra(Constant.RECYCLE, totalTimes);
+        context.startActivityForResult(intent, requestCode);
     }
 
     @Override
@@ -64,45 +65,50 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
         mActionBar.setBackIvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mTotalMoney==0){
+                if (mTotalMoney == 0) {
                     setResult(Constant.NUM_111);
                     AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
-                }else {
-                    int per = (int) (mTotalMoney/(mTotalTimes*BaseApp.normalData.config.pay_rate));
-                    Intent intent = new Intent(ForfeitSettingActivity.this,SupervisionSettingActivity.class);
-                    intent.putExtra(Constant.NUMBER,mTotalMoney);
-                    intent.putExtra(Constant.POSITION,per);
-                    setResult(Constant.NUM_109,intent);
+                } else {
+                    int per = (int) (mTotalMoney / (mTotalTimes * BaseApp.normalData.config.pay_rate));
+                    Intent intent = new Intent(ForfeitSettingActivity.this, SupervisionSettingActivity.class);
+                    intent.putExtra(Constant.NUMBER, mTotalMoney);
+                    intent.putExtra(Constant.POSITION, per);
+                    setResult(Constant.NUM_109, intent);
                     AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
                 }
             }
         });
         mPayTv.setOnClickListener(this);
+        int[] ids = {R.id.one, R.id.five, R.id.ten, R.id.fifteen, R.id.twenty, R.id.fifty};
+        mList = BaseApp.normalData.habit_money;
+        for (int i = 0;i<6;i++){
+            ((RadioButton)findViewById(ids[i])).setText(mList.get(i).title);
+        }
         mNumCrg.setOnCheckedChangeListener(new CustomRadioGroup.OnCheckChangeListener() {
             @Override
             public void onCheckChange(RadioButton button) {
-                if (!TextUtils.isEmpty(mSumEt.getText().toString()))mSumEt.setText("");
-                switch (button.getId()){
+                if (!TextUtils.isEmpty(mSumEt.getText().toString())) mSumEt.setText("");
+                switch (button.getId()) {
                     case R.id.one:
-                        mTotalMoney = mTotalTimes*BaseApp.normalData.config.pay_rate;
+                        mTotalMoney = mTotalTimes * Double.valueOf(mList.get(0).money) * BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.five:
-                        mTotalMoney = mTotalTimes*5*BaseApp.normalData.config.pay_rate;
+                        mTotalMoney = mTotalTimes * Double.valueOf(mList.get(1).money) * BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.ten:
-                        mTotalMoney = mTotalTimes*10*BaseApp.normalData.config.pay_rate;
+                        mTotalMoney = mTotalTimes * Double.valueOf(mList.get(2).money) * BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.fifteen:
-                        mTotalMoney = mTotalTimes*15*BaseApp.normalData.config.pay_rate;
+                        mTotalMoney = mTotalTimes * Double.valueOf(mList.get(3).money) * BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.twenty:
-                        mTotalMoney = mTotalTimes*20*BaseApp.normalData.config.pay_rate;
+                        mTotalMoney = mTotalTimes * Double.valueOf(mList.get(4).money) * BaseApp.normalData.config.pay_rate;
                         break;
                     case R.id.fifty:
-                        mTotalMoney = mTotalTimes*50*BaseApp.normalData.config.pay_rate;
+                        mTotalMoney = mTotalTimes * Double.valueOf(mList.get(5).money) * BaseApp.normalData.config.pay_rate;
                         break;
                 }
-                mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney,"0.00")));
+                mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney, "0.00")));
             }
         });
         mSumEt.addTextChangedListener(new TextWatcher() {
@@ -119,10 +125,10 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
             @Override
             public void afterTextChanged(Editable editable) {
                 String s = editable.toString();
-                if (!TextUtils.isEmpty(s)){
+                if (!TextUtils.isEmpty(s)) {
                     mNumCrg.clearCheck();
-                    mTotalMoney = mTotalTimes*Integer.valueOf(s)*BaseApp.normalData.config.pay_rate;
-                    mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney,"0.00")));
+                    mTotalMoney = mTotalTimes * Integer.valueOf(s) * BaseApp.normalData.config.pay_rate;
+                    mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney, "0.00")));
                 }
             }
         });
@@ -130,23 +136,23 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initData() {
-        mTotalTimes = getIntent().getIntExtra(Constant.RECYCLE,0);
-        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text),mTotalTimes));
-        mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney,"0.00")));
+        mTotalTimes = getIntent().getIntExtra(Constant.RECYCLE, 0);
+        mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text), mTotalTimes));
+        mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney, "0.00")));
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.pay_tv:
-                if (mTotalMoney==0){
+                if (mTotalMoney == 0) {
                     showToast(getString(R.string.please_choose_price));
-                }else {
-                    int per = (int) (mTotalMoney/(mTotalTimes*BaseApp.normalData.config.pay_rate));
-                    Intent intent = new Intent(ForfeitSettingActivity.this,SupervisionSettingActivity.class);
-                    intent.putExtra(Constant.NUMBER,mTotalMoney);
-                    intent.putExtra(Constant.POSITION,per);
-                    setResult(Constant.NUM_110,intent);
+                } else {
+                    int per = (int) (mTotalMoney / (mTotalTimes * BaseApp.normalData.config.pay_rate));
+                    Intent intent = new Intent(ForfeitSettingActivity.this, SupervisionSettingActivity.class);
+                    intent.putExtra(Constant.NUMBER, mTotalMoney);
+                    intent.putExtra(Constant.POSITION, per);
+                    setResult(Constant.NUM_110, intent);
                     AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
                 }
                 break;

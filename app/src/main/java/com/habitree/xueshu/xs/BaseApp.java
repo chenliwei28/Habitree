@@ -10,7 +10,6 @@ import com.hyphenate.easeui.EaseUI;
 
 import org.litepal.LitePalApplication;
 
-import cn.jpush.android.api.JPushInterface;
 
 
 public class BaseApp extends LitePalApplication {
@@ -49,7 +48,7 @@ public class BaseApp extends LitePalApplication {
         EMClient.getInstance().setDebugMode(true);
 
         //极光推送初始化
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
+//        JPushInterface.setDebugMode(true);
+//        JPushInterface.init(this);
     }
 }

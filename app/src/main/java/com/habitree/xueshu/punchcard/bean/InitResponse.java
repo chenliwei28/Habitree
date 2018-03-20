@@ -30,6 +30,7 @@ public class InitResponse {
         public int audit_status;
         public Config config;
         public List<RecycleDays> recycle_days;
+        public List<HabitMoney> habit_money;
 
         public class Config {
             /**
@@ -50,6 +51,21 @@ public class InitResponse {
             public int id;
             public String title;
             public int day;
+            public int status;
+        }
+
+        public class HabitMoney{
+
+            /**
+             * id : 1
+             * title : 5元
+             * money : 5
+             * status : 2
+             */
+
+            public int id;
+            public String title;
+            public String money;
             public int status;
         }
     }

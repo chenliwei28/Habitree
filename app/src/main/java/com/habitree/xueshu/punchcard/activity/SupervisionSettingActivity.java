@@ -87,6 +87,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
                     .setConfirmClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            mHasSupervision = true;
                             mNoteDialog.dismiss();
                             ForfeitSettingActivity.start(SupervisionSettingActivity.this,mIntent.getIntExtra(Constant.RECYCLE,0),Constant.NUM_110);
                         }
