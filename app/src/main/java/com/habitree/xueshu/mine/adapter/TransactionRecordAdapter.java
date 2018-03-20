@@ -25,7 +25,8 @@ public class TransactionRecordAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return mList.size();
+        if (mList==null)return 0;
+        else return mList.size();
     }
 
     @Override

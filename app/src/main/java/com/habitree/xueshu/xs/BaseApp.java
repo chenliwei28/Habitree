@@ -10,6 +10,8 @@ import com.hyphenate.easeui.EaseUI;
 
 import org.litepal.LitePalApplication;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 public class BaseApp extends LitePalApplication {
     public static String imei;
@@ -46,5 +48,8 @@ public class BaseApp extends LitePalApplication {
         //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         EMClient.getInstance().setDebugMode(true);
 
+        //极光推送初始化
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 }
