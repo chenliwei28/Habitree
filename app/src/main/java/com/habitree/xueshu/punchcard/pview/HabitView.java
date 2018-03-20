@@ -4,6 +4,7 @@ import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
+import com.habitree.xueshu.punchcard.bean.RecordListResponse;
 import com.habitree.xueshu.xs.presenter.BaseView;
 
 import java.util.List;
@@ -43,5 +44,10 @@ public interface HabitView extends BaseView {
     interface GiveUpView{
         void onGiveUpSuccess();
         void onGiveUpFailed(String reason);
+    }
+
+    interface RecordListView{
+        void onRecordListGetSuccess(RecordListResponse.Data data);
+        void onRecordListGetFailed(String reason);
     }
 }

@@ -13,7 +13,7 @@
         android:id="@+id/record_ma"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/audit_record" />
+        app:title_text="@string/punch_card_record" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                     android:id="@+id/head_riv"
                     android:layout_width="46dp"
                     android:layout_height="46dp"
-                    android:src="@drawable/ic_circle" />
+                    android:src="@drawable/ic_default_head" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,8 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    tools:text="3月3日打卡“画魂画”" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/detail_tv"
@@ -120,34 +119,22 @@
             </LinearLayout>
 
             <View style="@style/Line" />
+
+            <TextView
+                android:id="@+id/state_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:layout_marginTop="10dp"
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:textSize="14sp"
+                android:textColor="@color/black_text"
+                tools:text="审核已通过：哈哈哈哈哈哈"/>
+
+            <View style="@style/Line" />
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/btn_ll"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <TextView
-            android:id="@+id/refuse_tv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/gray"
-            android:gravity="center"
-            android:text="@string/no_pass"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/accept_tv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="@string/pass"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-    </LinearLayout>
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
+import com.habitree.xueshu.punchcard.bean.RecordListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
@@ -21,7 +22,10 @@ import com.habitree.xueshu.xs.view.RoundImageView;
 import com.habitree.xueshu.xs.view.calendarview.Calendar;
 import com.habitree.xueshu.xs.view.calendarview.CalendarView;
 
-public class HabitDetailActivity extends BaseActivity implements HabitView.HabitDetailView,View.OnClickListener,HabitView.GiveUpView {
+import java.util.ArrayList;
+import java.util.List;
+
+public class HabitDetailActivity extends BaseActivity implements HabitView.HabitDetailView,HabitView.RecordListView,View.OnClickListener,HabitView.GiveUpView {
 
     private CalendarView mDetailCv;
     private RoundImageView mHeadRiv;
@@ -46,6 +50,8 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
     private TextView mMonthTv;
     private MyDialog mGiveUpDialog;
     private HabitPresenter mPresenter;
+    private List<Calendar> mCalendars = new ArrayList<>();
+    private List<RecordListResponse.Data.Record> mRecordList;
 
     @Override
     protected int setLayoutId() {
@@ -81,7 +87,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         mPreMonthIv = findViewById(R.id.pre_month_iv);
         mNextMonthIv = findViewById(R.id.next_month_iv);
         mMonthTv = findViewById(R.id.month_tv);
-        mDetailCv.setCanSelected(false);
+//        mDetailCv.setCanSelected(false);
         String da = mDetailCv.getCurYear()+"."+mDetailCv.getCurMonth();
         mMonthTv.setText(da);
         mPresenter = new HabitPresenter(this);
@@ -104,20 +110,24 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
 
             }
         });
+        mDetailCv.setOnDateSelectedListener(new CalendarView.OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(Calendar calendar) {
+                for (int i =0,len = mCalendars.size();i<len;i++){
+                    if (mCalendars.get(i).toString().equals(calendar.toString())){
+                        RecordDetailActivity.start(HabitDetailActivity.this,mRecordList.get(i).id);
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     @Override
     protected void initData() {
-//        List<Calendar> calendars = new ArrayList<>();
-//        Calendar c = new Calendar();
-//        c.setYear(2017);
-//        c.setMonth(12);
-//        c.setDay(31);
-//        c.setScheme(".");
-//        calendars.add(c);
-//        mDetailCv.setSchemeDate(calendars);
         showLoadingDialog();
         mPresenter.getHabitDetail(getIntent().getIntExtra(Constant.ID,0),this);
+        mPresenter.getRecordList(getIntent().getIntExtra(Constant.ID,0),this);
     }
 
     @Override
@@ -152,8 +162,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         mGiveUpDialog.show();
     }
 
-    @Override
-    public void onHabitDetailGetSuccess(HabitDetailResponse.HabitDetail detail) {
+    private void updateDetail(HabitDetailResponse.HabitDetail detail){
         switch (detail.status){
             case 1:
                 ImageUtil.loadImage(this,detail.youth_img,mHeadRiv);
@@ -211,13 +220,20 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         int c = detail.now_days-detail.sign_cnt;
         int money = c>0?detail.unit_price*c:0;
         mNeedCiv.setDetail(String.valueOf(money));
-        hideLoadingDialog();
     }
 
-    @Override
-    public void onHabitDetailGetFailed(String reason) {
-        hideLoadingDialog();
-        showToast(reason);
+    private void updateRecords(RecordListResponse.Data data){
+        if (data.list!=null&&!data.list.isEmpty()){
+            mRecordList = data.list;
+            mCalendars.clear();
+            for (RecordListResponse.Data.Record record:data.list){
+                Calendar c = new Calendar();
+                c.setDateString(TimeUtil.millisToString("yyyy-MM-dd",record.sign_time));
+                c.setScheme(".");
+                mCalendars.add(c);
+            }
+            mDetailCv.setSchemeDate(mCalendars);
+        }
     }
 
     @Override
@@ -229,6 +245,29 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
 
     @Override
     public void onGiveUpFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
+    }
+
+    @Override
+    public void onRecordListGetSuccess(RecordListResponse.Data data) {
+        updateRecords(data);
+    }
+
+    @Override
+    public void onRecordListGetFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
+    }
+
+    @Override
+    public void onHabitDetailGetSuccess(HabitDetailResponse.HabitDetail detail) {
+        updateDetail(detail);
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void onHabitDetailGetFailed(String reason) {
         hideLoadingDialog();
         showToast(reason);
     }

@@ -148,7 +148,7 @@ public class Calendar implements Serializable {
 
     @Override
     public String toString() {
-        return year + "" + (month < 10 ? "0" + month : month) + "" + (day < 10 ? "0" + day : day);
+        return year + "-" + (month < 10 ? "0" + month : month) + "-" + (day < 10 ? "0" + day : day);
     }
 
     //yyyy-MM-dd

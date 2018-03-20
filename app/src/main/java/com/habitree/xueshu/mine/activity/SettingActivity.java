@@ -63,7 +63,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
                 break;
             case R.id.about_civ:
-
+                startActivity(new Intent(this,AboutActivity.class));
                 break;
             case R.id.clear_cache_civ:
 

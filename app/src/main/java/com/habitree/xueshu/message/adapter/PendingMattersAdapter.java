@@ -73,7 +73,7 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
                     if (message.type==2){
                         HabitInviteActivity.start(mContext,message);
                     }else {
-                        AuditRecordActivity.start(mContext,message,true);
+                        AuditRecordActivity.start(mContext,message);
                     }
                 }
             });

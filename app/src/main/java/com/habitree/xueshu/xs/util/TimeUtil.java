@@ -28,7 +28,7 @@ public class TimeUtil {
     }
 
     /**
-     * 时间戳转换成时间字符串
+     * 时间戳（秒数不是毫秒记得）转换成时间字符串
      * @param type 要转的时间格式，如 yyyy-MM-dd HH:mm:ss
      * @param millis 时间戳
      * @return 时间字符串

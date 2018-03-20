@@ -14,6 +14,7 @@ import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.bean.PunchCardResponse;
+import com.habitree.xueshu.punchcard.bean.RecordListResponse;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
@@ -319,8 +320,27 @@ public class HabitPresenter extends BasePresenter {
                 });
     }
 
-    private void getRecordList(){
+    public void getRecordList(int habitId, final HabitView.RecordListView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().getSignRecordList(timestamp,CommUtil.getSign(Constant.GET_RECORD_LIST_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,1,100,habitId)
+                .enqueue(new Callback<RecordListResponse>() {
+                    @Override
+                    public void onResponse(Call<RecordListResponse> call, Response<RecordListResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onRecordListGetSuccess(response.body().data);
+                            }else {
+                                view.onRecordListGetFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<RecordListResponse> call, Throwable t) {
+                        view.onRecordListGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
     }
 
     public void getHabitListGoing(final HabitView.HabitListView view){

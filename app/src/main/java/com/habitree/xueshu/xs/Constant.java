@@ -4,6 +4,7 @@ package com.habitree.xueshu.xs;
 
 public class Constant {
     public final static String HOST = "http://tapi.habitree.cn/";
+    public final static String ABOUT = "http://tapi.habitree.cn/news/about";
 
     public final static String ID = "id";
     public final static String PHONE = "phone";

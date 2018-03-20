@@ -149,7 +149,9 @@
         <activity android:name=".mine.activity.MyInfoActivity" />
         <activity android:name=".message.activity.PendingMattersActivity" />
         <activity android:name=".message.activity.AuditRecordActivity" />
-        <activity android:name=".message.activity.AddFriendActivity"></activity>
+        <activity android:name=".message.activity.AddFriendActivity" />
+        <activity android:name=".punchcard.activity.RecordDetailActivity" />
+        <activity android:name=".mine.activity.AboutActivity"></activity>
     </application>
 
 </manifest>

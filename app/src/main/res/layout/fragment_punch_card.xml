@@ -42,7 +42,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/card_vp"
         android:layout_width="match_parent"
-        android:layout_height="325dp"
+        android:layout_height="340dp"
         android:layout_below="@id/month_tv"
         android:layout_marginTop="50dp"
         android:clipToPadding="false"

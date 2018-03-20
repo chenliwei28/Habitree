@@ -31,6 +31,7 @@ import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.bean.PunchCardResponse;
+import com.habitree.xueshu.punchcard.bean.RecordListResponse;
 import com.habitree.xueshu.xs.Constant;
 
 import java.util.List;
@@ -366,4 +367,14 @@ public interface Api {
                                           @Field("sign") String sign,
                                           @Field("user_token") String token,
                                           @Field("habit_id") int habitId);
+
+    //获取打卡记录列表
+    @FormUrlEncoded
+    @POST(Constant.GET_RECORD_LIST_FUNCTION)
+    Call<RecordListResponse> getSignRecordList(@Field("timestamp") String timestamp,
+                                               @Field("sign") String sign,
+                                               @Field("user_token") String token,
+                                               @Field("page") int page,
+                                               @Field("offset") int offset,
+                                               @Field("habit_id") int habitId);
 }

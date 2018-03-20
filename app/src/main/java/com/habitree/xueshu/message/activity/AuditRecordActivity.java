@@ -18,7 +18,9 @@ import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
+import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.MessageManager;
+import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.MyInputDialog;
 import com.habitree.xueshu.xs.view.NoScrollRecyclerView;
@@ -35,12 +37,10 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
     private TextView mDetailTv;
     private ImageView mPhotoIv;
     private NoScrollRecyclerView mPhotosRv;
-    private TextView mStateTv;
     private TextView mPassTv;
     private TextView mNoPassTv;
     private LinearLayout mBtnLl;
     private Message mMessage;
-    private boolean mIsMessage;
     private MessageImageAdapter mAdapter;
     private String mContent = "";
     private MyInputDialog mDialog;
@@ -50,10 +50,9 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
         return R.layout.activity_audit_record;
     }
 
-    public static void start(Context context, Message message, boolean isMessageType){
+    public static void start(Context context, Message message){
         Intent intent = new Intent(context,AuditRecordActivity.class);
         intent.putExtra(Constant.CODE,message);
-        intent.putExtra(Constant.TYPE,isMessageType);
         context.startActivity(intent);
     }
 
@@ -68,7 +67,6 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
         mDetailTv = findViewById(R.id.detail_tv);
         mPhotoIv = findViewById(R.id.photo_iv);
         mPhotosRv = findViewById(R.id.photos_rv);
-        mStateTv = findViewById(R.id.state_tv);
         mPassTv = findViewById(R.id.accept_tv);
         mNoPassTv = findViewById(R.id.refuse_tv);
         mBtnLl = findViewById(R.id.btn_ll);
@@ -83,29 +81,12 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initData() {
         showLoadingDialog();
-        mIsMessage = getIntent().getBooleanExtra(Constant.TYPE,true);
         mMessage = (Message) getIntent().getSerializableExtra(Constant.CODE);
-        if (mIsMessage){
-            showMessageView();
-        }else {
-            showRecordView();
-        }
-        MessageManager.getManager().getRecordDetail(this,mMessage.sign_id,this);
-        mTittleTv.setText(mMessage.habit_info.title);
-    }
-
-    private void showMessageView(){
-        mStateTv.setVisibility(View.GONE);
-        mBtnLl.setVisibility(View.VISIBLE);
         mRecordMa.setTitle(getString(R.string.audit_record));
         ImageUtil.loadImage(this,mMessage.sender_user.portrait,mHeadRiv,R.drawable.ic_default_head);
         mNameTv.setText(mMessage.sender_user.nickname);
-    }
-
-    private void showRecordView(){
-        mStateTv.setVisibility(View.VISIBLE);
-        mBtnLl.setVisibility(View.GONE);
-        mRecordMa.setTitle(getString(R.string.punch_card_record));
+        MessageManager.getManager().getRecordDetail(this,mMessage.sign_id,this);
+        mTittleTv.setText(mMessage.habit_info.title);
     }
 
     @Override
@@ -141,6 +122,8 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onMsgDetailGetSuccess(SignDetailResponse.DataBean dataBean) {
         mDetailTv.setText(dataBean.content);
+        mTittleTv.setText(dataBean.habit_info.title);
+        mTimeTv.setText(TimeUtil.millisToString("yyyy-MM-dd",dataBean.sign_time));
         if (dataBean.images!=null&&!dataBean.images.isEmpty()){
             if (dataBean.images.size()==1){
                 mPhotoIv.setVisibility(View.VISIBLE);

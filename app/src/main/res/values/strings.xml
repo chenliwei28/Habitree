@@ -76,6 +76,7 @@
     <string name="transaction_record">交易记录</string>
     <string name="days_of_accession">加入天数</string>
     <string name="supervision_setting">监督设置</string>
+    <string name="supervision_say">监督人留言：%s</string>
     <string name="only_you_can_see">仅自己和监督人可见</string>
     <string name="today_has_been_punch_card_no_check">今天已打卡（待审核）</string>
     <string name="today_has_been_punch_card_and_checked">今天已打卡（已审核）</string>
