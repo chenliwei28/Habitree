@@ -36,10 +36,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
 
-public class MyInfoActivity extends BaseActivity implements View.OnClickListener,EasyPermissions.PermissionCallbacks,MyView.ChangeInfoView{
+public class MyInfoActivity extends BaseActivity implements View.OnClickListener,MyView.ChangeInfoView{
 
     private RoundImageView mHeadRiv;
     private RelativeLayout mHeadRl;
@@ -144,7 +142,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                     .addSheetItem(getString(R.string.take_photo), 0, new AppleDialog.OnSheetItemClickListener() {
                         @Override
                         public void onClick(int which) {
-                            openCameraAfterCheckPermission();
+//                            openCameraAfterCheckPermission();
+                            openCamera();
                         }
                     })
                     .addSheetItem(getString(R.string.choose_from_gallery), 0, new AppleDialog.OnSheetItemClickListener() {
@@ -195,15 +194,15 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         mTimePicker.show();
     }
 
-    @AfterPermissionGranted(Constant.NUM_111)
-    private void openCameraAfterCheckPermission(){
-        String[] ps = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        if (!EasyPermissions.hasPermissions(this,ps)){
-            EasyPermissions.requestPermissions(this,getString(R.string.please_accept_the_permission_of_camera),Constant.NUM_111,ps);
-        }else {
-            openCamera();
-        }
-    }
+//    @AfterPermissionGranted(Constant.NUM_111)
+//    private void openCameraAfterCheckPermission(){
+//        String[] ps = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+//        if (!EasyPermissions.hasPermissions(this,ps)){
+//            EasyPermissions.requestPermissions(this,getString(R.string.please_accept_the_permission_of_camera),Constant.NUM_111,ps);
+//        }else {
+//            openCamera();
+//        }
+//    }
 
     private void openCamera(){
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
@@ -235,21 +234,21 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 .forResult(PictureConfig.CHOOSE_REQUEST);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this);
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this);
+//    }
 
-    @Override
-    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        openCamera();
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
-        showToast(R.string.sd_card_can_not_use);
-    }
+//    @Override
+//    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+//        openCamera();
+//    }
+//
+//    @Override
+//    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+//        showToast(R.string.sd_card_can_not_use);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

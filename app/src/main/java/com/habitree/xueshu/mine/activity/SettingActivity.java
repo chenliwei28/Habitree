@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.CacheUtil;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyDialog;
@@ -18,7 +19,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private CustomItemView mAboutCiv;
     private CustomItemView mClearCacheCiv;
     private CustomItemView mLogOutCiv;
-    private MyDialog mDialog;
+    private MyDialog mExitDialog;
 
     @Override
     protected int setLayoutId() {
@@ -66,7 +67,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(this,AboutActivity.class));
                 break;
             case R.id.clear_cache_civ:
-
+                showExitDialog(false);
                 break;
             case R.id.log_out_civ:
                 showExitDialog(true);
@@ -75,18 +76,23 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void showExitDialog(final boolean isExit) {
-        if (mDialog == null) {
-            mDialog = new MyDialog(this)
+        if (mExitDialog == null) {
+            mExitDialog = new MyDialog(this)
                     .builder()
                     .setTitle(getString(R.string.remind))
                     .setConfirmClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            mExitDialog.dismiss();
                             if (isExit) CommUtil.logoutToLogin(SettingActivity.this);
+                            else {
+                                CacheUtil.cleanInternalCache(getApplicationContext());
+                                showToast("清除成功");
+                            }
                         }
                     });
         }
-        mDialog.setDetail(isExit?getString(R.string.sure_logout):getString(R.string.sure_clear_cache));
-        mDialog.show();
+        mExitDialog.setDetail(isExit?getString(R.string.sure_logout):getString(R.string.sure_clear_cache));
+        mExitDialog.show();
     }
 }
