@@ -12,6 +12,12 @@ android {
         multiDexEnabled true
     }
 
+    sourceSets{
+        main{
+            jniLibs.srcDirs=['libs']
+        }
+    }
+
     signingConfigs {
         config {
             storeFile file("../signKey/keystore_habitree.jks")

@@ -29,4 +29,8 @@ public interface MyView extends BaseView {
         void onForfeitListGetSuccess(ForfeitListResponse.Data data);
         void onForfeitListGetFailed(String reason);
     }
+
+    interface OnTreeClickListener{
+        void onTreeClick(int whichView,int whichTree);
+    }
 }

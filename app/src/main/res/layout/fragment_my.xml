@@ -42,7 +42,7 @@
                 android:id="@+id/setting_iv"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="200次"
+                    tools:text="200次"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="80%"
+                    tools:text="80%"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -167,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="8个"
+                    tools:text="8个"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -192,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="1个"
+                    tools:text="1个"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>

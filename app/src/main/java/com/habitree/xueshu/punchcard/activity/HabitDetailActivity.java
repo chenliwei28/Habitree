@@ -179,15 +179,11 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         mCountTv.setText(count);
         mSuperCiv.setDetail(detail.check_meminfo.nickname);
         mReminderCiv.setDetail(TimeUtil.millisToString("HH:mm",detail.remind_time));
-        String[] rs = detail.recycle.split("");
-        boolean[] b = new boolean[rs.length];
+        String rs = detail.recycle;
+        boolean[] b = new boolean[7];
         String[] wes = {"日","一","二","三","四","五","六"};
         for (int i = 0;i<7;i++){
-            if (rs[i].equals("1")){
-                b[i] = true;
-            }else {
-                b[i] = false;
-            }
+            b[i] = rs.substring(i,i+1).equals("1");
         }
         StringBuilder builder = new StringBuilder();
         if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&b[6]){
@@ -216,7 +212,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         }
         mTotalCiv.setDetail(String.valueOf(detail.sign_cnt));
         mContinuousCiv.setDetail(String.valueOf(detail.keep_sign_cnt));
-        mRateCiv.setDetail((detail.sign_cnt/detail.now_days)*100+"%");
+        mRateCiv.setDetail(detail.sign_rate);
         int c = detail.now_days-detail.sign_cnt;
         int money = c>0?detail.unit_price*c:0;
         mNeedCiv.setDetail(String.valueOf(money));

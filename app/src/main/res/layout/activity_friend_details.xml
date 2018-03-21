@@ -44,7 +44,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="150dp"
-                    android:src="@drawable/ic_circle"
+                    android:src="@drawable/ic_default_head"
                     app:type="circle"/>
 
                 <TextView
@@ -78,7 +78,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_alignBottom="@id/days_tv"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:background="@drawable/shape_round_blue_stroke_white_button"
                     android:textSize="14sp"
                     android:textColor="@color/blue"
@@ -196,6 +196,7 @@
             <View style="@style/Line"/>
             
             <TextView
+                android:id="@+id/habit_title"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="15dp"
@@ -244,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:textSize="16sp"
                     android:textColor="@color/gray_text"
                     tools:text="666天"/>
@@ -272,7 +273,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:textSize="16sp"
                     android:textColor="@color/gray_text"
                     tools:text="22次"/>
@@ -300,7 +301,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:textSize="16sp"
                     android:textColor="@color/gray_text"
                     tools:text="222次"/>

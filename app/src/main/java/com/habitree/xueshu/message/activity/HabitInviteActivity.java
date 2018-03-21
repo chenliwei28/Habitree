@@ -85,11 +85,7 @@ public class HabitInviteActivity extends BaseActivity implements View.OnClickLis
         boolean[] b = new boolean[7];
         String[] wes = {"日","一","二","三","四","五","六"};
         for (int i = 0;i<7;i++){
-            if (rs.substring(i,i+1).equals("1")){
-                b[i] = true;
-            }else {
-                b[i] = false;
-            }
+            b[i] = rs.substring(i,i+1).equals("1");
         }
         StringBuilder builder = new StringBuilder();
         if (b[0]&&b[1]&&b[2]&&b[3]&&b[4]&&b[5]&&b[6]){

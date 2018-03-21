@@ -8,24 +8,31 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.bean.FriendInfoResponse;
+import com.habitree.xueshu.xs.util.TimeUtil;
+
+import java.util.List;
 
 
 public class HabitFriendDetailAdapter extends BaseAdapter {
 
     private Context mContext;
+    private List<FriendInfoResponse.FriendDetail.HabitListBean> mList;
 
-    public HabitFriendDetailAdapter(Context context){
+    public HabitFriendDetailAdapter(Context context,List<FriendInfoResponse.FriendDetail.HabitListBean> list){
         mContext = context;
+        mList = list;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        if (mList==null)return 0;
+        else return mList.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return position;
+    public FriendInfoResponse.FriendDetail.HabitListBean getItem(int position) {
+        return mList.get(position);
     }
 
     @Override
@@ -45,6 +52,10 @@ public class HabitFriendDetailAdapter extends BaseAdapter {
         }else {
             holder = (HabitFriendDetailViewHolder) convertView.getTag();
         }
+        FriendInfoResponse.FriendDetail.HabitListBean bean = mList.get(position);
+        holder.nameTv.setText(bean.title);
+        String days = TimeUtil.millisToString("MM-dd",bean.create_time)+"(第"+bean.now_days+"/"+bean.recycle_days+"天)";
+        holder.daysTv.setText(days);
         return convertView;
     }
 

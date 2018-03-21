@@ -24,6 +24,7 @@ import com.habitree.xueshu.xs.util.UserManager;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 
+import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -73,12 +74,12 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.body()!=null&&response.body().status==200){
                             UserManager.getManager().saveUser(response.body().data);
+                            JPushInterface.setAlias(mContext,Constant.NUM_110,String.valueOf(response.body().data.mem_id));
                             EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view,false);
                         }else {
                             view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
                         }
                     }
-
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
                         view.onLoginFailed(mContext.getString(R.string.network_error));

@@ -31,6 +31,7 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
     private TextView mBecomeDaysTv;
     private TextView mBecomeTimesTv;
     private TextView mBecomeCountTv;
+    private TextView mHabitTitle;
     private ListView mHabitsLv;
 
     private FriendsPresenter mPresenter;
@@ -56,6 +57,7 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
         mBecomeTimesTv = findViewById(R.id.become_times_tv);
         mBecomeCountTv = findViewById(R.id.become_count_tv);
         mHabitsLv = findViewById(R.id.habits_lv);
+        mHabitTitle = findViewById(R.id.habit_title);
         mPresenter = new FriendsPresenter(this);
     }
 
@@ -65,7 +67,7 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
         mActionBar.setRightTvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FriendDetailsActivity.this,FriendForestActivity.class));
+                FriendForestActivity.start(FriendDetailsActivity.this,mDetail.mem_id,mDetail.nickname,mDetail.portrait);
             }
         });
     }
@@ -73,9 +75,7 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void initData() {
         showLoadingDialog();
-        mPresenter.getFriendInfo(getIntent().getIntExtra(Constant.ID,-1),this);
-        HabitFriendDetailAdapter adapter = new HabitFriendDetailAdapter(this);
-        mHabitsLv.setAdapter(adapter);
+        mPresenter.getFriendInfo(getIntent().getIntExtra(Constant.ID,0),this);
     }
 
     @Override
@@ -91,13 +91,30 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
     }
 
     private void initDetail(){
-        ImageUtil.loadImage(this,mDetail.portrait,mHeadRiv);
+        if (mDetail.mem_id==1){
+            mSendMessageTv.setVisibility(View.GONE);
+            mHabitTitle.setVisibility(View.GONE);
+            mHabitsLv.setVisibility(View.GONE);
+        }
+        ImageUtil.loadImage(this,mDetail.portrait,mHeadRiv,R.drawable.ic_default_head);
         mNameTv.setText(mDetail.nickname);
-        mDaysTv.setText(String.format(getString(R.string.num_days),mDetail.join_days));
+        mDaysTv.setText(String.format(getString(R.string.join_num_days),mDetail.join_days));
         mCountTv.setText(String.format(getString(R.string.num_times),mDetail.sign_cnt));
         mRateTv.setText(String.valueOf(mDetail.sign_rate));
         mCompletedTv.setText(String.format(getString(R.string.num_number),mDetail.finish_cnt));
         mOngoingTv.setText(String.format(getString(R.string.num_number),mDetail.going_cnt));
+        mBecomeDaysTv.setText(String.format(getString(R.string.num_days),mDetail.friend_days));
+        mBecomeTimesTv.setText(String.format(getString(R.string.num_times),mDetail.jiandu_num));
+        mBecomeCountTv.setText(String.format(getString(R.string.num_times),mDetail.to_jiandu_num));
+        if (mDetail.habit_list==null||mDetail.habit_list.isEmpty()){
+            mHabitTitle.setVisibility(View.GONE);
+            mHabitsLv.setVisibility(View.GONE);
+        }else {
+            mHabitTitle.setVisibility(View.VISIBLE);
+            mHabitsLv.setVisibility(View.VISIBLE);
+            HabitFriendDetailAdapter adapter = new HabitFriendDetailAdapter(this,mDetail.habit_list);
+            mHabitsLv.setAdapter(adapter);
+        }
     }
 
     @Override

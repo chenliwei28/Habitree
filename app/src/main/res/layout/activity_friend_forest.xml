@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_my"
     tools:context="com.habitree.xueshu.message.activity.FriendForestActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tree_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <com.habitree.xueshu.xs.view.MyActionBar
         android:layout_width="match_parent"
@@ -20,7 +24,7 @@
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:src="@drawable/ic_circle" />
+        android:src="@drawable/ic_default_head" />
 
     <TextView
         android:id="@+id/name_tv"
@@ -29,7 +33,7 @@
         android:layout_below="@id/head_riv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="@string/app_name"
+        tools:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="17sp" />
 
@@ -39,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:text="点击小树查看习惯"
+        android:layout_marginBottom="90dp"
+        android:text="@string/click_tree_to_watch_detail"
         android:textColor="@color/white"
         android:textSize="16sp" />
 
@@ -48,58 +52,26 @@
         android:id="@+id/habit_text_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="68dp"
+        tools:text="诞生于2018.01.01  今天是第36/90天  打卡率100%"
         android:textColor="@color/white"
         android:textSize="13sp" />
 
-    <SeekBar
-        android:id="@+id/tree_sb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="58dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="22dp"
-        android:maxHeight="3dp"
-        android:progressDrawable="@drawable/seek_bar_progress_bg"
-        android:thumb="@drawable/shape_seek_bar_thumb_normal" />
-
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/watch_tv"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:text="@string/sliding_around_to_watch_other"
+        android:layout_marginBottom="24dp"
+        android:text="@string/view_details"
         android:textColor="@color/white"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/start_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="01.01\n2018"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/end_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="02.05\n2018"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="15sp"
+        android:background="@drawable/shape_round_white_alpha_button"
+        android:visibility="gone"/>
 </RelativeLayout>

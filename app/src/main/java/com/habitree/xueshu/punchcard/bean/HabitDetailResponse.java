@@ -72,6 +72,7 @@ public class HabitDetailResponse {
         public int sign_status;
         public int now_days;
         public CheckMeminfo check_meminfo;
+        public String sign_rate;
 
         public class CheckMeminfo {
             /**

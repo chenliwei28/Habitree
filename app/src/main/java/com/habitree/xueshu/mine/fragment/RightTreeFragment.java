@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.main.MainActivity;
+import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
 import com.habitree.xueshu.xs.util.ImageUtil;
@@ -26,6 +27,7 @@ public class RightTreeFragment extends BaseFragment implements View.OnClickListe
     private TextView mTitleOne;
     private TextView mTitleTwo;
     private TextView mTitleThree;
+    private MyView.OnTreeClickListener mListener;
 
     @Override
     protected int setLayoutId() {
@@ -101,17 +103,22 @@ public class RightTreeFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
+    public void setOnTreeClickListener(MyView.OnTreeClickListener listener){
+        mListener = listener;
+    }
+
     @Override
     public void onClick(View v) {
+        if (mListener==null)return;
         switch (v.getId()){
             case R.id.tree_one:
-                ((MainActivity)getActivity()).onMyTreeClick(3,1);
+                mListener.onTreeClick(3,1);
                 break;
             case R.id.tree_two:
-                ((MainActivity)getActivity()).onMyTreeClick(3,2);
+                mListener.onTreeClick(3,2);
                 break;
             case R.id.tree_three:
-                ((MainActivity)getActivity()).onMyTreeClick(3,3);
+                mListener.onTreeClick(3,3);
                 break;
         }
     }
