@@ -28,6 +28,8 @@ public class LeftTreeFragment extends BaseFragment implements View.OnClickListen
     private TextView mTitleTwo;
     private TextView mTitleThree;
     private MyView.OnTreeClickListener mListener;
+    private TextView[] mTitles;
+    private ImageView[] mTrees;
 
     @Override
     protected int setLayoutId() {
@@ -53,50 +55,35 @@ public class LeftTreeFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     protected void initData() {
-
+        mTitles = new TextView[3];
+        mTrees = new ImageView[3];
+        mTitles[0] = mTitleOne;
+        mTitles[1] = mTitleTwo;
+        mTitles[2] = mTitleThree;
+        mTrees[0] = mTreeOne;
+        mTrees[1] = mTreeTwo;
+        mTrees[2] = mTreeThree;
     }
 
     public void updateData(List<HabitListResponse.Data.Habit> list) {
         if (list==null)return;
-        int len = list.size();
-        switch (len) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-                break;
-            case 4:
-                mTreeOne.setVisibility(View.VISIBLE);
-                mTitleOne.setVisibility(View.VISIBLE);
-                mTitleOne.setText(list.get(0).title);
-                ImageUtil.loadImage(this, list.get(4).youth_img, mTreeOne, R.drawable.tree_mid1);
-                break;
-            case 5:
-                mTreeOne.setVisibility(View.VISIBLE);
-                mTreeTwo.setVisibility(View.VISIBLE);
-                mTitleOne.setVisibility(View.VISIBLE);
-                mTitleTwo.setVisibility(View.VISIBLE);
-                mTitleOne.setText(list.get(0).title);
-                mTitleTwo.setText(list.get(1).title);
-                ImageUtil.loadImage(this, list.get(4).youth_img, mTreeOne, R.drawable.tree_mid1);
-                ImageUtil.loadImage(this, list.get(5).youth_img, mTreeTwo, R.drawable.tree_mid2);
-                break;
-            default:
-                mTreeOne.setVisibility(View.VISIBLE);
-                mTreeTwo.setVisibility(View.VISIBLE);
-                mTreeThree.setVisibility(View.VISIBLE);
-
-                mTitleOne.setVisibility(View.VISIBLE);
-                mTitleTwo.setVisibility(View.VISIBLE);
-                mTreeThree.setVisibility(View.VISIBLE);
-
-                mTitleOne.setText(list.get(0).title);
-                mTitleTwo.setText(list.get(1).title);
-                mTitleThree.setText(list.get(2).title);
-
-                ImageUtil.loadImage(this, list.get(4).youth_img, mTreeOne, R.drawable.tree_mid1);
-                ImageUtil.loadImage(this, list.get(5).youth_img, mTreeTwo, R.drawable.tree_mid2);
-                ImageUtil.loadImage(this, list.get(6).youth_img, mTreeThree, R.drawable.tree_mid3);
+        if (list.size()<=4)return;
+        int length = list.size()>7?7:list.size();
+        for (int i = 4;i<length;i++){
+            switch (list.get(i).status){
+                case 1:
+                    mTitles[i-4].setVisibility(View.VISIBLE);
+                    mTrees[i-4].setVisibility(View.VISIBLE);
+                    mTitles[i-4].setText(list.get(i).title);
+                    ImageUtil.loadImage(this, list.get(i).youth_img, mTrees[i-4], R.drawable.tree_mid1);
+                    break;
+                case 2:
+                    mTitles[i-4].setVisibility(View.VISIBLE);
+                    mTrees[i-4].setVisibility(View.VISIBLE);
+                    mTitles[i-4].setText(list.get(i).title);
+                    ImageUtil.loadImage(this, list.get(i).elder_img, mTrees[i-4], R.drawable.tree_left1);
+                    break;
+            }
         }
     }
 

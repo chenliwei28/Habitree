@@ -314,7 +314,7 @@ public interface Api {
                                       @Part("user_token") RequestBody token,
                                       @Part("habit_id") RequestBody id,
                                       @Part("content") RequestBody content,
-                                      @Part List<MultipartBody.Part> files);
+                                      @PartMap Map<String,RequestBody> files);
 
     //获取我的钱包
     @FormUrlEncoded

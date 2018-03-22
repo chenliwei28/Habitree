@@ -23,6 +23,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 public class CommUtil {
 
@@ -58,6 +60,7 @@ public class CommUtil {
     public static void logoutToLogin(Context context){
         UserManager.getManager().deleteUser();
         EMClient.getInstance().logout(true);
+        JPushInterface.deleteAlias(context,Constant.NUM_111);
         context.startActivity(new Intent(context, LoginActivity.class));
         AppManager.getAppManager().finishAllActivity();
     }

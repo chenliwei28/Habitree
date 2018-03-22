@@ -29,8 +29,9 @@ public class MidTreeFragment extends BaseFragment implements View.OnClickListene
     private TextView mTitleTwo;
     private TextView mTitleThree;
     private TextView mTitleFour;
-    private List<HabitListResponse.Data.Habit> mList;
     private MyView.OnTreeClickListener mListener;
+    private TextView[] mTitles;
+    private ImageView[] mTrees;
 
     @Override
     protected int setLayoutId() {
@@ -59,66 +60,36 @@ public class MidTreeFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void initData() {
-
+        mTitles = new TextView[4];
+        mTrees = new ImageView[4];
+        mTitles[0] = mTitleOne;
+        mTitles[1] = mTitleTwo;
+        mTitles[2] = mTitleThree;
+        mTitles[3] = mTitleFour;
+        mTrees[0] = mTreeOne;
+        mTrees[1] = mTreeTwo;
+        mTrees[2] = mTreeThree;
+        mTrees[3] = mTreeFour;
     }
 
     public void updateData(List<HabitListResponse.Data.Habit> list) {
         if(list==null)return;
-        mList = list;
-        int len = mList.size();
-        switch (len) {
-            case 0:
-                break;
-            case 1:
-                mTreeOne.setVisibility(View.VISIBLE);
-                mTitleOne.setVisibility(View.VISIBLE);
-                mTitleOne.setText(list.get(0).title);
-                ImageUtil.loadImage(this, mList.get(0).youth_img, mTreeOne, R.drawable.tree_mid1);
-                break;
-            case 2:
-                mTreeOne.setVisibility(View.VISIBLE);
-                mTreeTwo.setVisibility(View.VISIBLE);
-                mTitleOne.setVisibility(View.VISIBLE);
-                mTitleTwo.setVisibility(View.VISIBLE);
-                mTitleOne.setText(list.get(0).title);
-                mTitleTwo.setText(list.get(1).title);
-                ImageUtil.loadImage(this, mList.get(0).youth_img, mTreeOne, R.drawable.tree_mid1);
-                ImageUtil.loadImage(this, mList.get(1).youth_img, mTreeTwo, R.drawable.tree_mid2);
-                break;
-            case 3:
-                mTreeOne.setVisibility(View.VISIBLE);
-                mTreeTwo.setVisibility(View.VISIBLE);
-                mTreeThree.setVisibility(View.VISIBLE);
-                mTitleOne.setVisibility(View.VISIBLE);
-                mTitleTwo.setVisibility(View.VISIBLE);
-                mTitleThree.setVisibility(View.VISIBLE);
-                mTitleOne.setText(list.get(0).title);
-                mTitleTwo.setText(list.get(1).title);
-                mTitleThree.setText(list.get(2).title);
-                ImageUtil.loadImage(this, mList.get(0).youth_img, mTreeOne, R.drawable.tree_mid1);
-                ImageUtil.loadImage(this, mList.get(1).youth_img, mTreeTwo, R.drawable.tree_mid2);
-                ImageUtil.loadImage(this, mList.get(2).youth_img, mTreeThree, R.drawable.tree_mid3);
-                break;
-            default:
-                mTreeOne.setVisibility(View.VISIBLE);
-                mTreeTwo.setVisibility(View.VISIBLE);
-                mTreeThree.setVisibility(View.VISIBLE);
-                mTreeFour.setVisibility(View.VISIBLE);
-
-                mTitleOne.setVisibility(View.VISIBLE);
-                mTitleTwo.setVisibility(View.VISIBLE);
-                mTreeThree.setVisibility(View.VISIBLE);
-                mTitleFour.setVisibility(View.VISIBLE);
-
-                mTitleOne.setText(list.get(0).title);
-                mTitleTwo.setText(list.get(1).title);
-                mTitleThree.setText(list.get(2).title);
-                mTitleFour.setText(list.get(3).title);
-
-                ImageUtil.loadImage(this, mList.get(0).youth_img, mTreeOne, R.drawable.tree_mid1);
-                ImageUtil.loadImage(this, mList.get(1).youth_img, mTreeTwo, R.drawable.tree_mid2);
-                ImageUtil.loadImage(this, mList.get(2).youth_img, mTreeThree, R.drawable.tree_mid3);
-                ImageUtil.loadImage(this, mList.get(3).youth_img, mTreeFour, R.drawable.tree_mid4);
+        int length = list.size()>4?4:list.size();
+        for (int i = 0;i<length;i++){
+            switch (list.get(i).status){
+                case 1:
+                    mTitles[i].setVisibility(View.VISIBLE);
+                    mTrees[i].setVisibility(View.VISIBLE);
+                    mTitles[i].setText(list.get(i).title);
+                    ImageUtil.loadImage(this, list.get(i).youth_img, mTrees[i], R.drawable.tree_mid1);
+                    break;
+                case 2:
+                    mTitles[i].setVisibility(View.VISIBLE);
+                    mTrees[i].setVisibility(View.VISIBLE);
+                    mTitles[i].setText(list.get(i).title);
+                    ImageUtil.loadImage(this, list.get(i).elder_img, mTrees[i], R.drawable.tree_left1);
+                    break;
+            }
         }
     }
 

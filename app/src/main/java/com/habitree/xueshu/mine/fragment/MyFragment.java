@@ -14,11 +14,9 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.User;
-import com.habitree.xueshu.mine.activity.HabitOngoingOrNotActivity;
 import com.habitree.xueshu.mine.activity.MyHabitsActivity;
 import com.habitree.xueshu.mine.activity.MyInfoActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
-import com.habitree.xueshu.mine.activity.SignedInNumberActivity;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
@@ -143,10 +141,10 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
                 startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
             case R.id.completed_ll:
-                HabitOngoingOrNotActivity.start(getContext(),true);
+
                 break;
             case R.id.ongoing_ll:
-                HabitOngoingOrNotActivity.start(getContext(),false);
+
                 break;
             case R.id.head_ll:
                 startActivity(new Intent(getContext(), MyInfoActivity.class));
@@ -180,7 +178,7 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         mRateTv.setText(String.valueOf(user.sign_rate));
         mCompletedTv.setText(String.format(getString(R.string.num_number),user.finish_cnt));
         mOngoingTv.setText(String.format(getString(R.string.num_number),user.going_cnt));
-        mPresenter.getHabitListGoing(this);
+        mPresenter.getMyHabitList(0,this);
     }
 
     @Override

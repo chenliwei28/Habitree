@@ -57,17 +57,37 @@ public class HttpManager {
         return mApis;
     }
 
-    public List<MultipartBody.Part> filesToList(String key, String[] filePaths){
-        if (filePaths==null){
-            return null;
+    public Map<String,RequestBody> filesToMap(String key,String[] filePaths){
+        if (filePaths==null)return null;
+        Map<String,RequestBody> map = new HashMap<>();
+        for (String filePath : filePaths) {
+            File file = new File(filePath);
+            RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+            map.put(key,body);
         }
+        return map;
+    }
+
+    public List<MultipartBody.Part> filesToList(String key, String[] filePaths){
+        if (filePaths==null) return null;
         List<MultipartBody.Part> list = new ArrayList<>();
         for (String filePath : filePaths) {
             File file = new File(filePath);
             RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),file);
-            list.add(MultipartBody.Part.createFormData("images", file.getName(), body));
+            list.add(MultipartBody.Part.createFormData(key, file.getName(), body));
         }
         return list;
+    }
+
+    public MultipartBody.Part[] filesToArray(String key,String[] filePaths){
+        if (filePaths==null)return null;
+        MultipartBody.Part[] parts = new MultipartBody.Part[filePaths.length];
+        for (int i=0,len = filePaths.length;i<len;i++) {
+            File file = new File(filePaths[i]);
+            RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+            parts[i] = MultipartBody.Part.createFormData(key, file.getName(), body);
+        }
+        return parts;
     }
 
     public MultipartBody.Part imageFileToRequestBody(String filePath){

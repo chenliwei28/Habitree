@@ -254,7 +254,7 @@ public class HabitPresenter extends BasePresenter {
                         HttpManager.getManager().stringToRequestBody(UserManager.getManager().getUser().user_token),
                         HttpManager.getManager().stringToRequestBody(String.valueOf(habitId)),
                         HttpManager.getManager().stringToRequestBody(detail),
-                        HttpManager.getManager().filesToList("images",imagePaths))
+                        HttpManager.getManager().filesToMap("images",imagePaths))
                 .enqueue(new Callback<PunchCardResponse>() {
                     @Override
                     public void onResponse(Call<PunchCardResponse> call, Response<PunchCardResponse> response) {
@@ -339,60 +339,6 @@ public class HabitPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<RecordListResponse> call, Throwable t) {
                         view.onRecordListGetFailed(mContext.getString(R.string.network_error));
-                    }
-                });
-    }
-
-    public void getHabitListGoing(final HabitView.HabitListView view){
-        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        HttpManager.getManager().getService()
-                .getMyHabitList(timestamp,CommUtil.getSign(Constant.GET_HABIT_LIST_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,1,10,1)
-                .enqueue(new Callback<HabitListResponse>() {
-                    @Override
-                    public void onResponse(Call<HabitListResponse> call, Response<HabitListResponse> response) {
-                        if (response.body()!=null){
-                            if (CommUtil.isSuccess(mContext,response.body().status)){
-                                mOngoing = response.body().data.list;
-                                getHabitListFinish(view);
-                            }else {
-                                view.onListGetFailed(CommUtil.unicode2Chinese(response.body().info));
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<HabitListResponse> call, Throwable t) {
-                        view.onListGetFailed(mContext.getString(R.string.network_error));
-                    }
-                });
-    }
-
-    private void getHabitListFinish(final HabitView.HabitListView view){
-        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        HttpManager.getManager().getService()
-                .getMyHabitList(timestamp,CommUtil.getSign(Constant.GET_HABIT_LIST_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,1,10,2)
-                .enqueue(new Callback<HabitListResponse>() {
-                    @Override
-                    public void onResponse(Call<HabitListResponse> call, Response<HabitListResponse> response) {
-                        if (response.body()!=null){
-                            if (CommUtil.isSuccess(mContext,response.body().status)){
-                                HabitListResponse.Data data = response.body().data;
-                                if (data.list!=null) {
-                                    mOngoing.addAll(data.list);
-                                }
-                                data.list = mOngoing;
-                                view.onListGetSuccess(data,2);
-                            }else {
-                                view.onListGetFailed(CommUtil.unicode2Chinese(response.body().info));
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<HabitListResponse> call, Throwable t) {
-                        view.onListGetFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

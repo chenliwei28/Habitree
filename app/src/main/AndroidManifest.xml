@@ -234,9 +234,6 @@
             android:name=".mine.activity.SignedInNumberActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mine.activity.HabitOngoingOrNotActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mine.activity.MyHabitsActivity"
             android:screenOrientation="portrait" />
         <activity
