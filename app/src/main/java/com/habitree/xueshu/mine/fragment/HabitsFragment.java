@@ -49,7 +49,7 @@ public class HabitsFragment extends BaseFragment {
         mHabitsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                HabitDetailActivity.start(getContext(),mList.get(i).habit_id);
+                HabitDetailActivity.start(getContext(),mList.get(i).habit_id,true);
             }
         });
     }

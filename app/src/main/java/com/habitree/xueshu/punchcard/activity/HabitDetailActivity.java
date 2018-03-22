@@ -58,9 +58,10 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         return R.layout.activity_habit_detail;
     }
 
-    public static void start(Context context,int habitId){
+    public static void start(Context context,int habitId,boolean isUser){
         Intent intent = new Intent(context,HabitDetailActivity.class);
         intent.putExtra(Constant.ID,habitId);
+        intent.putExtra(Constant.TYPE,isUser);
         context.startActivity(intent);
     }
 
@@ -128,6 +129,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         showLoadingDialog();
         mPresenter.getHabitDetail(getIntent().getIntExtra(Constant.ID,0),this);
         mPresenter.getRecordList(getIntent().getIntExtra(Constant.ID,0),this);
+        mAbandonTv.setVisibility(getIntent().getBooleanExtra(Constant.TYPE,true)?View.VISIBLE:View.GONE);
     }
 
     @Override

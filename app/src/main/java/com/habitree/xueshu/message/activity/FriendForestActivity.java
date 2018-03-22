@@ -117,7 +117,7 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
                 if (mCurrentHabit == null) {
                     showToast("请选择一棵树");
                 } else {
-                    HabitDetailActivity.start(this, mCurrentHabit.habit_id);
+                    HabitDetailActivity.start(this, mCurrentHabit.habit_id,false);
                 }
                 break;
         }

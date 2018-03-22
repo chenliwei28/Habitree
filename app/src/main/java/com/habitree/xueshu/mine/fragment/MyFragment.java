@@ -153,7 +153,7 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
                 if (mCurrentHabit==null){
                     showToast("请选择一棵树");
                 }else {
-                    HabitDetailActivity.start(getContext(),mCurrentHabit.habit_id);
+                    HabitDetailActivity.start(getContext(),mCurrentHabit.habit_id,true);
                 }
                 break;
         }

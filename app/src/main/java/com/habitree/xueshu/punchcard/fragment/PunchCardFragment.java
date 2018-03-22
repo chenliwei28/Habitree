@@ -99,7 +99,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
             mAdapter.setListener(new CardPagerAdapter.CardClickListener() {
                 @Override
                 public void detailClick(int position) {
-                    HabitDetailActivity.start(getContext(),mHabits.list.get(position).habit_id);
+                    HabitDetailActivity.start(getContext(),mHabits.list.get(position).habit_id,true);
                 }
 
                 @Override
