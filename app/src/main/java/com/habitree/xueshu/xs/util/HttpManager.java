@@ -74,7 +74,8 @@ public class HttpManager {
         for (String filePath : filePaths) {
             File file = new File(filePath);
             RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),file);
-            list.add(MultipartBody.Part.createFormData(key, file.getName(), body));
+            MultipartBody.Part part = MultipartBody.Part.createFormData(key, file.getName(), body);
+            list.add(part);
         }
         return list;
     }

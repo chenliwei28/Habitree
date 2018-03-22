@@ -254,7 +254,7 @@ public class HabitPresenter extends BasePresenter {
                         HttpManager.getManager().stringToRequestBody(UserManager.getManager().getUser().user_token),
                         HttpManager.getManager().stringToRequestBody(String.valueOf(habitId)),
                         HttpManager.getManager().stringToRequestBody(detail),
-                        HttpManager.getManager().filesToMap("images",imagePaths))
+                        HttpManager.getManager().filesToList("images",imagePaths))
                 .enqueue(new Callback<PunchCardResponse>() {
                     @Override
                     public void onResponse(Call<PunchCardResponse> call, Response<PunchCardResponse> response) {
