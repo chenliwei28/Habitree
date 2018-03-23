@@ -128,6 +128,7 @@
     <string name="sure_abandon_habit">确认放弃习惯？</string>
     <string name="sure_upload">确认上传？</string>
     <string name="sure_to_quit_this_edit">确定要退出此次打卡编辑吗？</string>
+    <string name="please_choose_at_least_one">请至少选择一天</string>
     <string name="please_choose_recycle_days">请选择天数</string>
     <string name="please_enter_phone_number">请输入手机号</string>
     <string name="please_enter_password_again">请再次输入密码</string>

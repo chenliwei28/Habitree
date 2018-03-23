@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.InputFilter;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -72,6 +73,11 @@ public class MyInputDialog extends Dialog {
 
     public MyInputDialog setDetail(String detail){
         mDetailTv.setText(detail);
+        return this;
+    }
+
+    public MyInputDialog setInputMaxLength(int length){
+        mInputEt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(length)});
         return this;
     }
 

@@ -41,6 +41,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     private TimePickerView mTimePicker;
     private AppleDialog mPrivacyDialog;
     private AppleDialog mRecordDialog;
+    private boolean[] mRepeats = {true,true,true,true,true,true,true};
 
 
     @Override
@@ -95,7 +96,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.repeat_civ:
                 CommUtil.hideSoftInput(this);
-                startActivityForResult(new Intent(HabitSettingActivity.this,RepeatDayActivity.class),Constant.NUM_109);
+                RepeatDayActivity.start(this,mRepeats);
                 break;
             case R.id.duration_civ:
                 CommUtil.hideSoftInput(this);
@@ -213,6 +214,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void switchDays(boolean[] b){
+        mRepeats = b;
         String[] wes = {"日","一","二","三","四","五","六"};
         StringBuilder builder = new StringBuilder();
         StringBuilder ds = new StringBuilder();

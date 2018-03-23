@@ -26,8 +26,11 @@ import com.habitree.xueshu.xs.view.LoginEditText;
 
 import java.util.List;
 
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
-public class LoginActivity extends BaseActivity implements LoginView,View.OnClickListener {
+
+public class LoginActivity extends BaseActivity implements LoginView,View.OnClickListener,EasyPermissions.PermissionCallbacks {
 
     private LoginEditText mPhoneLet;
     private LoginEditText mPasswLet;
@@ -75,7 +78,7 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     @Override
     protected void initData() {
         mPresenter = new LoginAndRegisterPresenter(this);
-//        requestReadPhone();
+        requestReadPhone();
     }
 
     @Override
@@ -124,30 +127,30 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
         showToast(reason);
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this);
-//    }
-//
-//    @AfterPermissionGranted(Constant.NUM_110)
-//    private void requestReadPhone(){
-//        String[] ps = {Manifest.permission.READ_PHONE_STATE};
-//        if (!EasyPermissions.hasPermissions(this,ps)){
-//            EasyPermissions.requestPermissions(this,"必须的权限",Constant.NUM_110,ps);
-//        }else {
-//            BaseApp.imei = CommUtil.getIMEI(this);
-//        }
-//    }
-//
-//    @Override
-//    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-//        LogUtil.d("给读手机数据");
-//        BaseApp.imei = CommUtil.getIMEI(this);
-//    }
-//
-//    @Override
-//    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
-//        LogUtil.d("不给读手机数据");
-//    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this);
+    }
+
+    @AfterPermissionGranted(Constant.NUM_110)
+    private void requestReadPhone(){
+        String[] ps = {Manifest.permission.READ_PHONE_STATE};
+        if (!EasyPermissions.hasPermissions(this,ps)){
+            EasyPermissions.requestPermissions(this,"必须的权限",Constant.NUM_110,ps);
+        }else {
+            BaseApp.imei = CommUtil.getIMEI(this);
+        }
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        LogUtil.d("给读手机数据");
+        BaseApp.imei = CommUtil.getIMEI(this);
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        LogUtil.d("不给读手机数据");
+    }
 }

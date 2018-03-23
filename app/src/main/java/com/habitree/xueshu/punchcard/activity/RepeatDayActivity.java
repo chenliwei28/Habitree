@@ -1,5 +1,7 @@
 package com.habitree.xueshu.punchcard.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
@@ -24,6 +26,12 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected int setLayoutId() {
         return R.layout.activity_repeat_day;
+    }
+
+    public static void start(Activity context, boolean[] booleans){
+        Intent intent = new Intent(context,RepeatDayActivity.class);
+        intent.putExtra(Constant.CODE,booleans);
+        context.startActivityForResult(intent,Constant.NUM_109);
     }
 
     @Override
@@ -58,15 +66,28 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
                 bs[4] = mThursdayCiv.mIsSelected;
                 bs[5] = mFridayCiv.mIsSelected;
                 bs[6] = mSaturdayCiv.mIsSelected;
-                setResult(Constant.NUM_110,new Intent(RepeatDayActivity.this,HabitSettingActivity.class).putExtra(Constant.TYPE,bs));
-                AppManager.getAppManager().finishActivity(RepeatDayActivity.this);
+                if (!bs[0]&&!bs[1]&&!bs[2]&&!bs[3]&&!bs[4]&&!bs[5]&&!bs[6]){
+                    showToast(getString(R.string.please_choose_at_least_one));
+                }else {
+                    setResult(Constant.NUM_110,new Intent(RepeatDayActivity.this,HabitSettingActivity.class).putExtra(Constant.TYPE,bs));
+                    AppManager.getAppManager().finishActivity(RepeatDayActivity.this);
+                }
             }
         });
     }
 
     @Override
     protected void initData() {
-
+        boolean[] b = getIntent().getBooleanArrayExtra(Constant.CODE);
+        if (b!=null){
+            mSundayCiv.setChecked(b[0]);
+            mMondayCiv.setChecked(b[1]);
+            mTuesdayCiv.setChecked(b[2]);
+            mWednesdayCiv.setChecked(b[3]);
+            mThursdayCiv.setChecked(b[4]);
+            mFridayCiv.setChecked(b[5]);
+            mSaturdayCiv.setChecked(b[6]);
+        }
     }
 
     @Override

@@ -201,12 +201,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private EMMessageListener mMessageListener = new EMMessageListener() {
         @Override
         public void onMessageReceived(List<EMMessage> list) {
-            MainHandler.getInstance().post(new Runnable() {
-                @Override
-                public void run() {
-                    mMsFragment.updateData();
-                }
-            });
+            mMsFragment.updateData();
         }
 
         @Override
