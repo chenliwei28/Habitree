@@ -41,6 +41,7 @@ public class Constant {
     public final static String LOGIN_FUNCTION = "v1/user/login";
     public final static String REGISTER_FUNCTION = "v1/user/registermobile";
     public final static String AUTH_CODE_FUNCTION = "v1/sms/send";
+    public final static String CHECK_CODE_FUNCTION = "v1/user/phone/verify";
     public final static String FIND_PASSWORD_FUNCTION = "v1/user/passwd/find";
     public final static String CHANGE_PHONE_FUNCTION = "v1/user/phone/bind";
     public final static String CHANGE_PASSWORD_FUNCTION = "v1/user/passwd/update";

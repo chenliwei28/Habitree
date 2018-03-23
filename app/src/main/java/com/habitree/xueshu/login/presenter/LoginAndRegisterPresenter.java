@@ -5,6 +5,7 @@ import android.content.Context;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.AuthCodeResponse;
 import com.habitree.xueshu.login.bean.ChangeBindPhoneResponse;
+import com.habitree.xueshu.login.bean.CheckCodeResponse;
 import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
 import com.habitree.xueshu.login.bean.User;
@@ -146,6 +147,23 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<RegisterResponse> call, Throwable t) {
                         view.onRegisterFail(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void checkVerifyCode(int type,String code,String mobile){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().checkAuthCode(timestamp,CommUtil.getSign(Constant.CHECK_CODE_FUNCTION,timestamp),
+                mobile,type,code)
+                .enqueue(new Callback<CheckCodeResponse>() {
+                    @Override
+                    public void onResponse(Call<CheckCodeResponse> call, Response<CheckCodeResponse> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<CheckCodeResponse> call, Throwable t) {
+
                     }
                 });
     }

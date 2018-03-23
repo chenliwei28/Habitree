@@ -17,4 +17,9 @@ public interface RegisterView extends BaseView {
         void onChangeSuccess();
         void onChangeFail(String reason);
     }
+
+    interface CheckAuthCodeView{
+        void onCheckSuccess();
+        void onCheckFailed(String reason);
+    }
 }

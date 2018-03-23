@@ -61,4 +61,5 @@ dependencies {
     implementation project(':easeui')
     compile 'com.android.support:multidex:1.0.3'
     compile 'com.contrarywind:Android-PickerView:3.2.7'
+    compile 'com.yanzhenjie:recyclerview-swipe:1.1.4'
 }

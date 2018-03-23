@@ -17,7 +17,7 @@ import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
-public class SendAuthCodeActivity extends BaseActivity implements RegisterView.AuthCodeView,View.OnClickListener{
+public class SendAuthCodeActivity extends BaseActivity implements RegisterView.AuthCodeView,View.OnClickListener,RegisterView.CheckAuthCodeView{
 
     private MyActionBar mSendMab;
     private EditText mCodeEt;
@@ -27,6 +27,7 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
     private final static int AUTH_RESET_TIME = 60;
     private int mTime = AUTH_RESET_TIME;
     private String mPhone;
+    private String mCode;
     private int mType;
     private LoginAndRegisterPresenter mPresenter;
 
@@ -98,13 +99,13 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
 
     private void checkCodeAndToNext(){
         CommUtil.hideSoftInput(this);
-        String code = mCodeEt.getText().toString();
-        if (TextUtils.isEmpty(code)){
-            ToastUtil.showToast(this,getString(R.string.auth_code_empty));
-        }else if (code.length()!=4){
-            ToastUtil.showToast(this,getString(R.string.wrong_auth_code));
+        mCode = mCodeEt.getText().toString();
+        if (TextUtils.isEmpty(mCode)){
+            showToast(getString(R.string.auth_code_empty));
+        }else if (mCode.length()!=4){
+            showToast(getString(R.string.wrong_auth_code));
         }else {
-            SetPasswordActivity.start(this,mPhone,code,mType);
+            mPresenter.checkVerifyCode(1,mCode,mPhone);
         }
     }
 
@@ -122,5 +123,15 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.onDetach();
+    }
+
+    @Override
+    public void onCheckSuccess() {
+        SetPasswordActivity.start(this,mPhone,mCode,mType);
+    }
+
+    @Override
+    public void onCheckFailed(String reason) {
+        showToast(reason);
     }
 }

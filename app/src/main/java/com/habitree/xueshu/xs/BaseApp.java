@@ -1,6 +1,9 @@
 package com.habitree.xueshu.xs;
 
 
+import android.content.Context;
+import android.support.multidex.MultiDex;
+
 import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
@@ -51,5 +54,11 @@ public class BaseApp extends LitePalApplication {
         //极光推送初始化
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

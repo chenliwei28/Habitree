@@ -143,6 +143,7 @@
     <string name="please_accept_the_permission_of_camera">请打开照相权限及存储权限</string>
     <string name="please_set_password_from_eight_to_sixteen">请设置8&#8211;16位密码，可包含数字、字母、字符</string>
     <!--S-->
+    <string name="delete">删除</string>
     <string name="birthday">生日</string>
     <string name="setting">设置</string>
     <string name="income_num">收入：¥ %s</string>

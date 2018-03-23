@@ -3,6 +3,7 @@ package com.habitree.xueshu.xs.apis;
 
 import com.habitree.xueshu.login.bean.AuthCodeResponse;
 import com.habitree.xueshu.login.bean.ChangeBindPhoneResponse;
+import com.habitree.xueshu.login.bean.CheckCodeResponse;
 import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.LoginResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
@@ -63,6 +64,15 @@ public interface Api {
                                         @Field("sign") String sign,
                                         @Field("mobile") String mobile,
                                         @Field("smstype") int type);
+
+    //验证码校验
+    @FormUrlEncoded
+    @POST(Constant.CHECK_CODE_FUNCTION)
+    Call<CheckCodeResponse> checkAuthCode(@Field("timestamp") String timestamp,
+                                          @Field("sign") String sign,
+                                          @Field("mobile") String mobile,
+                                          @Field("smstype") int type,
+                                          @Field("smscode")String code);
 
     //注册
     @FormUrlEncoded
@@ -314,7 +324,7 @@ public interface Api {
                                       @Part("user_token") RequestBody token,
                                       @Part("habit_id") RequestBody id,
                                       @Part("content") RequestBody content,
-                                      @PartMap List<MultipartBody.Part> files);
+                                      @Part List<MultipartBody.Part> files);
 
     //获取我的钱包
     @FormUrlEncoded

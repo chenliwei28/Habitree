@@ -15,6 +15,7 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseUI;
@@ -27,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class MessageAdapter extends BaseAdapter {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder> {
 
     private Context mContext;
     private List<EMConversation> mList;
@@ -39,43 +40,24 @@ public class MessageAdapter extends BaseAdapter {
         dealCount = count;
     }
 
-    @Override
-    public int getCount() {
-        return mList.size()+1;
+    public EMConversation getListItem(int position){
+        return mList.get(position-1);
     }
 
     @Override
-    public EMConversation getItem(int i) {
-        return mList.get(i-1);
+    public MessageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_supervision_list, parent, false);
+        return new MessageHolder(view);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        MessageHolder holder;
-        if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.item_supervision_list, viewGroup, false);
-            holder = new MessageHolder();
-            holder.mHeadRiv = view.findViewById(R.id.head_riv);
-            holder.mNameTv = view.findViewById(R.id.name_tv);
-            holder.mTimeTv = view.findViewById(R.id.time_tv);
-            holder.mDetailTv = view.findViewById(R.id.detail_tv);
-            holder.mUnreadTv = view.findViewById(R.id.unread_tv);
-            holder.mSendFailedIv = view.findViewById(R.id.send_failed_iv);
-            view.setTag(holder);
-        } else {
-            holder = (MessageHolder) view.getTag();
-        }
-        if (i == 0) {
+    public void onBindViewHolder(MessageHolder holder, int position) {
+        if (position == 0) {
             ImageUtil.loadImage((Activity) mContext,R.drawable.ic_default_head,holder.mHeadRiv);
             holder.mNameTv.setText(mContext.getString(R.string.pending_matters));
             holder.mDetailTv.setText(String.format(mContext.getString(R.string.number_of_pending_matters),dealCount));
         } else {
-            EMConversation conversation = getItem(i);
+            EMConversation conversation = mList.get(position-1);
             EaseUI.EaseUserProfileProvider provider = EaseUI.getInstance().getUserProfileProvider();
             if (provider != null) {
                 EaseUser user = provider.getUser(conversation.conversationId());
@@ -104,7 +86,16 @@ public class MessageAdapter extends BaseAdapter {
                 }
             }
         }
-        return view;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public int getItemCount() {
+        return mList.size()+1;
     }
 
     public void updateData(List<EMConversation> list,int count) {
@@ -113,12 +104,28 @@ public class MessageAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    class MessageHolder {
+    public void deleteConversation(int position){
+        EMClient.getInstance().chatManager().deleteConversation(mList.get(position-1).conversationId(),false);
+        mList.remove(position-1);
+        notifyDataSetChanged();
+    }
+
+    class MessageHolder extends RecyclerView.ViewHolder{
         RoundImageView mHeadRiv;
         TextView mNameTv;
         TextView mTimeTv;
         TextView mDetailTv;
         TextView mUnreadTv;
         ImageView mSendFailedIv;
+
+        public MessageHolder(View itemView) {
+            super(itemView);
+            mHeadRiv = itemView.findViewById(R.id.head_riv);
+            mNameTv = itemView.findViewById(R.id.name_tv);
+            mTimeTv = itemView.findViewById(R.id.time_tv);
+            mDetailTv = itemView.findViewById(R.id.detail_tv);
+            mUnreadTv = itemView.findViewById(R.id.unread_tv);
+            mSendFailedIv = itemView.findViewById(R.id.send_failed_iv);
+        }
     }
 }
