@@ -1,16 +1,9 @@
 package com.habitree.xueshu.mine.fragment;
 
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.main.MainActivity;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
@@ -67,23 +60,53 @@ public class LeftTreeFragment extends BaseFragment implements View.OnClickListen
 
     public void updateData(List<HabitListResponse.Data.Habit> list) {
         if (list==null)return;
-        if (list.size()<=4)return;
-        int length = list.size()>7?7:list.size();
-        for (int i = 4;i<length;i++){
-            switch (list.get(i).status){
-                case 1:
-                    mTitles[i-4].setVisibility(View.VISIBLE);
-                    mTrees[i-4].setVisibility(View.VISIBLE);
-                    mTitles[i-4].setText(list.get(i).title);
-                    ImageUtil.loadImage(this, list.get(i).youth_img, mTrees[i-4], R.drawable.tree_mid1);
-                    break;
-                case 2:
-                    mTitles[i-4].setVisibility(View.VISIBLE);
-                    mTrees[i-4].setVisibility(View.VISIBLE);
-                    mTitles[i-4].setText(list.get(i).title);
-                    ImageUtil.loadImage(this, list.get(i).elder_img, mTrees[i-4], R.drawable.tree_left1);
-                    break;
-            }
+        int length = list.size();
+        for (int i = 0; i < 3; i++) {
+            mTitles[i].setVisibility(View.GONE);
+            mTrees[i].setVisibility(View.GONE);
+        }
+        switch (length) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                break;
+            case 5:
+                mTreeOne.setVisibility(View.VISIBLE);
+                mTitleOne.setVisibility(View.VISIBLE);
+                mTitleOne.setText(list.get(4).title);
+                if (list.get(4).status==1)ImageUtil.loadImage(this,list.get(4).youth_img,mTreeOne,R.drawable.tree_mid1);
+                else ImageUtil.loadImage(this,list.get(4).elder_img,mTreeOne,R.drawable.tree_mid1);
+                break;
+            case 6:
+                mTreeOne.setVisibility(View.VISIBLE);
+                mTitleOne.setVisibility(View.VISIBLE);
+                mTreeTwo.setVisibility(View.VISIBLE);
+                mTitleTwo.setVisibility(View.VISIBLE);
+                mTitleOne.setText(list.get(4).title);
+                mTitleTwo.setText(list.get(5).title);
+                if (list.get(4).status==1)ImageUtil.loadImage(this,list.get(4).youth_img,mTreeOne,R.drawable.tree_mid1);
+                else ImageUtil.loadImage(this,list.get(4).elder_img,mTreeOne,R.drawable.tree_left1);
+                if (list.get(5).status==1)ImageUtil.loadImage(this,list.get(5).youth_img,mTreeTwo,R.drawable.tree_mid1);
+                else ImageUtil.loadImage(this,list.get(5).elder_img,mTreeTwo,R.drawable.tree_left1);
+                break;
+            default:
+                mTreeOne.setVisibility(View.VISIBLE);
+                mTitleOne.setVisibility(View.VISIBLE);
+                mTreeTwo.setVisibility(View.VISIBLE);
+                mTitleTwo.setVisibility(View.VISIBLE);
+                mTreeThree.setVisibility(View.VISIBLE);
+                mTitleThree.setVisibility(View.VISIBLE);
+                mTitleOne.setText(list.get(4).title);
+                mTitleTwo.setText(list.get(5).title);
+                mTitleThree.setText(list.get(6).title);
+                if (list.get(4).status==1)ImageUtil.loadImage(this,list.get(4).youth_img,mTreeOne,R.drawable.tree_mid1);
+                else ImageUtil.loadImage(this,list.get(4).elder_img,mTreeOne,R.drawable.tree_left1);
+                if (list.get(5).status==1)ImageUtil.loadImage(this,list.get(5).youth_img,mTreeTwo,R.drawable.tree_mid1);
+                else ImageUtil.loadImage(this,list.get(5).elder_img,mTreeTwo,R.drawable.tree_left1);
+                if (list.get(6).status==1)ImageUtil.loadImage(this,list.get(6).youth_img,mTreeThree,R.drawable.tree_mid1);
+                else ImageUtil.loadImage(this,list.get(6).elder_img,mTreeThree,R.drawable.tree_left1);
         }
     }
 

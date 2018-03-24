@@ -7,6 +7,7 @@ import com.habitree.xueshu.login.bean.CheckCodeResponse;
 import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.LoginResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
+import com.habitree.xueshu.login.pview.LoginView;
 import com.habitree.xueshu.message.bean.AgreeFriendResponse;
 import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.message.bean.FriendsResponse;
@@ -18,6 +19,7 @@ import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.ChangeNickResponse;
+import com.habitree.xueshu.mine.bean.ChangePasswordResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
@@ -56,6 +58,18 @@ public interface Api {
                               @Field("sign") String sign,
                               @Field("username") String phone,
                               @Field("password") String password);
+
+    //三方登录
+    @FormUrlEncoded
+    @POST(Constant.THIRD_LOGIN_FUNCTION)
+    Call<LoginResponse> thirdLogin(@Field("timestamp") String timestamp,
+                                   @Field("sign") String sign,
+                                   @Field("openid")String openid,
+                                   @Field("userfrom")String userfrom,
+                                   @Field("head_img")String head,
+                                   @Field("access_token")String token,
+                                   @Field("expires_date")String expiresDate,
+                                   @Field("nickname")String nickname);
 
     //发送验证码
     @FormUrlEncoded
@@ -107,11 +121,11 @@ public interface Api {
     //修改密码
     @FormUrlEncoded
     @POST(Constant.CHANGE_PASSWORD_FUNCTION)
-    Call changePassword(@Field("timestamp") String timestamp,
-                        @Field("sign") String sign,
-                        @Field("user_token") String token,
-                        @Field("old_pwd") String old,
-                        @Field("new_pwd") String npw);
+    Call<ChangePasswordResponse> changePassword(@Field("timestamp") String timestamp,
+                                                @Field("sign") String sign,
+                                                @Field("user_token") String token,
+                                                @Field("old_pwd") String old,
+                                                @Field("new_pwd") String npw);
 
     //初始化信息
     @FormUrlEncoded

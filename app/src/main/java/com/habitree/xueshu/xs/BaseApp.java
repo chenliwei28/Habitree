@@ -10,8 +10,14 @@ import com.habitree.xueshu.xs.util.LogUtil;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.Config;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 import org.litepal.LitePalApplication;
+import org.litepal.util.Const;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -54,6 +60,18 @@ public class BaseApp extends LitePalApplication {
         //极光推送初始化
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+
+        //友盟统计初始化
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+        UMConfigure.init(this,Constant.UMENG_KEY,"Umeng",UMConfigure.DEVICE_TYPE_PHONE,null);
+        UMConfigure.setLogEnabled(true);
+
+        //友盟三方分享、登录初始化
+        PlatformConfig.setWeixin(Constant.WECHAT_KEY,Constant.WECHAT_SECRET);
+        PlatformConfig.setQQZone(Constant.QQ_KEY, Constant.QQ_SECRET);
+        PlatformConfig.setSinaWeibo(Constant.SINA_KEY, Constant.SINA_SECRET,"http://sns.whalecloud.com");
+        Config.DEBUG = true;
+        UMShareAPI.get(this);
     }
 
     @Override

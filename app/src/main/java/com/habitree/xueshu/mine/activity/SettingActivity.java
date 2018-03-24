@@ -20,6 +20,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private CustomItemView mClearCacheCiv;
     private CustomItemView mLogOutCiv;
     private MyDialog mExitDialog;
+    private MyDialog mClearDialog;
 
     @Override
     protected int setLayoutId() {
@@ -61,38 +62,52 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(this, ChangePhoneActivity.class));
                 break;
             case R.id.change_password_civ:
-
+                startActivity(new Intent(this,ChangePasswordActivity.class));
                 break;
             case R.id.about_civ:
                 startActivity(new Intent(this,AboutActivity.class));
                 break;
             case R.id.clear_cache_civ:
-                showExitDialog(false);
+                showClearDialog();
                 break;
             case R.id.log_out_civ:
-                showExitDialog(true);
+                showExitDialog();
                 break;
         }
     }
 
-    private void showExitDialog(final boolean isExit) {
+    private void showClearDialog(){
+        if (mClearDialog==null){
+            mClearDialog = new MyDialog(this)
+                    .builder()
+                    .setTitle(getString(R.string.remind))
+                    .setDetail(getString(R.string.sure_clear_cache))
+                    .setConfirmClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mClearDialog.dismiss();
+                            CacheUtil.cleanInternalCache(getApplicationContext());
+                            showToast("清除成功");
+                        }
+                    });
+        }
+        mClearDialog.show();
+    }
+
+    private void showExitDialog() {
         if (mExitDialog == null) {
             mExitDialog = new MyDialog(this)
                     .builder()
                     .setTitle(getString(R.string.remind))
+                    .setDetail(getString(R.string.sure_logout))
                     .setConfirmClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             mExitDialog.dismiss();
-                            if (isExit) CommUtil.logoutToLogin(SettingActivity.this);
-                            else {
-                                CacheUtil.cleanInternalCache(getApplicationContext());
-                                showToast("清除成功");
-                            }
+                            CommUtil.logoutToLogin(SettingActivity.this);
                         }
                     });
         }
-        mExitDialog.setDetail(isExit?getString(R.string.sure_logout):getString(R.string.sure_clear_cache));
         mExitDialog.show();
     }
 }

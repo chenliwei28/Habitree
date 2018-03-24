@@ -179,6 +179,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     private void showTimePicker(){
         if (mTimePicker==null){
+            Calendar startDate = Calendar.getInstance();
+            Calendar endDate = Calendar.getInstance();
+            startDate.set(1900,0,1);
             mTimePicker = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
                 @Override
                 public void onTimeSelect(Date date, View v) {
@@ -191,7 +194,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                     .setOutSideCancelable(true)
                     .setSubmitColor(getResources().getColor(R.color.blue))
                     .setCancelColor(getResources().getColor(R.color.blue))
-                    .setRange(1900,Integer.valueOf(TimeUtil.getTodayInfo(Calendar.YEAR)))
+                    .setRangDate(startDate,endDate)
+                    .setDate(endDate)
                     .build();
         }
         mTimePicker.show();

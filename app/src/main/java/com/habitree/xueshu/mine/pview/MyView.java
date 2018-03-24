@@ -15,6 +15,11 @@ public interface MyView extends BaseView {
         void onChangeFailed(String reason);
     }
 
+    interface ChangePaswView{
+        void onChangePsSuccess();
+        void onChangePsFailed(String reason);
+    }
+
     interface MyWalletView{
         void onWalletInfoGetSuccess(Wallet wallet);
         void onWalletInfoGetFailed(String reason);

@@ -18,7 +18,6 @@ import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
-import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
@@ -33,7 +32,7 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
     private TextView mNameTv;
     private TextView mTimeTv;
     private TextView mRestTimeTv;
-    private TextView mTittleTv;
+    private TextView mTitleTv;
     private TextView mDetailTv;
     private ImageView mPhotoIv;
     private NoScrollRecyclerView mPhotosRv;
@@ -63,7 +62,7 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
         mNameTv = findViewById(R.id.name_tv);
         mTimeTv = findViewById(R.id.time_tv);
         mRestTimeTv = findViewById(R.id.rest_time_tv);
-        mTittleTv = findViewById(R.id.title_tv);
+        mTitleTv = findViewById(R.id.habit_title_tv);
         mDetailTv = findViewById(R.id.detail_tv);
         mPhotoIv = findViewById(R.id.photo_iv);
         mPhotosRv = findViewById(R.id.photos_rv);
@@ -82,11 +81,10 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
     protected void initData() {
         showLoadingDialog();
         mMessage = (Message) getIntent().getSerializableExtra(Constant.CODE);
-        mRecordMa.setTitle(getString(R.string.audit_record));
         ImageUtil.loadImage(this,mMessage.sender_user.portrait,mHeadRiv,R.drawable.ic_default_head);
         mNameTv.setText(mMessage.sender_user.nickname);
         MessageManager.getManager().getRecordDetail(this,mMessage.sign_id,this);
-        mTittleTv.setText(mMessage.habit_info.title);
+        mTitleTv.setText(mMessage.habit_info.title);
     }
 
     @Override
@@ -122,7 +120,7 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onMsgDetailGetSuccess(SignDetailResponse.DataBean dataBean) {
         mDetailTv.setText(dataBean.content);
-        mTittleTv.setText(dataBean.habit_info.title);
+        mTitleTv.setText(dataBean.habit_info.title);
         mTimeTv.setText(TimeUtil.millisToString("yyyy-MM-dd",dataBean.sign_time));
         if (dataBean.images!=null&&!dataBean.images.isEmpty()){
             if (dataBean.images.size()==1){

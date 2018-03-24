@@ -7,6 +7,7 @@ import com.baidu.platform.comapi.map.N;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.ChangeNickResponse;
+import com.habitree.xueshu.mine.bean.ChangePasswordResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
@@ -179,6 +180,29 @@ public class MyPresenter extends BasePresenter{
                     @Override
                     public void onFailure(Call<ForfeitListResponse> call, Throwable t) {
                         view.onForfeitListGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void changePassword(String oldPsw, String newPsw, final MyView.ChangePaswView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().changePassword(timestamp,CommUtil.getSign(Constant.CHANGE_PASSWORD_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,oldPsw,newPsw)
+                .enqueue(new Callback<ChangePasswordResponse>() {
+                    @Override
+                    public void onResponse(Call<ChangePasswordResponse> call, Response<ChangePasswordResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onChangePsSuccess();
+                            }else {
+                                view.onChangePsFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChangePasswordResponse> call, Throwable t) {
+                        view.onChangePsFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

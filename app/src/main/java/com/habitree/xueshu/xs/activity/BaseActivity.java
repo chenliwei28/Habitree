@@ -10,6 +10,7 @@ import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.MyProgressDialog;
+import com.umeng.analytics.MobclickAgent;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -58,5 +59,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (dialog!=null&&dialog.isShowing()){
             dialog.dismiss();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

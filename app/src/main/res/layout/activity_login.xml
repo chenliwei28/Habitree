@@ -88,7 +88,7 @@
                 android:id="@+id/register_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:gravity="center"
                 android:text="@string/quick_register"
                 android:textColor="@color/blue"
@@ -98,7 +98,7 @@
                 android:id="@+id/forget_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:text="@string/forget_password"
                 android:textColor="@color/blue"
@@ -118,7 +118,7 @@
                 android:layout_weight="1" />
 
             <ImageView
-                android:id="@+id/wx_btn"
+                android:id="@+id/weibo_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
@@ -126,7 +126,7 @@
                 android:src="@drawable/ic_wb" />
 
             <ImageView
-                android:id="@+id/weibo_btn"
+                android:id="@+id/wx_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"

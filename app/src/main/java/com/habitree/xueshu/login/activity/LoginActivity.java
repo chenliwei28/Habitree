@@ -23,8 +23,12 @@ import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.LoginEditText;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.List;
+import java.util.Map;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -96,13 +100,13 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
                 RegisterActivity.start(this,2);
                 break;
             case R.id.wx_btn:
-
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN,mThirdLoginListener);
                 break;
             case R.id.weibo_btn:
-
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.SINA,mThirdLoginListener);
                 break;
             case R.id.qq_btn:
-
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ,mThirdLoginListener);
                 break;
         }
     }
@@ -135,7 +139,7 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
 
     @AfterPermissionGranted(Constant.NUM_110)
     private void requestReadPhone(){
-        String[] ps = {Manifest.permission.READ_PHONE_STATE};
+        String[] ps = {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS,Manifest.permission.WRITE_APN_SETTINGS};
         if (!EasyPermissions.hasPermissions(this,ps)){
             EasyPermissions.requestPermissions(this,"必须的权限",Constant.NUM_110,ps);
         }else {
@@ -152,5 +156,61 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         LogUtil.d("不给读手机数据");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    //三方登录授权结果回调
+    private UMAuthListener mThirdLoginListener = new UMAuthListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+            switch (share_media){
+                case QQ:
+                    LogUtil.d("-----------> QQ login");
+                    LogUtil.d("openid:"+map.get("uid"));
+                    LogUtil.d("accessToken:"+map.get("accessToken"));
+                    LogUtil.d("head:"+map.get("iconurl"));
+                    LogUtil.d("over time:"+map.get("expiration"));
+                    LogUtil.d("name:"+map.get("name"));
+                    thirdLogin(map.get("openid"),"qq",null,map.get("accessToken"),map.get("expiration"),null);
+                    break;
+                case WEIXIN:
+                    LogUtil.d("-----------> WX login");
+                    LogUtil.d("openid:"+map.get("openid"));
+                    LogUtil.d("accessToken:"+map.get("accessToken"));
+                    LogUtil.d("head:"+map.get("iconurl"));
+                    LogUtil.d("over time:"+map.get("expiration"));
+                    LogUtil.d("name:"+map.get("name"));
+                    thirdLogin(map.get("openid"),"weixin",null,map.get("accessToken"),map.get("expiration"),null);
+                    break;
+                case SINA:
+                    thirdLogin(map.get("openid"),"weibo",null,map.get("accessToken"),map.get("expiration"),null);
+                    break;
+            }
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+            showToast(throwable.getMessage());
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media, int i) {
+            LogUtil.d("用户取消");
+        }
+    };
+
+    private void thirdLogin(String openid,String type,String head,String token,String date,String nickname){
+        showLoadingDialog();
+        mPresenter.thirdLogin(openid,type,head,token,date,nickname,this);
     }
 }

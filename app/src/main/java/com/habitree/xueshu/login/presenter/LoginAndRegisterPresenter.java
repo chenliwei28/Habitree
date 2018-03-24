@@ -25,6 +25,8 @@ import com.habitree.xueshu.xs.util.UserManager;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 
+import org.litepal.util.Const;
+
 import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -208,6 +210,29 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<ChangeBindPhoneResponse> call, Throwable t) {
                         view.onChangeFail(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void thirdLogin(String openid, String userfrom, String head, String token, String date, String nickname, final LoginView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().thirdLogin(timestamp,CommUtil.getSign(Constant.THIRD_LOGIN_FUNCTION,timestamp),
+                openid,userfrom,head,token,date,nickname)
+                .enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        if (response.body()!=null&&response.body().status==200){
+                            UserManager.getManager().saveUser(response.body().data);
+                            JPushInterface.setAlias(mContext,Constant.NUM_110,String.valueOf(response.body().data.mem_id));
+                            EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view,false);
+                        }else {
+                            view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                        view.onLoginFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

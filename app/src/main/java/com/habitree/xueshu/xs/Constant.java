@@ -28,6 +28,13 @@ public class Constant {
     public final static String PHONE_REGEX = "[1][3578]\\d{9}";
 
     public final static String CLIENT_KEY = "47d54d76fa4cbd376f551f38852b7bf6";
+    public final static String UMENG_KEY = "5ab4699a8f4a9d2ea5000183";
+    public final static String QQ_KEY = "1106796896";
+    public final static String QQ_SECRET = "xkXLjvz6lzjCmsb1";
+    public final static String SINA_KEY = "3640857935";
+    public final static String SINA_SECRET = "f6847da94e70f155e05b2dd990e9e8d1";
+    public final static String WECHAT_KEY = "wx85886c8d84e430b1";
+    public final static String WECHAT_SECRET = "8ff935d91c5fe26fa9479d3adf98ddaa";
 
     public final static int NUM_109 = 109;
     public final static int NUM_110 = 110;
@@ -39,6 +46,7 @@ public class Constant {
     //functions
     public final static String INIT_FUNCTION = "v1/system/appinit";
     public final static String LOGIN_FUNCTION = "v1/user/login";
+    public final static String THIRD_LOGIN_FUNCTION = "v1/user/loginoauth";
     public final static String REGISTER_FUNCTION = "v1/user/registermobile";
     public final static String AUTH_CODE_FUNCTION = "v1/sms/send";
     public final static String CHECK_CODE_FUNCTION = "v1/user/phone/verify";

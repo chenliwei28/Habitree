@@ -53,7 +53,7 @@ public class RecordDetailActivity extends BaseActivity implements MessageView.Ms
         mNameTv = findViewById(R.id.name_tv);
         mTimeTv = findViewById(R.id.time_tv);
         mRestTimeTv = findViewById(R.id.rest_time_tv);
-        mTitleTv = findViewById(R.id.title_tv);
+        mTitleTv = findViewById(R.id.habit_title_tv);
         mDetailTv = findViewById(R.id.detail_tv);
         mPhotoIv = findViewById(R.id.photo_iv);
         mPhotosRv = findViewById(R.id.photos_rv);

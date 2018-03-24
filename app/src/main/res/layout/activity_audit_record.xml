@@ -70,7 +70,7 @@
                             android:id="@+id/rest_time_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
                             android:textColor="@color/gray_text"
                             android:textSize="14sp"
                             tools:text="剩余01:00" />
@@ -89,12 +89,11 @@
                 android:padding="12dp">
 
                 <TextView
-                    android:id="@+id/title_tv"
+                    android:id="@+id/habit_title_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    tools:text="3月3日打卡“画魂画”" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/detail_tv"
