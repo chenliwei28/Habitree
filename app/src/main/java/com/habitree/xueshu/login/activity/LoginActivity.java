@@ -181,7 +181,7 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
                     LogUtil.d("head:"+map.get("iconurl"));
                     LogUtil.d("over time:"+map.get("expiration"));
                     LogUtil.d("name:"+map.get("name"));
-                    thirdLogin(map.get("openid"),"qq",null,map.get("accessToken"),map.get("expiration"),null);
+                    thirdLogin(map.get("openid"),"qq",map.get("iconurl"),map.get("accessToken"),map.get("expiration"),map.get("name"));
                     break;
                 case WEIXIN:
                     LogUtil.d("-----------> WX login");
@@ -190,10 +190,16 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
                     LogUtil.d("head:"+map.get("iconurl"));
                     LogUtil.d("over time:"+map.get("expiration"));
                     LogUtil.d("name:"+map.get("name"));
-                    thirdLogin(map.get("openid"),"weixin",null,map.get("accessToken"),map.get("expiration"),null);
+                    thirdLogin(map.get("openid"),"weixin",map.get("iconurl"),map.get("accessToken"),map.get("expiration"),map.get("name"));
                     break;
                 case SINA:
-                    thirdLogin(map.get("openid"),"weibo",null,map.get("accessToken"),map.get("expiration"),null);
+                    LogUtil.d("-----------> WX login");
+                    LogUtil.d("openid:"+map.get("openid"));
+                    LogUtil.d("accessToken:"+map.get("accessToken"));
+                    LogUtil.d("head:"+map.get("iconurl"));
+                    LogUtil.d("over time:"+map.get("expiration"));
+                    LogUtil.d("name:"+map.get("name"));
+                    thirdLogin(map.get("openid"),"weibo",map.get("iconurl"),map.get("accessToken"),map.get("expiration"),map.get("name"));
                     break;
             }
         }
