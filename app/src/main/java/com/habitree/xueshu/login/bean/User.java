@@ -5,6 +5,8 @@ import com.habitree.xueshu.mine.bean.Wallet;
 
 import org.litepal.crud.DataSupport;
 
+import java.util.List;
+
 public class User extends DataSupport {
 
 
@@ -39,6 +41,7 @@ public class User extends DataSupport {
      */
 
     public String username;
+    public String third_oauth;
     public String email;
     public String mobile;
     public String nickname;
@@ -65,5 +68,5 @@ public class User extends DataSupport {
     public int going_cnt;
     public int finish_cnt;
     public Wallet wallet;
-
+    public List<OAuth> mem_oauth;
 }

@@ -139,7 +139,15 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
 
     @AfterPermissionGranted(Constant.NUM_110)
     private void requestReadPhone(){
-        String[] ps = {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS,Manifest.permission.WRITE_APN_SETTINGS};
+        String[] ps = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.CALL_PHONE,
+                Manifest.permission.READ_LOGS,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.SET_DEBUG_APP,
+                Manifest.permission.SYSTEM_ALERT_WINDOW,
+                Manifest.permission.GET_ACCOUNTS,
+                Manifest.permission.WRITE_APN_SETTINGS};
         if (!EasyPermissions.hasPermissions(this,ps)){
             EasyPermissions.requestPermissions(this,"必须的权限",Constant.NUM_110,ps);
         }else {
@@ -181,7 +189,8 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
                     LogUtil.d("head:"+map.get("iconurl"));
                     LogUtil.d("over time:"+map.get("expiration"));
                     LogUtil.d("name:"+map.get("name"));
-                    thirdLogin(map.get("openid"),"qq",map.get("iconurl"),map.get("accessToken"),map.get("expiration"),map.get("name"));
+                    int qqtime = (int) (Long.valueOf(map.get("expiration"))/1000);
+                    thirdLogin(map.get("openid"),"qq",map.get("iconurl"),map.get("accessToken"),String.valueOf(qqtime),map.get("name"));
                     break;
                 case WEIXIN:
                     LogUtil.d("-----------> WX login");
@@ -190,16 +199,18 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
                     LogUtil.d("head:"+map.get("iconurl"));
                     LogUtil.d("over time:"+map.get("expiration"));
                     LogUtil.d("name:"+map.get("name"));
-                    thirdLogin(map.get("openid"),"weixin",map.get("iconurl"),map.get("accessToken"),map.get("expiration"),map.get("name"));
+                    int wxtime = (int) (Long.valueOf(map.get("expiration"))/1000);
+                    thirdLogin(map.get("openid"),"weixin",map.get("iconurl"),map.get("accessToken"),String.valueOf(wxtime),map.get("name"));
                     break;
                 case SINA:
                     LogUtil.d("-----------> WX login");
-                    LogUtil.d("openid:"+map.get("openid"));
+                    LogUtil.d("openid:"+map.get("uid"));
                     LogUtil.d("accessToken:"+map.get("accessToken"));
                     LogUtil.d("head:"+map.get("iconurl"));
                     LogUtil.d("over time:"+map.get("expiration"));
                     LogUtil.d("name:"+map.get("name"));
-                    thirdLogin(map.get("openid"),"weibo",map.get("iconurl"),map.get("accessToken"),map.get("expiration"),map.get("name"));
+                    int sntime = (int) (Long.valueOf(map.get("expiration"))/1000);
+                    thirdLogin(map.get("uid"),"weibo",map.get("iconurl"),map.get("accessToken"),String.valueOf(sntime),map.get("name"));
                     break;
             }
         }

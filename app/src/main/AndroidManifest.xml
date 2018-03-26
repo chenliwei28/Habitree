@@ -222,7 +222,12 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 
-        <activity android:name="com.habitree.xueshu.wxapi.WXEntryActivity"/>
+        <activity
+            android:name="com.habitree.xueshu.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <!--友盟分享、三方登录配置 结束-->
 
         <activity

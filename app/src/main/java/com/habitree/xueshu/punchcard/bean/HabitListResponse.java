@@ -60,6 +60,7 @@ public class HabitListResponse {
             public int is_private;
             public int check_mem_id;
             public int check_time;
+            public int create_time;
             public String title;
             public int status;
             public String recycle;
@@ -78,6 +79,7 @@ public class HabitListResponse {
             public int sign_status;
             public int now_days;
             public CheckMemInfo check_meminfo;
+            public String sign_rate;
 
             public class CheckMemInfo {
                 /**
