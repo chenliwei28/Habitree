@@ -1,10 +1,12 @@
 package com.habitree.xueshu.mine.activity;
 
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
@@ -16,6 +18,7 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener{
     private LinearLayout mAliCheckLl;
     private ImageView mWxCheckIv;
     private ImageView mAliCheckIv;
+    private TextView mNextTv;
 
     private int mCurrentMode = -1;
 
@@ -31,12 +34,14 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener{
         mAliCheckLl = findViewById(R.id.ali_check_ll);
         mWxCheckIv = findViewById(R.id.wx_check_iv);
         mAliCheckIv = findViewById(R.id.ali_check_iv);
+        mNextTv = findViewById(R.id.next_tv);
     }
 
     @Override
     protected void initListener() {
         mWxCheckLl.setOnClickListener(this);
         mAliCheckLl.setOnClickListener(this);
+        mNextTv.setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +57,9 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener{
                 break;
             case R.id.ali_check_ll:
                 selectMode(1);
+                break;
+            case R.id.next_tv:
+                startActivity(new Intent(this,WxPayActivity.class));
                 break;
         }
     }
