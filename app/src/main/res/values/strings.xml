@@ -29,6 +29,7 @@
     <string name="login">登录</string>
     <string name="dian_zan">点赞</string>
     <string name="punch_card">打卡</string>
+    <string name="frozen_money">冻结金额</string>
     <string name="audit_record">打卡审核</string>
     <string name="punch_card_record">打卡记录</string>
     <string name="login_success">登录成功</string>
@@ -149,6 +150,7 @@
     <string name="setting">设置</string>
     <string name="income_num">收入：¥ %s</string>
     <string name="expense_num">支出：¥ %s</string>
+    <string name="phone_number">手机号</string>
     <string name="log_out">退出登录</string>
     <string name="set_password">设置密码</string>
     <string name="payment_record">罚金收支记录</string>
@@ -209,6 +211,7 @@
     <!--W-->
     <string name="mine">我</string>
     <string name="text">文字</string>
+    <string name="unbind">未绑定</string>
     <string name="text_and_image">文字加图片</string>
     <string name="sina_blog">微博</string>
     <string name="complete">完成</string>
@@ -223,6 +226,7 @@
     <string name="network_error">系统异常，请稍后再试</string>
     <!--Y-->
     <string name="auth_code">验证码</string>
+    <string name="onBind">已绑定</string>
     <string name="completed">已完成</string>
     <string name="accepted">已接受</string>
     <string name="refused">已拒绝</string>
@@ -246,6 +250,7 @@
     <string name="ali_pay">支付宝支付</string>
     <string name="plant_a_tree_ba">种一颗树吧</string>
     <string name="photo_record">照片记录</string>
+    <string name="account_binding">账户绑定</string>
     <string name="register_success">注册成功</string>
     <string name="register_account">注册账号</string>
     <string name="total_rate_of_sign_in">总签到率</string>

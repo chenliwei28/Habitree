@@ -4,92 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
+    android:orientation="vertical"
     tools:context="com.habitree.xueshu.mine.activity.MyWalletActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bg_wallet">
+        android:background="@drawable/bg_wallet"
+        android:orientation="vertical">
 
         <com.habitree.xueshu.xs.view.MyActionBar
             android:layout_width="match_parent"
             android:layout_height="@dimen/actionbar_height"
             android:layout_marginTop="25dp"
             app:ma_bg_color="@color/trans"
-            app:title_text="@string/my_wallet"/>
+            app:title_text="@string/my_wallet" />
 
         <TextView
             android:id="@+id/balance_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="30sp"
-            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            tools:text="888.00"/>
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            tools:text="888.00" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
-            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:text="@string/wallet_balance"/>
+            android:layout_marginTop="10dp"
+            android:text="@string/wallet_balance"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-        <View style="@style/Line"
-            android:background="@color/white"
-            android:layout_marginTop="22dp"/>
+        <View
+            style="@style/Line"
+            android:layout_marginTop="22dp"
+            android:background="@color/white_50" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp">
+            android:layout_height="60dp">
 
-            <TextView
-                android:id="@+id/top_up_tv"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/top_up"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/total_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    tools:text="¥ 900"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/total_sum"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
             <View
                 android:layout_width="0.5dp"
                 android:layout_height="match_parent"
-                android:background="@color/white"/>
+                android:background="@color/white_50" />
 
-            <TextView
-                android:id="@+id/withdraw_tv"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/withdraw_deposit"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/freeze_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    tools:text="¥ 12"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/frozen_money"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/top_up_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="10dp"
+        app:head_img="@drawable/ic_gold"
+        app:next_visible="true"
+        app:title="@string/top_up" />
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/withdraw_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        android:layout_marginTop="10dp"
+        app:head_img="@drawable/ic_money"
+        app:next_visible="true"
+        app:title="@string/withdraw_deposit" />
 
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/transaction_record_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="10dp"
+        app:head_img="@drawable/ic_pag"
         app:next_visible="true"
-        app:head_img="@drawable/ic_gold"
-        app:title="@string/transaction_record"/>
+        app:title="@string/transaction_record" />
 
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/payment_record_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="10dp"
+        app:head_img="@drawable/ic_record"
         app:next_visible="true"
-        app:head_img="@drawable/ic_money"
-        app:title="@string/payment_record"/>
+        app:title="@string/payment_record" />
 </LinearLayout>

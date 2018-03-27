@@ -28,7 +28,6 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
-
     <application
         android:name=".xs.BaseApp"
         android:allowBackup="true"
@@ -140,7 +139,7 @@
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <!-- Required SDK核心功能 -->
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
@@ -168,9 +167,10 @@
         <meta-data
             android:name="JPUSH_APPKEY"
             android:value="82a2803eedaaaf9947c08be6" />
-        <!--设置极光推送 结束-->
+        <!-- 设置极光推送 结束 -->
 
-        <!--android 7.0需要使用fileProvider获取Uri-->
+
+        <!-- android 7.0需要使用fileProvider获取Uri -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.habitree.xueshu.fileprovider"
@@ -181,54 +181,53 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!--友盟分享、三方登录配置 开始-->
+        <!-- 友盟分享、三方登录配置 开始 -->
         <activity
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
-            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
-
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent1106796896" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
-
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="com.habitree.xueshu.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <!--友盟分享、三方登录配置 结束-->
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 友盟分享、三方登录配置 结束 -->
 
         <activity
             android:name=".main.MainActivity"
@@ -324,9 +323,10 @@
         <activity android:name=".message.activity.AddFriendActivity" />
         <activity android:name=".punchcard.activity.RecordDetailActivity" />
         <activity android:name=".mine.activity.AboutActivity" />
-        <activity android:name=".mine.activity.ChangePasswordActivity"/>
-        <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"/>
-
+        <activity android:name=".mine.activity.ChangePasswordActivity" />
+        <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity" />
+        <activity android:name=".mine.activity.AccountBindingActivity" />
+        <activity android:name=".mine.activity.TotalMoneyActivity"></activity>
     </application>
 
 </manifest>

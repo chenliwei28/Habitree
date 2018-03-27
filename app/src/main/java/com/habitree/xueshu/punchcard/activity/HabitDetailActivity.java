@@ -128,8 +128,11 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
     protected void initData() {
         showLoadingDialog();
         mPresenter.getHabitDetail(getIntent().getIntExtra(Constant.ID,0),this);
-        mPresenter.getRecordList(getIntent().getIntExtra(Constant.ID,0),this);
-        mAbandonTv.setVisibility(getIntent().getBooleanExtra(Constant.TYPE,true)?View.VISIBLE:View.GONE);
+        boolean isUser = getIntent().getBooleanExtra(Constant.TYPE,true);
+        mAbandonTv.setVisibility(isUser?View.VISIBLE:View.GONE);
+        if (isUser){
+            mPresenter.getRecordList(getIntent().getIntExtra(Constant.ID,0),this);
+        }
     }
 
     @Override

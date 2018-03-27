@@ -15,9 +15,11 @@ import com.habitree.xueshu.xs.view.CustomItemView;
 
 public class MyWalletActivity extends BaseActivity implements View.OnClickListener,MyView.MyWalletView {
 
-    private TextView mTopUpTv;
-    private TextView mWithdrawTv;
     private TextView mBalanceTv;
+    private TextView mTotalTv;
+    private TextView mFreezeTv;
+    private CustomItemView mTopUpCiv;
+    private CustomItemView mWithdrawCiv;
     private CustomItemView mTransactionRecordCiv;
     private CustomItemView mPaymentRecordCiv;
     private MyPresenter mPresenter;
@@ -34,8 +36,10 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initView() {
-        mTopUpTv = findViewById(R.id.top_up_tv);
-        mWithdrawTv = findViewById(R.id.withdraw_tv);
+        mTotalTv = findViewById(R.id.total_tv);
+        mFreezeTv = findViewById(R.id.freeze_tv);
+        mTopUpCiv = findViewById(R.id.top_up_civ);
+        mWithdrawCiv = findViewById(R.id.withdraw_civ);
         mBalanceTv = findViewById(R.id.balance_tv);
         mTransactionRecordCiv = findViewById(R.id.transaction_record_civ);
         mPaymentRecordCiv = findViewById(R.id.payment_record_civ);
@@ -44,8 +48,8 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initListener() {
-        mTopUpTv.setOnClickListener(this);
-        mWithdrawTv.setOnClickListener(this);
+        mTopUpCiv.setOnClickListener(this);
+        mWithdrawCiv.setOnClickListener(this);
         mTransactionRecordCiv.setOnClickListener(this);
         mPaymentRecordCiv.setOnClickListener(this);
     }
@@ -63,10 +67,10 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.top_up_tv:
+            case R.id.top_up_civ:
                 startActivity(new Intent(this,TopUpActivity.class));
                 break;
-            case R.id.withdraw_tv:
+            case R.id.withdraw_civ:
                 startActivity(new Intent(this,WithdrawActivity.class));
                 break;
             case R.id.transaction_record_civ:
@@ -88,6 +92,10 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
     public void onWalletInfoGetSuccess(Wallet wallet) {
         hideLoadingDialog();
         mBalanceTv.setText(wallet.balance);
+        String total = "¥ "+wallet.sum_money;
+        mTotalTv.setText(total);
+        String freeze = "¥ "+wallet.frozen_money;
+        mFreezeTv.setText(freeze);
     }
 
     @Override

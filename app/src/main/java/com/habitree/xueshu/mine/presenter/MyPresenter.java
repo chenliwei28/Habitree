@@ -124,6 +124,7 @@ public class MyPresenter extends BasePresenter{
                     public void onResponse(Call<MyWalletResponse> call, Response<MyWalletResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(mContext,response.body().status)){
+                                UserManager.getManager().updateUserWallet(response.body().data);
                                 view.onWalletInfoGetSuccess(response.body().data);
                             }else {
                                 view.onWalletInfoGetFailed(CommUtil.unicode2Chinese(response.body().info));

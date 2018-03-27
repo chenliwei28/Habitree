@@ -299,6 +299,23 @@ public class MessageManager {
         return user;
     }
 
+    public void addInfo(IMInfo imInfo){
+        if (infos!=null){
+            boolean has = false;
+            for (IMInfo info:infos){
+                if (imInfo.mem_id == info.mem_id){
+                    infos.remove(info);
+                    infos.add(imInfo);
+                    has = true;
+                    break;
+                }
+            }
+            if (!has){
+                infos.add(imInfo);
+            }
+        }
+    }
+
     //环信API获取会话列表
     private List<EMConversation> loadConversationList(){
         // get all conversations

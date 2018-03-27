@@ -21,6 +21,7 @@ import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.ImageUtil;
+import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
@@ -108,6 +109,9 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
         }
         mWatchTv.setVisibility(View.VISIBLE);
         mHabitNameTv.setText(mCurrentHabit.title);
+        String detail = "诞生于"+ TimeUtil.millisToString("yyyy-MM-dd",mCurrentHabit.create_time)
+                +" 今天是第"+mCurrentHabit.now_days+"/"+mCurrentHabit.recycle_days+"天 打卡率"+mCurrentHabit.sign_rate;
+        mHabitTextTv.setText(detail);
     }
 
     @Override

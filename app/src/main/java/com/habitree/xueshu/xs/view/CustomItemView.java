@@ -78,8 +78,20 @@ public class CustomItemView extends RelativeLayout{
         mDetailTv.setText(detail);
     }
 
+    public void setDetailTextColor(int colorRes){
+        mDetailTv.setTextColor(getResources().getColor(colorRes));
+    }
+
     public void setChecked(boolean checked){
         mIsSelected = checked;
         mImgIv.setSelected(mIsSelected);
+    }
+
+    public void setNextImgVisible(boolean visible){
+        mNextIv.setVisibility(visible?VISIBLE:GONE);
+    }
+
+    public void setNextImg(int resId){
+        mNextIv.setImageResource(resId);
     }
 }

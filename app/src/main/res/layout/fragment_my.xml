@@ -63,7 +63,7 @@
                 android:id="@+id/head_riv"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/avatar_haoyou"
+                tools:src="@drawable/ic_default_head"
                 app:type="circle" />
 
             <LinearLayout

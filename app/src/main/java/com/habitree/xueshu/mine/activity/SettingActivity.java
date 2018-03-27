@@ -8,13 +8,14 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.CacheUtil;
 import com.habitree.xueshu.xs.util.CommUtil;
+import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyDialog;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
 
     private CustomItemView mMyWalletCiv;
-    private CustomItemView mChangePhoneCiv;
+    private CustomItemView mAccountBinding;
     private CustomItemView mChangePasswordCiv;
     private CustomItemView mAboutCiv;
     private CustomItemView mClearCacheCiv;
@@ -30,7 +31,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void initView() {
         mMyWalletCiv = findViewById(R.id.my_wallet_civ);
-        mChangePhoneCiv = findViewById(R.id.change_phone_civ);
+        mAccountBinding = findViewById(R.id.account_binding_civ);
         mChangePasswordCiv = findViewById(R.id.change_password_civ);
         mAboutCiv = findViewById(R.id.about_civ);
         mClearCacheCiv = findViewById(R.id.clear_cache_civ);
@@ -40,7 +41,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void initListener() {
         mMyWalletCiv.setOnClickListener(this);
-        mChangePhoneCiv.setOnClickListener(this);
+        mAccountBinding.setOnClickListener(this);
         mChangePasswordCiv.setOnClickListener(this);
         mAboutCiv.setOnClickListener(this);
         mClearCacheCiv.setOnClickListener(this);
@@ -49,7 +50,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initData() {
-
+        mMyWalletCiv.setDetail(UserManager.getManager().getUser().wallet.balance);
     }
 
     @Override
@@ -58,8 +59,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             case R.id.my_wallet_civ:
                 startActivity(new Intent(this, MyWalletActivity.class));
                 break;
-            case R.id.change_phone_civ:
-                startActivity(new Intent(this, ChangePhoneActivity.class));
+            case R.id.account_binding_civ:
+                startActivity(new Intent(this,AccountBindingActivity.class));
                 break;
             case R.id.change_password_civ:
                 startActivity(new Intent(this,ChangePasswordActivity.class));

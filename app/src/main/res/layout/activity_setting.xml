@@ -24,12 +24,12 @@
         app:next_visible="true"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/change_phone_civ"
+        android:id="@+id/account_binding_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         android:layout_marginTop="10dp"
-        app:title="@string/change_phone_number"
-        app:head_img="@drawable/ic_phone"
+        app:title="@string/account_binding"
+        app:head_img="@drawable/ic_binding"
         app:next_visible="true"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView

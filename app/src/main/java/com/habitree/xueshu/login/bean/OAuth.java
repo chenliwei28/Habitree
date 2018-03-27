@@ -1,8 +1,9 @@
 package com.habitree.xueshu.login.bean;
 
 
+import org.litepal.crud.DataSupport;
 
-public class OAuth {
+public class OAuth extends DataSupport{
 
     /**
      * from : weixin
@@ -15,4 +16,13 @@ public class OAuth {
     public int mem_id;
     public int status;
     public String openid;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

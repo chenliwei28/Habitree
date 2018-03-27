@@ -1,8 +1,9 @@
 package com.habitree.xueshu.mine.bean;
 
 
+import org.litepal.crud.DataSupport;
 
-public class Wallet {
+public class Wallet extends DataSupport{
     /**
      * mem_id : 3
      * balance : 420.50

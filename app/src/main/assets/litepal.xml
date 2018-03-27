@@ -7,6 +7,8 @@
 
     <list>
         <mapping class="com.habitree.xueshu.login.bean.User"/>
+        <mapping class="com.habitree.xueshu.mine.bean.Wallet"/>
+        <mapping class="com.habitree.xueshu.login.bean.OAuth"/>
         <mapping class="com.habitree.xueshu.message.bean.IMInfo"/>
     </list>
 

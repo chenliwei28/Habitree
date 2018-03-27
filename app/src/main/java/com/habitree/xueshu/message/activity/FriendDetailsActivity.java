@@ -8,11 +8,13 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.adapter.HabitFriendDetailAdapter;
 import com.habitree.xueshu.message.bean.FriendInfoResponse;
+import com.habitree.xueshu.message.bean.IMInfo;
 import com.habitree.xueshu.message.presenter.FriendsPresenter;
 import com.habitree.xueshu.message.pview.FriendsView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.ImageUtil;
+import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.RoundImageView;
 import com.hyphenate.easeui.EaseConstant;
@@ -121,6 +123,11 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.send_message_tv:
+                IMInfo imInfo = new IMInfo();
+                imInfo.mem_id = mDetail.mem_id;
+                imInfo.nickname = mDetail.nickname;
+                imInfo.portrait = mDetail.portrait;
+                MessageManager.getManager().addInfo(imInfo);
                 startActivity(new Intent(this, ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, String.valueOf(mDetail.mem_id)));
                 break;
         }
