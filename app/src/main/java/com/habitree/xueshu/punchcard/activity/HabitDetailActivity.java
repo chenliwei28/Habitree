@@ -174,9 +174,11 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
                 break;
             case 2:
                 ImageUtil.loadImage(this,detail.elder_img,mHeadRiv);
+                mAbandonTv.setVisibility(View.GONE);
                 break;
             case 3:
                 ImageUtil.loadImage(this,detail.death_img,mHeadRiv);
+                mAbandonTv.setVisibility(View.GONE);
                 break;
         }
         mNameTv.setText(detail.title);

@@ -40,9 +40,7 @@ public class MessageImageAdapter extends RecyclerView.Adapter<MessageImageAdapte
             @Override
             public void onClick(View view) {
                 if (mListener!=null){
-                    if (holder.getAdapterPosition()==mList.size()){
-                        mListener.onImageClick(holder.getAdapterPosition());
-                    }
+                    mListener.onImageClick(holder.getAdapterPosition());
                 }
             }
         });

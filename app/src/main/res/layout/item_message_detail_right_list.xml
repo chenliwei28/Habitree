@@ -25,10 +25,9 @@
             android:id="@+id/head_riv"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:src="@drawable/ic_circle" />
+            android:layout_marginRight="12dp" />
 
         <TextView
             android:id="@+id/detail_tv"

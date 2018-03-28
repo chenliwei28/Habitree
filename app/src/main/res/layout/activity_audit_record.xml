@@ -37,8 +37,7 @@
                 <com.habitree.xueshu.xs.view.RoundImageView
                     android:id="@+id/head_riv"
                     android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:src="@drawable/ic_circle" />
+                    android:layout_height="46dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

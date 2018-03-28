@@ -19,7 +19,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/img_yepao"
             app:type="circle" />
 
         <TextView
@@ -60,7 +59,7 @@
                 android:id="@+id/time_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:gravity="end"
                 android:textColor="@color/gray_text"

@@ -21,6 +21,9 @@ import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.NoScrollRecyclerView;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecordDetailActivity extends BaseActivity implements MessageView.MsgDetailView {
 
     private MyActionBar mRecordMa;
@@ -74,7 +77,7 @@ public class RecordDetailActivity extends BaseActivity implements MessageView.Ms
     }
 
     @Override
-    public void onMsgDetailGetSuccess(SignDetailResponse.DataBean dataBean) {
+    public void onMsgDetailGetSuccess(final SignDetailResponse.DataBean dataBean) {
         mDetailTv.setText(dataBean.content);
         mTitleTv.setText(dataBean.habit_info.title);
         mStateTv.setText(String.format(getString(R.string.supervision_say),dataBean.check_word));
@@ -92,7 +95,11 @@ public class RecordDetailActivity extends BaseActivity implements MessageView.Ms
                 mAdapter.setListener(new MessageImageAdapter.ImageClickListener() {
                     @Override
                     public void onImageClick(int position) {
-
+                        ArrayList<String> imgs = new ArrayList<>();
+                        for (SignDetailResponse.DataBean.ImagesBean bean:dataBean.images){
+                            imgs.add(bean.file_url);
+                        }
+                        ImageActivity.start(RecordDetailActivity.this,imgs,position);
                     }
                 });
                 mPhotosRv.setAdapter(mAdapter);

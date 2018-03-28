@@ -327,7 +327,8 @@
         <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity" />
         <activity android:name=".mine.activity.AccountBindingActivity" />
         <activity android:name=".mine.activity.TotalMoneyActivity" />
-        <activity android:name=".mine.activity.WxPayActivity"></activity>
+        <activity android:name=".mine.activity.WxPayActivity" />
+        <activity android:name=".punchcard.activity.ImageActivity"></activity>
     </application>
 
 </manifest>

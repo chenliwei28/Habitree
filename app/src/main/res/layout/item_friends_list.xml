@@ -30,8 +30,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            app:type="circle"
-            android:src="@drawable/ic_circle" />
+            app:type="circle" />
 
         <TextView
             android:id="@+id/name_tv"

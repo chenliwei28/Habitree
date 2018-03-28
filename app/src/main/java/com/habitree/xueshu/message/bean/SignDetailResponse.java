@@ -1,6 +1,9 @@
 package com.habitree.xueshu.message.bean;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 public class SignDetailResponse {
