@@ -11,6 +11,7 @@ import com.habitree.xueshu.mine.bean.ChangePasswordResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
+import com.habitree.xueshu.mine.bean.OauthBindResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.BaseApp;
@@ -204,6 +205,30 @@ public class MyPresenter extends BasePresenter{
                     @Override
                     public void onFailure(Call<ChangePasswordResponse> call, Throwable t) {
                         view.onChangePsFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void thirdBind(String openid, String userfrom, String head, String token, String date, String nickname, final MyView.OauthBindView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().thirdBind(timestamp,CommUtil.getSign(Constant.OAUTH_BIND_FUNCTION,timestamp),
+                openid,userfrom,head,token,date,nickname,UserManager.getManager().getUser().user_token)
+                .enqueue(new Callback<OauthBindResponse>() {
+                    @Override
+                    public void onResponse(Call<OauthBindResponse> call, Response<OauthBindResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                UserManager.getManager().updateUserOauth(response.body().data);
+                                view.onBindSuccess();
+                            }else {
+                                view.onBindFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<OauthBindResponse> call, Throwable t) {
+                        view.onBindFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

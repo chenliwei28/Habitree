@@ -23,6 +23,7 @@ import com.habitree.xueshu.mine.bean.ChangePasswordResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
+import com.habitree.xueshu.mine.bean.OauthBindResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
@@ -401,4 +402,17 @@ public interface Api {
                                                @Field("page") int page,
                                                @Field("offset") int offset,
                                                @Field("habit_id") int habitId);
+
+    //绑定三方账号
+    @FormUrlEncoded
+    @POST(Constant.OAUTH_BIND_FUNCTION)
+    Call<OauthBindResponse> thirdBind(@Field("timestamp") String timestamp,
+                                      @Field("sign") String sign,
+                                      @Field("openid")String openid,
+                                      @Field("userfrom")String userfrom,
+                                      @Field("head_img")String head,
+                                      @Field("access_token")String token,
+                                      @Field("expires_date")String expiresDate,
+                                      @Field("nickname")String nickname,
+                                      @Field("user_token") String userToken);
 }

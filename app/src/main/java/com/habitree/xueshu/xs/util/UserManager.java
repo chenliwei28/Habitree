@@ -7,6 +7,9 @@ import com.habitree.xueshu.mine.bean.Wallet;
 
 import org.litepal.crud.DataSupport;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserManager {
     private static UserManager manager;
     private User user;
@@ -71,6 +74,12 @@ public class UserManager {
     public void updateUserWallet(Wallet balance){
         user.wallet = balance;
         user.wallet.save();
+        user.update(1);
+    }
+
+    public void updateUserOauth(List<OAuth> auth){
+        DataSupport.saveAll(auth);
+        user.mem_oauth = auth;
         user.update(1);
     }
 }

@@ -38,4 +38,9 @@ public interface MyView extends BaseView {
     interface OnTreeClickListener{
         void onTreeClick(int whichView,int whichTree);
     }
+
+    interface OauthBindView{
+        void onBindSuccess();
+        void onBindFailed(String reason);
+    }
 }
