@@ -13,6 +13,7 @@
     <string name="look_over">查看</string>
     <string name="top_up">充值</string>
     <string name="resend">重新发送</string>
+    <string name="create_success">创建成功</string>
     <string name="view_images">[查看图片]</string>
     <string name="top_up_num">充值金额</string>
     <string name="view_details">查看详情</string>
@@ -46,6 +47,7 @@
     <!--E-->
     <!--F-->
     <string name="send">发送</string>
+    <string name="share_habit">分享习惯</string>
     <string name="send_success">发送成功</string>
     <string name="send_message">发消息</string>
     <string name="abandon_habit">放弃习惯</string>
@@ -57,6 +59,7 @@
     <string name="about_app">关于学树</string>
     <string name="personal_info">个人资料</string>
     <string name="tell_him_why_refused">告诉TA不通过的理由吧</string>
+    <string name="change_yourself_begin_with_little_habit">改变自己，从一个小习惯开始</string>
     <string name="forfeit_setting_long_text">共收取%d次罚金作为押金，当全部罚金扣除后，本次培养即告停止。</string>
     <!--H-->
     <string name="friend">好友</string>
@@ -213,6 +216,7 @@
     <string name="mine">我</string>
     <string name="text">文字</string>
     <string name="unbind">未绑定</string>
+    <string name="not_invite">未邀请</string>
     <string name="text_and_image">文字加图片</string>
     <string name="sina_blog">微博</string>
     <string name="complete">完成</string>

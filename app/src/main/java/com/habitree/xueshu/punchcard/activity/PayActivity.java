@@ -167,10 +167,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
     @Override
     public void onHabitCreateSuccess() {
         hideLoadingDialog();
-        showToast(getString(R.string.habit_create_success));
-        Intent intent =new Intent(this, MainActivity.class);
-        startActivity(intent);
-        AppManager.getAppManager().finishActivity(this);
+        HabitCreateResultActivity.start(this,getIntent().getStringExtra(Constant.HEAD));
     }
 
     @Override

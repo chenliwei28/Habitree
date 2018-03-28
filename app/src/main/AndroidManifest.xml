@@ -328,7 +328,8 @@
         <activity android:name=".mine.activity.AccountBindingActivity" />
         <activity android:name=".mine.activity.TotalMoneyActivity" />
         <activity android:name=".mine.activity.WxPayActivity" />
-        <activity android:name=".punchcard.activity.ImageActivity"></activity>
+        <activity android:name=".punchcard.activity.ImageActivity" />
+        <activity android:name=".punchcard.activity.HabitCreateResultActivity"></activity>
     </application>
 
 </manifest>

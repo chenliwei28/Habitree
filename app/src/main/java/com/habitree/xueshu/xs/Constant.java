@@ -23,6 +23,7 @@ public class Constant {
     public final static String NUMBER = "number";
     public final static String TOTAL = "total";
     public final static String PER = "per";
+    public final static String HEAD = "head";
 
     //手机号正则表达式
     public final static String PHONE_REGEX = "[1][3578]\\d{9}";

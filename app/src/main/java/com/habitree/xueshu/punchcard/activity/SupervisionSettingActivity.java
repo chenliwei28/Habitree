@@ -17,12 +17,10 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
     private CustomItemView mPenaltyCiv;
     private TextView mConfirmTv;
     private int mMemId; //监督人ID
-    private boolean mHasSupervision;
     private String mName; //监督人名称
     private double mTotalMoney;
     private int mPerMoney;
     private Intent mIntent;
-    private MyDialog mNoteDialog;
 
     @Override
     protected int setLayoutId() {
@@ -58,6 +56,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
     @Override
     protected void initData() {
         mIntent = getIntent();
+        mSuperCiv.setDetail(getString(R.string.not_invite));
     }
 
     @Override
@@ -67,33 +66,12 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
                 startActivityForResult(new Intent(SupervisionSettingActivity.this,ChooseSupervisorActivity.class),Constant.NUM_109);
                 break;
             case R.id.penalty_civ:
-                if (!mHasSupervision){
-                    showNoteDialog();
-                }else {
-                    ForfeitSettingActivity.start(SupervisionSettingActivity.this,mIntent.getIntExtra(Constant.RECYCLE,0),Constant.NUM_110);
-                }
+                ForfeitSettingActivity.start(SupervisionSettingActivity.this,mIntent.getIntExtra(Constant.RECYCLE,0),Constant.NUM_110);
                 break;
             case R.id.confirm_tv:
                 confirmAndToNext();
                 break;
         }
-    }
-
-    private void showNoteDialog(){
-        if (mNoteDialog==null){
-            mNoteDialog = new MyDialog(this).builder()
-                    .setTitle(getString(R.string.remind))
-                    .setDetail(getString(R.string.you_has_no_choose_supervision))
-                    .setConfirmClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            mHasSupervision = true;
-                            mNoteDialog.dismiss();
-                            ForfeitSettingActivity.start(SupervisionSettingActivity.this,mIntent.getIntExtra(Constant.RECYCLE,0),Constant.NUM_110);
-                        }
-                    });
-        }
-        mNoteDialog.show();
     }
 
     @Override
@@ -118,7 +96,6 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
 
     private void switchSupervision(Intent data){
         mMemId = data.getIntExtra(Constant.MEMID,0);
-        mHasSupervision = true;
         mName = data.getStringExtra(Constant.NAME);
         mSuperCiv.setDetail(mName);
     }
@@ -132,8 +109,6 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
     private void confirmAndToNext(){
         if (mTotalMoney==0){
             showToast(getString(R.string.please_choose_price));
-        }else if (!mHasSupervision){
-            showNoteDialog();
         }else {
             mIntent.putExtra(Constant.MEMID,mMemId)
                     .putExtra(Constant.TOTAL,mTotalMoney)
