@@ -167,7 +167,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
     @Override
     public void onHabitCreateSuccess() {
         hideLoadingDialog();
-        HabitCreateResultActivity.start(this,getIntent().getStringExtra(Constant.HEAD));
+        HabitCreateResultActivity.start(this,getIntent().getStringExtra(Constant.HEAD),getIntent().getIntExtra(Constant.MEMID,0));
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.habitree.xueshu.mine.activity;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
@@ -18,6 +19,8 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
     private TextView mBalanceTv;
     private TextView mTotalTv;
     private TextView mFreezeTv;
+    private LinearLayout mTotalLl;
+    private LinearLayout mFreezeLl;
     private CustomItemView mTopUpCiv;
     private CustomItemView mWithdrawCiv;
     private CustomItemView mTransactionRecordCiv;
@@ -39,6 +42,8 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
         mTotalTv = findViewById(R.id.total_tv);
         mFreezeTv = findViewById(R.id.freeze_tv);
         mTopUpCiv = findViewById(R.id.top_up_civ);
+        mTotalLl = findViewById(R.id.total_ll);
+        mFreezeLl = findViewById(R.id.freeze_ll);
         mWithdrawCiv = findViewById(R.id.withdraw_civ);
         mBalanceTv = findViewById(R.id.balance_tv);
         mTransactionRecordCiv = findViewById(R.id.transaction_record_civ);
@@ -52,6 +57,8 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
         mWithdrawCiv.setOnClickListener(this);
         mTransactionRecordCiv.setOnClickListener(this);
         mPaymentRecordCiv.setOnClickListener(this);
+        mTotalLl.setOnClickListener(this);
+        mFreezeLl.setOnClickListener(this);
     }
 
     @Override
@@ -78,6 +85,12 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.payment_record_civ:
                 startActivity(new Intent(this,PaymentRecordActivity.class));
+                break;
+            case R.id.total_ll:
+                startActivity(new Intent(this,TotalMoneyActivity.class));
+                break;
+            case R.id.freeze_ll:
+
                 break;
         }
     }

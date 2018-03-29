@@ -58,7 +58,7 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choose_tv:
-                HabitSettingActivity.start(PlantTreeActivity.this,mList.get(mCardVp.getCurrentItem()).ht_id);
+                HabitSettingActivity.start(PlantTreeActivity.this,mList.get(mCardVp.getCurrentItem()).ht_id,mList.get(mCardVp.getCurrentItem()).youth_img);
                 break;
         }
     }

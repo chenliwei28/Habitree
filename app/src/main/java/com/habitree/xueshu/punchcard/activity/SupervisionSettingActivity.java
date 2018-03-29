@@ -27,7 +27,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
         return R.layout.activity_supervision_setting;
     }
 
-    public static void start(Context context,int treeId, String describe,int remindTime, String repeatDays, int recycleDays, int privacyType, int recordType){
+    public static void start(Context context,int treeId, String describe,int remindTime, String repeatDays, int recycleDays, int privacyType, int recordType,String treeHead){
         Intent intent = new Intent(context,SupervisionSettingActivity.class);
         intent.putExtra(Constant.ID,treeId)
                 .putExtra(Constant.TITLE,describe)
@@ -35,7 +35,8 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
                 .putExtra(Constant.REPEAT,repeatDays)
                 .putExtra(Constant.RECYCLE,recycleDays)
                 .putExtra(Constant.PRIVACY,privacyType)
-                .putExtra(Constant.RECORD,recordType);
+                .putExtra(Constant.RECORD,recordType)
+                .putExtra(Constant.HEAD,treeHead);
         context.startActivity(intent);
     }
 

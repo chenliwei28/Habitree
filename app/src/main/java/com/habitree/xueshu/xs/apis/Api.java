@@ -7,7 +7,6 @@ import com.habitree.xueshu.login.bean.CheckCodeResponse;
 import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.LoginResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
-import com.habitree.xueshu.login.pview.LoginView;
 import com.habitree.xueshu.message.bean.AgreeFriendResponse;
 import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.message.bean.FriendsResponse;
@@ -39,7 +38,6 @@ import com.habitree.xueshu.punchcard.bean.RecordListResponse;
 import com.habitree.xueshu.xs.Constant;
 
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -49,7 +47,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 
 public interface Api {
     //登录
@@ -315,9 +312,9 @@ public interface Api {
                                                @Field("page") int page,
                                                @Field("offset") int offset);
 
-    //余额支付
+    //习惯支付
     @FormUrlEncoded
-    @POST(Constant.BALANCE_PAY_FUNCTION)
+    @POST(Constant.PAY_ORDER_FUNCTION)
     Call<PayResultResponse> balancePay(@Field("timestamp") String timestamp,
                                        @Field("sign") String sign,
                                        @Field("user_token") String token,

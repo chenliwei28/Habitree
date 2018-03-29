@@ -71,7 +71,7 @@ public class Constant {
     public final static String HANDLE_MSG_FUNCTION = "v1/user/msg/handle";
     public final static String GET_HABIT_LIST_FUNCTION = "v1/habit/list";
     public final static String SEND_MSG_FUNCTION = "v1/user/send/message";
-    public final static String BALANCE_PAY_FUNCTION = "v1/habit/pay/balance";
+    public final static String PAY_ORDER_FUNCTION = "v1/habit/pay";
     public final static String PUNCH_CARD_FUNCTION = "v1/habit/sign";
     public final static String GET_MY_WALLET_FUNCTION = "v1/user/wallet";
     public final static String GET_CHARGE_LIST_FUNCTION = "v1/user/charge/list";

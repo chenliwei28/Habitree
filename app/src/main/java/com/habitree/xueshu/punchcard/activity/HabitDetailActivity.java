@@ -184,7 +184,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
         mNameTv.setText(detail.title);
         String count = detail.now_days+"/"+detail.recycle_days;
         mCountTv.setText(count);
-        mSuperCiv.setDetail(detail.check_meminfo.nickname);
+        mSuperCiv.setDetail(detail.check_meminfo==null?"":detail.check_meminfo.nickname);
         mReminderCiv.setDetail(TimeUtil.millisToString("HH:mm",detail.remind_time));
         String rs = detail.recycle;
         boolean[] b = new boolean[7];

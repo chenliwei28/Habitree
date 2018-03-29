@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 
 public class TotalMoneyActivity extends BaseActivity {
@@ -36,5 +37,10 @@ public class TotalMoneyActivity extends BaseActivity {
         mTotalTv.setText(UserManager.getManager().getUser().wallet.sum_money);
         mFreezeTv.setText(UserManager.getManager().getUser().wallet.frozen_money);
         mBalanceTv.setText(UserManager.getManager().getUser().wallet.balance);
+    }
+
+    @Override
+    protected void initStatusBar() {
+        UIUtil.setStatusBar(this,getResources().getColor(R.color.trans));
     }
 }

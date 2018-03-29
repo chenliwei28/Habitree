@@ -193,7 +193,7 @@ public class HabitPresenter extends BasePresenter {
     private void payOrderUseBalance(String orderId, String payway, final HabitView.CreateHabitView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
-                .balancePay(timestamp,CommUtil.getSign(Constant.BALANCE_PAY_FUNCTION,timestamp),
+                .balancePay(timestamp,CommUtil.getSign(Constant.PAY_ORDER_FUNCTION,timestamp),
                         UserManager.getManager().getUser().user_token,orderId,payway)
                 .enqueue(new Callback<PayResultResponse>() {
                     @Override

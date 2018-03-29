@@ -50,6 +50,7 @@
             android:layout_height="60dp">
 
             <LinearLayout
+                android:id="@+id/total_ll"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -80,6 +81,7 @@
                 android:background="@color/white_50" />
 
             <LinearLayout
+                android:id="@+id/freeze_ll"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

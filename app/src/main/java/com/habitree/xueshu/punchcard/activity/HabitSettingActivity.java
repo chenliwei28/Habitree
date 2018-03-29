@@ -49,9 +49,10 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         return R.layout.activity_habit_setting;
     }
 
-    public static void start(Context context,int treeId){
+    public static void start(Context context,int treeId,String treeHead){
         Intent intent = new Intent(context,HabitSettingActivity.class);
         intent.putExtra(Constant.CODE,treeId);
+        intent.putExtra(Constant.HEAD,treeHead);
         context.startActivity(intent);
     }
 
@@ -191,7 +192,8 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         }else if (mRecordType==0){
             showToast(getString(R.string.please_choose_record_setting));
         }else {
-            SupervisionSettingActivity.start(this,mTreeId,describe,mRemindTime,mRepeatDays,mRecycleDays,mPrivacyType,mRecordType);
+            String treehead = getIntent().getStringExtra(Constant.HEAD);
+            SupervisionSettingActivity.start(this,mTreeId,describe,mRemindTime,mRepeatDays,mRecycleDays,mPrivacyType,mRecordType,treehead);
         }
     }
 
