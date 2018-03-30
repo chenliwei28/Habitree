@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.util.WXPayJSHook;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,21 +43,23 @@ public class WxPayActivity extends BaseActivity {
         settings.setDefaultTextEncodingName("UTF-8");
         mWeb.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         mWeb.setWebChromeClient(new WebChromeClient());
+        mWeb.addJavascriptInterface(new WXPayJSHook(this),"xssdk");
         WebViewClient webViewClient = new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // 如下方案可在非微信内部WebView的H5页面中调出微信支付
-                if (url.startsWith("weixin://wap/pay?")) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    startActivity(intent);
-                    return true;
-                } else {
-                    Map<String, String> extraHeaders = new HashMap<String, String>();
-                    extraHeaders.put("Referer", "http://wxpay.wxutil.com");
-                    view.loadUrl(url, extraHeaders);
-                }
+//                if (url.startsWith("weixin://wap/pay?")) {
+//                    Intent intent = new Intent();
+//                    intent.setAction(Intent.ACTION_VIEW);
+//                    intent.setData(Uri.parse(url));
+//                    startActivity(intent);
+//                    return true;
+//                } else {
+//                    Map<String, String> extraHeaders = new HashMap<String, String>();
+//                    extraHeaders.put("Referer", "http://wxpay.wxutil.com");
+//                    view.loadUrl(url, extraHeaders);
+//                }
+                view.loadUrl(url);
                 return true;
             }
 

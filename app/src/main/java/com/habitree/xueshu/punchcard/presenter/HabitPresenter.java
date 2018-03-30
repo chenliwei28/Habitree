@@ -46,7 +46,6 @@ public class HabitPresenter extends BasePresenter {
     private String mOrderId;       //订单ID
     private int mMemId;
 
-    private List<HabitListResponse.Data.Habit> mOngoing;
 
     public HabitPresenter(Context context) {
         super(context);

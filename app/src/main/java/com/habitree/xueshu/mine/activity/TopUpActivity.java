@@ -59,7 +59,9 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener{
                 selectMode(1);
                 break;
             case R.id.next_tv:
-                startActivity(new Intent(this,WxPayActivity.class));
+                if (mCurrentMode==1){
+
+                }
                 break;
         }
     }
