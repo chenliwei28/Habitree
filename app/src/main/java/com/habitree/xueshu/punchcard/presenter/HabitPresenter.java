@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.activity.WxPayActivity;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.GiveUpHabitResponse;
@@ -24,8 +25,6 @@ import com.habitree.xueshu.xs.util.HttpManager;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UserManager;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -165,17 +164,7 @@ public class HabitPresenter extends BasePresenter {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(mContext,response.body().status)){
                                 mOrderId = response.body().data.order_id;
-                                switch (payName){
-                                    case "balancepay":
-                                        payOrderUseBalance(mOrderId,payName,view);
-                                        break;
-                                    case "wxpay":
-
-                                        break;
-                                    case "alipay":
-
-                                        break;
-                                }
+                                payOrder(mOrderId,payName,view);
                             }else {
                                 view.onHabitCreateFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
@@ -189,7 +178,7 @@ public class HabitPresenter extends BasePresenter {
                 });
     }
 
-    private void payOrderUseBalance(String orderId, String payway, final HabitView.CreateHabitView view){
+    private void payOrder(String orderId, final String payway, final HabitView.CreateHabitView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .balancePay(timestamp,CommUtil.getSign(Constant.PAY_ORDER_FUNCTION,timestamp),
@@ -199,7 +188,17 @@ public class HabitPresenter extends BasePresenter {
                     public void onResponse(Call<PayResultResponse> call, Response<PayResultResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(mContext,response.body().status)){
-                                createHabit(view);
+                                switch (payway){
+                                    case "balancepay":
+                                        createHabit(view);
+                                        break;
+                                    case "wxpay":
+                                        WxPayActivity.start(mContext,response.body().data.token);
+                                        break;
+                                    case "alipay":
+
+                                        break;
+                                }
                             }else {
                                 view.onHabitCreateFailed(CommUtil.unicode2Chinese(response.body().info));
                             }

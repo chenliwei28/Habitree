@@ -1,21 +1,17 @@
 package com.habitree.xueshu.punchcard.activity;
 
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.main.MainActivity;
-import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
 
 import java.util.List;
@@ -94,10 +90,10 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
         }else {
             switch (mCurrentMode){
                 case 1:
-                    useBalancePay();
+                    toPay(mBalance.payname);
                     break;
                 case 2:
-                    showToast("暂不支持微信支付哦");
+                    toPay(mWX.payname);
                     break;
                 case 3:
                     showToast("暂不支持支付宝哦");
@@ -106,9 +102,9 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
         }
     }
 
-    private void useBalancePay(){
+    private void toPay(String payWay){
         showLoadingDialog();
-        mPresenter.createOrder(mBalance.payname,this);
+        mPresenter.createOrder(payWay,this);
     }
 
     private void selectMode(int position){

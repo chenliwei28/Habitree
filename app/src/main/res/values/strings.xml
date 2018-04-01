@@ -108,6 +108,7 @@
     <string name="female">女</string>
     <string name="nickname">昵称</string>
     <string name="between_you">你们之间</string>
+    <string name="you_havent_added_tixian_account">您还未添加提现账户</string>
     <string name="you_become_his_supervision">你作为TA的监督人</string>
     <string name="you_has_no_choose_supervision">您尚未选择监督人，若不选择，系统将默认官方助手作为您的监督人</string>
     <string name="your_tree_will_turn_gray">您的小树将永远变成灰色，剩余罚金也将会全部支付给你的监督人</string>
@@ -125,6 +126,7 @@
     <string name="qq_friends">QQ好友</string>
     <string name="other_sum">其他金额</string>
     <string name="clear_cache">清除缓存</string>
+    <string name="all_withdrawal">全部提现</string>
     <string name="wallet_balance">钱包余额</string>
     <string name="sure_logout">确定退出？</string>
     <string name="sure_clear_cache">确定清除缓存？</string>
@@ -251,6 +253,7 @@
     <string name="already_send_code_to_your_phone">已经向您的手机发送验证码，请查收</string>
     <!--Z-->
     <string name="pay">支付</string>
+    <string name="zhifubao">支付宝</string>
     <string name="total_sum">总金额</string>
     <string name="plant_a_tree">种一棵树</string>
     <string name="ali_pay">支付宝支付</string>

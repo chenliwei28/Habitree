@@ -15,35 +15,55 @@
         app:title_text="@string/withdraw_deposit"/>
 
     <LinearLayout
+        android:id="@+id/choose_ll"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:gravity="center_vertical"
+        android:layout_marginTop="15dp"
         android:background="@color/white">
 
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:id="@+id/mode_iv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:src="@drawable/ic_money"/>
+            android:src="@drawable/ic_wallet"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black_text"
-            android:textSize="15sp"
-            android:text="@string/can_use_sum" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/sum_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:textColor="@color/orange"
-            android:textSize="15sp"
-            android:text="30元"/>
+            <TextView
+                android:id="@+id/name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_text"
+                android:textSize="14sp"
+                tools:text="@string/zhifubao"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/account_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_text"
+                android:textSize="13sp"
+                android:text="@string/you_havent_added_tixian_account"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:src="@drawable/ic_next"/>
     </LinearLayout>
+
+    <View style="@style/Line"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,9 +106,38 @@
 
     <View style="@style/Line"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/balance_tv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            tools:text="可用余额：30.00元"
+            android:textSize="12sp"
+            android:textColor="@color/gray_text"/>
+
+        <TextView
+            android:id="@+id/all_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:gravity="center"
+            android:text="@string/all_withdrawal"
+            android:textSize="12sp"
+            android:textColor="@color/blue"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/confirm_tv"
-        style="@style/RectButton"
+        style="@style/RoundButton"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginTop="32dp"
