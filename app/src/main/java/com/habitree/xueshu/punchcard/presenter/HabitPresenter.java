@@ -153,7 +153,7 @@ public class HabitPresenter extends BasePresenter {
                 });
     }
 
-    public void createOrder(final String payName, final HabitView.CreateHabitView view){
+    public void createOrder(final String payName, final HabitView.CreateOrderView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .createHabitOrder(timestamp,CommUtil.getSign(Constant.CREATE_HABIT_ORDER_FUNCTION,timestamp),
@@ -164,55 +164,21 @@ public class HabitPresenter extends BasePresenter {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(mContext,response.body().status)){
                                 mOrderId = response.body().data.order_id;
-                                payOrder(mOrderId,payName,view);
+                                view.onOrderCreateSuccess(mOrderId);
                             }else {
-                                view.onHabitCreateFailed(CommUtil.unicode2Chinese(response.body().info));
+                                view.onOrderCreateFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
                         }
                     }
 
                     @Override
                     public void onFailure(Call<CreateOrderResponse> call, Throwable t) {
-                        view.onHabitCreateFailed(mContext.getString(R.string.network_error));
+                        view.onOrderCreateFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }
 
-    private void payOrder(String orderId, final String payway, final HabitView.CreateHabitView view){
-        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        HttpManager.getManager().getService()
-                .balancePay(timestamp,CommUtil.getSign(Constant.PAY_ORDER_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,orderId,payway)
-                .enqueue(new Callback<PayResultResponse>() {
-                    @Override
-                    public void onResponse(Call<PayResultResponse> call, Response<PayResultResponse> response) {
-                        if (response.body()!=null){
-                            if (CommUtil.isSuccess(mContext,response.body().status)){
-                                switch (payway){
-                                    case "balancepay":
-                                        createHabit(view);
-                                        break;
-                                    case "wxpay":
-                                        WxPayActivity.start(mContext,response.body().data.token);
-                                        break;
-                                    case "alipay":
-
-                                        break;
-                                }
-                            }else {
-                                view.onHabitCreateFailed(CommUtil.unicode2Chinese(response.body().info));
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<PayResultResponse> call, Throwable t) {
-                        view.onHabitCreateFailed(mContext.getString(R.string.network_error));
-                    }
-                });
-    }
-
-    private void createHabit(final HabitView.CreateHabitView view){
+    public void createHabit(final HabitView.CreateHabitView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .createHabit(timestamp,CommUtil.getSign(Constant.CREATE_HABIT_FUNCTION,timestamp),

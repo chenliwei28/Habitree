@@ -23,6 +23,7 @@ import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
 import com.habitree.xueshu.mine.bean.OauthBindResponse;
+import com.habitree.xueshu.mine.bean.QueryOrderResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
@@ -412,4 +413,12 @@ public interface Api {
                                       @Field("expires_date")String expiresDate,
                                       @Field("nickname")String nickname,
                                       @Field("user_token") String userToken);
+
+    //习惯支付订单状态查询
+    @FormUrlEncoded
+    @POST(Constant.QUERY_ORDER_FUNCTION)
+    Call<QueryOrderResponse> queryOrderState(@Field("timestamp") String timestamp,
+                                             @Field("sign") String sign,
+                                             @Field("user_token") String userToken,
+                                             @Field("order_id")String orderId);
 }

@@ -1,12 +1,18 @@
 package com.habitree.xueshu.punchcard.activity;
 
 
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.activity.WxPayActivity;
+import com.habitree.xueshu.mine.presenter.PayPresenter;
+import com.habitree.xueshu.mine.pview.PayView;
+import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.punchcard.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
@@ -16,7 +22,7 @@ import com.habitree.xueshu.xs.view.CustomItemView;
 
 import java.util.List;
 
-public class PayActivity extends BaseActivity implements View.OnClickListener,HabitView.PayWayView,HabitView.CreateHabitView {
+public class PayActivity extends BaseActivity implements View.OnClickListener,HabitView.PayWayView,HabitView.CreateHabitView,PayView,HabitView.CreateOrderView {
 
     private LinearLayout mWxCheckLl;
     private LinearLayout mAliCheckLl;
@@ -26,7 +32,8 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
     private ImageView mBalanceCheckIv;
     private CustomItemView mTotalCiv;
     private TextView mPayTv;
-    private HabitPresenter mPresenter;
+    private HabitPresenter mHabitPresenter;
+    private PayPresenter mPayPresenter;
     private int mCurrentMode = -1;  //1：余额支付 2：微信支付 3：支付宝支付
     private PayWayResponse.Payway mBalance;
     private PayWayResponse.Payway mWX;
@@ -47,7 +54,8 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
         mBalanceCheckIv = findViewById(R.id.balance_check_iv);
         mTotalCiv = findViewById(R.id.total_civ);
         mPayTv = findViewById(R.id.pay_tv);
-        mPresenter = new HabitPresenter(this);
+        mHabitPresenter = new HabitPresenter(this);
+        mPayPresenter = new PayPresenter(this);
     }
 
     @Override
@@ -61,9 +69,9 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
     @Override
     protected void initData() {
         showLoadingDialog();
-        mPresenter.initCreateHabitData(getIntent());
+        mHabitPresenter.initCreateHabitData(getIntent());
         mTotalCiv.setDetail("¥"+getIntent().getDoubleExtra(Constant.TOTAL,0));
-        mPresenter.getPayMode(this);
+        mHabitPresenter.getPayMode(this);
     }
 
     @Override
@@ -104,7 +112,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
 
     private void toPay(String payWay){
         showLoadingDialog();
-        mPresenter.createOrder(payWay,this);
+        mHabitPresenter.createOrder(payWay,this);
     }
 
     private void selectMode(int position){
@@ -163,12 +171,61 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
     @Override
     public void onHabitCreateSuccess() {
         hideLoadingDialog();
-        HabitCreateResultActivity.start(this,getIntent().getStringExtra(Constant.HEAD),getIntent().getIntExtra(Constant.MEMID,0));
+        HabitCreateResultActivity.start(this,getIntent().getStringExtra(Constant.HEAD),getIntent().getIntExtra(Constant.MEMID,0),
+                getIntent().getStringExtra(Constant.TITLE));
     }
 
     @Override
     public void onHabitCreateFailed(String reason) {
         hideLoadingDialog();
         showToast(reason);
+    }
+
+    @Override
+    public void onPaySuccess(PayResultResponse.Data data) {
+        if (data!=null&&data.token!=null&&!TextUtils.isEmpty(data.token)){
+            WxPayActivity.start(this,data.token);
+        }else {
+            mHabitPresenter.createHabit(this);
+        }
+    }
+
+    @Override
+    public void onPayFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
+    }
+
+    @Override
+    public void onOrderCreateSuccess(String orderId) {
+        switch (mCurrentMode){
+            case 1:
+                mPayPresenter.payOrder(orderId,mBalance.payname,this);
+                break;
+            case 2:
+                mPayPresenter.payOrder(orderId,mWX.payname,this);
+                break;
+            case 3:
+                mPayPresenter.payOrder(orderId,mAli.payname,this);
+                break;
+        }
+    }
+
+    @Override
+    public void onOrderCreateFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case Constant.NUM_109:
+                if (resultCode==Constant.NUM_110){
+                    onPaySuccess(null);
+                }
+                break;
+        }
     }
 }

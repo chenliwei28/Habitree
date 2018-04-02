@@ -47,6 +47,7 @@
     <!--E-->
     <!--F-->
     <string name="send">发送</string>
+    <string name="share_success">分享成功</string>
     <string name="share_habit">分享习惯</string>
     <string name="send_success">发送成功</string>
     <string name="send_message">发消息</string>
@@ -87,6 +88,7 @@
     <string name="today_has_been_punch_card_no_check">今天已打卡（待审核）</string>
     <string name="today_has_been_punch_card_and_checked">今天已打卡（已审核）</string>
     <!--K-->
+    <string name="qzone">空间</string>
     <string name="quick_login">快速登录</string>
     <string name="quick_register">快速注册</string>
     <string name="can_use_sum">可用余额：</string>
@@ -215,6 +217,9 @@
     <string name="send_card_record_to_someone">向监督人（%s）发送打卡记录</string>
     <string name="choose_time_long_text">选择时间，将作为习惯养成的时间长度。</string>
     <string name="choose_rational_time_is_helpful">选择合理的周期，有助于积累成就感和信息</string>
+    <string name="share_title">学树习惯 · 把自己熬成金黄</string>
+    <string name="share_has_super_content">我在正在培养“%s”习惯养成，希望你也能加入，让我们共同见证彼此的成长吧！</string>
+    <string name="share_no_super_content">你的好友“%s”邀请你成为他的监督人，让我们共同见证彼此的成长吧！</string>
     <!--W-->
     <string name="mine">我</string>
     <string name="text">文字</string>
