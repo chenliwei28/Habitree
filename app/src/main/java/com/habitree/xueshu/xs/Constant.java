@@ -82,4 +82,6 @@ public class Constant {
     public final static String GET_FORFEIT_LIST_FUNCTION = "v1/user/forfeit/list";
     public final static String OAUTH_BIND_FUNCTION = "v1/user/oauth/bind";
     public final static String QUERY_ORDER_FUNCTION = "v1/habit/pay/queryorder";
+    public final static String BIND_WITHDRAW_ACCOUNT_FUNCTION = "v1/user/withdraw/bind";
+    public final static String GET_WITHDRAW_BIND_LIST_FUNCTION = "v1/user/withdraw/bindlist";
 }

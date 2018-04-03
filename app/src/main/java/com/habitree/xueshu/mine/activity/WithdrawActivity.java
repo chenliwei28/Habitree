@@ -1,5 +1,6 @@
 package com.habitree.xueshu.mine.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -7,6 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.UserManager;
 
@@ -56,13 +59,33 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choose_ll:
-
+                startActivityForResult(new Intent(this,ChooseAccountActivity.class), Constant.NUM_109);
                 break;
             case R.id.all_tv:
                 mNumEt.setText(UserManager.getManager().getUser().wallet.balance);
                 break;
             case R.id.confirm_tv:
 
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case Constant.NUM_109:
+                if (resultCode==Constant.NUM_110){
+                    WithdrawBindListResponse.DataBean.WithdrawAccount account = (WithdrawBindListResponse.DataBean.WithdrawAccount) data.getSerializableExtra(Constant.CODE);
+                    switch (account.type){
+                        case "alipay":
+                            mModeIv.setImageResource(R.drawable.ic_ali_big);
+                            mNameTv.setText(getString(R.string.zhifubao));
+                            mNameTv.setVisibility(View.VISIBLE);
+                            mAccountTv.setText(account.account);
+                            break;
+                    }
+                }
                 break;
         }
     }

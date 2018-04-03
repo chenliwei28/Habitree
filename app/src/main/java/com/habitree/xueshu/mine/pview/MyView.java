@@ -3,6 +3,7 @@ package com.habitree.xueshu.mine.pview;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.Wallet;
+import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.xs.presenter.BaseView;
 
 import java.util.List;
@@ -42,5 +43,10 @@ public interface MyView extends BaseView {
     interface OauthBindView{
         void onBindSuccess();
         void onBindFailed(String reason);
+    }
+
+    interface WithdrawAccountListView{
+        void onGetListSuccess(List<WithdrawBindListResponse.DataBean.WithdrawAccount> list);
+        void onGetListFailed(String reason);
     }
 }

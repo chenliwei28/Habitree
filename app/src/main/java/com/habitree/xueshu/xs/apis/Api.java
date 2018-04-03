@@ -16,6 +16,7 @@ import com.habitree.xueshu.message.bean.MsgDetailResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
 import com.habitree.xueshu.message.bean.SignDetailResponse;
+import com.habitree.xueshu.mine.bean.BindWithdrawAccountResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.ChangeNickResponse;
 import com.habitree.xueshu.mine.bean.ChangePasswordResponse;
@@ -25,6 +26,7 @@ import com.habitree.xueshu.mine.bean.MyWalletResponse;
 import com.habitree.xueshu.mine.bean.OauthBindResponse;
 import com.habitree.xueshu.mine.bean.QueryOrderResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
+import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.GiveUpHabitResponse;
@@ -421,4 +423,25 @@ public interface Api {
                                              @Field("sign") String sign,
                                              @Field("user_token") String userToken,
                                              @Field("order_id")String orderId);
+
+    //提现绑定三方账号
+    @FormUrlEncoded
+    @POST(Constant.BIND_WITHDRAW_ACCOUNT_FUNCTION)
+    Call<BindWithdrawAccountResponse> bindWithdrawAccount(@Field("timestamp") String timestamp,
+                                                          @Field("sign") String sign,
+                                                          @Field("user_token") String userToken,
+                                                          @Field("type")String type,
+                                                          @Field("account")String account,
+                                                          @Field("realname")String name,
+                                                          @Field("mobile")String mobile,
+                                                          @Field("smscode")String code,
+                                                          @Field("smstype")int smsType);
+
+    //获取提现绑定账号列表
+    @FormUrlEncoded
+    @POST(Constant.GET_WITHDRAW_BIND_LIST_FUNCTION)
+    Call<WithdrawBindListResponse> getWithdrawBindList(@Field("timestamp") String timestamp,
+                                                       @Field("sign") String sign,
+                                                       @Field("user_token") String userToken);
+
 }

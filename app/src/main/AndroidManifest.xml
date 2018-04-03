@@ -329,7 +329,9 @@
         <activity android:name=".mine.activity.TotalMoneyActivity" />
         <activity android:name=".mine.activity.WxPayActivity" />
         <activity android:name=".punchcard.activity.ImageActivity" />
-        <activity android:name=".punchcard.activity.HabitCreateResultActivity"></activity>
+        <activity android:name=".punchcard.activity.HabitCreateResultActivity" />
+        <activity android:name=".mine.activity.ChooseAccountActivity" />
+        <activity android:name=".mine.activity.BindAccountActivity"></activity>
     </application>
 
 </manifest>

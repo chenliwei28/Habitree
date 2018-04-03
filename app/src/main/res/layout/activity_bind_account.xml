@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context="com.habitree.xueshu.mine.activity.BindAccountActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/bind_account"/>
+
+    <com.habitree.xueshu.xs.view.LoginEditText
+        android:id="@+id/account_let"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="29dp"
+        app:hint="@string/please_enter_your_ali_pay_account"
+        app:input_mode="2"
+        app:left_img="@drawable/ic_people" />
+
+    <com.habitree.xueshu.xs.view.LoginEditText
+        android:id="@+id/name_let"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="18dp"
+        app:hint="@string/please_enter_your_ali_pay_name"
+        app:input_mode="2"
+        app:left_img="@drawable/ic_pen" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="18dp">
+
+        <ImageView
+            android:id="@+id/auth_iv"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_pen"/>
+
+        <EditText
+            android:id="@+id/code_et"
+            android:layout_width="190dp"
+            android:layout_height="45dp"
+            android:layout_toRightOf="@id/auth_iv"
+            android:background="@color/white"
+            android:hint="@string/note_auth_code"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textSize="14sp" />
+
+        <View style="@style/Line"
+            android:layout_width="220dp"
+            android:layout_below="@id/code_et"/>
+
+        <TextView
+            android:id="@+id/send_tv"
+            android:layout_width="82dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/code_et"
+            android:gravity="center"
+            android:background="@drawable/shape_rect_round_corner_orange_button"
+            android:text="@string/auth_code"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/confirm_tv"
+        style="@style/RoundButton"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginRight="44dp"
+        android:text="@string/confirm"/>
+</LinearLayout>

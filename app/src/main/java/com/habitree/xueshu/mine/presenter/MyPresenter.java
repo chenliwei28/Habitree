@@ -3,8 +3,8 @@ package com.habitree.xueshu.mine.presenter;
 
 import android.content.Context;
 
-import com.baidu.platform.comapi.map.N;
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.bean.BindWithdrawAccountResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.ChangeNickResponse;
 import com.habitree.xueshu.mine.bean.ChangePasswordResponse;
@@ -13,6 +13,7 @@ import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
 import com.habitree.xueshu.mine.bean.OauthBindResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
+import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
@@ -22,8 +23,6 @@ import com.habitree.xueshu.xs.util.HttpManager;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -229,6 +228,52 @@ public class MyPresenter extends BasePresenter{
                     @Override
                     public void onFailure(Call<OauthBindResponse> call, Throwable t) {
                         view.onBindFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void bindWithdrawAccount(String type, String account, String name, String code, final MyView.OauthBindView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().bindWithdrawAccount(timestamp,CommUtil.getSign(Constant.BIND_WITHDRAW_ACCOUNT_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,type,account,name,UserManager.getManager().getUser().mobile,code,5)
+                .enqueue(new Callback<BindWithdrawAccountResponse>() {
+                    @Override
+                    public void onResponse(Call<BindWithdrawAccountResponse> call, Response<BindWithdrawAccountResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onBindSuccess();
+                            }else {
+                                view.onBindFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BindWithdrawAccountResponse> call, Throwable t) {
+                        view.onBindFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void getWithdrawBindList(final MyView.WithdrawAccountListView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().getWithdrawBindList(timestamp,CommUtil.getSign(Constant.GET_WITHDRAW_BIND_LIST_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token)
+                .enqueue(new Callback<WithdrawBindListResponse>() {
+                    @Override
+                    public void onResponse(Call<WithdrawBindListResponse> call, Response<WithdrawBindListResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onGetListSuccess(response.body().data.list);
+                            }else {
+                                view.onGetListFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<WithdrawBindListResponse> call, Throwable t) {
+                        view.onGetListFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

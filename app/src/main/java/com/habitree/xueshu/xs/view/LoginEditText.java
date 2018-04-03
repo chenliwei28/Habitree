@@ -39,6 +39,7 @@ public class LoginEditText extends RelativeLayout{
 
     private void initView() {
         LayoutInflater.from(getContext()).inflate(R.layout.edit_text_login,this);
+        setBackgroundResource(R.color.white);
         mLeftIv = findViewById(R.id.img_iv);
         mEt = findViewById(R.id.et);
         mLine = findViewById(R.id.line);
@@ -70,6 +71,11 @@ public class LoginEditText extends RelativeLayout{
                 mEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 InputFilter[] pas = {new InputFilter.LengthFilter(16)};
                 mEt.setFilters(pas);
+                break;
+            case 2:
+                mEt.setInputType(InputType.TYPE_CLASS_TEXT);
+                InputFilter[] tex = {new InputFilter.LengthFilter(30)};
+                mEt.setFilters(tex);
                 break;
         }
         array.recycle();

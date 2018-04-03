@@ -7,7 +7,9 @@
     <string name="no_pass">不通过</string>
     <string name="secrecy">保密</string>
     <string name="bind_success">绑定成功</string>
+    <string name="bind_account">绑定账户</string>
     <string name="boil_yourself">把自己熬成金黄</string>
+    <string name="bind_ali_pay_account">绑定支付宝账户</string>
     <string name="plant_tree_long_text">不同背景颜色，不同外形，每一棵树都独一无二</string>
     <!--C-->
     <string name="look_over">查看</string>
@@ -149,6 +151,8 @@
     <string name="please_choose_pay_way">请选择支付方式</string>
     <string name="please_choose_privacy_setting">请选择隐私设置</string>
     <string name="please_choose_record_setting">请选择记录设置</string>
+    <string name="please_enter_your_ali_pay_account">请输入支付宝账号</string>
+    <string name="please_enter_your_ali_pay_name">请输入支付宝姓名</string>
     <string name="please_upload_one_photo_at_least">请至少上传一张照片</string>
     <string name="please_enter_habit_describe">请填写至少两个字的习惯描述</string>
     <string name="please_accept_the_permission_of_camera">请打开照相权限及存储权限</string>
@@ -206,8 +210,10 @@
     <string name="habit_description">习惯描述</string>
     <string name="choose_supervisor">选择监督人</string>
     <string name="choose_plant_trees">选择成长树</string>
+    <string name="choose_withdraw_account">选择提现账户</string>
     <string name="change_phone_number">修改手机号码</string>
     <string name="new_phone_number">新手机号码</string>
+    <string name="name_must_not_be_empty">姓名不能为空</string>
     <string name="habit_create_success">习惯创建成功</string>
     <string name="number_of_penalty_need_pay">需支付罚金</string>
     <string name="next_step_verify_phone">下一步，验证手机号码</string>
@@ -272,6 +278,7 @@
     <string name="total_number_of_punch_card">总打卡次数</string>
     <string name="total_number_of_sign_in">总签到次数</string>
     <string name="the_best_time_is_now">最好的时间是现在</string>
+    <string name="account_can_not_be_empty">账号不能为空</string>
     <string name="sliding_around_to_check_the_next">左右滑动查看下一棵</string>
     <string name="sliding_around_to_watch_other">左右拖动画面浏览其他部分</string>
     <!--##-->

@@ -72,8 +72,9 @@ public class UserManager {
     }
 
     public void updateUserWallet(Wallet balance){
+        user.wallet.delete();
+        balance.save();
         user.wallet = balance;
-        user.wallet.save();
         user.update(1);
     }
 

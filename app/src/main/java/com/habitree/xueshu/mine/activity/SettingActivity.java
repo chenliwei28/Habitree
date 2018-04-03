@@ -113,4 +113,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         }
         mExitDialog.show();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
 }
