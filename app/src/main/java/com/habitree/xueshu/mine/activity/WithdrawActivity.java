@@ -1,6 +1,7 @@
 package com.habitree.xueshu.mine.activity;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
+import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.UserManager;
@@ -24,6 +26,8 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
     private TextView mBalanceTv;
     private TextView mAllTv;
     private TextView mConfirmTv;
+    private PayPresenter mPresenter;
+    private String mAmount;
 
     @Override
     protected int setLayoutId() {
@@ -40,6 +44,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
         mBalanceTv = findViewById(R.id.balance_tv);
         mAllTv = findViewById(R.id.all_tv);
         mConfirmTv = findViewById(R.id.confirm_tv);
+        mPresenter = new PayPresenter(this);
     }
 
     @Override
@@ -65,8 +70,21 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 mNumEt.setText(UserManager.getManager().getUser().wallet.balance);
                 break;
             case R.id.confirm_tv:
-
+                checkAndConfirm();
                 break;
+        }
+    }
+
+    private void checkAndConfirm(){
+        mAmount = mNumEt.getText().toString();
+        double amount = Double.valueOf(mAmount);
+        if (TextUtils.isEmpty(mAmount)){
+            showToast("提现金额不能为空");
+        }else if (amount<=0){
+            showToast("提现金额不能为0");
+        }else {
+            showLoadingDialog();
+            mPresenter.withdrawCreateOrder(mAmount);
         }
     }
 

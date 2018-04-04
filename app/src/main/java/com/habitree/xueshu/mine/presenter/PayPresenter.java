@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.QueryOrderResponse;
+import com.habitree.xueshu.mine.bean.WithdrawOrderResponse;
 import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.xs.Constant;
@@ -73,6 +74,25 @@ public class PayPresenter extends BasePresenter{
                     @Override
                     public void onFailure(Call<QueryOrderResponse> call, Throwable t) {
                         view.onPayFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void withdrawCreateOrder(String amount){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().withdrawCreateOrder(timestamp,CommUtil.getSign(Constant.WITHDRAW_CREATE_ORDER_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,amount)
+                .enqueue(new Callback<WithdrawOrderResponse>() {
+                    @Override
+                    public void onResponse(Call<WithdrawOrderResponse> call, Response<WithdrawOrderResponse> response) {
+                        if (response.body()!=null){
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<WithdrawOrderResponse> call, Throwable t) {
+
                     }
                 });
     }

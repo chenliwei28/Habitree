@@ -27,6 +27,7 @@ import com.habitree.xueshu.mine.bean.OauthBindResponse;
 import com.habitree.xueshu.mine.bean.QueryOrderResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
+import com.habitree.xueshu.mine.bean.WithdrawOrderResponse;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.GiveUpHabitResponse;
@@ -444,4 +445,11 @@ public interface Api {
                                                        @Field("sign") String sign,
                                                        @Field("user_token") String userToken);
 
+    //提现预下单
+    @FormUrlEncoded
+    @POST(Constant.WITHDRAW_CREATE_ORDER_FUNCTION)
+    Call<WithdrawOrderResponse> withdrawCreateOrder(@Field("timestamp") String timestamp,
+                                                    @Field("sign") String sign,
+                                                    @Field("user_token") String userToken,
+                                                    @Field("amount")String amount);
 }

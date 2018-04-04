@@ -84,4 +84,5 @@ public class Constant {
     public final static String QUERY_ORDER_FUNCTION = "v1/habit/pay/queryorder";
     public final static String BIND_WITHDRAW_ACCOUNT_FUNCTION = "v1/user/withdraw/bind";
     public final static String GET_WITHDRAW_BIND_LIST_FUNCTION = "v1/user/withdraw/bindlist";
+    public final static String WITHDRAW_CREATE_ORDER_FUNCTION = "v1/user/withdraw/order";
 }

@@ -100,7 +100,7 @@
                 android:background="@color/white"
                 android:textSize="36sp"
                 android:textColor="@color/black_text"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
         </LinearLayout>
     </LinearLayout>
 
