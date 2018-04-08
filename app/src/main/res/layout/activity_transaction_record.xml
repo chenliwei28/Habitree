@@ -10,10 +10,10 @@
     tools:context="com.habitree.xueshu.mine.activity.TransactionRecordActivity">
 
     <com.habitree.xueshu.xs.view.MyActionBar
+        android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
         app:title_text="@string/transaction_record" />
-
 
     <ListView
         android:id="@+id/record_lv"

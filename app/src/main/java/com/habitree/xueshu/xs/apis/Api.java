@@ -20,6 +20,7 @@ import com.habitree.xueshu.mine.bean.BindWithdrawAccountResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.ChangeNickResponse;
 import com.habitree.xueshu.mine.bean.ChangePasswordResponse;
+import com.habitree.xueshu.mine.bean.ChargeDetailResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
@@ -358,6 +359,14 @@ public interface Api {
                                            @Field("page") int page,
                                            @Field("offset") int offset,
                                            @Field("type")int type);
+
+    //获取交易详情
+    @FormUrlEncoded
+    @POST(Constant.GET_CHARGE_DETAIL_FUNCTION)
+    Call<ChargeDetailResponse> getChargeDetail(@Field("timestamp") String timestamp,
+                                               @Field("sign") String sign,
+                                               @Field("user_token") String token,
+                                               @Field("order_id")String id);
 
     //获取罚金收支记录
     @FormUrlEncoded

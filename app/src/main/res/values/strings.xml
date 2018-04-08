@@ -14,6 +14,8 @@
     <!--C-->
     <string name="look_over">查看</string>
     <string name="top_up">充值</string>
+    <string name="create_time">创建时间：</string>
+    <string name="top_up_time">充值时间：</string>
     <string name="resend">重新发送</string>
     <string name="create_success">创建成功</string>
     <string name="view_images">[查看图片]</string>
@@ -33,6 +35,7 @@
     <string name="login">登录</string>
     <string name="dian_zan">点赞</string>
     <string name="punch_card">打卡</string>
+    <string name="single_amount">单次金额：</string>
     <string name="frozen_money">冻结金额</string>
     <string name="audit_record">打卡审核</string>
     <string name="punch_card_record">打卡记录</string>
@@ -49,6 +52,8 @@
     <!--E-->
     <!--F-->
     <string name="send">发送</string>
+    <string name="forfeit">罚金</string>
+    <string name="returns_amount">返回金额：</string>
     <string name="share_success">分享成功</string>
     <string name="share_habit">分享习惯</string>
     <string name="send_success">发送成功</string>
@@ -81,6 +86,7 @@
     <string name="basic_setting">基本设置</string>
     <string name="recording_mode">记录方式</string>
     <string name="record_setting">记录设置</string>
+    <string name="transaction_detail">交易详情</string>
     <string name="transaction_record">交易记录</string>
     <string name="days_of_accession">加入天数</string>
     <string name="join_num_days">加入天数：%d天</string>
@@ -96,6 +102,8 @@
     <string name="can_use_sum">可用余额：</string>
     <string name="to_invite_supervision">快去邀请监督人，见证你的成长</string>
     <!--L-->
+    <string name="type">类型：</string>
+    <string name="serial_number">流水号：</string>
     <string name="pay_right_now">立即支付</string>
     <string name="different_password">两次输入的密码不一致</string>
     <string name="continuous_of_punch_card">连续签到次数</string>
@@ -122,6 +130,7 @@
     <string name="foster_state">培养状态</string>
     <!--Q-->
     <string name="QQ">QQ</string>
+    <string name="all">全部</string>
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
     <string name="to_pay">去支付</string>
@@ -179,6 +188,7 @@
     <string name="remind">提示</string>
     <string name="statistics">统计</string>
     <string name="withdraw_deposit">提现</string>
+    <string name="withdraw_time">提现时间：</string>
     <string name="withdraw_sum">提现金额</string>
     <string name="reminder_time">提醒时间</string>
     <string name="add_friends">添加好友</string>
@@ -202,6 +212,10 @@
     <string name="sunday">星期日</string>
     <string name="next_step">下一步</string>
     <string name="habit_name">习惯名称</string>
+    <string name="habit_pay">习惯支付：</string>
+    <string name="habit_days">习惯天数：</string>
+    <string name="habit_cycle">习惯周期：</string>
+    <string name="habit_name_mao">习惯名称：</string>
     <string name="habit_invite">习惯邀请</string>
     <string name="habit_detail">习惯详情</string>
     <string name="habit_setting">习惯设置</string>
@@ -243,6 +257,7 @@
     <string name="wx_friends">微信好友</string>
     <string name="forget_password">忘记密码</string>
     <string name="network_error">系统异常，请稍后再试</string>
+    <string name="bind_account_remind_long_text">为确保提现准时到账，请务必填写正确的账号信息和真实姓名！</string>
     <!--Y-->
     <string name="auth_code">验证码</string>
     <string name="onBind">已绑定</string>
@@ -264,12 +279,16 @@
     <string name="already_send_code_to_your_phone">已经向您的手机发送验证码，请查收</string>
     <!--Z-->
     <string name="pay">支付</string>
+    <string name="status">状态：</string>
+    <string name="spending">支出：</string>
     <string name="zhifubao">支付宝</string>
     <string name="total_sum">总金额</string>
+    <string name="method_of_payment">支付方式：</string>
     <string name="plant_a_tree">种一棵树</string>
     <string name="ali_pay">支付宝支付</string>
     <string name="plant_a_tree_ba">种一颗树吧</string>
     <string name="photo_record">照片记录</string>
+    <string name="account_balance">账户余额：</string>
     <string name="account_binding">账户绑定</string>
     <string name="register_success">注册成功</string>
     <string name="register_account">注册账号</string>

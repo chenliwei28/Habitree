@@ -17,22 +17,27 @@ public class ChargeListResponse {
     public List<Data> data;
 
     public class Data {
+
         /**
-         * order_id : 1520999871484126898
-         * admin_id : 1
-         * amount : 1000元
-         * status : 2
-         * payway : 后台充值
-         * create_time : 2018-03-14 11:59:02
-         * status_str : 支付成功
+         * create_time : 2018-04-04 13:32:57
+         * status : 1
+         * amount : -0.01元
+         * order_id : T15228199778563800030001
+         * trade_type : 2
+         * info_title : 余额提现
+         * payway : 余额支付
+         * type : 2
+         * status_str : 待支付
          */
 
-        public String order_id;
-        public int admin_id;
-        public String amount;
-        public int status;
-        public String payway;
         public String create_time;
+        public int status;
+        public String amount;
+        public String order_id;
+        public String trade_type;
+        public String info_title;
+        public String payway;
+        public String type;
         public String status_str;
     }
 }

@@ -2,7 +2,10 @@ package com.habitree.xueshu.mine.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +27,7 @@ public class BindAccountActivity extends BaseActivity implements View.OnClickLis
     private EditText mCodeEt;
     private TextView mSendTv;
     private TextView mConfirmTv;
+    private TextView mRemindTv;
     private final static int AUTH_RESET_TIME = 60;
     private int mTime = AUTH_RESET_TIME;
     private LoginAndRegisterPresenter mLoginPresenter;
@@ -41,6 +45,7 @@ public class BindAccountActivity extends BaseActivity implements View.OnClickLis
         mCodeEt = findViewById(R.id.code_et);
         mSendTv = findViewById(R.id.send_tv);
         mConfirmTv = findViewById(R.id.confirm_tv);
+        mRemindTv = findViewById(R.id.remind_tv);
         mLoginPresenter = new LoginAndRegisterPresenter(this);
         mMyPresenter = new MyPresenter(this);
     }
@@ -53,7 +58,10 @@ public class BindAccountActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
-
+        ImageSpan span = new ImageSpan(this,R.drawable.ic_remind);
+        SpannableString s = new SpannableString(getString(R.string.bind_account_remind_long_text));
+        s.setSpan(span,0,1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        mRemindTv.setText(s);
     }
 
     private void countDown(){

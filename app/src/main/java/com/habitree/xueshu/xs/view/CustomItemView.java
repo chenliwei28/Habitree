@@ -94,4 +94,12 @@ public class CustomItemView extends RelativeLayout{
     public void setNextImg(int resId){
         mNextIv.setImageResource(resId);
     }
+
+    public void setTitleText(String title){
+        mTitleTv.setText(title);
+    }
+
+    public void setTitleText(int textId){
+        mTitleTv.setText(textId);
+    }
 }

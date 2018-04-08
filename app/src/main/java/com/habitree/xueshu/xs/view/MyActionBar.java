@@ -3,6 +3,7 @@ package com.habitree.xueshu.xs.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -95,5 +96,13 @@ public class MyActionBar extends RelativeLayout {
 
     public void setBackIvClickListener(OnClickListener listener){
         mBackIv.setOnClickListener(listener);
+    }
+
+    public void setTitleTvDrawableRight(Drawable right){
+        mTitleTv.setCompoundDrawablesWithIntrinsicBounds(null,null,right,null);
+    }
+
+    public void setTitleTvOnClickListener(OnClickListener listener){
+        mTitleTv.setOnClickListener(listener);
     }
 }

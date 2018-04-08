@@ -74,7 +74,8 @@ public class Constant {
     public final static String PAY_ORDER_FUNCTION = "v1/habit/pay";
     public final static String PUNCH_CARD_FUNCTION = "v1/habit/sign";
     public final static String GET_MY_WALLET_FUNCTION = "v1/user/wallet";
-    public final static String GET_CHARGE_LIST_FUNCTION = "v1/user/charge/list";
+    public final static String GET_CHARGE_LIST_FUNCTION = "v1/user/trade/list";
+    public final static String GET_CHARGE_DETAIL_FUNCTION = "v1/user/trade/info";
     public final static String GET_HABIT_DETAIL_FUNCTION = "v1/habit/info";
     public final static String GET_RECORD_LIST_FUNCTION = "v1/habit/sign/list";
     public final static String GET_RECORD_DETAIL_FUNCTION = "v1/habit/sign/info";

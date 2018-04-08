@@ -24,7 +24,7 @@
         android:textSize="18sp"
         android:maxLines="1"
         android:ellipsize="end"
-        tools:text="标题"/>
+        tools:text="交易明细"/>
 
     <ImageView
         android:id="@+id/right_iv"

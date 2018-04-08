@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/choose_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/all_rb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/ic_all"
+            android:drawablePadding="5dp"
+            android:drawableRight="@drawable/selector_record_radio_button"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="@string/all"
+            android:textColor="@color/black_text"
+            android:textSize="15sp"/>
+
+        <View style="@style/Line"/>
+
+        <RadioButton
+            android:id="@+id/top_up_rb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_top_up_radio"
+            android:drawablePadding="9dp"
+            android:drawableRight="@drawable/selector_record_radio_button"
+            android:paddingLeft="14dp"
+            android:paddingRight="12dp"
+            android:text="@string/top_up"
+            android:textColor="@color/black_text"
+            android:textSize="15sp"/>
+
+        <View style="@style/Line"/>
+
+        <RadioButton
+            android:id="@+id/withdraw_rb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_wallet_radio"
+            android:drawablePadding="9dp"
+            android:drawableRight="@drawable/selector_record_radio_button"
+            android:paddingLeft="14dp"
+            android:paddingRight="12dp"
+            android:text="@string/withdraw_deposit"
+            android:textColor="@color/black_text"
+            android:textSize="15sp"/>
+
+        <View style="@style/Line"/>
+
+        <RadioButton
+            android:id="@+id/forfeit_rb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_much_money"
+            android:drawablePadding="5dp"
+            android:drawableRight="@drawable/selector_record_radio_button"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="@string/forfeit"
+            android:textColor="@color/black_text"
+            android:textSize="15sp"/>
+    </RadioGroup>
+
+    <View style="@style/Line"/>
+</LinearLayout>

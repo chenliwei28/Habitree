@@ -110,23 +110,23 @@
                 android:textSize="14sp"
                 android:text="@string/choose_rational_time_is_helpful"/>
 
-            <com.habitree.xueshu.xs.view.CustomItemView
-                android:id="@+id/privacy_civ"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/custom_item_height"
-                app:title="@string/privacy_settings"
-                app:next_visible="true"
-                app:head_img="@drawable/ic_me"/>
+            <!--<com.habitree.xueshu.xs.view.CustomItemView-->
+                <!--android:id="@+id/privacy_civ"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/custom_item_height"-->
+                <!--app:title="@string/privacy_settings"-->
+                <!--app:next_visible="true"-->
+                <!--app:head_img="@drawable/ic_me"/>-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:gravity="center_vertical"
-                android:textColor="@color/gray_text"
-                android:textSize="14sp"
-                android:text="@string/is_allow_other_people_see_this_habit"/>
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:paddingLeft="12dp"-->
+                <!--android:paddingRight="12dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textColor="@color/gray_text"-->
+                <!--android:textSize="14sp"-->
+                <!--android:text="@string/is_allow_other_people_see_this_habit"/>-->
 
             <com.habitree.xueshu.xs.view.CustomItemView
                 android:id="@+id/record_civ"

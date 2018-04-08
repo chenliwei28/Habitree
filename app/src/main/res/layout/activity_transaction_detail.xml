@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.habitree.xueshu.mine.activity.TransactionDetailActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        app:title_text="@string/transaction_detail"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/num_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/serial_number"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/type_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/type"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/spend_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/spending"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/method_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/method_of_payment"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/cycle_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/habit_cycle"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/single_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/single_amount"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/time_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/create_time"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/balance_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/account_balance"/>
+
+    <com.habitree.xueshu.xs.view.CustomItemView
+        android:id="@+id/status_civ"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_item_height"
+        app:head_img_visible="false"
+        app:line_visible="false"
+        app:title="@string/status"/>
+</LinearLayout>

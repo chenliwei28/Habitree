@@ -28,7 +28,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     private CustomItemView mRemindCiv;
     private CustomItemView mRepeatCiv;
     private CustomItemView mDurationCiv;
-    private CustomItemView mPrivacyCiv;
+//    private CustomItemView mPrivacyCiv;
     private CustomItemView mRecordCiv;
     private TextView mNextTv;
     private int mTreeId;
@@ -62,7 +62,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         mRemindCiv = findViewById(R.id.remind_civ);
         mRepeatCiv = findViewById(R.id.repeat_civ);
         mDurationCiv = findViewById(R.id.duration_civ);
-        mPrivacyCiv = findViewById(R.id.privacy_civ);
+//        mPrivacyCiv = findViewById(R.id.privacy_civ);
         mRecordCiv = findViewById(R.id.record_civ);
         mNextTv = findViewById(R.id.next_tv);
     }
@@ -72,7 +72,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         mRemindCiv.setOnClickListener(this);
         mRepeatCiv.setOnClickListener(this);
         mDurationCiv.setOnClickListener(this);
-        mPrivacyCiv.setOnClickListener(this);
+//        mPrivacyCiv.setOnClickListener(this);
         mRecordCiv.setOnClickListener(this);
         mNextTv.setOnClickListener(this);
     }
@@ -80,8 +80,8 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initData() {
         mTreeId = getIntent().getIntExtra(Constant.CODE,1);
-        mPrivacyType = 1;
-        mPrivacyCiv.setDetail(getString(R.string.only_you_can_see));
+        mPrivacyType = 2;
+//        mPrivacyCiv.setDetail(getString(R.string.only_you_can_see));
         mRepeatDays = "1111111";
         mRepeatCiv.setDetail("每天");
         mRecordType = 2;
@@ -103,10 +103,10 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
                 CommUtil.hideSoftInput(this);
                 startActivityForResult(new Intent(HabitSettingActivity.this,TimeSettingActivity.class),Constant.NUM_110);
                 break;
-            case R.id.privacy_civ:
-                CommUtil.hideSoftInput(this);
-                showPrivacyDialog();
-                break;
+//            case R.id.privacy_civ:
+//                CommUtil.hideSoftInput(this);
+//                showPrivacyDialog();
+//                break;
             case R.id.record_civ:
                 showRecordDialog();
                 break;
@@ -134,27 +134,27 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
         mTimePicker.show();
     }
 
-    private void showPrivacyDialog(){
-        if (mPrivacyDialog==null){
-            AppleDialog.OnSheetItemClickListener listener = new AppleDialog.OnSheetItemClickListener() {
-                @Override
-                public void onClick(int which) {
-                    mPrivacyType = which;
-                    if (mPrivacyType ==1){
-                        mPrivacyCiv.setDetail(getString(R.string.only_you_can_see));
-                    }else if (mPrivacyType ==2){
-                        mPrivacyCiv.setDetail(getString(R.string.public_to_everyone));
-                    }
-                }
-            };
-            mPrivacyDialog = new AppleDialog(this)
-                    .builder()
-                    .addSheetItem(getString(R.string.only_you_can_see),0,listener)
-                    .addSheetItem(getString(R.string.public_to_everyone),0,listener)
-                    .commit();
-        }
-        mPrivacyDialog.show();
-    }
+//    private void showPrivacyDialog(){
+//        if (mPrivacyDialog==null){
+//            AppleDialog.OnSheetItemClickListener listener = new AppleDialog.OnSheetItemClickListener() {
+//                @Override
+//                public void onClick(int which) {
+//                    mPrivacyType = which;
+//                    if (mPrivacyType ==1){
+//                        mPrivacyCiv.setDetail(getString(R.string.only_you_can_see));
+//                    }else if (mPrivacyType ==2){
+//                        mPrivacyCiv.setDetail(getString(R.string.public_to_everyone));
+//                    }
+//                }
+//            };
+//            mPrivacyDialog = new AppleDialog(this)
+//                    .builder()
+//                    .addSheetItem(getString(R.string.only_you_can_see),0,listener)
+//                    .addSheetItem(getString(R.string.public_to_everyone),0,listener)
+//                    .commit();
+//        }
+//        mPrivacyDialog.show();
+//    }
 
     private void showRecordDialog(){
         if (mRecordDialog==null){
@@ -187,9 +187,11 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
             showToast(getString(R.string.please_set_repeat_days));
         }else if (mRecycleDays==0){
             showToast(getString(R.string.please_set_recycle_days));
-        }else if (mPrivacyType==0){
-            showToast(getString(R.string.please_choose_privacy_setting));
-        }else if (mRecordType==0){
+        }
+//        else if (mPrivacyType==0){
+//            showToast(getString(R.string.please_choose_privacy_setting));
+//        }
+        else if (mRecordType==0){
             showToast(getString(R.string.please_choose_record_setting));
         }else {
             String treehead = getIntent().getStringExtra(Constant.HEAD);

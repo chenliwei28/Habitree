@@ -8,6 +8,7 @@ import com.habitree.xueshu.mine.bean.BindWithdrawAccountResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.ChangeNickResponse;
 import com.habitree.xueshu.mine.bean.ChangePasswordResponse;
+import com.habitree.xueshu.mine.bean.ChargeDetailResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
@@ -139,10 +140,10 @@ public class MyPresenter extends BasePresenter{
                 });
     }
 
-    public void getChargeList(int page, final MyView.ChargeListView view){
+    public void getChargeList(int page, int type,final MyView.ChargeListView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService().getChargeList(timestamp,CommUtil.getSign(Constant.GET_CHARGE_LIST_FUNCTION,timestamp),
-                UserManager.getManager().getUser().user_token,page,100,0)
+                UserManager.getManager().getUser().user_token,page,100,type)
                 .enqueue(new Callback<ChargeListResponse>() {
                     @Override
                     public void onResponse(Call<ChargeListResponse> call, Response<ChargeListResponse> response) {
@@ -158,6 +159,29 @@ public class MyPresenter extends BasePresenter{
                     @Override
                     public void onFailure(Call<ChargeListResponse> call, Throwable t) {
                         view.onChargeListGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    public void getChargeDetail(String orderId, final MyView.ChargeDetailView view){
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().getChargeDetail(timestamp,CommUtil.getSign(Constant.GET_CHARGE_DETAIL_FUNCTION,timestamp),
+                UserManager.getManager().getUser().user_token,orderId)
+                .enqueue(new Callback<ChargeDetailResponse>() {
+                    @Override
+                    public void onResponse(Call<ChargeDetailResponse> call, Response<ChargeDetailResponse> response) {
+                        if (response.body()!=null){
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onDetailGetSuccess(response.body().data);
+                            }else {
+                                view.onDetailGetFailed(response.body().info);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChargeDetailResponse> call, Throwable t) {
+                        view.onDetailGetFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

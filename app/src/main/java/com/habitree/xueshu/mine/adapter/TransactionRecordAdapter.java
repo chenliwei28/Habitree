@@ -30,7 +30,7 @@ public class TransactionRecordAdapter extends BaseAdapter{
     }
 
     @Override
-    public Object getItem(int position) {
+    public ChargeListResponse.Data getItem(int position) {
         return mList.get(position);
     }
 
@@ -54,14 +54,18 @@ public class TransactionRecordAdapter extends BaseAdapter{
         }
         ChargeListResponse.Data data = mList.get(position);
         holder.numTv.setText(data.amount);
-        holder.nameTv.setText(data.payway);
+        holder.nameTv.setText(data.info_title);
         holder.timeTv.setText(data.create_time);
         return convertView;
     }
 
     public void updateData(List<ChargeListResponse.Data> list){
-        if (mList==null)mList=list;
-        else mList.addAll(list);
+        mList=list;
+        notifyDataSetChanged();
+    }
+
+    public void addData(List<ChargeListResponse.Data> list){
+        if (list!=null)mList.addAll(list);
         notifyDataSetChanged();
     }
 

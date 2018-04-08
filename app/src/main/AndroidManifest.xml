@@ -331,7 +331,8 @@
         <activity android:name=".punchcard.activity.ImageActivity" />
         <activity android:name=".punchcard.activity.HabitCreateResultActivity" />
         <activity android:name=".mine.activity.ChooseAccountActivity" />
-        <activity android:name=".mine.activity.BindAccountActivity"></activity>
+        <activity android:name=".mine.activity.BindAccountActivity" />
+        <activity android:name=".mine.activity.TransactionDetailActivity"></activity>
     </application>
 
 </manifest>
