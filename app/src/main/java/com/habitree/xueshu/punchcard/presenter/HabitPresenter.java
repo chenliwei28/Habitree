@@ -4,15 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.mine.activity.WxPayActivity;
+import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.GiveUpHabitResponse;
 import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.InitResponse;
-import com.habitree.xueshu.punchcard.bean.PayResultResponse;
-import com.habitree.xueshu.punchcard.bean.PayWayResponse;
+import com.habitree.xueshu.mine.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.bean.PunchCardResponse;
 import com.habitree.xueshu.punchcard.bean.RecordListResponse;
@@ -125,30 +124,6 @@ public class HabitPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<HabitListResponse> call, Throwable t) {
                         view.onListGetFailed(mContext.getString(R.string.network_error));
-                    }
-                });
-    }
-
-    public void getPayMode(final HabitView.PayWayView view){
-        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        HttpManager.getManager().getService()
-                .getPayWay(timestamp,CommUtil.getSign(Constant.GET_PAYWAY_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token)
-                .enqueue(new Callback<PayWayResponse>() {
-                    @Override
-                    public void onResponse(Call<PayWayResponse> call, Response<PayWayResponse> response) {
-                        if (response.body()!=null){
-                            if (CommUtil.isSuccess(mContext,response.body().status)){
-                                view.onPayWayGetSuccess(response.body().data);
-                            }else {
-                                view.onPayWayGetFailed(mContext.getString(R.string.network_error));
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<PayWayResponse> call, Throwable t) {
-                        view.onPayWayGetFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

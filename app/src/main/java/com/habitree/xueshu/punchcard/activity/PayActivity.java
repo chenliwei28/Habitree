@@ -13,7 +13,7 @@ import com.habitree.xueshu.mine.activity.WxPayActivity;
 import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
-import com.habitree.xueshu.punchcard.bean.PayWayResponse;
+import com.habitree.xueshu.mine.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
@@ -22,7 +22,7 @@ import com.habitree.xueshu.xs.view.CustomItemView;
 
 import java.util.List;
 
-public class PayActivity extends BaseActivity implements View.OnClickListener,HabitView.PayWayView,HabitView.CreateHabitView,PayView,HabitView.CreateOrderView {
+public class PayActivity extends BaseActivity implements View.OnClickListener,PayView.PayWayView,HabitView.CreateHabitView,PayView,HabitView.CreateOrderView {
 
     private LinearLayout mWxCheckLl;
     private LinearLayout mAliCheckLl;
@@ -71,7 +71,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
         showLoadingDialog();
         mHabitPresenter.initCreateHabitData(getIntent());
         mTotalCiv.setDetail("¥"+getIntent().getDoubleExtra(Constant.TOTAL,0));
-        mHabitPresenter.getPayMode(this);
+        mPayPresenter.getPayMode(this);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Ha
                     toPay(mWX.payname);
                     break;
                 case 3:
-                    showToast("暂不支持支付宝哦");
+//                    toPay(mAli.payname);
                     break;
             }
         }

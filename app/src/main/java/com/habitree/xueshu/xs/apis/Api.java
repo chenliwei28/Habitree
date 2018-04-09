@@ -26,6 +26,8 @@ import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.bean.MyWalletResponse;
 import com.habitree.xueshu.mine.bean.OauthBindResponse;
 import com.habitree.xueshu.mine.bean.QueryOrderResponse;
+import com.habitree.xueshu.mine.bean.TopUpOrderResponse;
+import com.habitree.xueshu.mine.bean.TopUpPayResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.bean.WithdrawOrderResponse;
@@ -36,7 +38,7 @@ import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
-import com.habitree.xueshu.punchcard.bean.PayWayResponse;
+import com.habitree.xueshu.mine.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.bean.PunchCardResponse;
 import com.habitree.xueshu.punchcard.bean.RecordListResponse;
@@ -461,4 +463,22 @@ public interface Api {
                                                     @Field("sign") String sign,
                                                     @Field("user_token") String userToken,
                                                     @Field("amount")String amount);
+
+    //充值预下单
+    @FormUrlEncoded
+    @POST(Constant.TOP_UP_CREATE_ORDER_FUNCTION)
+    Call<TopUpOrderResponse> topUpCreateOrder(@Field("timestamp") String timestamp,
+                                              @Field("sign") String sign,
+                                              @Field("user_token") String userToken,
+                                              @Field("amount")String amount,
+                                              @Field("payway")String payway);
+
+    //充值预下单支付
+    @FormUrlEncoded
+    @POST(Constant.TOP_UP_PAY_FUNCTION)
+    Call<PayResultResponse> topUpPay(@Field("timestamp") String timestamp,
+                                    @Field("sign") String sign,
+                                    @Field("user_token") String userToken,
+                                    @Field("order_id")String orderId,
+                                    @Field("payway")String payway);
 }

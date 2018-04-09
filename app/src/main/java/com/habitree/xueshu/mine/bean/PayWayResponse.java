@@ -1,4 +1,4 @@
-package com.habitree.xueshu.punchcard.bean;
+package com.habitree.xueshu.mine.bean;
 
 
 import java.util.List;

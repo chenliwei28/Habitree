@@ -87,4 +87,5 @@ dependencies {
     implementation files('libs/umeng_social_shareboard.jar')
     implementation files('libs/umeng_social_shareview.jar')
     implementation files('libs/umeng_social_tool.jar')
+    implementation files('libs/alipaySdk-20180403.jar')
 }

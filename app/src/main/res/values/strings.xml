@@ -17,6 +17,7 @@
     <string name="create_time">创建时间：</string>
     <string name="top_up_time">充值时间：</string>
     <string name="resend">重新发送</string>
+    <string name="top_up_success">充值成功</string>
     <string name="create_success">创建成功</string>
     <string name="view_images">[查看图片]</string>
     <string name="top_up_num">充值金额</string>
@@ -279,6 +280,7 @@
     <string name="already_send_code_to_your_phone">已经向您的手机发送验证码，请查收</string>
     <!--Z-->
     <string name="pay">支付</string>
+    <string name="pay_success">支付成功</string>
     <string name="status">状态：</string>
     <string name="spending">支出：</string>
     <string name="zhifubao">支付宝</string>
