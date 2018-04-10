@@ -11,3 +11,9 @@ gradlew
 .idea
 /app/src/androidTest/java/com/habitree/xueshu/
 /app/src/test/java/com/habitree/xueshu/
+/app/release/app-release.apk
+/app/release/output.json
+/easeui/build/
+/easeui/src/androidTest/
+/easeui/src/test/
+/signKey/
