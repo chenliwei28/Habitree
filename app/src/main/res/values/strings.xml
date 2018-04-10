@@ -76,6 +76,8 @@
     <string name="be_friend_request">好友请求</string>
     <string name="summation_money">合计 ¥ %s</string>
     <string name="friend_list">好友列表</string>
+    <string name="register_tip">还没帐号？点击</string>
+    <string name="get_auth_code">获取验证码</string>
     <!--I-->
     <!--J-->
     <string name="accept">接受</string>
@@ -117,6 +119,8 @@
     <string name="find_password_success">密码已修改，请使用新密码登录</string>
     <string name="describe_what_habit_that_you_want_to_foster">描述你想要培养的习惯</string>
     <string name="every_time_do_not_punch_card_will_deduct_money">*每次打卡缺勤将扣除一次罚金</string>
+    <string name="password_length_hint">密码最少6位</string>
+    <string name="login_by_password">密码登录</string>
     <!--N-->
     <string name="male">男</string>
     <string name="female">女</string>
@@ -260,6 +264,7 @@
     <string name="forget_password">忘记密码</string>
     <string name="network_error">系统异常，请稍后再试</string>
     <string name="bind_account_remind_long_text">为确保提现准时到账，请务必填写正确的账号信息和真实姓名！</string>
+    <string name="forget_password_link"><u>忘记密码?</u></string>
     <!--Y-->
     <string name="auth_code">验证码</string>
     <string name="onBind">已绑定</string>
@@ -279,6 +284,7 @@
     <string name="wrong_auth_code">验证码错误</string>
     <string name="auth_code_not_fit_phone">验证码与手机号不匹配，请重新发送</string>
     <string name="already_send_code_to_your_phone">已经向您的手机发送验证码，请查收</string>
+    <string name="login_by_auth_code">验证码登录</string>
     <!--Z-->
     <string name="pay">支付</string>
     <string name="pay_success">支付成功</string>
@@ -303,6 +309,7 @@
     <string name="account_can_not_be_empty">账号不能为空</string>
     <string name="sliding_around_to_check_the_next">左右滑动查看下一棵</string>
     <string name="sliding_around_to_watch_other">左右拖动画面浏览其他部分</string>
+    <string name="register_with_line"><u>注册</u></string>
     <!--##-->
     <string name="zero">0</string>
     <string name="rmb">¥</string>

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.util.CommUtil;
 
 
 public class MyActionBar extends RelativeLayout {
@@ -48,6 +49,8 @@ public class MyActionBar extends RelativeLayout {
         mBackIv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 界面可能有弹出键盘 退出需关闭
+                CommUtil.hideSoftInput((Activity) getContext());
                 AppManager.getAppManager().finishActivity((Activity) getContext());
             }
         });

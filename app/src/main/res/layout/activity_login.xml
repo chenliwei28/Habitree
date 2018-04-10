@@ -1,149 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context="com.habitree.xueshu.login.activity.LoginActivity">
+    android:background="@color/blue"
+    android:orientation="vertical"
+    tools:context="com.habitree.xueshu.login.activity.LoginDetailActivity">
+
+    <com.habitree.xueshu.xs.view.MyActionBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:layout_marginTop="25dp"
+        app:title_text="@string/login" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="50dp"
         android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="224dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/login_bg" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:gravity="center_horizontal">
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/password_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/xue_shu"
-                android:textColor="@color/blue"
-                android:textSize="26sp" />
+                android:text="@string/login_by_password"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:layout_marginRight="@dimen/_10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="|"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/auth_code_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/boil_yourself"
-                android:textColor="@color/blue"
-                android:textSize="26sp" />
+                android:text="@string/login_by_auth_code"
+                android:textColor="@color/trans_white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:text="@string/begin_with_a_little_habit"
-            android:textColor="@color/gray_text"
-            android:textSize="15sp" />
-
-        <com.habitree.xueshu.xs.view.LoginEditText
-            android:id="@+id/phone_let"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="54dp"
-            android:layout_marginRight="54dp"
-            android:layout_marginTop="29dp"
-            app:hint="@string/please_enter_phone_number"
-            app:left_img="@drawable/ic_phone" />
-
-        <com.habitree.xueshu.xs.view.LoginEditText
-            android:id="@+id/password_let"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="54dp"
-            android:layout_marginRight="54dp"
-            android:layout_marginTop="24dp"
-            app:hint="@string/please_enter_password"
-            app:input_mode="1"
-            app:left_img="@drawable/ic_user" />
-
-        <TextView
-            android:id="@+id/login_btn"
-            style="@style/RoundButton"
-            android:layout_marginLeft="54dp"
-            android:layout_marginRight="54dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/login" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="54dp"
-            android:layout_marginRight="54dp">
-
-            <TextView
-                android:id="@+id/register_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_alignParentLeft="true"
-                android:gravity="center"
-                android:text="@string/quick_register"
-                android:textColor="@color/blue"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/forget_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:text="@string/forget_password"
-                android:textColor="@color/blue"
-                android:textSize="13sp" />
-        </RelativeLayout>
+            android:layout_marginTop="30dp"
+            android:text="@string/phone_number"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+86"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/phone_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/trans"
+                android:inputType="number"
+                android:paddingLeft="@dimen/_10dp"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/Line"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:id="@+id/code_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:text="@string/password"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <!-- 验证码 -->
+        <LinearLayout
+            android:id="@+id/llAuthCode"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/code_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/trans"
+                android:hint="@string/auth_code"
+                android:inputType="number"
+                android:maxLength="4"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/send_tv"
+                style="@style/WhiteRoundButton"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:minWidth="80dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/get_auth_code"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <!-- 密码 -->
+        <LinearLayout
+            android:id="@+id/llPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <View
-                style="@style/Line"
-                android:layout_weight="1" />
+            <EditText
+                android:id="@+id/password_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/trans"
+                android:hint="@string/password_length_hint"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <ImageView
-                android:id="@+id/weibo_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/ic_wb" />
-
-            <ImageView
-                android:id="@+id/wx_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/ic_wx" />
-
-            <ImageView
-                android:id="@+id/qq_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/ic_qq" />
-
-            <View
-                style="@style/Line"
-                android:layout_weight="1" />
+                android:id="@+id/pwd_visibility_btn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_password_hide" />
         </LinearLayout>
+
+        <TextView
+            style="@style/Line"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:id="@+id/forget_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/forget_password_link"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/login_btn"
+            style="@style/WhiteRoundButton"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/login" />
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

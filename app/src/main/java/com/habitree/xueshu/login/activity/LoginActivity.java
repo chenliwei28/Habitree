@@ -1,16 +1,14 @@
 package com.habitree.xueshu.login.activity;
 
-
 import android.Manifest;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.LoginView;
 import com.habitree.xueshu.main.MainActivity;
@@ -21,7 +19,6 @@ import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
-import com.habitree.xueshu.xs.view.LoginEditText;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -32,37 +29,33 @@ import java.util.Map;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
+/**
+ * 登录页
+ *
+ * @author wuxq
+ */
+public class LoginActivity extends BaseActivity implements LoginView,OnClickListener,EasyPermissions.PermissionCallbacks  {
 
-public class LoginActivity extends BaseActivity implements LoginView,View.OnClickListener,EasyPermissions.PermissionCallbacks {
-
-    private LoginEditText mPhoneLet;
-    private LoginEditText mPasswLet;
-    private TextView mLoginBtn;
-    private TextView mRegisterBtn;
-    private TextView mForgetBtn;
-    private ImageView mWxBtn;
-    private ImageView mWeiboBtn;
-    private ImageView mQQBtn;
+    private TextView mLoginBtn, mRegisterBtn;
+    private ImageView mWxBtn, mWeiboBtn, mQQBtn;
 
     private LoginAndRegisterPresenter mPresenter;
 
     @Override
     protected int setLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.activity_login_detail;
     }
+
 
     @Override
     protected void initStatusBar() {
-        UIUtil.setStatusBar(this,getResources().getColor(R.color.trans));
+        UIUtil.setStatusBar(this, getResources().getColor(R.color.trans));
     }
 
     @Override
     protected void initView() {
-        mPhoneLet = findViewById(R.id.phone_let);
-        mPasswLet = findViewById(R.id.password_let);
         mLoginBtn = findViewById(R.id.login_btn);
         mRegisterBtn = findViewById(R.id.register_btn);
-        mForgetBtn = findViewById(R.id.forget_btn);
         mWxBtn = findViewById(R.id.wx_btn);
         mWeiboBtn = findViewById(R.id.weibo_btn);
         mQQBtn = findViewById(R.id.qq_btn);
@@ -72,7 +65,6 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     protected void initListener() {
         mLoginBtn.setOnClickListener(this);
         mRegisterBtn.setOnClickListener(this);
-        mForgetBtn.setOnClickListener(this);
         mWxBtn.setOnClickListener(this);
         mWeiboBtn.setOnClickListener(this);
         mQQBtn.setOnClickListener(this);
@@ -85,18 +77,21 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDetach();
+    }
+
+    @Override
+    public void onClick(View view) {
+        int vid = view.getId();
+        switch (vid){
             case R.id.login_btn:
-                CommUtil.hideSoftInput(this);
-                showLoadingDialog();
-                mPresenter.login(mPhoneLet.getContentText(),mPasswLet.getContentText(),this);
+                UIUtil.startActivity(this,LoginDetailActivity.class);
                 break;
             case R.id.register_btn:
+                // 注册
                 RegisterActivity.start(this,1);
-                break;
-            case R.id.forget_btn:
-                RegisterActivity.start(this,2);
                 break;
             case R.id.wx_btn:
                 UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN,mThirdLoginListener);
@@ -108,26 +103,6 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
                 UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ,mThirdLoginListener);
                 break;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDetach();
-    }
-
-    @Override
-    public void onLoginSuccess() {
-        hideLoadingDialog();
-        showToast(getString(R.string.login_success));
-        startActivity(new Intent(this, MainActivity.class));
-        AppManager.getAppManager().finishActivity(this);
-    }
-
-    @Override
-    public void onLoginFailed(String reason) {
-        hideLoadingDialog();
-        showToast(reason);
     }
 
     @Override
@@ -152,6 +127,20 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
         }else {
             BaseApp.imei = CommUtil.getIMEI(this);
         }
+    }
+
+    @Override
+    public void onLoginSuccess() {
+        hideLoadingDialog();
+        showToast(getString(R.string.login_success));
+        startActivity(new Intent(this, MainActivity.class));
+        AppManager.getAppManager().finishActivity(this);
+    }
+
+    @Override
+    public void onLoginFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
     }
 
     @Override
