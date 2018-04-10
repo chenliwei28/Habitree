@@ -12,6 +12,7 @@ import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.CommUtil;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
@@ -29,7 +30,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public static void start(Context context,int type){
         Intent intent = new Intent(context,RegisterActivity.class);
         intent.putExtra(Constant.TYPE,type);
-        context.startActivity(intent);
+        UIUtil.startActivity(context,intent);
     }
 
     @Override
