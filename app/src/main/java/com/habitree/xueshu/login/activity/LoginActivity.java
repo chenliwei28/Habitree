@@ -20,7 +20,6 @@ import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
-import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.LoginEditText;
 import com.umeng.socialize.UMAuthListener;
