@@ -184,9 +184,9 @@ public class PayPresenter extends BasePresenter {
                 });
     }
 
-    public void startAliPay(String orderId, String amount,final Handler handler) {
+    public void startAliPay(String orderId, String amount,String title,final Handler handler) {
         boolean rsa2 = (Constant.RSA2_PRIVATE.length() > 0);
-        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(Constant.ALI_PAY_APP_ID, orderId,amount,rsa2);
+        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(Constant.ALI_PAY_APP_ID, orderId,amount,title,rsa2);
         String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
         String privateKey = rsa2 ? Constant.RSA2_PRIVATE : Constant.RSA_PRIVATE;

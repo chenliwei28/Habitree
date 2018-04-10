@@ -153,7 +153,7 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
                 WxPayActivity.start(this,data.token);
                 break;
             case 1:
-                mPayPresenter.startAliPay(data.order_id,"0.01",mHandler);
+                mPayPresenter.startAliPay(data.order_id,String.valueOf(data.amount),getString(R.string.top_up),mHandler);
                 break;
         }
     }

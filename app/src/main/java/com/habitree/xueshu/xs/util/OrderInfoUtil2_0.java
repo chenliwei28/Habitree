@@ -61,12 +61,12 @@ public class OrderInfoUtil2_0 {
 	}
 
 
-	public static Map<String, String> buildOrderParamMap(String app_id, String order_id,String amount,boolean rsa2) {
+	public static Map<String, String> buildOrderParamMap(String app_id, String order_id,String amount,String title,boolean rsa2) {
 		Map<String, String> keyValues = new HashMap<String, String>();
 
 		keyValues.put("app_id", app_id);
 
-		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+amount+"\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + order_id +  "\"}");
+		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+amount+"\",\"subject\":\""+title+"\",\"body\":\""+title+"\",\"out_trade_no\":\"" + order_id +  "\"}");
 		
 		keyValues.put("charset", "utf-8");
 
@@ -77,7 +77,9 @@ public class OrderInfoUtil2_0 {
 		keyValues.put("timestamp", TimeUtil.getTimeString(null,new Date()));
 
 		keyValues.put("version", "1.0");
-		
+
+		keyValues.put("notify_url","http://tapi.habitree.cn/alipay/notify");
+
 		return keyValues;
 	}
 	

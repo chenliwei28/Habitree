@@ -29,7 +29,7 @@ public class PayResultResponse {
         public String payway;
         public String paytype;
         public String order_id;
-        public int amount;
+        public double amount;
         public String token;
         public int status;
     }

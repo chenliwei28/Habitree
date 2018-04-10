@@ -1,13 +1,9 @@
 package com.habitree.xueshu.xs.util;
 
 
-
-import android.util.Base64;
-
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
-
 
 
 public class SignUtils {
@@ -27,7 +23,7 @@ public class SignUtils {
 	public static String sign(String content, String privateKey, boolean rsa2) {
 		try {
 			PKCS8EncodedKeySpec priPKCS8 = new PKCS8EncodedKeySpec(
-					Base64.decode(privateKey,Base64.NO_WRAP));
+					Base64.decode(privateKey));
 			KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM, "BC");
 			PrivateKey priKey = keyFactory.generatePrivate(priPKCS8);
 
@@ -39,7 +35,7 @@ public class SignUtils {
 
 			byte[] signed = signature.sign();
 
-			return Base64.encodeToString(signed,Base64.NO_WRAP);
+			return Base64.encode(signed);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

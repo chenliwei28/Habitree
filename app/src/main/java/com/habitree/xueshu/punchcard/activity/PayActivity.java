@@ -1,7 +1,10 @@
 package com.habitree.xueshu.punchcard.activity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.activity.WxPayActivity;
+import com.habitree.xueshu.mine.bean.AliPayResult;
 import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
@@ -21,6 +25,7 @@ import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.view.CustomItemView;
 
 import java.util.List;
+import java.util.Map;
 
 public class PayActivity extends BaseActivity implements View.OnClickListener,PayView.PayWayView,HabitView.CreateHabitView,PayView,HabitView.CreateOrderView {
 
@@ -104,7 +109,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Pa
                     toPay(mWX.payname);
                     break;
                 case 3:
-//                    toPay(mAli.payname);
+                    toPay(mAli.payname);
                     break;
             }
         }
@@ -183,10 +188,18 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Pa
 
     @Override
     public void onPaySuccess(PayResultResponse.Data data) {
-        if (data!=null&&data.token!=null&&!TextUtils.isEmpty(data.token)){
-            WxPayActivity.start(this,data.token);
-        }else {
-            mHabitPresenter.createHabit(this);
+        switch (mCurrentMode){
+            case 1:
+                mHabitPresenter.createHabit(this);
+                break;
+            case 2:
+                if (data!=null&&data.token!=null&&!TextUtils.isEmpty(data.token)){
+                    WxPayActivity.start(this,data.token);
+                }
+                break;
+            case 3:
+                mPayPresenter.startAliPay(data.order_id,String.valueOf(data.amount),getString(R.string.habit_create),mHandler);
+                break;
         }
     }
 
@@ -223,9 +236,39 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Pa
         switch (requestCode){
             case Constant.NUM_109:
                 if (resultCode==Constant.NUM_110){
-                    onPaySuccess(null);
+                    mHabitPresenter.createHabit(this);
                 }
                 break;
         }
     }
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1: {
+                    @SuppressWarnings("unchecked")
+                    AliPayResult payResult = new AliPayResult((Map<String, String>) msg.obj);
+                    /**
+                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        showToast(getString(R.string.pay_success));
+                        mHabitPresenter.createHabit(PayActivity.this);
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        showToast("支付失败");
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    };
 }

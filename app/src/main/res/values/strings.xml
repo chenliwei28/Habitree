@@ -14,6 +14,7 @@
     <!--C-->
     <string name="look_over">查看</string>
     <string name="top_up">充值</string>
+    <string name="habit_create">习惯创建</string>
     <string name="create_time">创建时间：</string>
     <string name="top_up_time">充值时间：</string>
     <string name="resend">重新发送</string>
