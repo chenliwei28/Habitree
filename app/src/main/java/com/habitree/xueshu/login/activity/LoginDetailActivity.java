@@ -1,6 +1,7 @@
 package com.habitree.xueshu.login.activity;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -25,19 +26,19 @@ import com.habitree.xueshu.xs.view.AuthCodeTimer;
  *
  * @author wuxq
  */
-public class LoginDetailActivity extends BaseActivity implements RegisterView.AuthCodeView,LoginView, OnClickListener {
+public class LoginDetailActivity extends BaseActivity implements RegisterView.AuthCodeView, LoginView, OnClickListener {
 
     private final int TYPE_PASSWORD = 1;
     private final int TYPE_AUTH_CODE = 2;
     private int type = TYPE_PASSWORD;
 
     // 密码|验证码|登录
-    private TextView mPasswordBtn, mAuthCodeBtn,mLoginBtn;
+    private TextView mPasswordBtn, mAuthCodeBtn, mLoginBtn;
     private TextView mCodeTypeTv;
     private TextView mForgetBtn;
     private LinearLayout llAuthCode, llPassword;
-    // 电话|密码
-    private EditText mPhoneEt,mPasswordEt;
+    // 电话|密码|验证码
+    private EditText mPhoneEt, mPasswordEt, mAuthCodeEt;
     private LoginAndRegisterPresenter mPresenter;
     private ImageView mPwdVisibilityBtn;
     // 验证码发生
@@ -68,6 +69,7 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
         mLoginBtn = findViewById(R.id.login_btn);
         mPwdVisibilityBtn = findViewById(R.id.pwd_visibility_btn);
         mSendBtn = findViewById(R.id.send_tv);
+        mAuthCodeEt = findViewById(R.id.code_et);
     }
 
     @Override
@@ -105,17 +107,32 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
             case R.id.pwd_visibility_btn:
                 // 切换密码是否可见
                 isPasswordShow = !isPasswordShow;
-                UIUtil.setEditTextShowStatus(mPasswordEt,isPasswordShow);
+                UIUtil.setEditTextShowStatus(mPasswordEt, isPasswordShow);
                 mPwdVisibilityBtn.setImageResource(isPasswordShow ? R.drawable.ic_password_show : R.drawable.ic_password_hide);
                 break;
             case R.id.login_btn:
-                // 登录
                 CommUtil.hideSoftInput(this);
-                showLoadingDialog();
-                mPresenter.login(mPhoneEt.getText().toString(),mPasswordEt.getText().toString(),this);
+                if (type == TYPE_PASSWORD) {
+                    // 密码登录
+                    showLoadingDialog();
+                    mPresenter.login(mPhoneEt.getText().toString(), mPasswordEt.getText().toString(), this);
+                } else {
+                    // 验证码登录
+                    String smsCode = mAuthCodeEt.getText().toString();
+                    String phoneNumber = mPhoneEt.getText().toString();
+                    if (TextUtils.isEmpty(smsCode)) {
+                        showToast(getString(R.string.auth_code_empty));
+                       return;
+                    } else if (smsCode.length() != 4) {
+                        showToast(getString(R.string.wrong_auth_code));
+                        return;
+                    }
+                    showLoadingDialog();
+                    mPresenter.loginWithAuthCode(phoneNumber,smsCode,SMSType.LOGIN_AUTHCODE, this);
+                }
                 break;
             case R.id.send_tv:
-                mPresenter.sendAuthCode(mPhoneEt.getText().toString(), SMSType.LOGIN,this);
+                mPresenter.sendAuthCode(mPhoneEt.getText().toString(), SMSType.LOGIN_AUTHCODE, this);
                 break;
         }
     }
@@ -131,7 +148,7 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
         mCodeTypeTv.setText(type == TYPE_PASSWORD ? R.string.password : R.string.auth_code);
         llPassword.setVisibility(type == TYPE_PASSWORD ? View.VISIBLE : View.GONE);
         llAuthCode.setVisibility(type == TYPE_PASSWORD ? View.GONE : View.VISIBLE);
-        mForgetBtn.setVisibility(type == TYPE_PASSWORD ? View.VISIBLE : View.GONE);
+        mForgetBtn.setVisibility(type == TYPE_PASSWORD ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
@@ -157,7 +174,7 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
     @Override
     public void onSendSuccess() {
         // 发送验证码
-        AuthCodeTimer timer = new AuthCodeTimer(this,mSendBtn);
+        AuthCodeTimer timer = new AuthCodeTimer(this, mSendBtn);
         timer.start();
     }
 

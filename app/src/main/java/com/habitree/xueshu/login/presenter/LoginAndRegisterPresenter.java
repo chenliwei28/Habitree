@@ -1,6 +1,7 @@
 package com.habitree.xueshu.login.presenter;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.AuthCodeResponse;
@@ -33,22 +34,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-
 public class LoginAndRegisterPresenter extends BasePresenter {
 
     public LoginAndRegisterPresenter(Context context) {
         super(context);
     }
 
-    public void sendAuthCode(String phone, int type, final RegisterView.AuthCodeView view){
+    public void sendAuthCode(String phone, int type, final RegisterView.AuthCodeView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()
-                .sendAuthCode(timestamp,CommUtil.getSign(Constant.AUTH_CODE_FUNCTION,timestamp),phone,type)
+                .sendAuthCode(timestamp, CommUtil.getSign(Constant.AUTH_CODE_FUNCTION, timestamp), phone, type)
                 .enqueue(new Callback<AuthCodeResponse>() {
                     @Override
                     public void onResponse(Call<AuthCodeResponse> call, Response<AuthCodeResponse> response) {
-                        if (response.body().status==200)view.onSendSuccess();
+                        if (response.body().status == 200) view.onSendSuccess();
                         else view.onSendFail(CommUtil.unicode2Chinese(response.body().info));
                     }
 
@@ -59,30 +59,38 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 });
     }
 
-    public void login(String phone, String password, final LoginView view){
-        if (!CommUtil.isPhoneNumber(mContext,phone)){
+    /**
+     * 密码登录
+     *
+     * @param phone
+     * @param password
+     * @param view
+     */
+    public void login(String phone, String password, final LoginView view) {
+        if (!CommUtil.isPhoneNumber(mContext, phone)) {
             view.onLoginFailed(null);
             return;
         }
-        if (!CommUtil.isPassword(mContext,password)){
+        if (!CommUtil.isPassword(mContext, password)) {
             view.onLoginFailed(null);
             return;
         }
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()
-                .login(timestamp,CommUtil.getSign(Constant.LOGIN_FUNCTION,timestamp),phone,password)
+                .login(timestamp, CommUtil.getSign(Constant.LOGIN_FUNCTION, timestamp), phone, password)
                 .enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        if (response.body()!=null&&response.body().status==200){
+                        if (response.body() != null && response.body().status == 200) {
                             UserManager.getManager().saveUser(response.body().data);
-                            JPushInterface.setAlias(mContext,Constant.NUM_110,String.valueOf(response.body().data.mem_id));
-                            EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view,false);
-                        }else {
+                            JPushInterface.setAlias(mContext, Constant.NUM_110, String.valueOf(response.body().data.mem_id));
+                            EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, false);
+                        } else {
                             view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
                         }
                     }
+
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
                         view.onLoginFailed(mContext.getString(R.string.network_error));
@@ -90,7 +98,52 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 });
     }
 
-    private void EMLogin(String id, String pw, final BaseView view, final boolean isRegisterLogin){
+    /**
+     * 手机验证码登录
+     *
+     * @param phone   手机号码
+     * @param smscode 验证码
+     * @param smstype 短信类型 6-短信验证码登录
+     * @param view
+     */
+    public void loginWithAuthCode(String phone, String smscode, int smstype, final LoginView view) {
+        if (!CommUtil.isPhoneNumber(mContext, phone)) {
+            view.onLoginFailed(null);
+            return;
+        }
+        if (!CommUtil.isPassword(mContext, smscode)) {
+            view.onLoginFailed(null);
+            return;
+        }
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager()
+                .getService()
+                .loginWithAuthCode(timestamp, CommUtil.getSign(Constant.LOGIN_AUTH_CODE, timestamp), phone, smstype,smscode)
+                .enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                        if (response.body() != null && response.body().status == 200) {
+                            UserManager.getManager().saveUser(response.body().data);
+                            JPushInterface.setAlias(mContext, Constant.NUM_110, String.valueOf(response.body().data.mem_id));
+                            EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, false);
+                        } else {
+                            if(response.body() != null && response.body().info != null){
+                                view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }else{
+                                view.onLoginFailed(mContext.getString(R.string.network_error));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                        view.onLoginFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+    private void EMLogin(String id, String pw, final BaseView view, final boolean isRegisterLogin) {
         EMClient.getInstance().login(id, pw, new EMCallBack() {
             @Override
             public void onSuccess() {
@@ -99,10 +152,10 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 MainHandler.getInstance().post(new Runnable() {
                     @Override
                     public void run() {
-                        if (isRegisterLogin){
-                            ((RegisterView)view).onRegisterSuccess();
-                        }else {
-                            ((LoginView)view).onLoginSuccess();
+                        if (isRegisterLogin) {
+                            ((RegisterView) view).onRegisterSuccess();
+                        } else {
+                            ((LoginView) view).onLoginSuccess();
                         }
                     }
                 });
@@ -114,10 +167,10 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 MainHandler.getInstance().post(new Runnable() {
                     @Override
                     public void run() {
-                        if (isRegisterLogin){
-                            ((RegisterView)view).onRegisterFail(mContext.getString(R.string.network_error));
-                        }else {
-                            ((LoginView)view).onLoginFailed(mContext.getString(R.string.network_error));
+                        if (isRegisterLogin) {
+                            ((RegisterView) view).onRegisterFail(mContext.getString(R.string.network_error));
+                        } else {
+                            ((LoginView) view).onLoginFailed(mContext.getString(R.string.network_error));
                         }
                     }
                 });
@@ -130,20 +183,19 @@ public class LoginAndRegisterPresenter extends BasePresenter {
         });
     }
 
-    public void register(String phone, String password, String code, final RegisterView view){
+    public void register(String phone, String password, String code, final RegisterView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()
-                .register(timestamp,CommUtil.getSign(Constant.REGISTER_FUNCTION,timestamp),phone,password,1,code)
+                .register(timestamp, CommUtil.getSign(Constant.REGISTER_FUNCTION, timestamp), phone, password, 1, code)
                 .enqueue(new Callback<RegisterResponse>() {
                     @Override
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                        if (response.body()!=null&&response.body().status==200) {
+                        if (response.body() != null && response.body().status == 200) {
                             UserManager.getManager().saveUser(response.body().data);
-                            EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view,true);
+                            EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, true);
                             view.onRegisterSuccess();
-                        }
-                        else view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
+                        } else view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
                     }
 
                     @Override
@@ -153,10 +205,10 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 });
     }
 
-    public void checkVerifyCode(int type,String code,String mobile){
+    public void checkVerifyCode(int type, String code, String mobile) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        HttpManager.getManager().getService().checkAuthCode(timestamp,CommUtil.getSign(Constant.CHECK_CODE_FUNCTION,timestamp),
-                mobile,type,code)
+        HttpManager.getManager().getService().checkAuthCode(timestamp, CommUtil.getSign(Constant.CHECK_CODE_FUNCTION, timestamp),
+                mobile, type, code)
                 .enqueue(new Callback<CheckCodeResponse>() {
                     @Override
                     public void onResponse(Call<CheckCodeResponse> call, Response<CheckCodeResponse> response) {
@@ -170,16 +222,18 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 });
     }
 
-    public void findPassword(String phone, String password, String code, final RegisterView view){
+    public void findPassword(String phone, String password, String code, final RegisterView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()
-                .findPassword(timestamp,CommUtil.getSign(Constant.FIND_PASSWORD_FUNCTION,timestamp),phone,password,2,code)
+                .findPassword(timestamp, CommUtil.getSign(Constant.FIND_PASSWORD_FUNCTION, timestamp), phone, password, 2, code)
                 .enqueue(new Callback<FindPasswordResponse>() {
                     @Override
                     public void onResponse(Call<FindPasswordResponse> call, Response<FindPasswordResponse> response) {
-                        if (response.body()!=null&&response.body().status==200) view.onRegisterSuccess();
-                        else if (response.body()!=null)view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
+                        if (response.body() != null && response.body().status == 200)
+                            view.onRegisterSuccess();
+                        else if (response.body() != null)
+                            view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
                         else view.onRegisterFail(mContext.getString(R.string.network_error));
                     }
 
@@ -190,19 +244,19 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 });
     }
 
-    public void changeBindPhone(String phone, String code, final RegisterView.ChangeBindView view){
+    public void changeBindPhone(String phone, String code, final RegisterView.ChangeBindView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()
-                .changeBindPhone(timestamp,CommUtil.getSign(Constant.CHANGE_PHONE_FUNCTION,timestamp),phone,UserManager.getManager().getUser().user_token,3,code)
+                .changeBindPhone(timestamp, CommUtil.getSign(Constant.CHANGE_PHONE_FUNCTION, timestamp), phone, UserManager.getManager().getUser().user_token, 3, code)
                 .enqueue(new Callback<ChangeBindPhoneResponse>() {
                     @Override
                     public void onResponse(Call<ChangeBindPhoneResponse> call, Response<ChangeBindPhoneResponse> response) {
-                        if (response.body()!=null){
-                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                        if (response.body() != null) {
+                            if (CommUtil.isSuccess(mContext, response.body().status)) {
                                 view.onChangeSuccess();
-                            }else {
-                                view.onChangeFail(response.body().info==null?mContext.getString(R.string.network_error):CommUtil.unicode2Chinese(response.body().info));
+                            } else {
+                                view.onChangeFail(response.body().info == null ? mContext.getString(R.string.network_error) : CommUtil.unicode2Chinese(response.body().info));
                             }
                         }
                     }
@@ -214,18 +268,18 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 });
     }
 
-    public void thirdLogin(String openid, String userfrom, String head, String token, String date, String nickname, final LoginView view){
+    public void thirdLogin(String openid, String userfrom, String head, String token, String date, String nickname, final LoginView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
-        HttpManager.getManager().getService().thirdLogin(timestamp,CommUtil.getSign(Constant.THIRD_LOGIN_FUNCTION,timestamp),
-                openid,userfrom,head,token,date,nickname)
+        HttpManager.getManager().getService().thirdLogin(timestamp, CommUtil.getSign(Constant.THIRD_LOGIN_FUNCTION, timestamp),
+                openid, userfrom, head, token, date, nickname)
                 .enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        if (response.body()!=null&&response.body().status==200){
+                        if (response.body() != null && response.body().status == 200) {
                             UserManager.getManager().saveUser(response.body().data);
-                            JPushInterface.setAlias(mContext,Constant.NUM_110,String.valueOf(response.body().data.mem_id));
-                            EMLogin(String.valueOf(response.body().data.mem_id),CommUtil.md5(String.valueOf(response.body().data.mem_id)),view,false);
-                        }else {
+                            JPushInterface.setAlias(mContext, Constant.NUM_110, String.valueOf(response.body().data.mem_id));
+                            EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, false);
+                        } else {
                             view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
                         }
                     }

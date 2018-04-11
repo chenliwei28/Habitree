@@ -64,6 +64,16 @@ public interface Api {
                               @Field("username") String phone,
                               @Field("password") String password);
 
+    //验证码登录
+    @FormUrlEncoded
+    @POST(Constant.LOGIN_AUTH_CODE)
+    Call<LoginResponse> loginWithAuthCode(@Field("timestamp") String timestamp,
+                              @Field("sign") String sign,
+                              @Field("mobile") String phone,
+                              @Field("smstype") int smstype,
+                              @Field("smscode") String password);
+
+
     //三方登录
     @FormUrlEncoded
     @POST(Constant.THIRD_LOGIN_FUNCTION)

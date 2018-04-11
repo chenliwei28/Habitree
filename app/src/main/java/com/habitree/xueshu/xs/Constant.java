@@ -50,6 +50,7 @@ public class Constant {
     //functions
     public final static String INIT_FUNCTION = "v1/system/appinit";
     public final static String LOGIN_FUNCTION = "v1/user/login";
+    public final static String LOGIN_AUTH_CODE = "v1/user/loginmobile";
     public final static String THIRD_LOGIN_FUNCTION = "v1/user/loginoauth";
     public final static String REGISTER_FUNCTION = "v1/user/registermobile";
     public final static String AUTH_CODE_FUNCTION = "v1/sms/send";

@@ -1,8 +1,7 @@
 package com.habitree.xueshu.constant;
 
 /**
- * 类型
- * 验证码类型
+ * 短信验证码类型
  *
  * @author wuxq
  */
@@ -24,7 +23,11 @@ public class SMSType {
      */
     public static final int BIND_BEFORE = 4;
     /**
+     * 提现绑定认证
+     */
+    public static final int CASH_BIND = 5;
+    /**
      * 验证码登录
      */
-    public static final int LOGIN = 5;
+    public static final int LOGIN_AUTHCODE = 6;
 }
