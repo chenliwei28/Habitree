@@ -1,19 +1,19 @@
 package com.habitree.xueshu.login.presenter;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.constant.SMSType;
 import com.habitree.xueshu.login.bean.AuthCodeResponse;
 import com.habitree.xueshu.login.bean.ChangeBindPhoneResponse;
 import com.habitree.xueshu.login.bean.CheckCodeResponse;
+import com.habitree.xueshu.login.bean.CheckPhoneResponse;
 import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
-import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.login.pview.CheckPhoneView;
 import com.habitree.xueshu.login.pview.LoginView;
 import com.habitree.xueshu.login.bean.LoginResponse;
 import com.habitree.xueshu.login.pview.RegisterView;
-import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.presenter.BasePresenter;
 import com.habitree.xueshu.xs.presenter.BaseView;
@@ -25,8 +25,6 @@ import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
-
-import org.litepal.util.Const;
 
 import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
@@ -118,7 +116,7 @@ public class LoginAndRegisterPresenter extends BasePresenter {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()
-                .loginWithAuthCode(timestamp, CommUtil.getSign(Constant.LOGIN_AUTH_CODE, timestamp), phone, smstype,smscode)
+                .loginWithAuthCode(timestamp, CommUtil.getSign(Constant.LOGIN_AUTH_CODE, timestamp), phone, smstype, smscode)
                 .enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -128,9 +126,9 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                             JPushInterface.setAlias(mContext, Constant.NUM_110, String.valueOf(response.body().data.mem_id));
                             EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, false);
                         } else {
-                            if(response.body() != null && response.body().info != null){
+                            if (response.body() != null && response.body().info != null) {
                                 view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
-                            }else{
+                            } else {
                                 view.onLoginFailed(mContext.getString(R.string.network_error));
                             }
                         }
@@ -139,6 +137,46 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
                         view.onLoginFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+
+    /**
+     * 验证手机号
+     *
+     * @param phone
+     * @param view
+     */
+    public void checkPhone(String phone, final CheckPhoneView view) {
+        if (!CommUtil.isPhoneNumber(mContext, phone)) {
+            view.onCheckFailed(null);
+            return;
+        }
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().checkPhone(timestamp, CommUtil.getSign(Constant.CHECK_PHONE, timestamp), phone)
+                .enqueue(new Callback<CheckPhoneResponse>() {
+                    @Override
+                    public void onResponse(Call<CheckPhoneResponse> call, Response<CheckPhoneResponse> response) {
+                        // status  1表示未注册 2表示已注册
+                        if (response.body() != null && response.body().status == 200) {
+                            if(response.body().data != null){
+                                view.onCheckSucceed(response.body().data);
+                            }else{
+                                view.onCheckFailed(mContext.getString(R.string.network_error));
+                            }
+                        } else {
+                            if (response.body() != null && response.body().info != null) {
+                                view.onCheckFailed(CommUtil.unicode2Chinese(response.body().info));
+                            } else {
+                                view.onCheckFailed(mContext.getString(R.string.network_error));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CheckPhoneResponse> call, Throwable t) {
+                        view.onCheckFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }
@@ -226,7 +264,7 @@ public class LoginAndRegisterPresenter extends BasePresenter {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()
-                .findPassword(timestamp, CommUtil.getSign(Constant.FIND_PASSWORD_FUNCTION, timestamp), phone, password, 2, code)
+                .findPassword(timestamp, CommUtil.getSign(Constant.FIND_PASSWORD_FUNCTION, timestamp), phone, password, SMSType.FORGET, code)
                 .enqueue(new Callback<FindPasswordResponse>() {
                     @Override
                     public void onResponse(Call<FindPasswordResponse> call, Response<FindPasswordResponse> response) {
@@ -290,4 +328,5 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     }
                 });
     }
+
 }

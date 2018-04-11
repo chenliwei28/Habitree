@@ -20,14 +20,17 @@ import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
+import com.habitree.xueshu.xs.view.LoopViewPager;
 
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * 首页习惯界面
+ */
+public class PunchCardFragment extends BaseFragment implements View.OnClickListener, HabitView.HabitListView {
 
-public class PunchCardFragment extends BaseFragment implements View.OnClickListener,HabitView.HabitListView{
-
-    private ViewPager mCardVp;
+    private LoopViewPager mCardVp;
     private TextView mDateTv;
     private TextView mMonthTv;
     private ImageView mAddIv;
@@ -77,7 +80,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.add_iv:
             case R.id.start_tv:
                 startActivity(new Intent(getContext(), PlantTreeActivity.class));
@@ -85,32 +88,32 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
-    public void updateData(){
+    public void updateData() {
         showLoadingDialog();
         mDateTv.setText(TimeUtil.getTodayInfo(Calendar.DATE));
-        String s = TimeUtil.getTodayInfo(Calendar.YEAR)+"·"+TimeUtil.getTodayInfo(Calendar.MONTH);
+        String s = TimeUtil.getTodayInfo(Calendar.YEAR) + "·" + TimeUtil.getTodayInfo(Calendar.MONTH);
         mMonthTv.setText(s);
-        mPresenter.getMyHabitList(1,this);
+        mPresenter.getMyHabitList(1, this);
     }
 
-    private void initCardViewPager(){
-        if (mAdapter==null){
-            mAdapter = new CardPagerAdapter(getContext(),mHabits.list);
+    private void initCardViewPager() {
+        if (mAdapter == null) {
+            mAdapter = new CardPagerAdapter(getContext(), mHabits.list);
             mAdapter.setListener(new CardPagerAdapter.CardClickListener() {
                 @Override
                 public void detailClick(int position) {
-                    HabitDetailActivity.start(getContext(),mHabits.list.get(position).habit_id,true);
+                    HabitDetailActivity.start(getContext(), mHabits.list.get(position).habit_id, true);
                 }
 
                 @Override
                 public void punchClick(int position) {
                     HabitListResponse.Data.Habit habit = mHabits.list.get(position);
-                    SendRecordActivity.start(getContext(),habit.habit_id,habit.record_type,habit.check_meminfo.nickname);
+                    SendRecordActivity.start(getContext(), habit.habit_id, habit.record_type, habit.check_meminfo.nickname);
                 }
             });
             mCardVp.setAdapter(mAdapter);
-            mCardVp.setPageTransformer(false,new CardPagerTransformer());
-        }else {
+            mCardVp.setPageTransformer(false, new CardPagerTransformer());
+        } else {
             mAdapter.updateData(mHabits.list);
         }
     }
@@ -118,23 +121,23 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             updateData();
         }
     }
 
     @Override
-    public void onListGetSuccess(HabitListResponse.Data data,int type) {
+    public void onListGetSuccess(HabitListResponse.Data data, int type) {
         mHabits = data;
-        if (mHabits.list==null||mHabits.list.isEmpty()){
+        if (mHabits.list == null || mHabits.list.isEmpty()) {
             mCardVp.setVisibility(View.GONE);
             mEmptyCv.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             mCardVp.setVisibility(View.VISIBLE);
             mEmptyCv.setVisibility(View.GONE);
             initCardViewPager();
         }
-        String s = "成长中的习惯："+data.count+"（"+data.nosign_count+"个未打卡）";
+        String s = "成长中的习惯：" + data.count + "（" + data.nosign_count + "个未打卡）";
         mCountTv.setText(s);
         hideLoadingDialog();
     }

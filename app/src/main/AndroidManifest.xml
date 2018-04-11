@@ -272,6 +272,14 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".login.activity.CheckPhoneActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.activity.ForgetPwdActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".login.activity.SendAuthCodeActivity"
             android:screenOrientation="portrait" />
         <activity

@@ -102,7 +102,7 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
                 break;
             case R.id.forget_btn:
                 // 忘记密码
-                RegisterActivity.start(this, 2);
+                ForgetPwdActivity.start(this);
                 break;
             case R.id.pwd_visibility_btn:
                 // 切换密码是否可见

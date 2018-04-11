@@ -22,4 +22,5 @@ public interface RegisterView extends BaseView {
         void onCheckSuccess();
         void onCheckFailed(String reason);
     }
+
 }

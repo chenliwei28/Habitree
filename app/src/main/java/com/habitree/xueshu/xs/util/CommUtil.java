@@ -35,14 +35,35 @@ public class CommUtil {
         } else if (!phone.trim().matches(Constant.PHONE_REGEX)) {
             ToastUtil.showToast(context, R.string.error_phone_number);
             return false;
-        } else return true;
+        }
+        else return true;
     }
 
     public static boolean isPassword(Context context, String password) {
         if (TextUtils.isEmpty(password)) {
             ToastUtil.showToast(context, R.string.password_must_not_be_empty);
             return false;
-        } else return true;
+        } else if (password.length() < 6) {
+            ToastUtil.showToast(context, R.string.password_length_hint);
+            return false;
+        }else return true;
+    }
+
+    /**
+     * 判断验证码格式
+     * @param context
+     * @param authCode
+     * @return
+     */
+    public static boolean isAuthCode(Context context, String authCode) {
+        if (TextUtils.isEmpty(authCode)) {
+            ToastUtil.showToast(context, R.string.auth_code_empty);
+            return false;
+        }else if(authCode != null && authCode.length() < 4){
+            ToastUtil.showToast(context, R.string.wrong_auth_code);
+            return false;
+        }
+        else return true;
     }
 
     public static boolean isSuccess(Context context,int status){
@@ -232,6 +253,7 @@ public class CommUtil {
                 retBuf.append(unicodeStr.charAt(i));
             }
         }
+        LogUtil.d("info:"+retBuf.toString());
         return retBuf.toString();
     }
 

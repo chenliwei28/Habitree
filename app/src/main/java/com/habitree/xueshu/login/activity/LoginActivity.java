@@ -91,7 +91,7 @@ public class LoginActivity extends BaseActivity implements LoginView,OnClickList
                 break;
             case R.id.register_btn:
                 // 注册
-                RegisterActivity.start(this,1);
+                CheckPhoneActivity.start(this);
                 break;
             case R.id.wx_btn:
                 UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN,mThirdLoginListener);

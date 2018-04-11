@@ -23,8 +23,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:maxLines="1"
-        android:ellipsize="end"
-        tools:text="交易明细"/>
+        android:ellipsize="end"/>
 
     <ImageView
         android:id="@+id/right_iv"

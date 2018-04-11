@@ -4,6 +4,7 @@ package com.habitree.xueshu.xs.apis;
 import com.habitree.xueshu.login.bean.AuthCodeResponse;
 import com.habitree.xueshu.login.bean.ChangeBindPhoneResponse;
 import com.habitree.xueshu.login.bean.CheckCodeResponse;
+import com.habitree.xueshu.login.bean.CheckPhoneResponse;
 import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.LoginResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
@@ -112,6 +113,13 @@ public interface Api {
                                     @Field("password") String password,
                                     @Field("smstype") int type,
                                     @Field("smscode") String code);
+
+    //验证手机号
+    @FormUrlEncoded
+    @POST(Constant.CHECK_PHONE)
+    Call<CheckPhoneResponse> checkPhone(@Field("timestamp") String timestamp,
+                                        @Field("sign") String sign,
+                                        @Field("mobile") String mobile);
 
     //找回密码
     @FormUrlEncoded

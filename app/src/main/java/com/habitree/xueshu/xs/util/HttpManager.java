@@ -1,18 +1,14 @@
 package com.habitree.xueshu.xs.util;
 
 
-import android.support.annotation.NonNull;
-
 import com.habitree.xueshu.xs.apis.Api;
 import com.habitree.xueshu.xs.Constant;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

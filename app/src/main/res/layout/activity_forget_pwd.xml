@@ -1,35 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/blue"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:animateLayoutChanges="true"
-    tools:context="com.habitree.xueshu.login.activity.RegisterActivity">
+    tools:context="com.habitree.xueshu.login.activity.ForgetPwdActivity">
 
     <com.habitree.xueshu.xs.view.MyActionBar
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height" />
 
-    <TextView
-        android:id="@+id/sended_tip_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="验证码已发送至+86 1925555"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:visibility="invisible"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/password_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forget_password"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/telephone"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+86"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/phone_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/trans"
+                android:inputType="number"
+                android:paddingLeft="@dimen/_10dp"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/Line"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,7 +79,6 @@
             android:id="@+id/llAuthCode"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:gravity="bottom"
             android:orientation="horizontal"
@@ -76,8 +110,7 @@
         </LinearLayout>
 
         <TextView
-            style="@style/Line"
-            android:layout_marginRight="40dp" />
+            style="@style/Line" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,7 +125,6 @@
             android:id="@+id/llPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -116,15 +148,13 @@
         </LinearLayout>
 
         <TextView
-            style="@style/Line"
-            android:layout_marginRight="40dp" />
+            style="@style/Line" />
 
 
         <TextView
-            android:id="@+id/next_btn"
+            android:id="@+id/complete_btn"
             style="@style/WhiteRoundButton"
-            android:layout_marginRight="50dp"
             android:layout_marginTop="50dp"
-            android:text="@string/next_step" />
+            android:text="@string/complete" />
     </LinearLayout>
 </LinearLayout>

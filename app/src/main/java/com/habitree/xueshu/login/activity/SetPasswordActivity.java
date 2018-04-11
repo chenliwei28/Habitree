@@ -18,6 +18,9 @@ import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ToastUtil;
 
+/**
+ * 修改密码
+ */
 public class SetPasswordActivity extends BaseActivity implements RegisterView,View.OnClickListener{
 
     private EditText mPasswordEt;
