@@ -15,7 +15,7 @@ import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.LoginView;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.main.MainActivity;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
@@ -27,7 +27,7 @@ import com.hyphenate.easeui.model.EasePreferenceManager;
  *
  * @author wuxq
  */
-public class LoginDetailActivity extends BaseActivity implements RegisterView.AuthCodeView, LoginView, OnClickListener {
+public class LoginDetailActivity extends BaseActionBarActivity implements RegisterView.AuthCodeView, LoginView, OnClickListener {
 
     private final int TYPE_PASSWORD = 1;
     private final int TYPE_AUTH_CODE = 2;
@@ -52,11 +52,6 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
     @Override
     protected int setLayoutId() {
         return R.layout.activity_login;
-    }
-
-    @Override
-    protected void initStatusBar() {
-        UIUtil.setStatusBar(this, getResources().getColor(R.color.blue));
     }
 
     @Override

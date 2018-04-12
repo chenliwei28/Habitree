@@ -17,7 +17,7 @@ import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.login.pview.RegisterView.AuthCodeView;
 import com.habitree.xueshu.main.MainActivity;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
@@ -30,7 +30,7 @@ import java.lang.ref.WeakReference;
  *
  * @author wuxq
  */
-public class RegisterActivity extends BaseActivity implements View.OnClickListener, AuthCodeView, RegisterView {
+public class RegisterActivity extends BaseActionBarActivity implements View.OnClickListener, AuthCodeView, RegisterView {
 
     private TextView mSendTipTv;
     private EditText mPasswordEt, mAuthCodeEt;

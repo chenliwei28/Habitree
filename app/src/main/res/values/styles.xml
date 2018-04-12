@@ -8,6 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MActionBarStyle" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="elevation">0dp</item>
+        <item name="actionBarStyle">@style/MyActionbar</item>
+    </style>
+
+    <style name="MyActionbar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="contentInsetRight">0dp</item>
+        <item name="background">@color/blue</item>
+    </style>
+
     <style name="Line">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>

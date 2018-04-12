@@ -12,7 +12,7 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.constant.SMSType;
 import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.AuthCodeTimer;
 
@@ -22,7 +22,7 @@ import com.habitree.xueshu.xs.view.AuthCodeTimer;
  * 2、发送短信验证码
  * @author wuxq
  */
-public class CheckPhoneActivity extends BaseActivity implements OnClickListener,RegisterView.AuthCodeView {
+public class CheckPhoneActivity extends BaseActionBarActivity implements OnClickListener,RegisterView.AuthCodeView {
 
     private EditText mPhoneEt;
     private TextView mNextBtn, mSecretBtn;

@@ -12,12 +12,13 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.Constant;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
-public class SendAuthCodeActivity extends BaseActivity implements RegisterView.AuthCodeView,View.OnClickListener,RegisterView.CheckAuthCodeView{
+public class SendAuthCodeActivity extends BaseActionBarActivity implements RegisterView.AuthCodeView,View.OnClickListener,RegisterView.CheckAuthCodeView{
 
     private MyActionBar mSendMab;
     private EditText mCodeEt;
@@ -62,7 +63,7 @@ public class SendAuthCodeActivity extends BaseActivity implements RegisterView.A
 
     @Override
     protected void initData() {
-
+        setTitle(R.string.phone_auth_code);
     }
 
     @Override

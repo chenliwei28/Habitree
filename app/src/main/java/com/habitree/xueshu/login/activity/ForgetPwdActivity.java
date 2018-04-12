@@ -14,6 +14,7 @@ import com.habitree.xueshu.constant.SMSType;
 import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.login.pview.RegisterView.AuthCodeView;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
@@ -26,7 +27,7 @@ import com.hyphenate.easeui.model.EasePreferenceManager;
  *
  * @author wuxq
  */
-public class ForgetPwdActivity extends BaseActivity implements OnClickListener,AuthCodeView ,RegisterView{
+public class ForgetPwdActivity extends BaseActionBarActivity implements OnClickListener,AuthCodeView ,RegisterView{
 
     private EditText mPasswordEt, mAuthCodeEt,mPhoneEt;
     // 验证码发生

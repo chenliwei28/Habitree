@@ -13,6 +13,7 @@ import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.main.MainActivity;
 import com.habitree.xueshu.xs.Constant;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
@@ -21,7 +22,7 @@ import com.habitree.xueshu.xs.util.ToastUtil;
 /**
  * 修改密码
  */
-public class SetPasswordActivity extends BaseActivity implements RegisterView,View.OnClickListener{
+public class SetPasswordActivity extends BaseActionBarActivity implements RegisterView,View.OnClickListener{
 
     private EditText mPasswordEt;
     private EditText mAgainEt;
@@ -62,7 +63,7 @@ public class SetPasswordActivity extends BaseActivity implements RegisterView,Vi
 
     @Override
     protected void initData() {
-
+        setTitle(R.string.set_password);
     }
 
     @Override

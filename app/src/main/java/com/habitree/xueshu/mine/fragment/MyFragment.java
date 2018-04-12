@@ -1,9 +1,7 @@
 package com.habitree.xueshu.mine.fragment;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -25,14 +23,12 @@ import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
-import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
 import java.util.List;
-
 
 public class MyFragment extends BaseFragment implements HabitView.HabitListView,View.OnClickListener,MyView.OnTreeClickListener{
 

@@ -10,10 +10,6 @@
     android:animateLayoutChanges="true"
     tools:context="com.habitree.xueshu.login.activity.RegisterActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height" />
-
     <TextView
         android:id="@+id/sended_tip_btn"
         android:layout_width="match_parent"
