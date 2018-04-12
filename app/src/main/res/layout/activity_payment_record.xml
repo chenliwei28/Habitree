@@ -9,11 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.habitree.xueshu.mine.activity.PaymentRecordActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/payment_record"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

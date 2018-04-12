@@ -9,11 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.habitree.xueshu.mine.activity.BindAccountActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/bind_account"/>
-
     <com.habitree.xueshu.xs.view.LoginEditText
         android:id="@+id/account_let"
         android:layout_width="match_parent"

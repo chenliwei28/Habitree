@@ -1,8 +1,5 @@
 package com.habitree.xueshu.mine.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,9 +8,12 @@ import com.habitree.xueshu.mine.adapter.PaymentRecordAdapter;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
-//罚金收支记录
-public class PaymentRecordActivity extends BaseActivity implements MyView.ForfeitListView{
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
+
+/**
+ * 罚金收支记录
+ */
+public class PaymentRecordActivity extends BaseActionBarActivity implements MyView.ForfeitListView{
 
     private TextView mIncomeTv;
     private TextView mExpenseTv;
@@ -58,6 +58,7 @@ public class PaymentRecordActivity extends BaseActivity implements MyView.Forfei
 
     @Override
     protected void initData() {
+        setTitle(R.string.payment_record);
         showLoadingDialog();
         mPresenter.getForfeitList(mCurrentPage,this);
     }

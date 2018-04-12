@@ -1,21 +1,15 @@
 package com.habitree.xueshu.mine.activity;
 
-import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.adapter.TransactionRecordAdapter;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
-import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.view.ItemPopWindow;
 import com.habitree.xueshu.xs.view.MyActionBar;
 

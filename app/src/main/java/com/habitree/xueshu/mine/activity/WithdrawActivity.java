@@ -12,11 +12,13 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.UserManager;
 
-//提现activity
-public class WithdrawActivity extends BaseActivity implements View.OnClickListener{
+/**
+ * 提现activity
+ */
+public class WithdrawActivity extends BaseActionBarActivity implements View.OnClickListener{
 
     private LinearLayout mChooseLl;
     private ImageView mModeIv;
@@ -56,6 +58,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
+        setTitle(R.string.withdraw_deposit);
         String ba = "可用余额："+ UserManager.getManager().getUser().wallet.balance+"元";
         mBalanceTv.setText(ba);
     }

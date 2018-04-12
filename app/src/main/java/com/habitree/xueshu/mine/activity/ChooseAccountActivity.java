@@ -1,8 +1,6 @@
 package com.habitree.xueshu.mine.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,12 +10,12 @@ import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 
 import java.util.List;
 
-public class ChooseAccountActivity extends BaseActivity implements View.OnClickListener,MyView.WithdrawAccountListView {
+public class ChooseAccountActivity extends BaseActionBarActivity implements View.OnClickListener,MyView.WithdrawAccountListView {
 
     private LinearLayout mBindLl;
     private TextView mNameTv;
@@ -45,6 +43,7 @@ public class ChooseAccountActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initData() {
+        setTitle(R.string.choose_withdraw_account);
         showLoadingDialog();
         mPresenter.getWithdrawBindList(this);
     }
