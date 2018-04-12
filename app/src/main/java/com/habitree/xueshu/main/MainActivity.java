@@ -1,9 +1,11 @@
 package com.habitree.xueshu.main;
 
+
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
+import android.view.MenuItem;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.activity.LoginActivity;
@@ -18,7 +20,6 @@ import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.MainHandler;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
-import com.habitree.xueshu.xs.view.TabItemView;
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.EMMessageListener;
@@ -28,18 +29,15 @@ import com.hyphenate.util.NetUtils;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity {
 
-    private TabItemView mPcTiv;
-    private TabItemView mMsTiv;
-    private TabItemView mMeTiv;
-
+    private BottomNavigationView navigationView;
+    private FragmentTransaction transaction;
+    private int mCurrentTab = 0;
     private PunchCardFragment mPcFragment;
-    private MessageFragment     mMsFragment;
-    private MyFragment          mMeFragment;
-    private int mCurrentTab = -1;
+    private MessageFragment mMsFragment;
+    private MyFragment mMeFragment;
 
-    private FragmentManager mManager;
 
     @Override
     protected int setLayoutId() {
@@ -47,104 +45,86 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     }
 
     @Override
-    protected void initStatusBar() {
-        UIUtil.setStatusBar(this,getResources().getColor(R.color.trans));
-    }
-
-    @Override
     protected void initView() {
-        mPcTiv = findViewById(R.id.pc_tiv);
-        mMsTiv = findViewById(R.id.ms_tiv);
-        mMeTiv = findViewById(R.id.me_tiv);
+        navigationView = findViewById(R.id.navigation);
+
     }
 
     @Override
     protected void initListener() {
-        mPcTiv.setOnClickListener(this);
-        mMsTiv.setOnClickListener(this);
-        mMeTiv.setOnClickListener(this);
+        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     @Override
     protected void initData() {
-        mManager = getSupportFragmentManager();
         User user = UserManager.getManager().getUser();
         if (user==null){
             startActivity(new Intent(this, LoginActivity.class));
             AppManager.getAppManager().finishActivity(this);
         }else {
-            changeTab(mPcTiv,0);
+            changeTab(0);
             registerEMConnectionListener();
             EMClient.getInstance().chatManager().loadAllConversations();
             EMClient.getInstance().groupManager().loadAllGroups();
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.pc_tiv:
-                changeTab((TabItemView) v,0);
-                break;
-            case R.id.ms_tiv:
-                changeTab((TabItemView) v,1);
-                break;
-            case R.id.me_tiv:
-                changeTab((TabItemView) v,2);
-                break;
-        }
-    }
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-    private void changeTab(TabItemView view,int position){
-        if (mCurrentTab==position)return;
-        FragmentTransaction transaction = mManager.beginTransaction();
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            switch (item.getItemId()) {
+                case R.id.navigation_habit:
+                    changeTab(0);
+                    return true;
+                case R.id.navigation_msg:
+                    changeTab(1);
+                    return true;
+                case R.id.navigation_mine:
+                    changeTab(2);
+                    return true;
+            }
+            return false;
+        }
+    };
+
+    private void changeTab(int position) {
+        transaction = getSupportFragmentManager().beginTransaction();
         hideFragment(transaction);
-        switch (position){
-            case 0:
-                if (mPcFragment!=null) {
-                    transaction.show(mPcFragment);
-                }
-                else {
-                    mPcFragment = PunchCardFragment.newInstance();
-                    transaction.add(R.id.fragment_fl,mPcFragment);
-                }
-                break;
-            case 1:
-                if (mMsFragment!=null) {
-                    transaction.show(mMsFragment);
-                }
-                else {
-                    mMsFragment = MessageFragment.newInstance();
-                    transaction.add(R.id.fragment_fl,mMsFragment);
-                }
-                break;
-            case 2:
-                if (mMeFragment!=null) transaction.show(mMeFragment);
-                else {
-                    mMeFragment = MyFragment.newInstance();
-                    transaction.add(R.id.fragment_fl,mMeFragment);
-                }
-                break;
-        }
-        transaction.commit();
         mCurrentTab = position;
-        mPcTiv.selectedTab(false);
-        mMsTiv.selectedTab(false);
-        mMeTiv.selectedTab(false);
-        view.selectedTab(true);
-    }
 
-    private void hideFragment(FragmentTransaction transaction){
-        switch (mCurrentTab){
-            case 0:
-                if (mPcFragment!=null) transaction.hide(mPcFragment);
-                break;
-            case 1:
-                if (mMsFragment!=null) transaction.hide(mMsFragment);
-                break;
-            case 2:
-                if (mMeFragment!=null) transaction.hide(mMeFragment);
-                break;
+        try {
+            if (position == 0) {
+                if (mPcFragment != null) {
+                    transaction.show(mPcFragment);
+                } else {
+                    mPcFragment = mPcFragment.newInstance();
+                    transaction.add(R.id.fragment_fl, mPcFragment);
+                }
+                UIUtil.setStatusBar(this,getResources().getColor(R.color.trans));
+            } else if (position == 1) {
+                if (mMsFragment != null) {
+                    transaction.show(mMsFragment);
+                } else {
+                    mMsFragment = mMsFragment.newInstance();
+                    transaction.add(R.id.fragment_fl, mMsFragment);
+                }
+                UIUtil.setStatusBar(this,getResources().getColor(R.color.blue));
+            } else if (position == 2) {
+                if (mMeFragment != null) {
+                    transaction.show(mMeFragment);
+                } else {
+                    mMeFragment = mMeFragment.newInstance();
+                    transaction.add(R.id.fragment_fl, mMeFragment);
+                }
+                UIUtil.setStatusBar(this,getResources().getColor(R.color.trans));
+            }
+            transaction.setTransition(FragmentTransaction.TRANSIT_EXIT_MASK);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -160,6 +140,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
             case 2:
                 if (mMeFragment!=null) mMeFragment.updateData();
+                break;
+        }
+    }
+
+    private void hideFragment(FragmentTransaction transaction){
+        switch (mCurrentTab){
+            case 0:
+                if (mPcFragment!=null) transaction.hide(mPcFragment);
+                break;
+            case 1:
+                if (mMsFragment!=null) transaction.hide(mMsFragment);
+                break;
+            case 2:
+                if (mMeFragment!=null) transaction.hide(mMeFragment);
                 break;
         }
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_habit"
+        android:icon="@drawable/ic_habit_normal"
+        android:title="@string/habit" />
+
+    <item
+        android:id="@+id/navigation_msg"
+        android:icon="@drawable/ic_message_normal"
+        android:title="@string/message" />
+
+    <item
+        android:id="@+id/navigation_mine"
+        android:icon="@drawable/ic_my_normal"
+        android:title="@string/mine" />
+
+</menu>

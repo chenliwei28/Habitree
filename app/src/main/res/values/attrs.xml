@@ -111,4 +111,12 @@
         <attr name="next_img" format="integer|reference"/>
         <attr name="head_img" format="integer|reference"/>
     </declare-styleable>
+
+    <declare-styleable name="CardViewPager">
+        <attr name="card_padding" format="dimension" />
+        <attr name="card_margin" format="dimension" />
+        <attr name="card_loop" format="boolean" />
+        <attr name="card_max_offset" format="dimension" />
+        <attr name="card_scale_rate" format="float" />
+    </declare-styleable>
 </resources>

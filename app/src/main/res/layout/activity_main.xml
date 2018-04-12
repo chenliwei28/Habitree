@@ -2,58 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background"
-    tools:context="com.habitree.xueshu.main.MainActivity">
+    tools:context=".main.MainActivity">
 
     <FrameLayout
         android:id="@+id/fragment_fl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
     </FrameLayout>
 
-    <View style="@style/Line"/>
-
-    <LinearLayout
-        android:id="@+id/tab_ll"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="55dp"
+        android:background="@android:color/white"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
+        app:menu="@menu/navigation" />
 
-        <com.habitree.xueshu.xs.view.TabItemView
-            android:id="@+id/pc_tiv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:tab_text="@string/habit"
-            app:normal_image_src="@drawable/ic_habit_normal"
-            app:selected_image_src="@drawable/ic_habit_selected"
-            app:normal_text_color="@color/gray_text"
-            app:select_text_color="@color/blue"/>
-
-        <com.habitree.xueshu.xs.view.TabItemView
-            android:id="@+id/ms_tiv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:tab_text="@string/message"
-            app:normal_image_src="@drawable/ic_message_normal"
-            app:selected_image_src="@drawable/ic_message_selected"
-            app:normal_text_color="@color/gray_text"
-            app:select_text_color="@color/blue"/>
-
-        <com.habitree.xueshu.xs.view.TabItemView
-            android:id="@+id/me_tiv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:tab_text="@string/mine"
-            app:normal_image_src="@drawable/ic_my_normal"
-            app:selected_image_src="@drawable/ic_my_selected"
-            app:normal_text_color="@color/gray_text"
-            app:select_text_color="@color/blue"/>
-    </LinearLayout>
 </LinearLayout>
