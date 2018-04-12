@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
@@ -47,10 +48,12 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
     private TextView mHabitNameTv;
     private TextView mHabitTextTv;
     private TextView mWatchTv;
+    private TextView mPaddingTv;
 //    private LinearLayout mCountLl;
     private LinearLayout mCompletedLl;
     private LinearLayout mOngoingLl;
     private LinearLayout mHeadLl;
+    private RelativeLayout mNameRl;
     private ViewPager mTreeVp;
     private Fragment[] mFragments;
     private HabitPresenter mPresenter;
@@ -81,6 +84,8 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         mTreeVp = view.findViewById(R.id.tree_vp);
         mHeadLl = view.findViewById(R.id.head_ll);
         mWatchTv = view.findViewById(R.id.watch_tv);
+        mNameRl = view.findViewById(R.id.name_rl);
+        mPaddingTv = view.findViewById(R.id.padding_tv);
         mPresenter = new HabitPresenter(getContext());
     }
 
@@ -96,6 +101,7 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
 
     @Override
     protected void initData() {
+        setTopPadding(mPaddingTv);
         mFragments = new Fragment[3];
         mFragments[0] = new LeftTreeFragment();
         mFragments[1] = new MidTreeFragment();

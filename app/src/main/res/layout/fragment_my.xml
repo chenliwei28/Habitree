@@ -8,44 +8,49 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/tree_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:background="@color/blue">
 
+        <TextView
+            android:id="@+id/padding_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <RelativeLayout
             android:id="@+id/name_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp">
+            android:layout_below="@id/padding_tv">
 
             <ImageView
                 android:id="@+id/habit_iv"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:padding="12dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_info"/>
+                android:padding="12dp"
+                android:src="@drawable/ic_info" />
 
             <TextView
                 android:id="@+id/name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                tools:text="张全蛋"
                 android:layout_centerInParent="true"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:text="张全蛋" />
 
             <ImageView
                 android:id="@+id/setting_iv"
-                android:padding="12dp"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:padding="12dp"
                 android:src="@drawable/ic_setting_white" />
         </RelativeLayout>
 
@@ -63,8 +68,8 @@
                 android:id="@+id/head_riv"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                tools:src="@drawable/ic_default_head"
-                app:type="circle" />
+                app:type="circle"
+                tools:src="@drawable/ic_default_head" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -85,9 +90,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    tools:text="200天"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="200天" />
             </LinearLayout>
         </LinearLayout>
 
@@ -118,9 +123,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    tools:text="200次"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="200次" />
             </LinearLayout>
 
             <LinearLayout
@@ -142,9 +147,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    tools:text="80%"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="80%" />
             </LinearLayout>
 
             <LinearLayout
@@ -167,9 +172,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    tools:text="8个"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="8个" />
             </LinearLayout>
 
             <LinearLayout
@@ -192,9 +197,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    tools:text="1个"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="1个" />
             </LinearLayout>
         </LinearLayout>
 
@@ -213,27 +218,27 @@
             android:id="@+id/habit_text_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="68dp"
-            tools:text="诞生于2018.01.01  今天是第36/90天  打卡率100%"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:textColor="@color/white"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            tools:text="诞生于2018.01.01  今天是第36/90天  打卡率100%" />
 
         <TextView
             android:id="@+id/watch_tv"
             android:layout_width="120dp"
             android:layout_height="30dp"
-            android:gravity="center"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="24dp"
+            android:background="@drawable/shape_round_white_alpha_button"
+            android:gravity="center"
             android:text="@string/view_details"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:background="@drawable/shape_round_white_alpha_button"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </RelativeLayout>
 </FrameLayout>

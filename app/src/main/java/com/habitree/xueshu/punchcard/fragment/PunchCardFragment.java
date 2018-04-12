@@ -36,6 +36,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     private TextView mCountTv;
     private CardView mEmptyCv;
     private TextView mStartTv;
+    private TextView mPaddingTv;
     private HabitPresenter mPresenter;
     private CardPagerAdapter mAdapter;
     private HabitListResponse.Data mHabits;
@@ -54,6 +55,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mCardVp = view.findViewById(R.id.card_vp);
         mEmptyCv = view.findViewById(R.id.empty_cv);
         mStartTv = view.findViewById(R.id.start_tv);
+        mPaddingTv = view.findViewById(R.id.padding_tv);
         mCardVp.setPageMargin(100);
         mCardVp.setOffscreenPageLimit(3);
         mPresenter = new HabitPresenter(getContext());
@@ -68,6 +70,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     @Override
     protected void initData() {
         mPresenter.initInfo();
+        setTopPadding(mPaddingTv);
     }
 
     public static PunchCardFragment newInstance() {

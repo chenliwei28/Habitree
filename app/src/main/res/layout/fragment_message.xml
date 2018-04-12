@@ -6,9 +6,10 @@
     android:background="@color/background"
     tools:context="com.habitree.xueshu.message.fragment.MessageFragment">
 
-    <View
+    <TextView
+        android:id="@+id/padding_tv"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:background="@color/blue"/>
 
     <RelativeLayout

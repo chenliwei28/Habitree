@@ -1,6 +1,5 @@
 package com.habitree.xueshu.message.fragment;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.activity.AddFriendActivity;
@@ -36,6 +36,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private ImageView mAddIv;
     private SwipeMenuRecyclerView mMessageLv;
     private MessageAdapter mAdapter;
+    private TextView mPaddingTv;
 
     @Override
     protected int setLayoutId() {
@@ -47,6 +48,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         mFriendsIv = view.findViewById(R.id.friends_iv);
         mAddIv = view.findViewById(R.id.add_iv);
         mMessageLv = view.findViewById(R.id.message_lv);
+        mPaddingTv = view.findViewById(R.id.padding_tv);
     }
 
     @Override
@@ -89,6 +91,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void initData() {
+        setTopPadding(mPaddingTv);
         updateData();
     }
 

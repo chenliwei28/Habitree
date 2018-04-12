@@ -5,10 +5,12 @@ import android.app.ActivityOptions;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 
@@ -106,5 +108,10 @@ public class UIUtil {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static int dpToPx(Resources res, int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+                res.getDisplayMetrics());
     }
 }
