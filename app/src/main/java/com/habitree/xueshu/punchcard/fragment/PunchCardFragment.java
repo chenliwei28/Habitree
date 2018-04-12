@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,17 +21,15 @@ import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
-import com.habitree.xueshu.xs.view.LoopViewPager;
 
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * 首页习惯界面
  */
 public class PunchCardFragment extends BaseFragment implements View.OnClickListener, HabitView.HabitListView {
 
-    private LoopViewPager mCardVp;
+    private ViewPager mCardVp;
     private TextView mDateTv;
     private TextView mMonthTv;
     private ImageView mAddIv;

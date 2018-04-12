@@ -38,5 +38,13 @@ public class EasePreferenceManager {
     public Set<String> getAtMeGroups(){
         return mSharedPreferences.getStringSet(KEY_AT_GROUPS, null);
     }
-    
+
+    public void setStringValue(String key, String value) {
+        editor.putString(key, value);
+        editor.apply();
+    }
+
+    public String getStringValue(String key, String defValue) {
+        return mSharedPreferences.getString(key, defValue);
+    }
 }

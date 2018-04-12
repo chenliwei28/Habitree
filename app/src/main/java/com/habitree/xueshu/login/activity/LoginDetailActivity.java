@@ -20,6 +20,7 @@ import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.AuthCodeTimer;
+import com.hyphenate.easeui.model.EasePreferenceManager;
 
 /**
  * 登录界面(密码|验证码)
@@ -45,6 +46,8 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
     private TextView mSendBtn;
     // 密码隐藏或者显示的标记
     private boolean isPasswordShow = false;
+    private AuthCodeTimer timer;
+    private String phone ="";
 
     @Override
     protected int setLayoutId() {
@@ -85,6 +88,15 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
     @Override
     protected void initData() {
         mPresenter = new LoginAndRegisterPresenter(this);
+        // 验证码倒计时
+        timer = AuthCodeTimer.getInstance();
+        timer.setTextView(mSendBtn);
+        phone = EasePreferenceManager.getInstance().getStringValue("et_phone","");
+        mPhoneEt.setText(phone);
+        if(!TextUtils.isEmpty(phone)){
+            mPhoneEt.setText(phone);
+            mPhoneEt.setSelection(phone.length());
+        }
     }
 
     @Override
@@ -111,11 +123,12 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
                 mPwdVisibilityBtn.setImageResource(isPasswordShow ? R.drawable.ic_password_show : R.drawable.ic_password_hide);
                 break;
             case R.id.login_btn:
+                phone = mPhoneEt.getText().toString();
                 CommUtil.hideSoftInput(this);
                 if (type == TYPE_PASSWORD) {
                     // 密码登录
                     showLoadingDialog();
-                    mPresenter.login(mPhoneEt.getText().toString(), mPasswordEt.getText().toString(), this);
+                    mPresenter.login(phone, mPasswordEt.getText().toString(), this);
                 } else {
                     // 验证码登录
                     String smsCode = mAuthCodeEt.getText().toString();
@@ -132,7 +145,8 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
                 }
                 break;
             case R.id.send_tv:
-                mPresenter.sendAuthCode(mPhoneEt.getText().toString(), SMSType.LOGIN_AUTHCODE, this);
+                phone = mPhoneEt.getText().toString();
+                mPresenter.sendAuthCode(phone, SMSType.LOGIN_AUTHCODE, this);
                 break;
         }
     }
@@ -159,6 +173,9 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
 
     @Override
     public void onLoginSuccess() {
+        if (timer != null){
+            timer.cancel();
+        }
         hideLoadingDialog();
         showToast(getString(R.string.login_success));
         startActivity(new Intent(this, MainActivity.class));
@@ -174,8 +191,7 @@ public class LoginDetailActivity extends BaseActivity implements RegisterView.Au
     @Override
     public void onSendSuccess() {
         // 发送验证码
-        AuthCodeTimer timer = new AuthCodeTimer(this, mSendBtn);
-        timer.start();
+        timer.reStart();
     }
 
     @Override

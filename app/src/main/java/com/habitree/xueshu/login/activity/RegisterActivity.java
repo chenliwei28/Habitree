@@ -41,6 +41,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private LoginAndRegisterPresenter mPresenter;
     // 密码隐藏或者显示的标记
     private boolean isPasswordShow = false;
+    private AuthCodeTimer timer;
 
     @Override
     protected int setLayoutId() {
@@ -74,6 +75,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     protected void initData() {
         phoneNumber = getIntent().getStringExtra(Constant.PHONE);
         mPresenter = new LoginAndRegisterPresenter(this);
+        // 验证码倒计时
+        timer = AuthCodeTimer.getInstance();
+        timer.setTextView(mSendBtn);
     }
 
     @Override
@@ -111,7 +115,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onSendSuccess() {
         hideLoadingDialog();
         // 发送验证码
-        AuthCodeTimer timer = new AuthCodeTimer(this, mSendBtn);
+        timer.reStart();
         timer.start();
 
         String tip = getResources().getString(R.string.auth_code_send_to);
@@ -138,6 +142,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onRegisterSuccess() {
         // 注册成功
+        if(timer != null){
+            timer.cancel();
+        }
         hideLoadingDialog();
         showToast(getString(R.string.register_success));
         startActivity(new Intent(this, MainActivity.class));

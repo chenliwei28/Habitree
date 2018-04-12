@@ -9,22 +9,25 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 
-import com.habitree.xueshu.login.bean.Status;
+import com.habitree.xueshu.constant.SMSType;
 import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
-import com.habitree.xueshu.login.pview.CheckPhoneView;
+import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.UIUtil;
+import com.habitree.xueshu.xs.view.AuthCodeTimer;
 
 /**
  * 注册验证手机号
- *
+ * 1、验证手机号码
+ * 2、发送短信验证码
  * @author wuxq
  */
-public class CheckPhoneActivity extends BaseActivity implements OnClickListener ,CheckPhoneView{
+public class CheckPhoneActivity extends BaseActivity implements OnClickListener,RegisterView.AuthCodeView {
 
     private EditText mPhoneEt;
     private TextView mNextBtn, mSecretBtn;
     private LoginAndRegisterPresenter mPresenter;
+    private String phone = "";
 
     @Override
     protected int setLayoutId() {
@@ -65,30 +68,29 @@ public class CheckPhoneActivity extends BaseActivity implements OnClickListener 
         int vid = view.getId();
         if (vid == R.id.next_btn) {
             // 下一步
-            showLoadingDialog();
-            mPresenter.checkPhone(mPhoneEt.getText().toString(),this);
+            if(AuthCodeTimer.getInstance().isTiming() && phone.equals(mPhoneEt.getText().toString())){
+                RegisterActivity.start(this,phone);
+            }
+            else{
+                phone = mPhoneEt.getText().toString();
+                showLoadingDialog();
+                mPresenter.sendAuthCode(phone, SMSType.REGISTER, this);
+            }
         } else if (vid == R.id.secret_btn) {
             // 隐私协议
         }
     }
 
     @Override
-    public void onCheckSucceed(Status status) {
+    public void onSendSuccess() {
+        AuthCodeTimer.getInstance().reStart();
         hideLoadingDialog();
-        if(status.status == 1){
-            // 未注册
-            RegisterActivity.start(this,mPhoneEt.getText().toString());
-        }
-        else if(status.status == 2){
-            // 已经注册
-            showToast(R.string.phone_already_register);
-        }
+        RegisterActivity.start(this,mPhoneEt.getText().toString());
     }
 
     @Override
-    public void onCheckFailed(String reason) {
+    public void onSendFail(String reason) {
         hideLoadingDialog();
         showToast(reason);
     }
-
 }

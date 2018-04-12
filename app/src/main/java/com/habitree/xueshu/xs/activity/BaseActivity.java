@@ -1,6 +1,5 @@
 package com.habitree.xueshu.xs.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,8 +27,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
     }
 
-    protected void initStatusBar(){
-        UIUtil.setStatusBar(this,getResources().getColor(R.color.blue));
+    protected void initStatusBar() {
+        UIUtil.setStatusBar(this, getResources().getColor(R.color.blue));
     }
 
     protected abstract int setLayoutId();
@@ -40,23 +39,23 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void initData();
 
-    protected void showToast(String s){
-        ToastUtil.showToast(this,s);
+    protected void showToast(String s) {
+        ToastUtil.showToast(this, s);
     }
 
-    protected void showToast(int stringId){
-        ToastUtil.showToast(this,stringId);
+    protected void showToast(int stringId) {
+        ToastUtil.showToast(this, stringId);
     }
 
-    public void showLoadingDialog(){
-        if (dialog==null){
+    public void showLoadingDialog() {
+        if (dialog == null) {
             dialog = new MyProgressDialog(this).builder();
         }
         dialog.show();
     }
 
-    public void hideLoadingDialog(){
-        if (dialog!=null&&dialog.isShowing()){
+    public void hideLoadingDialog() {
+        if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
     }

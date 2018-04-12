@@ -1,9 +1,10 @@
 package com.habitree.xueshu.punchcard.bean;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class HabitListResponse {
+public class HabitListResponse implements Serializable{
 
     /**
      * status : 200
@@ -28,7 +29,7 @@ public class HabitListResponse {
         public int nosign_count;
         public List<Habit> list;
 
-        public class Habit {
+        public  class Habit implements Serializable{
             /**
              * habit_id : 9
              * mem_id : 3

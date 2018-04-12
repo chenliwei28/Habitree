@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private TabItemView mMsTiv;
     private TabItemView mMeTiv;
 
-    private PunchCardFragment   mPcFragment;
+    private PunchCardFragment mPcFragment;
     private MessageFragment     mMsFragment;
     private MyFragment          mMeFragment;
     private int mCurrentTab = -1;

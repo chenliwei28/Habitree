@@ -109,10 +109,6 @@ public class LoginAndRegisterPresenter extends BasePresenter {
             view.onLoginFailed(null);
             return;
         }
-        if (!CommUtil.isPassword(mContext, smscode)) {
-            view.onLoginFailed(null);
-            return;
-        }
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager()
                 .getService()
@@ -233,7 +229,13 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                             UserManager.getManager().saveUser(response.body().data);
                             EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, true);
                             view.onRegisterSuccess();
-                        } else view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
+                        } else {
+                            if(response.body().info != null){
+                                view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
+                            }else{
+                                view.onRegisterFail(mContext.getString(R.string.network_error));
+                            }
+                        }
                     }
 
                     @Override

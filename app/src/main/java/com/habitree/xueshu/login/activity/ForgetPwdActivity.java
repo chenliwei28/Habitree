@@ -2,6 +2,7 @@ package com.habitree.xueshu.login.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.AuthCodeTimer;
+import com.hyphenate.easeui.model.EasePreferenceManager;
 
 /**
  * 忘记密码界面
@@ -33,6 +35,8 @@ public class ForgetPwdActivity extends BaseActivity implements OnClickListener,A
     private LoginAndRegisterPresenter mPresenter;
     // 密码隐藏或者显示的标记
     private boolean isPasswordShow = false;
+    private AuthCodeTimer timer;
+    private String phone ="";
 
     @Override
     protected int setLayoutId() {
@@ -64,15 +68,25 @@ public class ForgetPwdActivity extends BaseActivity implements OnClickListener,A
     @Override
     protected void initData() {
         mPresenter = new LoginAndRegisterPresenter(this);
+        // 验证码倒计时
+        timer = AuthCodeTimer.getInstance();
+        timer.setTextView(mSendBtn);
+        phone = EasePreferenceManager.getInstance().getStringValue("et_phone","");
+        mPhoneEt.setText(phone);
+        if(!TextUtils.isEmpty(phone)){
+            mPhoneEt.setText(phone);
+            mPhoneEt.setSelection(phone.length());
+        }
     }
 
     @Override
     public void onClick(View view) {
         int vid = view.getId();
-        String phone = mPhoneEt.getText().toString();
+        phone = mPhoneEt.getText().toString();
         CommUtil.hideSoftInput(this);
         switch (vid){
             case R.id.send_tv:
+                EasePreferenceManager.getInstance().setStringValue("et_phone",phone);
                 // 发送验证码
                 if (!CommUtil.isPhoneNumber(this, phone)) {
                     break;
@@ -115,8 +129,7 @@ public class ForgetPwdActivity extends BaseActivity implements OnClickListener,A
     public void onSendSuccess() {
         hideLoadingDialog();
         // 发送验证码
-        AuthCodeTimer timer = new AuthCodeTimer(this, mSendBtn);
-        timer.start();
+        timer.reStart();
     }
 
     @Override
@@ -127,10 +140,13 @@ public class ForgetPwdActivity extends BaseActivity implements OnClickListener,A
 
     @Override
     public void onRegisterSuccess() {
+        if (timer != null){
+            timer.cancel();
+        }
         hideLoadingDialog();
         showToast(getString(R.string.find_password_success));
         AppManager.getAppManager().finishActivity(this);
-        startActivity(new Intent(this,LoginActivity.class));
+        finish();
     }
 
     @Override
