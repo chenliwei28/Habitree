@@ -9,11 +9,6 @@
     android:orientation="vertical"
     tools:context="com.habitree.xueshu.mine.activity.AboutActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/about_app"/>
-
     <WebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"

@@ -12,7 +12,7 @@ import com.habitree.xueshu.punchcard.bean.RecordListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
@@ -25,7 +25,7 @@ import com.habitree.xueshu.xs.view.calendarview.CalendarView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HabitDetailActivity extends BaseActivity implements HabitView.HabitDetailView,HabitView.RecordListView,View.OnClickListener,HabitView.GiveUpView {
+public class HabitDetailActivity extends BaseActionBarActivity implements HabitView.HabitDetailView,HabitView.RecordListView,View.OnClickListener,HabitView.GiveUpView {
 
     private CalendarView mDetailCv;
     private RoundImageView mHeadRiv;
@@ -126,6 +126,7 @@ public class HabitDetailActivity extends BaseActivity implements HabitView.Habit
 
     @Override
     protected void initData() {
+        setTitle(R.string.habit_detail);
         showLoadingDialog();
         mPresenter.getHabitDetail(getIntent().getIntExtra(Constant.ID,0),this);
         boolean isUser = getIntent().getBooleanExtra(Constant.TYPE,true);

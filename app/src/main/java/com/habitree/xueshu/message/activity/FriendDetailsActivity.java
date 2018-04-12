@@ -1,6 +1,9 @@
 package com.habitree.xueshu.message.activity;
 
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,16 +15,14 @@ import com.habitree.xueshu.message.bean.IMInfo;
 import com.habitree.xueshu.message.presenter.FriendsPresenter;
 import com.habitree.xueshu.message.pview.FriendsView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.MessageManager;
-import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.RoundImageView;
 import com.hyphenate.easeui.EaseConstant;
 
-public class FriendDetailsActivity extends BaseActivity implements View.OnClickListener,FriendsView.FriendInfoView{
+public class FriendDetailsActivity extends BaseActionBarActivity implements View.OnClickListener,FriendsView.FriendInfoView{
 
-    private MyActionBar mActionBar;
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
     private TextView mDaysTv;
@@ -46,7 +47,6 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initView() {
-        mActionBar = findViewById(R.id.action_bar);
         mHeadRiv = findViewById(R.id.head_riv);
         mNameTv = findViewById(R.id.name_tv);
         mDaysTv = findViewById(R.id.days_tv);
@@ -66,16 +66,11 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void initListener() {
         mSendMessageTv.setOnClickListener(this);
-        mActionBar.setRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FriendForestActivity.start(FriendDetailsActivity.this,mDetail.mem_id,mDetail.nickname,mDetail.portrait);
-            }
-        });
     }
 
     @Override
     protected void initData() {
+        setTitle(R.string.detail);
         showLoadingDialog();
         mPresenter.getFriendInfo(getIntent().getIntExtra(Constant.ID,0),this);
     }
@@ -90,6 +85,21 @@ public class FriendDetailsActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onInfoGetFailed(String reason) {
         hideLoadingDialog();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_her, menu);
+        MenuItem menuHer = menu.findItem(R.id.tvHerForest);
+        menuHer.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                FriendForestActivity.start(FriendDetailsActivity.this,mDetail.mem_id,mDetail.nickname,mDetail.portrait);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
     private void initDetail(){

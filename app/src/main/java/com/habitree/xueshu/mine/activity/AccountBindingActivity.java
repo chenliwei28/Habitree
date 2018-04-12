@@ -7,7 +7,7 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.OAuth;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
@@ -18,7 +18,7 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import java.util.List;
 import java.util.Map;
 
-public class AccountBindingActivity extends BaseActivity implements View.OnClickListener,MyView.OauthBindView{
+public class AccountBindingActivity extends BaseActionBarActivity implements View.OnClickListener,MyView.OauthBindView{
 
     private CustomItemView mPhoneCiv;
     private CustomItemView mWechatCiv;
@@ -50,6 +50,7 @@ public class AccountBindingActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initData() {
+        setTitle(R.string.account_binding);
         if (UserManager.getManager().getUser().third_oauth!=null){
             mPhoneCiv.setVisibility(View.GONE);
         }else {

@@ -8,11 +8,11 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 
-public class ChangePasswordActivity extends BaseActivity implements View.OnClickListener,MyView.ChangePaswView{
+public class ChangePasswordActivity extends BaseActionBarActivity implements View.OnClickListener,MyView.ChangePaswView{
 
     private EditText mPasswordEt;
     private EditText mAgainEt;
@@ -39,7 +39,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initData() {
-
+        setTitle(R.string.change_password);
     }
 
     @Override

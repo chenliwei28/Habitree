@@ -9,11 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.habitree.xueshu.message.activity.PendingMattersActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/pending_matters"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pending_matters_lv"
         android:layout_width="match_parent"

@@ -1,8 +1,5 @@
 package com.habitree.xueshu.mine.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,12 +7,12 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ToastUtil;
 
-public class ChangePhoneActivity extends BaseActivity implements View.OnClickListener, RegisterView.AuthCodeView,RegisterView.ChangeBindView {
+public class ChangePhoneActivity extends BaseActionBarActivity implements View.OnClickListener, RegisterView.AuthCodeView,RegisterView.ChangeBindView {
 
     private EditText mNumEt;
     private TextView mSendTv;
@@ -48,7 +45,7 @@ public class ChangePhoneActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
-
+        setTitle(R.string.change_phone_number);
     }
 
     @Override

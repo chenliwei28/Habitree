@@ -1,7 +1,5 @@
 package com.habitree.xueshu.message.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,12 +11,12 @@ import com.habitree.xueshu.message.bean.Friend;
 import com.habitree.xueshu.message.presenter.FriendsPresenter;
 import com.habitree.xueshu.message.pview.FriendsView;
 import com.habitree.xueshu.message.pview.MessageView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.MessageManager;
 
 import java.util.List;
 
-public class AddFriendActivity extends BaseActivity implements View.OnClickListener,FriendsView.FriendsListView,UnFriendsAdapter.OnUnFriendClickListener,MessageView.SendMsgView{
+public class AddFriendActivity extends BaseActionBarActivity implements View.OnClickListener, FriendsView.FriendsListView, UnFriendsAdapter.OnUnFriendClickListener, MessageView.SendMsgView {
 
     private EditText mSearchEt;
     private ListView mFriendsLv;
@@ -53,13 +51,14 @@ public class AddFriendActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initData() {
+        setTitle(R.string.add_friends);
         showLoadingDialog();
-        mPresenter.getFriendsList(1,1,100,this);
+        mPresenter.getFriendsList(1, 1, 100, this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.wx_ll:
 
                 break;
@@ -79,8 +78,8 @@ public class AddFriendActivity extends BaseActivity implements View.OnClickListe
     public void onGetFriendsListSuccess(List<Friend> list) {
         mUnFriends = list;
         hideLoadingDialog();
-        if (mAdapter==null){
-            mAdapter = new UnFriendsAdapter(this,list);
+        if (mAdapter == null) {
+            mAdapter = new UnFriendsAdapter(this, list);
             mAdapter.setListener(this);
             mFriendsLv.setAdapter(mAdapter);
         }
@@ -95,10 +94,10 @@ public class AddFriendActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onAddClick(int position) {
         showLoadingDialog();
-        MessageManager.getManager().sendMessage(this,mUnFriends.get(position).mem_id,
+        MessageManager.getManager().sendMessage(this, mUnFriends.get(position).mem_id,
                 getString(R.string.be_friend_request),
                 getString(R.string.be_friend_request),
-                1,0,0,this);
+                1, 0, 0, this);
     }
 
     @Override

@@ -2,12 +2,14 @@ package com.habitree.xueshu.xs.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.util.AppManager;
@@ -20,6 +22,7 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
 
     private MyProgressDialog dialog;
     protected ActionBar actionBar;
+    public TextView tvTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
         android.support.v7.app.ActionBar.LayoutParams mP = (android.support.v7.app.ActionBar.LayoutParams) view.getLayoutParams();
         //设置title居中
         mP.gravity = mP.gravity & ~Gravity.HORIZONTAL_GRAVITY_MASK | Gravity.CENTER_HORIZONTAL;
-
+        tvTitle = view.findViewById(R.id.tvActionBarTitle);
         actionBar.setCustomView(view, mP);
     }
 
@@ -96,6 +99,14 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+    }
+
+    public void setTitle(@StringRes int title) {
+        tvTitle.setText(title);
+    }
+
+    public void setTitle(String title) {
+        tvTitle.setText(title);
     }
 
     @Override

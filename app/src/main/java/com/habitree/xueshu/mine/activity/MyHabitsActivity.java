@@ -6,19 +6,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.mine.adapter.MyHabitsAdapter;
 import com.habitree.xueshu.mine.fragment.HabitsFragment;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.view.NoScrollListView;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 
-public class MyHabitsActivity extends BaseActivity implements HabitView.HabitListView{
+public class MyHabitsActivity extends BaseActionBarActivity implements HabitView.HabitListView{
 
     private TabLayout mHabitsTl;
     private ViewPager mHabitsVp;
@@ -54,6 +50,7 @@ public class MyHabitsActivity extends BaseActivity implements HabitView.HabitLis
 
     @Override
     protected void initData() {
+        setTitle(R.string.my_habits);
         mHabitsVp.setAdapter(new HabitsFragmentAdapter(getSupportFragmentManager()));
         mHabitsTl.setupWithViewPager(mHabitsVp);
         mHabitsVp.setOffscreenPageLimit(3);

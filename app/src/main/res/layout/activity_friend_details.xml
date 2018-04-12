@@ -9,13 +9,6 @@
     android:orientation="vertical"
     tools:context="com.habitree.xueshu.message.activity.FriendDetailsActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:id="@+id/action_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/detail"
-        app:right_btn_text="@string/his_forest"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

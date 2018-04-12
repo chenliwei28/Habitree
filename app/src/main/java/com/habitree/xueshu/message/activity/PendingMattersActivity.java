@@ -9,12 +9,12 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.adapter.PendingMattersAdapter;
 import com.habitree.xueshu.message.bean.Message;
 import com.habitree.xueshu.message.pview.MessageView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.MessageManager;
 
 import java.util.List;
 
-public class PendingMattersActivity extends BaseActivity implements MessageView.MsgListView{
+public class PendingMattersActivity extends BaseActionBarActivity implements MessageView.MsgListView{
 
     private RecyclerView mListRv;
     private PendingMattersAdapter mAdapter;
@@ -36,7 +36,7 @@ public class PendingMattersActivity extends BaseActivity implements MessageView.
 
     @Override
     protected void initData() {
-
+        setTitle(R.string.pending_matters);
     }
 
     @Override

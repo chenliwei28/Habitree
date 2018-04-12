@@ -1,14 +1,12 @@
 package com.habitree.xueshu.mine.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.webkit.WebView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 
-public class AboutActivity extends BaseActivity {
+public class AboutActivity extends BaseActionBarActivity {
 
 
     @Override
@@ -29,6 +27,6 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        setTitle(R.string.about_app);
     }
 }

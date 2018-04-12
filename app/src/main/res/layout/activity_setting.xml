@@ -9,11 +9,6 @@
     android:background="@color/background"
     tools:context="com.habitree.xueshu.mine.activity.SettingActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/setting"/>
-
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/my_wallet_civ"
         android:layout_width="match_parent"

@@ -9,11 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.habitree.xueshu.mine.activity.AccountBindingActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/account_binding"/>
-
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/phone_civ"
         android:layout_width="match_parent"

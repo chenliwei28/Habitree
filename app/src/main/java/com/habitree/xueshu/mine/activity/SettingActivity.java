@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.CacheUtil;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.UserManager;
@@ -13,7 +13,7 @@ import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyDialog;
 import com.luck.picture.lib.tools.PictureFileUtils;
 
-public class SettingActivity extends BaseActivity implements View.OnClickListener {
+public class SettingActivity extends BaseActionBarActivity implements View.OnClickListener {
 
     private CustomItemView mMyWalletCiv;
     private CustomItemView mAccountBinding;
@@ -51,6 +51,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initData() {
+        setTitle(R.string.setting);
         mMyWalletCiv.setDetail(UserManager.getManager().getUser().wallet.balance);
     }
 

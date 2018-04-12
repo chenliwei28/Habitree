@@ -9,11 +9,6 @@
     android:orientation="vertical"
     tools:context="com.habitree.xueshu.punchcard.activity.HabitDetailActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:id="@+id/habit_detail_mab"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/habit_detail" />
 
     <ScrollView
         android:layout_width="match_parent"
