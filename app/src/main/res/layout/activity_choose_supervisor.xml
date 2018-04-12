@@ -9,11 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.habitree.xueshu.punchcard.activity.ChooseSupervisorActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/choose_supervisor"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"

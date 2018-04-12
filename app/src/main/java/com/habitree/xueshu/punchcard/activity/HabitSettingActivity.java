@@ -1,7 +1,6 @@
 package com.habitree.xueshu.punchcard.activity;
 
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -12,17 +11,19 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
-import com.habitree.xueshu.xs.view.MyActionBar;
 
 import java.util.Date;
 
-public class HabitSettingActivity extends BaseActivity implements View.OnClickListener{
+/**
+ * 习惯设置
+ */
+public class HabitSettingActivity extends BaseActionBarActivity implements View.OnClickListener{
 
     private EditText mDescribeEt;
     private CustomItemView mRemindCiv;
@@ -79,6 +80,7 @@ public class HabitSettingActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initData() {
+        setTitle(R.string.habit_setting);
         mTreeId = getIntent().getIntExtra(Constant.CODE,1);
         mPrivacyType = 2;
 //        mPrivacyCiv.setDetail(getString(R.string.only_you_can_see));

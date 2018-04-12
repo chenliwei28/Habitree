@@ -1,20 +1,23 @@
 package com.habitree.xueshu.punchcard.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
-import com.habitree.xueshu.xs.view.MyActionBar;
 
-public class RepeatDayActivity extends BaseActivity implements View.OnClickListener{
+/**
+ * 重复天数
+ */
+public class RepeatDayActivity extends BaseActionBarActivity implements View.OnClickListener{
 
-    private MyActionBar mDayMab;
     private CustomItemView mMondayCiv;
     private CustomItemView mTuesdayCiv;
     private CustomItemView mWednesdayCiv;
@@ -36,7 +39,6 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initView() {
-        mDayMab = findViewById(R.id.day_mab);
         mMondayCiv = findViewById(R.id.monday_civ);
         mTuesdayCiv = findViewById(R.id.tuesday_civ);
         mWednesdayCiv = findViewById(R.id.wednesday_civ);
@@ -55,9 +57,32 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
         mFridayCiv.setOnClickListener(this);
         mSaturdayCiv.setOnClickListener(this);
         mSundayCiv.setOnClickListener(this);
-        mDayMab.setRightTvClickListener(new View.OnClickListener() {
+    }
+
+    @Override
+    protected void initData() {
+        setTitle(R.string.repeat_day_count);
+        boolean[] b = getIntent().getBooleanArrayExtra(Constant.CODE);
+        if (b!=null){
+            mSundayCiv.setChecked(b[0]);
+            mMondayCiv.setChecked(b[1]);
+            mTuesdayCiv.setChecked(b[2]);
+            mWednesdayCiv.setChecked(b[3]);
+            mThursdayCiv.setChecked(b[4]);
+            mFridayCiv.setChecked(b[5]);
+            mSaturdayCiv.setChecked(b[6]);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_her, menu);
+        MenuItem item = menu.findItem(R.id.tvHerForest);
+        item.setTitle(R.string.complete);
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onMenuItemClick(MenuItem menuItem) {
                 boolean[] bs = new boolean[7];
                 bs[0] = mSundayCiv.mIsSelected;
                 bs[1] = mMondayCiv.mIsSelected;
@@ -72,22 +97,10 @@ public class RepeatDayActivity extends BaseActivity implements View.OnClickListe
                     setResult(Constant.NUM_110,new Intent(RepeatDayActivity.this,HabitSettingActivity.class).putExtra(Constant.TYPE,bs));
                     AppManager.getAppManager().finishActivity(RepeatDayActivity.this);
                 }
+                return false;
             }
         });
-    }
-
-    @Override
-    protected void initData() {
-        boolean[] b = getIntent().getBooleanArrayExtra(Constant.CODE);
-        if (b!=null){
-            mSundayCiv.setChecked(b[0]);
-            mMondayCiv.setChecked(b[1]);
-            mTuesdayCiv.setChecked(b[2]);
-            mWednesdayCiv.setChecked(b[3]);
-            mThursdayCiv.setChecked(b[4]);
-            mFridayCiv.setChecked(b[5]);
-            mSaturdayCiv.setChecked(b[6]);
-        }
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

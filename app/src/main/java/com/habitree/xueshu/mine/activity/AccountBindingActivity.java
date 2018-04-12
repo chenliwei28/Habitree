@@ -18,6 +18,9 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 账号绑定界面
+ */
 public class AccountBindingActivity extends BaseActionBarActivity implements View.OnClickListener,MyView.OauthBindView{
 
     private CustomItemView mPhoneCiv;

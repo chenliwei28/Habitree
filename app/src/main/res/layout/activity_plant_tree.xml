@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.habitree.xueshu.punchcard.activity.PlantTreeActivity">
-
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:id="@+id/plant_mab"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/plant_a_tree"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_below="@id/plant_mab"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -50,9 +44,8 @@
         android:id="@+id/card_vp"
         android:layout_width="match_parent"
         android:layout_height="325dp"
-        android:layout_below="@id/plant_mab"
-        android:layout_marginTop="130dp"
         android:clipToPadding="false"
+        android:layout_marginTop="20dp"
         android:paddingBottom="5dp"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
@@ -63,8 +56,6 @@
         style="@style/RectButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_margin="40dp"
         android:text="@string/confirm"/>
-</RelativeLayout>
+</LinearLayout>

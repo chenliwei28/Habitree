@@ -9,12 +9,6 @@
     android:background="@color/background"
     tools:context="com.habitree.xueshu.punchcard.activity.SupervisionSettingActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:id="@+id/super_mab"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/supervision_setting" />
-
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/super_civ"
         android:layout_width="match_parent"

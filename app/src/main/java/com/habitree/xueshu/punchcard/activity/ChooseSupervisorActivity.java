@@ -17,7 +17,7 @@ import com.habitree.xueshu.message.bean.Friend;
 import com.habitree.xueshu.message.presenter.FriendsPresenter;
 import com.habitree.xueshu.message.pview.FriendsView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CharacterParser;
 import com.habitree.xueshu.xs.util.CommUtil;
@@ -30,8 +30,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-
-public class ChooseSupervisorActivity extends BaseActivity implements FriendsView.FriendsListView{
+/**
+ * 选择监督人
+ */
+public class ChooseSupervisorActivity extends BaseActionBarActivity implements FriendsView.FriendsListView{
 
     private EditText mSearchEt;
     private ListView mFriendsLv;
@@ -98,6 +100,7 @@ public class ChooseSupervisorActivity extends BaseActivity implements FriendsVie
 
     @Override
     protected void initData() {
+        setTitle(R.string.choose_supervisor);
         showLoadingDialog();
         mPresenter.getFriendsList(2,1,100,this);
     }

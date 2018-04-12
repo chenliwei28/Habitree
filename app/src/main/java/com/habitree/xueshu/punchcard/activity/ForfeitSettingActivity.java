@@ -2,33 +2,31 @@ package com.habitree.xueshu.punchcard.activity;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.view.CustomRadioGroup;
-import com.habitree.xueshu.xs.view.MyActionBar;
 
 import java.util.List;
 
-public class ForfeitSettingActivity extends BaseActivity implements View.OnClickListener {
+/**
+ * 罚金设置
+ */
+public class ForfeitSettingActivity extends BaseActionBarActivity implements View.OnClickListener {
 
-    private MyActionBar mActionBar;
     private CustomRadioGroup mNumCrg;
     private EditText mSumEt;
     private TextView mNumTv;
@@ -57,27 +55,10 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
         mNumTv = findViewById(R.id.num_tv);
         mPayTv = findViewById(R.id.pay_tv);
         mNoteTv = findViewById(R.id.note_tv);
-        mActionBar = findViewById(R.id.action_bar);
     }
 
     @Override
     protected void initListener() {
-        mActionBar.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mTotalMoney == 0) {
-                    setResult(Constant.NUM_111);
-                    AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
-                } else {
-                    int per = (int) (mTotalMoney / (mTotalTimes * BaseApp.normalData.config.pay_rate));
-                    Intent intent = new Intent(ForfeitSettingActivity.this, SupervisionSettingActivity.class);
-                    intent.putExtra(Constant.NUMBER, mTotalMoney);
-                    intent.putExtra(Constant.POSITION, per);
-                    setResult(Constant.NUM_109, intent);
-                    AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
-                }
-            }
-        });
         mPayTv.setOnClickListener(this);
         int[] ids = {R.id.one, R.id.five, R.id.ten, R.id.fifteen, R.id.twenty, R.id.fifty};
         mList = BaseApp.normalData.habit_money;
@@ -136,9 +117,25 @@ public class ForfeitSettingActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initData() {
+        setTitle(R.string.penalty_settings);
         mTotalTimes = getIntent().getIntExtra(Constant.RECYCLE, 0);
         mNoteTv.setText(String.format(getString(R.string.forfeit_setting_long_text), mTotalTimes));
         mNumTv.setText(String.format(getString(R.string.summation_money), CommUtil.formatDigit(mTotalMoney, "0.00")));
+    }
+
+    @Override
+    public void onBackClick() {
+        if (mTotalMoney == 0) {
+            setResult(Constant.NUM_111);
+            AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
+        } else {
+            int per = (int) (mTotalMoney / (mTotalTimes * BaseApp.normalData.config.pay_rate));
+            Intent intent = new Intent(ForfeitSettingActivity.this, SupervisionSettingActivity.class);
+            intent.putExtra(Constant.NUMBER, mTotalMoney);
+            intent.putExtra(Constant.POSITION, per);
+            setResult(Constant.NUM_109, intent);
+            AppManager.getAppManager().finishActivity(ForfeitSettingActivity.this);
+        }
     }
 
     @Override
