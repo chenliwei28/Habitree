@@ -247,6 +247,10 @@
         <!--支付宝配置 结束-->
 
         <activity
+            android:name="com.luck.picture.lib.PictureSelectorActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
             android:name=".main.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">

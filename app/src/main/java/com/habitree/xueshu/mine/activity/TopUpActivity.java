@@ -19,14 +19,17 @@ import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.xs.Constant;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 
 import java.util.List;
 import java.util.Map;
 
-//充值
-public class TopUpActivity extends BaseActivity implements View.OnClickListener,PayView.PayWayView,PayView{
+/**
+ * 充值
+ */
+public class TopUpActivity extends BaseActionBarActivity implements View.OnClickListener,PayView.PayWayView,PayView{
 
     private EditText mNumEt;
     private LinearLayout mWxCheckLl;
@@ -64,6 +67,7 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void initData() {
+        setTitle(R.string.top_up);
         showLoadingDialog();
         mPayPresenter.getPayMode(this);
     }

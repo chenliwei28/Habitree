@@ -2,26 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@color/white">
+    android:layout_height="65dp"
+    android:background="@drawable/item_click_bg">
 
     <ImageView
         android:id="@+id/img_iv"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
-        tools:src="@drawable/ic_time"/>
+        tools:src="@drawable/ic_time" />
 
     <TextView
         android:id="@+id/title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:layout_toRightOf="@id/img_iv"
-        android:layout_centerVertical="true"
         android:textColor="@color/black_text"
-        android:textSize="15sp"
+        android:textSize="18sp"
         tools:text="提醒时间" />
 
     <LinearLayout
@@ -37,17 +37,17 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:textColor="@color/black_text"
-            android:textSize="15sp"
+            android:textSize="18sp"
             tools:text="21:00" />
 
         <ImageView
             android:id="@+id/next_iv"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:minWidth="6dp"
+            android:layout_height="50dp"
             android:layout_marginRight="12dp"
+            android:minWidth="10dp"
             android:src="@drawable/ic_next"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </LinearLayout>
 
     <View
