@@ -99,17 +99,32 @@
         <attr name="calendar_content_view_id" format="integer" />
     </declare-styleable>
 
+    <attr name="title" format="string"/>
+    <attr name="title_color" format="color|reference|integer"/>
+    <attr name="line_visible" format="boolean"/>
+    <attr name="head_img_visible" format="boolean"/>
+    <attr name="head_img" format="integer|reference"/>
     <declare-styleable name="CustomItemView">
-        <attr name="title" format="string"/>
+        <attr name="title"/>
+        <attr name="title_color"/>
+        <attr name="line_visible" />
         <attr name="detail_text" format="string"/>
         <attr name="detail_text_color" format="color|integer|reference"/>
-        <attr name="title_color" format="color|reference|integer"/>
-        <attr name="line_visible" format="boolean"/>
         <attr name="next_visible" format="boolean"/>
         <attr name="detail_visible" format="boolean"/>
-        <attr name="head_img_visible" format="boolean"/>
+        <attr name="head_img_visible"/>
         <attr name="next_img" format="integer|reference"/>
-        <attr name="head_img" format="integer|reference"/>
+        <attr name="head_img"/>
     </declare-styleable>
 
+    <declare-styleable name="ToggleItemView">
+        <attr name="title" />
+        <attr name="title_color"/>
+        <attr name="line_visible" />
+        <attr name="head_img_visible" />
+        <attr name="head_img" />
+        <attr name="open_drawable" format="reference" />
+        <attr name="close_drawable" format="reference" />
+        <attr name="isopen" format="boolean" />
+    </declare-styleable>
 </resources>

@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         navigationView = findViewById(R.id.navigation);
-
     }
 
     @Override
@@ -62,7 +61,7 @@ public class MainActivity extends BaseActivity {
             startActivity(new Intent(this, LoginActivity.class));
             AppManager.getAppManager().finishActivity(this);
         }else {
-            changeTab(0);
+            changeTab(null,0);
             registerEMConnectionListener();
             EMClient.getInstance().chatManager().loadAllConversations();
             EMClient.getInstance().groupManager().loadAllGroups();
@@ -74,29 +73,40 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
             switch (item.getItemId()) {
                 case R.id.navigation_habit:
-                    changeTab(0);
+                    changeTab(item,0);
                     return true;
                 case R.id.navigation_msg:
-                    changeTab(1);
+                    changeTab(item,1);
                     return true;
                 case R.id.navigation_mine:
-                    changeTab(2);
+                    changeTab(item,2);
                     return true;
             }
             return false;
         }
     };
 
-    private void changeTab(int position) {
+    private void resetToDefaultIcon() {
+        MenuItem habit =  navigationView.getMenu().findItem(R.id.navigation_habit);
+        habit.setIcon(R.drawable.ic_habit_normal);
+        MenuItem msg =  navigationView.getMenu().findItem(R.id.navigation_msg);
+        msg.setIcon(R.drawable.ic_message_normal);
+        MenuItem mine =  navigationView.getMenu().findItem(R.id.navigation_mine);
+        mine.setIcon(R.drawable.ic_my_normal);
+    }
+
+    private void changeTab(MenuItem item ,int position) {
+        resetToDefaultIcon();
         transaction = getSupportFragmentManager().beginTransaction();
         hideFragment(transaction);
         mCurrentTab = position;
 
         try {
+            item = item == null ? navigationView.getMenu().findItem(R.id.navigation_habit):item;
             if (position == 0) {
+                item.setIcon(R.drawable.ic_habit_selected);
                 if (mPcFragment != null) {
                     transaction.show(mPcFragment);
                 } else {
@@ -105,6 +115,7 @@ public class MainActivity extends BaseActivity {
                 }
                 UIUtil.setStatusBar(this,getResources().getColor(R.color.trans));
             } else if (position == 1) {
+                item.setIcon(R.drawable.ic_message_selected);
                 if (mMsFragment != null) {
                     transaction.show(mMsFragment);
                 } else {
@@ -113,6 +124,7 @@ public class MainActivity extends BaseActivity {
                 }
                 UIUtil.setStatusBar(this,getResources().getColor(R.color.blue));
             } else if (position == 2) {
+                item.setIcon(R.drawable.ic_my_selected);
                 if (mMeFragment != null) {
                     transaction.show(mMeFragment);
                 } else {
