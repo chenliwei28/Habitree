@@ -9,13 +9,6 @@
     android:orientation="vertical"
     tools:context="com.habitree.xueshu.punchcard.activity.SendRecordActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:id="@+id/send_mab"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:right_btn_text="@string/send"
-        app:title_text="@string/send_card_record" />
-
     <TextView
         android:id="@+id/super_tv"
         android:layout_width="match_parent"

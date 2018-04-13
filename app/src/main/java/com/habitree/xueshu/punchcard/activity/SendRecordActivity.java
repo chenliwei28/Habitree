@@ -5,15 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.activity.FriendDetailsActivity;
+import com.habitree.xueshu.message.activity.FriendForestActivity;
 import com.habitree.xueshu.punchcard.adapter.PhotoGridAdapter;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.MyActionBar;
@@ -27,9 +33,11 @@ import com.luck.picture.lib.entity.LocalMedia;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SendRecordActivity extends BaseActivity implements HabitView.SendRecordView{
+/**
+ * 发送打卡记录
+ */
+public class SendRecordActivity extends BaseActionBarActivity implements HabitView.SendRecordView{
 
-    private MyActionBar mSendMab;
     private TextView mSuperTv;
     private EditText mDetailEt;
     private TextView mPhotoTitleTv;
@@ -57,7 +65,6 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
 
     @Override
     protected void initView() {
-        mSendMab = findViewById(R.id.send_mab);
         mSuperTv = findViewById(R.id.super_tv);
         mDetailEt = findViewById(R.id.detail_et);
         mPhotoRv = findViewById(R.id.photo_rv);
@@ -67,22 +74,11 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
 
     @Override
     protected void initListener() {
-        mSendMab.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showExitDialog();
-            }
-        });
-        mSendMab.setRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showUploadDialog();
-            }
-        });
     }
 
     @Override
     protected void initData() {
+        setTitle(R.string.send_card_record);
         mHabitId = getIntent().getIntExtra(Constant.ID,0);
         mState = getIntent().getIntExtra(Constant.TYPE,2);
         switch (mState){
@@ -116,6 +112,27 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
             }
         });
         mPhotoRv.setAdapter(mAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_her, menu);
+        MenuItem item = menu.findItem(R.id.tvHerForest);
+        item.setTitle(R.string.send);
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                showUploadDialog();
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackClick() {
+        showExitDialog();
     }
 
     @Override

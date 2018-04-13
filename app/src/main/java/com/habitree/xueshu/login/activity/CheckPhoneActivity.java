@@ -66,13 +66,13 @@ public class CheckPhoneActivity extends BaseActionBarActivity implements OnClick
     @Override
     public void onClick(View view) {
         int vid = view.getId();
+        phone = mPhoneEt.getText().toString();
         if (vid == R.id.next_btn) {
             // 下一步
             if(AuthCodeTimer.getInstance().isTiming() && phone.equals(mPhoneEt.getText().toString())){
                 RegisterActivity.start(this,phone);
             }
             else{
-                phone = mPhoneEt.getText().toString();
                 showLoadingDialog();
                 mPresenter.sendAuthCode(phone, SMSType.REGISTER, this);
             }

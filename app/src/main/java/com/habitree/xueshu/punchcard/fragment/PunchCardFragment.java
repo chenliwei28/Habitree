@@ -110,7 +110,9 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                 @Override
                 public void punchClick(int position) {
                     HabitListResponse.Data.Habit habit = mHabits.list.get(position);
-                    SendRecordActivity.start(getContext(), habit.habit_id, habit.record_type, habit.check_meminfo.nickname);
+                    if(habit.check_meminfo != null){
+                        SendRecordActivity.start(getContext(), habit.habit_id, habit.record_type, habit.check_meminfo.nickname);
+                    }
                 }
             });
             mCardVp.setAdapter(mAdapter);
