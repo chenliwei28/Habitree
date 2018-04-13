@@ -20,10 +20,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../signKey/keystore_habitree.jks")
-            storePassword 'XUEshu1024'
-            keyAlias 'habitree'
-            keyPassword 'XUEshu1024'
+            storeFile file("../app/smart_home_key.jks")
+            keyAlias 'netvox'
+            keyPassword 'netvox2013'
+            storePassword 'netvox'
         }
 
         debug {
@@ -42,9 +42,8 @@ android {
         }
 
         debug {
-            minifyEnabled false
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            ext.alwaysUpdateBuildId = false
         }
     }
     useLibrary 'org.apache.http.legacy'
@@ -80,7 +79,6 @@ dependencies {
     implementation files('libs/umeng-analytics-7.4.4.jar')
     implementation files('libs/SocialSDK_QQ_Simplify.jar')
     implementation files('libs/SocialSDK_Sina_Simplify.jar')
-    implementation files('libs/SocialSDK_WeChat_Simplify.jar')
     implementation files('libs/umeng_shareboard_widget.jar')
     implementation files('libs/umeng_social_api.jar')
     implementation files('libs/umeng_social_net.jar')
@@ -88,4 +86,5 @@ dependencies {
     implementation files('libs/umeng_social_shareview.jar')
     implementation files('libs/umeng_social_tool.jar')
     implementation files('libs/alipaySdk-20180403.jar')
+    implementation files('libs/SocialSDK_WeChat_Simplify.jar')
 }

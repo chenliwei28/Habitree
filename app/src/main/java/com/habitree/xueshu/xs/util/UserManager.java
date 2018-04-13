@@ -58,6 +58,7 @@ public class UserManager {
     public void updateUserHead(String imageUrl){
         user.portrait = imageUrl;
         user.update(1);
+        saveUser(user);
     }
 
     public void updateUserGenderAndBirth(int gender,int birthday){
@@ -69,6 +70,7 @@ public class UserManager {
     public void updateUserNickname(String nickname){
         user.nickname = nickname;
         user.update(1);
+        saveUser(user);
     }
 
     public void updateUserWallet(Wallet balance){
