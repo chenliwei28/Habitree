@@ -88,6 +88,7 @@ public class LoginActivity extends BaseActivity implements LoginView,OnClickList
         switch (vid){
             case R.id.login_btn:
                 UIUtil.startActivity(this,LoginDetailActivity.class);
+                AppManager.getAppManager().finishActivity(this);
                 break;
             case R.id.register_btn:
                 // 注册

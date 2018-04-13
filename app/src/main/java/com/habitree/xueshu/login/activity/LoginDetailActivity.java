@@ -184,6 +184,11 @@ public class LoginDetailActivity extends BaseActionBarActivity implements Regist
     }
 
     @Override
+    public void onBackClick() {
+        UIUtil.startActivity(this,LoginActivity.class);
+    }
+
+    @Override
     public void onSendSuccess() {
         // 发送验证码
         timer.reStart();

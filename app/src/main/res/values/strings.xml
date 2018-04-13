@@ -268,6 +268,7 @@
     <string name="network_error">系统异常，请稍后再试</string>
     <string name="bind_account_remind_long_text">为确保提现准时到账，请务必填写正确的账号信息和真实姓名！</string>
     <string name="forget_password_link"><u>忘记密码?</u></string>
+    <string name="my_friends">我的好友</string>
     <!--Y-->
     <string name="auth_code">验证码</string>
     <string name="onBind">已绑定</string>

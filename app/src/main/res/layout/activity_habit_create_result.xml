@@ -9,12 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.habitree.xueshu.punchcard.activity.HabitCreateResultActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:id="@+id/result_ma"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/create_success"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -129,7 +123,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/wb_ll"
+                    android:id="@+id/friends_ll"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -139,12 +133,12 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/s_wb"/>
+                        android:src="@drawable/s_friends"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/sina_blog"
+                        android:text="@string/my_friends"
                         android:textColor="@color/gray_text"/>
                 </LinearLayout>
             </LinearLayout>
@@ -152,8 +146,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="70dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="30dp">
 
@@ -194,6 +188,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/qzone"
+                        android:textColor="@color/gray_text"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wb_ll"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/s_wb"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sina_blog"
                         android:textColor="@color/gray_text"/>
                 </LinearLayout>
             </LinearLayout>

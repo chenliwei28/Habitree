@@ -31,6 +31,10 @@ public class ImageUtil {
         Glide.with(activity).load(url).apply(options).into(imageView);
     }
 
+    public static void loadImage(Context context, String url, ImageView imageView,int defaultId){
+        RequestOptions options = new RequestOptions().placeholder(defaultId);
+        Glide.with(context).load(url).apply(options).into(imageView);
+    }
     public static void loadImage(Fragment fragment, String url, ImageView imageView,int defaultId){
         RequestOptions options = new RequestOptions().placeholder(defaultId);
         Glide.with(fragment).load(url).apply(options).into(imageView);

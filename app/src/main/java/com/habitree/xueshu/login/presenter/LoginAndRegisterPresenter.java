@@ -85,7 +85,11 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                             JPushInterface.setAlias(mContext, Constant.NUM_110, String.valueOf(response.body().data.mem_id));
                             EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, false);
                         } else {
-                            view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
+                            if(response.body() != null){
+                                view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }else{
+                                view.onLoginFailed(mContext.getString(R.string.network_error));
+                            }
                         }
                     }
 

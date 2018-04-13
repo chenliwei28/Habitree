@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tree_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rect_round_corner_green_bg"
+        android:ellipsize="end"
+        android:maxLength="6"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="2dp"
+        tools:text="夜跑啪啪啪啪啪啪哈哈哈"/>
+
+    <ImageView
+        android:id="@+id/tree_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tree_mid2"
+        android:layout_marginTop="5dp"/>
+</LinearLayout>
