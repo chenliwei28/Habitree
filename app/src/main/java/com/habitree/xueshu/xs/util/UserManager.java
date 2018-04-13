@@ -3,6 +3,7 @@ package com.habitree.xueshu.xs.util;
 
 import com.habitree.xueshu.login.bean.OAuth;
 import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.mine.bean.Wallet;
 
 import org.litepal.crud.DataSupport;
@@ -84,5 +85,27 @@ public class UserManager {
         DataSupport.saveAll(auth);
         user.mem_oauth = auth;
         user.update(1);
+    }
+
+    public User updateMyInfo(FriendInfoResponse.FriendDetail detail){
+        user.nickname = detail.nickname;
+        user.email = detail.email;
+        user.mobile = detail.mobile;
+        user.username = detail.username;
+        user.status = detail.status;
+        user.reg_time = detail.reg_time;
+        user.update_time = detail.update_time;
+        user.portrait = detail.portrait;
+        user.portrait_review = detail.portrait_review;
+        user.is_official = detail.is_official;
+        user.habit_cnt = detail.habit_cnt;
+        user.expire_time = detail.expire_time;
+        user.sign_cnt = String.valueOf(detail.sign_cnt);
+        user.sign_rate = detail.sign_rate;
+        user.going_cnt = detail.going_cnt;
+        user.finish_cnt = detail.finish_cnt;
+        user.update(1);
+        saveUser(user);
+        return user;
     }
 }

@@ -14,6 +14,10 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
+import com.habitree.xueshu.message.bean.FriendInfoResponse;
+import com.habitree.xueshu.message.presenter.FriendsPresenter;
+import com.habitree.xueshu.message.pview.FriendsView;
 import com.habitree.xueshu.mine.activity.MyHabitsActivity;
 import com.habitree.xueshu.mine.activity.MyInfoActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
@@ -30,7 +34,7 @@ import com.habitree.xueshu.xs.view.RoundImageView;
 
 import java.util.List;
 
-public class MyFragment extends BaseFragment implements HabitView.HabitListView,View.OnClickListener,MyView.OnTreeClickListener{
+public class MyFragment extends BaseFragment implements HabitView.HabitListView,View.OnClickListener,FriendsView.FriendInfoView,MyView.OnTreeClickListener{
 
     private TextView mNameTv;
     private ImageView mHabitIv;
@@ -52,6 +56,7 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
     private RelativeLayout mNameRl;
     private ViewPager mTreeVp;
     private Fragment[] mFragments;
+    private FriendsPresenter mInfoPresenter;
     private HabitPresenter mPresenter;
     private List<HabitListResponse.Data.Habit> mHabits;
     private HabitListResponse.Data.Habit mCurrentHabit;
@@ -83,6 +88,7 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         mNameRl = view.findViewById(R.id.name_rl);
         mPaddingTv = view.findViewById(R.id.padding_tv);
         mPresenter = new HabitPresenter(getContext());
+        mInfoPresenter = new FriendsPresenter(getContext());
     }
 
     @Override
@@ -187,6 +193,8 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         mCompletedTv.setText(String.format(getString(R.string.num_number),user.finish_cnt));
         mOngoingTv.setText(String.format(getString(R.string.num_number),user.going_cnt));
         mPresenter.getMyHabitList(0,this);
+        // 获取自己的最新信息
+        mInfoPresenter.getFriendInfo(user.mem_id,this);
     }
 
     @Override
@@ -202,6 +210,26 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
     public void onListGetFailed(String reason) {
         hideLoadingDialog();
         showToast(reason);
+    }
+
+    @Override
+    public void onInfoGetSuccess(FriendInfoResponse.FriendDetail detail) {
+        // 用户信息
+        if(detail != null){
+            User user = UserManager.getManager().updateMyInfo(detail);
+            mNameTv.setText(user.nickname);
+            ImageUtil.loadImage(getActivity(),user.portrait,mHeadRiv);
+            mDaysTv.setText(String.format(getString(R.string.num_days),user.join_days));
+            mCountTv.setText(user.sign_cnt+"次");
+            mRateTv.setText(String.valueOf(user.sign_rate));
+            mCompletedTv.setText(String.format(getString(R.string.num_number),user.finish_cnt));
+            mOngoingTv.setText(String.format(getString(R.string.num_number),user.going_cnt));
+        }
+    }
+
+    @Override
+    public void onInfoGetFailed(String reason) {
+
     }
 
     private class TreePagerAdapter extends FragmentPagerAdapter{
