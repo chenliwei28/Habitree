@@ -39,6 +39,18 @@ public class TimeUtil {
     }
 
     /**
+     * 将秒数转换为日时分秒，
+     * @param second
+     * @return
+     */
+    public static String secondToTime(long second){
+        long hours = second / 3600;            //转换小时
+        second = second % 3600;                //剩余秒数
+        long minutes = second /60;            //转换分钟
+        return hours+":"+minutes;
+    }
+
+    /**
      * 将时间转换为时间戳
      */
     public static String dateToStamp(String s) throws ParseException {
@@ -61,7 +73,7 @@ public class TimeUtil {
         return new SimpleDateFormat(type,Locale.CHINA).format(date);
     }
 
-    /**
+    /**50400
      * 获取相应时间的秒数
      * @param time 时间，必须是HH：mm ，如21:00
      * @return 总秒数，如 00:02 返回 120s
