@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.AliPayResult;
+import com.habitree.xueshu.mine.bean.AuthResult;
 import com.habitree.xueshu.mine.bean.PayWayResponse;
 import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.mine.pview.PayView;

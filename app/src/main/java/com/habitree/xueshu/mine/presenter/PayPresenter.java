@@ -10,12 +10,10 @@ import com.alipay.sdk.app.PayTask;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.QueryOrderResponse;
 import com.habitree.xueshu.mine.bean.TopUpOrderResponse;
-import com.habitree.xueshu.mine.bean.TopUpPayResponse;
 import com.habitree.xueshu.mine.bean.WithdrawOrderResponse;
 import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.mine.bean.PayWayResponse;
-import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.presenter.BasePresenter;
 import com.habitree.xueshu.xs.util.CommUtil;
@@ -30,6 +28,9 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.habitree.xueshu.xs.Constant.RSA2_PRIVATE;
+import static com.habitree.xueshu.xs.Constant.RSA_PRIVATE;
 
 
 public class PayPresenter extends BasePresenter {
@@ -117,7 +118,7 @@ public class PayPresenter extends BasePresenter {
     }
 
     //提现预下单
-    public void withdrawCreateOrder(String amount) {
+    public void withdrawCreateOrder(String amount, final PayView.WithdrawView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService().withdrawCreateOrder(timestamp, CommUtil.getSign(Constant.WITHDRAW_CREATE_ORDER_FUNCTION, timestamp),
                 UserManager.getManager().getUser().user_token, amount)
@@ -125,13 +126,17 @@ public class PayPresenter extends BasePresenter {
                     @Override
                     public void onResponse(Call<WithdrawOrderResponse> call, Response<WithdrawOrderResponse> response) {
                         if (response.body() != null) {
-
+                            if (CommUtil.isSuccess(mContext,response.body().status)){
+                                view.onWithdrawSuccess();
+                            }else {
+                                view.onWithdrawFailed(CommUtil.unicode2Chinese(response.body().info));
+                            }
                         }
                     }
 
                     @Override
                     public void onFailure(Call<WithdrawOrderResponse> call, Throwable t) {
-
+                        view.onWithdrawFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }
@@ -185,11 +190,11 @@ public class PayPresenter extends BasePresenter {
     }
 
     public void startAliPay(String orderId, String amount,String title,final Handler handler) {
-        boolean rsa2 = (Constant.RSA2_PRIVATE.length() > 0);
+        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
         Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(Constant.ALI_PAY_APP_ID, orderId,amount,title,rsa2);
         String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
-        String privateKey = rsa2 ? Constant.RSA2_PRIVATE : Constant.RSA_PRIVATE;
+        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
         String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
         final String orderInfo = orderParam + "&" + sign;
 

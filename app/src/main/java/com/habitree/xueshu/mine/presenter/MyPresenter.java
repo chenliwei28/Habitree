@@ -1,8 +1,12 @@
 package com.habitree.xueshu.mine.presenter;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 
+import com.alipay.sdk.app.AuthTask;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.BindWithdrawAccountResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
@@ -21,12 +25,18 @@ import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.presenter.BasePresenter;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.HttpManager;
+import com.habitree.xueshu.xs.util.OrderInfoUtil2_0;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UserManager;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.habitree.xueshu.xs.Constant.RSA2_PRIVATE;
+import static com.habitree.xueshu.xs.Constant.RSA_PRIVATE;
 
 public class MyPresenter extends BasePresenter{
 
@@ -288,7 +298,7 @@ public class MyPresenter extends BasePresenter{
                     public void onResponse(Call<WithdrawBindListResponse> call, Response<WithdrawBindListResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(mContext,response.body().status)){
-                                view.onGetListSuccess(response.body().data==null?null:response.body().data.list);
+                                view.onGetListSuccess(response.body().data);
                             }else {
                                 view.onGetListFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
@@ -300,5 +310,35 @@ public class MyPresenter extends BasePresenter{
                         view.onGetListFailed(mContext.getString(R.string.network_error));
                     }
                 });
+    }
+
+    //调用支付宝登录授权
+    public void bindAliAccount(final Handler handler){
+        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
+        Map<String, String> authInfoMap = OrderInfoUtil2_0.buildAuthInfoMap(Constant.ALI_AUTH_PID, Constant.ALI_PAY_APP_ID, UserManager.getManager().getUser().user_token, rsa2);
+        String info = OrderInfoUtil2_0.buildOrderParam(authInfoMap);
+
+        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
+        String sign = OrderInfoUtil2_0.getSign(authInfoMap, privateKey, rsa2);
+        final String authInfo = info + "&" + sign;
+        Runnable authRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                // 构造AuthTask 对象
+                AuthTask authTask = new AuthTask((Activity) mContext);
+                // 调用授权接口，获取授权结果
+                Map<String, String> result = authTask.authV2(authInfo, true);
+
+                Message msg = new Message();
+                msg.what = 2;
+                msg.obj = result;
+                handler.sendMessage(msg);
+            }
+        };
+
+        // 必须异步调用
+        Thread authThread = new Thread(authRunnable);
+        authThread.start();
     }
 }

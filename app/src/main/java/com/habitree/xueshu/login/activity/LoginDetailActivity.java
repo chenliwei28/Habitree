@@ -173,8 +173,8 @@ public class LoginDetailActivity extends BaseActionBarActivity implements Regist
         }
         hideLoadingDialog();
         showToast(getString(R.string.login_success));
+        AppManager.getAppManager().finishAllActivity();
         startActivity(new Intent(this, MainActivity.class));
-        AppManager.getAppManager().finishActivity(this);
     }
 
     @Override
