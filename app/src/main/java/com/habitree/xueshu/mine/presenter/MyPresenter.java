@@ -288,7 +288,7 @@ public class MyPresenter extends BasePresenter{
                     public void onResponse(Call<WithdrawBindListResponse> call, Response<WithdrawBindListResponse> response) {
                         if (response.body()!=null){
                             if (CommUtil.isSuccess(mContext,response.body().status)){
-                                view.onGetListSuccess(response.body().data.list);
+                                view.onGetListSuccess(response.body().data==null?null:response.body().data.list);
                             }else {
                                 view.onGetListFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
