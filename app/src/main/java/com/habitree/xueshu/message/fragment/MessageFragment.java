@@ -29,8 +29,11 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 import com.yanzhenjie.recyclerview.swipe.widget.DefaultItemDecoration;
 
+import java.util.Observable;
+import java.util.Observer;
 
-public class MessageFragment extends BaseFragment implements View.OnClickListener, MessageView.CvsListView {
+
+public class MessageFragment extends BaseFragment implements View.OnClickListener, MessageView.CvsListView,Observer {
 
     private ImageView mFriendsIv;
     private ImageView mAddIv;
@@ -53,6 +56,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void initListener() {
+        MessageManager.getManager().addObserver(this);
         mFriendsIv.setOnClickListener(this);
         mAddIv.setOnClickListener(this);
         mMessageLv.setSwipeItemClickListener(new SwipeItemClickListener() {
@@ -144,5 +148,10 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     public void onInfoGetFailed(String reason) {
         hideLoadingDialog();
         showToast(reason);
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        updateData();
     }
 }

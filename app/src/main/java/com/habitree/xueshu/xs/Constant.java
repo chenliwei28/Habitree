@@ -2,9 +2,10 @@ package com.habitree.xueshu.xs;
 
 
 public class Constant {
-    public final static String HOST = "http://tapi.habitree.cn/";
-    public final static String ABOUT = HOST + "news/about";
     public final static String NEW_HOST = "http://capi.habitree.cn/";
+    public final static String OLD_HOST = "http://tapi.habitree.cn/";
+    public final static String HOST = NEW_HOST;
+    public final static String ABOUT = HOST + "news/about";
 
     public final static String ID = "id";
     public final static String PHONE = "phone";

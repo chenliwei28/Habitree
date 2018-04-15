@@ -6,10 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.habitree.xueshu.message.activity.FriendForestActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/tree_vp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <include layout="@layout/include_trees_layout"/>
 
     <com.habitree.xueshu.xs.view.MyActionBar
         android:layout_width="match_parent"

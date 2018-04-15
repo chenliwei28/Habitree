@@ -39,6 +39,23 @@ public class TimeUtil {
     }
 
     /**
+     * 时间秒数转换成HH:mm
+     * @param seconds 秒数
+     * @return HH:mm
+     */
+    public static String millisToString(int seconds){
+        int M = seconds/60;
+        int h = M/60;
+        int m = M-h*60;
+        String hh,mm;
+        if (h<10) hh = "0"+h;
+        else hh = String.valueOf(h);
+        if (m<10) mm = "0"+m;
+        else mm = String.valueOf(m);
+        return hh+":"+mm;
+    }
+
+    /**
      * 将时间转换为时间戳
      */
     public static String dateToStamp(String s) throws ParseException {

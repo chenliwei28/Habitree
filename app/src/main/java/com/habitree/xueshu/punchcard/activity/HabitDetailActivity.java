@@ -186,7 +186,7 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
         String count = detail.now_days+"/"+detail.recycle_days;
         mCountTv.setText(count);
         mSuperCiv.setDetail(detail.check_meminfo==null?"":detail.check_meminfo.nickname);
-        mReminderCiv.setDetail(TimeUtil.millisToString("HH:mm",detail.remind_time));
+        mReminderCiv.setDetail(TimeUtil.millisToString(detail.remind_time));
         String rs = detail.recycle;
         boolean[] b = new boolean[7];
         String[] wes = {"日","一","二","三","四","五","六"};

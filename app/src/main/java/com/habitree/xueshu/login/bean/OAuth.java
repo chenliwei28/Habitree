@@ -16,13 +16,4 @@ public class OAuth extends DataSupport{
     public int mem_id;
     public int status;
     public String openid;
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

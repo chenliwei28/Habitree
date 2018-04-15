@@ -18,6 +18,7 @@ import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.MainHandler;
+import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.hyphenate.EMConnectionListener;
@@ -47,7 +48,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         navigationView = findViewById(R.id.navigation);
-
     }
 
     @Override
@@ -195,7 +195,7 @@ public class MainActivity extends BaseActivity {
     private EMMessageListener mMessageListener = new EMMessageListener() {
         @Override
         public void onMessageReceived(List<EMMessage> list) {
-            mMsFragment.updateData();
+            MessageManager.getManager().onNewMessage();
         }
 
         @Override
@@ -228,5 +228,13 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         EMClient.getInstance().chatManager().removeMessageListener(mMessageListener);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        registerEMConnectionListener();
+        EMClient.getInstance().chatManager().loadAllConversations();
+        EMClient.getInstance().groupManager().loadAllGroups();
     }
 }

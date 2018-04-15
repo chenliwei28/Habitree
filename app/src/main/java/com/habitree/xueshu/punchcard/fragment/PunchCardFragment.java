@@ -95,7 +95,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mDateTv.setText(TimeUtil.getTodayInfo(Calendar.DATE));
         String s = TimeUtil.getTodayInfo(Calendar.YEAR) + "·" + TimeUtil.getTodayInfo(Calendar.MONTH);
         mMonthTv.setText(s);
-        mPresenter.getMyHabitList(1, this);
+        mPresenter.getMyHabitList(1, 1,this);
     }
 
     private void initCardViewPager() {

@@ -54,9 +54,9 @@ public class MyHabitsActivity extends BaseActionBarActivity implements HabitView
         mHabitsVp.setAdapter(new HabitsFragmentAdapter(getSupportFragmentManager()));
         mHabitsTl.setupWithViewPager(mHabitsVp);
         mHabitsVp.setOffscreenPageLimit(3);
-        mPresenter.getMyHabitList(1,this);
-        mPresenter.getMyHabitList(2,this);
-        mPresenter.getMyHabitList(3,this);
+        mPresenter.getMyHabitList(1,3,this);
+        mPresenter.getMyHabitList(2,3,this);
+        mPresenter.getMyHabitList(3,3,this);
     }
 
     @Override
