@@ -28,7 +28,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-public class MyFriendsActivity extends BaseActionBarActivity implements View.OnClickListener,FriendsView.FriendsListView{
+/**
+ * 好友界面
+ */
+public class MyFriendsActivity extends BaseActionBarActivity implements View.OnClickListener, FriendsView.FriendsListView {
 
     private EditText mSearchEt;
     private ListView mFriendsLv;
@@ -82,7 +85,7 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
         mFriendsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(MyFriendsActivity.this,FriendDetailsActivity.class).putExtra(Constant.ID,((Friend)mAdapter.getItem(position)).mem_id));
+                startActivity(new Intent(MyFriendsActivity.this, FriendDetailsActivity.class).putExtra(Constant.ID, ((Friend) mAdapter.getItem(position)).mem_id));
             }
         });
     }
@@ -91,11 +94,11 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
     protected void initData() {
         setTitle(R.string.friend);
         showLoadingDialog();
-        mPresenter.getFriendsList(2,1,100,this);
+        mPresenter.getFriendsList(2, 1, 100, this);
     }
 
-    private void initFriendList(){
-        for (Friend friend:mFriends){
+    private void initFriendList() {
+        for (Friend friend : mFriends) {
             friend.letter = CommUtil.getLetter(friend.nickname);
         }
         Collections.sort(mFriends, new Comparator<Friend>() {
@@ -106,14 +109,14 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
         });
     }
 
-    private List<Friend> changeFriendList(String s){
+    private List<Friend> changeFriendList(String s) {
         List<Friend> list = new ArrayList<>();
-        if (TextUtils.isEmpty(s))return mFriends;
+        if (TextUtils.isEmpty(s)) return mFriends;
         else {
             list.clear();
-            for (Friend friend:mFriends){
+            for (Friend friend : mFriends) {
                 if (friend.nickname.toUpperCase().contains(s.toUpperCase())
-                        || CharacterParser.getInstance().getSelling(friend.nickname).toUpperCase().startsWith(s.toUpperCase())){
+                        || CharacterParser.getInstance().getSelling(friend.nickname).toUpperCase().startsWith(s.toUpperCase())) {
                     list.add(friend);
                 }
             }
@@ -129,7 +132,7 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.wx_ll:
 
                 break;
@@ -149,10 +152,10 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
     public void onGetFriendsListSuccess(List<Friend> list) {
         mFriends = list;
         initFriendList();
-        if (mAdapter==null){
-            mAdapter = new FriendsAdapter(this,mFriends);
+        if (mAdapter == null) {
+            mAdapter = new FriendsAdapter(this, mFriends);
             mFriendsLv.setAdapter(mAdapter);
-        }else {
+        } else {
             mAdapter.updateData(mFriends);
         }
         hideLoadingDialog();

@@ -9,13 +9,6 @@
     android:background="@color/background"
     tools:context="com.habitree.xueshu.punchcard.activity.RepeatDayActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:id="@+id/day_mab"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title_text="@string/repeat_day_count"
-        app:right_btn_text="@string/complete"/>
-
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/monday_civ"
         android:layout_width="match_parent"

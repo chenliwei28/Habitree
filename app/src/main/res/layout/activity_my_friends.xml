@@ -34,6 +34,7 @@
             android:labelFor="@+id/search_et"
             android:maxLines="1"
             android:textColor="@color/black_text"
+            android:textCursorDrawable="@null"
             android:textSize="15sp" />
     </LinearLayout>
 

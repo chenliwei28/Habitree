@@ -203,6 +203,8 @@ public class HabitPresenter extends BasePresenter {
                             }else {
                                 view.onRecordSendFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
+                        }else{
+                            view.onRecordSendFailed(mContext.getString(R.string.network_error));
                         }
                     }
 
