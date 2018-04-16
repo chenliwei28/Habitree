@@ -90,7 +90,7 @@ public class SendRecordActivity extends BaseActionBarActivity implements HabitVi
                 break;
         }
         mSuperTv.setText(String.format(getString(R.string.send_card_record_to_someone), getIntent().getStringExtra(Constant.NAME)));
-        mPhotoRv.setLayoutManager(new GridLayoutManager(this, 4));
+        mPhotoRv.setLayoutManager(new GridLayoutManager(this, 3));
         mPhotos = new ArrayList<>();
         mAdapter = new PhotoGridAdapter(this, mPhotos);
         mAdapter.setListener(new PhotoGridAdapter.PhotoClickListener() {
@@ -106,6 +106,14 @@ public class SendRecordActivity extends BaseActionBarActivity implements HabitVi
                             .compress(true)
                             .selectionMedia(mPhotos)
                             .forResult(PictureConfig.CHOOSE_REQUEST);
+                }
+            }
+
+            @Override
+            public void onPhotoDelete(LocalMedia media) {
+                if(mPhotos != null && mPhotos.contains(media)){
+                    mPhotos.remove(media);
+                    mAdapter.updateData(mPhotos);
                 }
             }
         });

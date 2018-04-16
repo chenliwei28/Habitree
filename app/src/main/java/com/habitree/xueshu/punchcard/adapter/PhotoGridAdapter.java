@@ -15,6 +15,9 @@ import com.luck.picture.lib.entity.LocalMedia;
 
 import java.util.List;
 
+/**
+ * 图标列表适配器
+ */
 public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.PhotoViewHolder>{
 
     private Context mContext;
@@ -31,11 +34,24 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.Phot
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_photo_grid,parent,false);
         PhotoViewHolder holder = new PhotoViewHolder(view);
         holder.mPhotoIv = view.findViewById(R.id.photo_iv);
+        holder.mPhotoDel = view.findViewById(R.id.photo_delete);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(final PhotoViewHolder holder, int position) {
+    public void onBindViewHolder(final PhotoViewHolder holder, final int position) {
+        if (position==mList.size()){
+            holder.mPhotoDel.setVisibility(View.GONE);
+            holder.mPhotoIv.setImageResource(R.drawable.btn_tianjia);
+        }else {
+            LocalMedia media = mList.get(position);
+            holder.mPhotoDel.setVisibility(View.VISIBLE);
+            if (media.isCompressed()){
+                Bitmap bitmap = BitmapFactory.decodeFile(media.getCompressPath());
+                holder.mPhotoIv.setImageBitmap(bitmap);
+            }
+        }
+
         holder.mPhotoIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,15 +62,14 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.Phot
                 }
             }
         });
-        if (position==mList.size()){
-            holder.mPhotoIv.setImageResource(R.drawable.btn_tianjia);
-        }else {
-            LocalMedia media = mList.get(position);
-            if (media.isCompressed()){
-                Bitmap bitmap = BitmapFactory.decodeFile(media.getCompressPath());
-                holder.mPhotoIv.setImageBitmap(bitmap);
+        holder.mPhotoDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener!=null){
+                    mListener.onPhotoDelete(mList.get(position));
+                }
             }
-        }
+        });
     }
 
     @Override
@@ -77,7 +92,7 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.Phot
 
     class PhotoViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView mPhotoIv;
+        ImageView mPhotoIv,mPhotoDel;
 
         public PhotoViewHolder(View itemView) {
             super(itemView);
@@ -86,5 +101,6 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.Phot
 
     public interface PhotoClickListener{
         void onPhotoClick(int position,boolean isLast);
+        void onPhotoDelete(LocalMedia media);
     }
 }
