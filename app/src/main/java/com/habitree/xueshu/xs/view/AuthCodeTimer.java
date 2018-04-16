@@ -8,7 +8,6 @@ import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.xs.BaseApp;
 
 /**
  * 验证码倒计时
@@ -41,7 +40,6 @@ public class AuthCodeTimer extends CountDownTimer {
         if(mTextView != null){
             mTextView.setClickable(false); //设置不可点击
             mTextView.setText(millisUntilFinished / 1000 + "秒后重新发送");
-            mTextView.setTextColor(BaseApp.getContext().getResources().getColor(R.color.gray));
             SpannableString spannableString = new SpannableString(mTextView.getText().toString());
             ForegroundColorSpan span = new ForegroundColorSpan(Color.RED);
             spannableString.setSpan(span, 0, 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -55,11 +53,9 @@ public class AuthCodeTimer extends CountDownTimer {
         if(mTextView != null){
             mTextView.setText(R.string.get_auth_code);
             mTextView.setClickable(true);
-            mTextView.setTextColor(BaseApp.getContext().getResources().getColor(R.color.blue));
         }
         cancel();
     }
-
 
     /**
      * 重新开始
@@ -75,5 +71,4 @@ public class AuthCodeTimer extends CountDownTimer {
         }
         return false;
     }
-
 }
