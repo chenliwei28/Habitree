@@ -11,7 +11,6 @@ import com.habitree.xueshu.xs.util.ImageUtil;
 
 import java.util.List;
 
-
 public class LeftTreeFragment extends BaseFragment implements View.OnClickListener{
 
     private ImageView mTreeOne;
