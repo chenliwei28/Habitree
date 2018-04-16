@@ -114,10 +114,14 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             //返回键
             case android.R.id.home:
-                AppManager.getAppManager().finishActivity(this);
-                onBackPressed();
+                onBackClick();
                 break;
         }
         return true;
+    }
+
+    public void onBackClick(){
+        AppManager.getAppManager().finishActivity(this);
+        onBackPressed();
     }
 }

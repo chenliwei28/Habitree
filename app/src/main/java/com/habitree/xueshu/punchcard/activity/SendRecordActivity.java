@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,9 +17,8 @@ import com.habitree.xueshu.punchcard.adapter.PhotoGridAdapter;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
-import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.MyDialog;
 import com.habitree.xueshu.xs.view.NoScrollRecyclerView;
 import com.luck.picture.lib.PictureSelector;
@@ -27,9 +29,13 @@ import com.luck.picture.lib.entity.LocalMedia;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SendRecordActivity extends BaseActivity implements HabitView.SendRecordView{
+/**
+ * 发送打卡记录
+ *
+ * @author clw & wuxq
+ */
+public class SendRecordActivity extends BaseActionBarActivity implements HabitView.SendRecordView {
 
-    private MyActionBar mSendMab;
     private TextView mSuperTv;
     private EditText mDetailEt;
     private TextView mPhotoTitleTv;
@@ -47,17 +53,16 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
         return R.layout.activity_send_record;
     }
 
-    public static void start(Context context,int habitId,int recordState,String supName){
-        Intent intent = new Intent(context,SendRecordActivity.class);
-        intent.putExtra(Constant.ID,habitId);
-        intent.putExtra(Constant.TYPE,recordState);
-        intent.putExtra(Constant.NAME,supName);
+    public static void start(Context context, int habitId, int recordState, String supName) {
+        Intent intent = new Intent(context, SendRecordActivity.class);
+        intent.putExtra(Constant.ID, habitId);
+        intent.putExtra(Constant.TYPE, recordState);
+        intent.putExtra(Constant.NAME, supName);
         context.startActivity(intent);
     }
 
     @Override
     protected void initView() {
-        mSendMab = findViewById(R.id.send_mab);
         mSuperTv = findViewById(R.id.super_tv);
         mDetailEt = findViewById(R.id.detail_et);
         mPhotoRv = findViewById(R.id.photo_rv);
@@ -67,25 +72,14 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
 
     @Override
     protected void initListener() {
-        mSendMab.setBackIvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showExitDialog();
-            }
-        });
-        mSendMab.setRightTvClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showUploadDialog();
-            }
-        });
     }
 
     @Override
     protected void initData() {
-        mHabitId = getIntent().getIntExtra(Constant.ID,0);
-        mState = getIntent().getIntExtra(Constant.TYPE,2);
-        switch (mState){
+        setTitle(R.string.send_card_record);
+        mHabitId = getIntent().getIntExtra(Constant.ID, 0);
+        mState = getIntent().getIntExtra(Constant.TYPE, 2);
+        switch (mState) {
             case 1:
                 mPhotoTitleTv.setVisibility(View.GONE);
                 mPhotoRv.setVisibility(View.GONE);
@@ -95,14 +89,14 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
                 mPhotoRv.setVisibility(View.VISIBLE);
                 break;
         }
-        mSuperTv.setText(String.format(getString(R.string.send_card_record_to_someone),getIntent().getStringExtra(Constant.NAME)));
-        mPhotoRv.setLayoutManager(new GridLayoutManager(this,4));
+        mSuperTv.setText(String.format(getString(R.string.send_card_record_to_someone), getIntent().getStringExtra(Constant.NAME)));
+        mPhotoRv.setLayoutManager(new GridLayoutManager(this, 4));
         mPhotos = new ArrayList<>();
-        mAdapter = new PhotoGridAdapter(this,mPhotos);
+        mAdapter = new PhotoGridAdapter(this, mPhotos);
         mAdapter.setListener(new PhotoGridAdapter.PhotoClickListener() {
             @Override
-            public void onPhotoClick(int position,boolean isLast) {
-                if (isLast){
+            public void onPhotoClick(int position, boolean isLast) {
+                if (isLast) {
                     PictureSelector.create(SendRecordActivity.this)
                             .openGallery(PictureMimeType.ofImage())
                             .maxSelectNum(9)
@@ -116,6 +110,22 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
             }
         });
         mPhotoRv.setAdapter(mAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_her, menu);
+        MenuItem item = menu.findItem(R.id.tvHerForest);
+        item.setTitle(R.string.send);
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                showUploadDialog();
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -137,8 +147,8 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
         }
     }
 
-    private void showExitDialog(){
-        if (mExitDialog ==null){
+    private void showExitDialog() {
+        if (mExitDialog == null) {
             mExitDialog = new MyDialog(this).builder()
                     .setTitle(getString(R.string.remind))
                     .setDetail(getString(R.string.sure_to_quit_this_edit))
@@ -152,15 +162,15 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
         mExitDialog.show();
     }
 
-    private void showUploadDialog(){
-        if (mUploadDialog==null){
+    private void showUploadDialog() {
+        if (mUploadDialog == null) {
             mUploadDialog = new MyDialog(this).builder()
                     .setTitle(getString(R.string.remind))
                     .setDetail(getString(R.string.sure_upload))
                     .setConfirmClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            switch (mState){
+                            switch (mState) {
                                 case 1:
                                     punchCardOnlyText();
                                     break;
@@ -175,27 +185,27 @@ public class SendRecordActivity extends BaseActivity implements HabitView.SendRe
         mUploadDialog.show();
     }
 
-    private void uploadImageAndPunchCard(){
-        if (TextUtils.isEmpty(mDetailEt.getText().toString())){
+    private void uploadImageAndPunchCard() {
+        if (TextUtils.isEmpty(mDetailEt.getText().toString())) {
             showToast(getString(R.string.describe_can_not_be_empty));
-        }else if (mPhotos==null||mPhotos.isEmpty()){
+        } else if (mPhotos == null || mPhotos.isEmpty()) {
             showToast(getString(R.string.please_upload_one_photo_at_least));
-        }else {
+        } else {
             showLoadingDialog();
             String[] paths = new String[mPhotos.size()];
-            for (int i=0,len=mPhotos.size();i<len;i++){
+            for (int i = 0, len = mPhotos.size(); i < len; i++) {
                 paths[i] = mPhotos.get(i).getCompressPath();
             }
-            mPresenter.punchCard(mHabitId,mDetailEt.getText().toString(),paths,this);
+            mPresenter.punchCard(mHabitId, mDetailEt.getText().toString(), paths, this);
         }
     }
 
-    private void punchCardOnlyText(){
-        if (TextUtils.isEmpty(mDetailEt.getText().toString())){
+    private void punchCardOnlyText() {
+        if (TextUtils.isEmpty(mDetailEt.getText().toString())) {
             showToast(getString(R.string.describe_can_not_be_empty));
-        }else {
+        } else {
             showLoadingDialog();
-            mPresenter.punchCard(mHabitId,mDetailEt.getText().toString(),null,this);
+            mPresenter.punchCard(mHabitId, mDetailEt.getText().toString(), null, this);
         }
     }
 
