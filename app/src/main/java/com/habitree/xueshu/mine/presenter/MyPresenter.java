@@ -8,6 +8,7 @@ import android.os.Message;
 
 import com.alipay.sdk.app.AuthTask;
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.constant.SMSType;
 import com.habitree.xueshu.mine.bean.BindWithdrawAccountResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
 import com.habitree.xueshu.mine.bean.ChangeNickResponse;
@@ -219,10 +220,17 @@ public class MyPresenter extends BasePresenter{
                 });
     }
 
-    public void changePassword(String oldPsw, String newPsw, final MyView.ChangePaswView view){
+    /**
+     * 修改密码
+     * @param phone
+     * @param newPwd
+     * @param smscode 短信验证码
+     * @param view
+     */
+    public void changePassword(String phone, String newPwd,String smscode, final MyView.ChangePaswView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService().changePassword(timestamp,CommUtil.getSign(Constant.CHANGE_PASSWORD_FUNCTION,timestamp),
-                UserManager.getManager().getUser().user_token,oldPsw,newPsw)
+                UserManager.getManager().getUser().user_token,phone,newPwd, SMSType.CHANGE_PWD,smscode)
                 .enqueue(new Callback<ChangePasswordResponse>() {
                     @Override
                     public void onResponse(Call<ChangePasswordResponse> call, Response<ChangePasswordResponse> response) {

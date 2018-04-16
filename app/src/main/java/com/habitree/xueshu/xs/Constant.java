@@ -61,7 +61,7 @@ public class Constant {
     public final static String FIND_PASSWORD_FUNCTION = "v1/user/passwd/find";
     public final static String CHECK_PHONE = "v1/user/phone/check";
     public final static String CHANGE_PHONE_FUNCTION = "v1/user/phone/bind";
-    public final static String CHANGE_PASSWORD_FUNCTION = "v1/user/passwd/update";
+    public final static String CHANGE_PASSWORD_FUNCTION = "v1/user/passwd/updatemobile";
     public final static String PLANT_TREE_FUNCTION = "v1/habit/tree/list";
     public final static String UPLOAD_FILE_FUNCTION = "v1/user/portrait/update";
     public final static String CHANGE_NICKNAME_FUNCTION = "v1/user/info/update";

@@ -147,8 +147,10 @@ public interface Api {
     Call<ChangePasswordResponse> changePassword(@Field("timestamp") String timestamp,
                                                 @Field("sign") String sign,
                                                 @Field("user_token") String token,
-                                                @Field("old_pwd") String old,
-                                                @Field("new_pwd") String npw);
+                                                @Field("mobile") String old,
+                                                @Field("new_pwd") String npw,
+                                                @Field("smstype") int smstype,
+                                                @Field("smscode") String smscode);
 
     //初始化信息
     @FormUrlEncoded

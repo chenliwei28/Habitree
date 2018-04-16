@@ -28,14 +28,6 @@
         app:next_visible="true"/>
 
     <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/change_password_civ"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:title="@string/change_password"
-        app:head_img="@drawable/ic_password"
-        app:next_visible="true"/>
-
-    <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/about_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"

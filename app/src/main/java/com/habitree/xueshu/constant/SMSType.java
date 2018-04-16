@@ -30,4 +30,8 @@ public class SMSType {
      * 验证码登录
      */
     public static final int LOGIN_AUTHCODE = 6;
+    /**
+     * 修改密码
+     */
+    public static final int CHANGE_PWD = 7;
 }

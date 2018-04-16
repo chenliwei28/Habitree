@@ -17,7 +17,6 @@ public class SettingActivity extends BaseActionBarActivity implements View.OnCli
 
     private CustomItemView mMyWalletCiv;
     private CustomItemView mAccountBinding;
-    private CustomItemView mChangePasswordCiv;
     private CustomItemView mAboutCiv;
     private CustomItemView mClearCacheCiv;
     private CustomItemView mLogOutCiv;
@@ -33,7 +32,6 @@ public class SettingActivity extends BaseActionBarActivity implements View.OnCli
     protected void initView() {
         mMyWalletCiv = findViewById(R.id.my_wallet_civ);
         mAccountBinding = findViewById(R.id.account_binding_civ);
-        mChangePasswordCiv = findViewById(R.id.change_password_civ);
         mAboutCiv = findViewById(R.id.about_civ);
         mClearCacheCiv = findViewById(R.id.clear_cache_civ);
         mLogOutCiv = findViewById(R.id.log_out_civ);
@@ -43,7 +41,6 @@ public class SettingActivity extends BaseActionBarActivity implements View.OnCli
     protected void initListener() {
         mMyWalletCiv.setOnClickListener(this);
         mAccountBinding.setOnClickListener(this);
-        mChangePasswordCiv.setOnClickListener(this);
         mAboutCiv.setOnClickListener(this);
         mClearCacheCiv.setOnClickListener(this);
         mLogOutCiv.setOnClickListener(this);
@@ -63,9 +60,6 @@ public class SettingActivity extends BaseActionBarActivity implements View.OnCli
                 break;
             case R.id.account_binding_civ:
                 startActivity(new Intent(this,AccountBindingActivity.class));
-                break;
-            case R.id.change_password_civ:
-                startActivity(new Intent(this,ChangePasswordActivity.class));
                 break;
             case R.id.about_civ:
                 startActivity(new Intent(this,AboutActivity.class));
