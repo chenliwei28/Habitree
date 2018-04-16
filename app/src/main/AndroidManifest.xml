@@ -368,6 +368,8 @@
         <activity android:name=".mine.activity.ChooseAccountActivity" />
         <activity android:name=".mine.activity.BindAccountActivity" />
         <activity android:name=".mine.activity.TransactionDetailActivity"></activity>
+
+        <activity android:name=".mine.activity.BindConfirmActivity" />
     </application>
 
 </manifest>

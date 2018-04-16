@@ -10,6 +10,7 @@ import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.LogUtil;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.ToggleItemView;
 import com.habitree.xueshu.xs.view.ToggleItemView.OnToggleBtnClickListener;
@@ -109,7 +110,7 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.change_phone_btn:
-                startActivity(new Intent(this, ChangePhoneActivity.class));
+                UIUtil.startActivity(AccountBindingActivity.this,BindConfirmActivity.class);
                 break;
             case R.id.change_pwd_btn:
                 startActivity(new Intent(this,ChangePasswordActivity.class));

@@ -102,7 +102,8 @@ public interface Api {
                                           @Field("sign") String sign,
                                           @Field("mobile") String mobile,
                                           @Field("smstype") int type,
-                                          @Field("smscode")String code);
+                                          @Field("smscode")String code,
+                                          @Field("user_token") String userToken);
 
     //注册
     @FormUrlEncoded

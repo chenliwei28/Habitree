@@ -58,9 +58,9 @@ public class ChangePhoneActivity extends BaseActionBarActivity implements View.O
 
     @Override
     public void onClick(View v) {
+        mPhone = mNumEt.getText().toString();
         switch (v.getId()) {
             case R.id.send_tv:
-                mPhone = mNumEt.getText().toString();
                 if (CommUtil.isPhoneNumber(this, mPhone))
                     mPresenter.sendAuthCode(mPhone, 3, this);
                 break;

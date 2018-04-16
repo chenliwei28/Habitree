@@ -105,7 +105,7 @@ public class SendAuthCodeActivity extends BaseActionBarActivity implements Regis
         }else if (mCode.length()!=4){
             showToast(getString(R.string.wrong_auth_code));
         }else {
-            mPresenter.checkVerifyCode(1,mCode,mPhone);
+            mPresenter.checkVerifyCode(1,mCode,mPhone,this);
         }
     }
 

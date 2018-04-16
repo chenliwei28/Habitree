@@ -156,9 +156,9 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                     public void onResponse(Call<CheckPhoneResponse> call, Response<CheckPhoneResponse> response) {
                         // status  1表示未注册 2表示已注册
                         if (response.body() != null && response.body().status == 200) {
-                            if(response.body().data != null){
+                            if (response.body().data != null) {
                                 view.onCheckSucceed(response.body().data);
-                            }else{
+                            } else {
                                 view.onCheckFailed(mContext.getString(R.string.network_error));
                             }
                         } else {
@@ -230,9 +230,9 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                             EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, true);
                             view.onRegisterSuccess();
                         } else {
-                            if(response.body().info != null){
+                            if (response.body().info != null) {
                                 view.onRegisterFail(CommUtil.unicode2Chinese(response.body().info));
-                            }else{
+                            } else {
                                 view.onRegisterFail(mContext.getString(R.string.network_error));
                             }
                         }
@@ -245,19 +245,28 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                 });
     }
 
-    public void checkVerifyCode(int type, String code, String mobile) {
+    /**
+     * @param type
+     * @param code
+     * @param mobile
+     */
+    public void checkVerifyCode(int type, String code, String mobile, final RegisterView.CheckAuthCodeView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService().checkAuthCode(timestamp, CommUtil.getSign(Constant.CHECK_CODE_FUNCTION, timestamp),
-                mobile, type, code)
+                mobile, type, code, UserManager.getManager().getUser().user_token)
                 .enqueue(new Callback<CheckCodeResponse>() {
                     @Override
                     public void onResponse(Call<CheckCodeResponse> call, Response<CheckCodeResponse> response) {
-
+                        if (response.body() != null && response.body().status == 200)
+                            view.onCheckSuccess();
+                        else if (response.body() != null)
+                            view.onCheckFailed(CommUtil.unicode2Chinese(response.body().info));
+                        else view.onCheckFailed(mContext.getString(R.string.network_error));
                     }
 
                     @Override
                     public void onFailure(Call<CheckCodeResponse> call, Throwable t) {
-
+                        view.onCheckFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }
@@ -320,7 +329,11 @@ public class LoginAndRegisterPresenter extends BasePresenter {
                             JPushInterface.setAlias(mContext, Constant.NUM_110, String.valueOf(response.body().data.mem_id));
                             EMLogin(String.valueOf(response.body().data.mem_id), CommUtil.md5(String.valueOf(response.body().data.mem_id)), view, false);
                         } else {
-                            view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
+                            if (response.body() != null) {
+                                view.onLoginFailed(CommUtil.unicode2Chinese(response.body().info));
+                            } else {
+                                view.onLoginFailed(mContext.getString(R.string.network_error));
+                            }
                         }
                     }
 

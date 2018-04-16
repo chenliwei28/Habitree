@@ -98,6 +98,13 @@ public class UserManager {
         return "";
     }
 
+    public String getPhone(){
+        if(user != null){
+            return user.mobile;
+        }
+        return "";
+    }
+
     public User updateMyInfo(FriendInfoResponse.FriendDetail detail){
         user.nickname = detail.nickname;
         user.email = detail.email;
