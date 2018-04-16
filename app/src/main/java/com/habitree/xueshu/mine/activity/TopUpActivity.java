@@ -14,20 +14,21 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.AliPayResult;
-import com.habitree.xueshu.mine.bean.AuthResult;
 import com.habitree.xueshu.mine.bean.PayWayResponse;
 import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 
 import java.util.List;
 import java.util.Map;
 
-//充值
-public class TopUpActivity extends BaseActivity implements View.OnClickListener,PayView.PayWayView,PayView{
+/**
+ * 充值
+ */
+public class TopUpActivity extends BaseActionBarActivity implements View.OnClickListener, PayView.PayWayView, PayView {
 
     private EditText mNumEt;
     private LinearLayout mWxCheckLl;
@@ -65,13 +66,14 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void initData() {
+        setTitle(R.string.top_up);
         showLoadingDialog();
         mPayPresenter.getPayMode(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.wx_check_ll:
                 selectMode(0);
                 break;
@@ -84,10 +86,10 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    private void selectMode(int position){
-        if (mCurrentMode==position)return;
+    private void selectMode(int position) {
+        if (mCurrentMode == position) return;
         mCurrentMode = position;
-        switch (position){
+        switch (position) {
             case 0:
                 mWxCheckIv.setSelected(true);
                 mAliCheckIv.setSelected(false);
@@ -99,11 +101,11 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    private void checkAndPay(){
-        if (mCurrentMode==-1){
+    private void checkAndPay() {
+        if (mCurrentMode == -1) {
             showToast(getString(R.string.please_choose_pay_way));
-        }else {
-            switch (mCurrentMode){
+        } else {
+            switch (mCurrentMode) {
                 case 0:
                     toPay(mWX.payname);
                     break;
@@ -114,9 +116,9 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    private void toPay(String payWay){
+    private void toPay(String payWay) {
         showLoadingDialog();
-        mPayPresenter.topUpCreateOrder(mNumEt.getText().toString(),payWay,this);
+        mPayPresenter.topUpCreateOrder(mNumEt.getText().toString(), payWay, this);
     }
 
     @Override
@@ -131,15 +133,15 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
         showToast(reason);
     }
 
-    private void initPayWay(List<PayWayResponse.Payway> list){
-        for (PayWayResponse.Payway data:list){
-            switch (data.payname){
+    private void initPayWay(List<PayWayResponse.Payway> list) {
+        for (PayWayResponse.Payway data : list) {
+            switch (data.payname) {
                 case "wxpay":
-                    mWxCheckLl.setVisibility(data.status==2?View.VISIBLE:View.GONE);
+                    mWxCheckLl.setVisibility(data.status == 2 ? View.VISIBLE : View.GONE);
                     mWX = data;
                     break;
                 case "alipay":
-                    mAliCheckLl.setVisibility(data.status==2?View.VISIBLE:View.GONE);
+                    mAliCheckLl.setVisibility(data.status == 2 ? View.VISIBLE : View.GONE);
                     mAli = data;
                     break;
             }
@@ -149,12 +151,12 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onPaySuccess(PayResultResponse.Data data) {
         hideLoadingDialog();
-        switch (mCurrentMode){
+        switch (mCurrentMode) {
             case 0:
-                WxPayActivity.start(this,data.token);
+                WxPayActivity.start(this, data.token);
                 break;
             case 1:
-                mPayPresenter.startAliPay(data.order_id,String.valueOf(data.amount),getString(R.string.top_up),mHandler);
+                mPayPresenter.startAliPay(data.order_id, String.valueOf(data.amount), getString(R.string.top_up), mHandler);
                 break;
         }
     }
@@ -168,9 +170,9 @@ public class TopUpActivity extends BaseActivity implements View.OnClickListener,
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case Constant.NUM_109:
-                if (resultCode==Constant.NUM_110){
+                if (resultCode == Constant.NUM_110) {
                     showToast(getString(R.string.top_up_success));
                     AppManager.getAppManager().finishActivity(this);
                 }

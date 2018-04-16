@@ -21,13 +21,16 @@ import com.habitree.xueshu.mine.bean.PayWayResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.view.CustomItemView;
 
 import java.util.List;
 import java.util.Map;
 
-public class PayActivity extends BaseActivity implements View.OnClickListener,PayView.PayWayView,HabitView.CreateHabitView,PayView,HabitView.CreateOrderView {
+/**
+ * 支付界面
+ */
+public class PayActivity extends BaseActionBarActivity implements View.OnClickListener,PayView.PayWayView,HabitView.CreateHabitView,PayView,HabitView.CreateOrderView {
 
     private LinearLayout mWxCheckLl;
     private LinearLayout mAliCheckLl;
@@ -73,6 +76,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener,Pa
 
     @Override
     protected void initData() {
+        setTitle(R.string.pay);
         showLoadingDialog();
         mHabitPresenter.initCreateHabitData(getIntent());
         mTotalCiv.setDetail("¥"+getIntent().getDoubleExtra(Constant.TOTAL,0));

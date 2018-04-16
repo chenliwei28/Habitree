@@ -15,19 +15,20 @@ import com.habitree.xueshu.message.bean.Message;
 import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.util.TimeUtil;
-import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.MyInputDialog;
 import com.habitree.xueshu.xs.view.NoScrollRecyclerView;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
-public class AuditRecordActivity extends BaseActivity implements View.OnClickListener,MessageView.MsgDetailView,MessageView.HandleOtherMsgView{
+/**
+ * 打卡审核
+ */
+public class AuditRecordActivity extends BaseActionBarActivity implements View.OnClickListener,MessageView.MsgDetailView,MessageView.HandleOtherMsgView{
 
-    private MyActionBar mRecordMa;
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
     private TextView mTimeTv;
@@ -57,7 +58,6 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initView() {
-        mRecordMa = findViewById(R.id.record_ma);
         mHeadRiv = findViewById(R.id.head_riv);
         mNameTv = findViewById(R.id.name_tv);
         mTimeTv = findViewById(R.id.time_tv);
@@ -79,6 +79,7 @@ public class AuditRecordActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
+        setTitle(R.string.audit_record);
         showLoadingDialog();
         mMessage = (Message) getIntent().getSerializableExtra(Constant.CODE);
         ImageUtil.loadImage(this,mMessage.sender_user.portrait,mHeadRiv,R.drawable.ic_default_head);

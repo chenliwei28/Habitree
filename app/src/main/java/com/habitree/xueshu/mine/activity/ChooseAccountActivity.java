@@ -4,21 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.mine.bean.AliPayResult;
 import com.habitree.xueshu.mine.bean.AuthResult;
 import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
@@ -28,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class ChooseAccountActivity extends BaseActivity implements View.OnClickListener,MyView.WithdrawAccountListView,MyView.OauthBindView {
+public class ChooseAccountActivity extends BaseActionBarActivity implements View.OnClickListener,MyView.WithdrawAccountListView,MyView.OauthBindView {
 
     private LinearLayout mBindLl;
     private TextView mNameTv;
@@ -57,6 +54,7 @@ public class ChooseAccountActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initData() {
+        setTitle(R.string.choose_withdraw_account);
         showLoadingDialog();
         mPresenter.getWithdrawBindList(this);
     }

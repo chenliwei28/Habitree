@@ -16,12 +16,10 @@ import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ImageUtil;
-import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
-import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
@@ -39,8 +37,10 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-
-public class MyInfoActivity extends BaseActivity implements View.OnClickListener,MyView.ChangeInfoView,EasyPermissions.PermissionCallbacks{
+/**
+ * 个人资料
+ */
+public class MyInfoActivity extends BaseActionBarActivity implements View.OnClickListener,MyView.ChangeInfoView,EasyPermissions.PermissionCallbacks{
 
     private RoundImageView mHeadRiv;
     private RelativeLayout mHeadRl;
@@ -78,6 +78,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
+        setTitle(R.string.personal_info);
         updateData();
     }
 

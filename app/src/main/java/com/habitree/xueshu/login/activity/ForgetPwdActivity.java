@@ -15,7 +15,6 @@ import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.login.pview.RegisterView.AuthCodeView;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
-import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.UIUtil;

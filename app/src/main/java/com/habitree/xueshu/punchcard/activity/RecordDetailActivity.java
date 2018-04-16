@@ -12,21 +12,21 @@ import com.habitree.xueshu.message.adapter.MessageImageAdapter;
 import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UserManager;
-import com.habitree.xueshu.xs.view.MyActionBar;
 import com.habitree.xueshu.xs.view.NoScrollRecyclerView;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class RecordDetailActivity extends BaseActivity implements MessageView.MsgDetailView {
+/**
+ * 打卡记录
+ */
+public class RecordDetailActivity extends BaseActionBarActivity implements MessageView.MsgDetailView {
 
-    private MyActionBar mRecordMa;
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
     private TextView mTimeTv;
@@ -51,7 +51,6 @@ public class RecordDetailActivity extends BaseActivity implements MessageView.Ms
 
     @Override
     protected void initView() {
-        mRecordMa = findViewById(R.id.record_ma);
         mHeadRiv = findViewById(R.id.head_riv);
         mNameTv = findViewById(R.id.name_tv);
         mTimeTv = findViewById(R.id.time_tv);
@@ -70,6 +69,7 @@ public class RecordDetailActivity extends BaseActivity implements MessageView.Ms
 
     @Override
     protected void initData() {
+        setTitle(R.string.punch_card_record);
         showLoadingDialog();
         mNameTv.setText(UserManager.getManager().getUser().nickname);
         ImageUtil.loadImage(this,UserManager.getManager().getUser().portrait,mHeadRiv);

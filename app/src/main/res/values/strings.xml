@@ -228,6 +228,7 @@
     <string name="habit_invite">习惯邀请</string>
     <string name="habit_detail">习惯详情</string>
     <string name="habit_setting">习惯设置</string>
+    <string name="habit_balance">习惯金额</string>
     <string name="change_password">修改密码</string>
     <string name="change_success">修改成功</string>
     <string name="habit_description">习惯描述</string>
@@ -303,6 +304,7 @@
     <string name="plant_a_tree_ba">种一颗树吧</string>
     <string name="photo_record">照片记录</string>
     <string name="account_balance">账户余额：</string>
+    <string name="account_balance2">账户余额</string>
     <string name="account_binding">账户绑定</string>
     <string name="register_success">注册成功</string>
     <string name="register_account">注册账号</string>

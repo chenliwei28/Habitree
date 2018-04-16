@@ -11,13 +11,16 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.bean.InitResponse;
 import com.habitree.xueshu.xs.BaseApp;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.view.CustomRadioGroup;
 
 import java.util.List;
 
-public class TimeSettingActivity extends BaseActivity implements OnClickListener{
+/**
+ * 持续时间
+ */
+public class TimeSettingActivity extends BaseActionBarActivity implements OnClickListener{
 
     private TextView mConfirmTv;
     private CustomRadioGroup mDaysCrg;
@@ -72,7 +75,7 @@ public class TimeSettingActivity extends BaseActivity implements OnClickListener
 
     @Override
     protected void initData() {
-
+        setTitle(R.string.time_of_duration);
     }
 
     @Override

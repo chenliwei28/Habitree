@@ -1,7 +1,6 @@
 package com.habitree.xueshu.punchcard.activity;
 
 
-import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
@@ -11,15 +10,14 @@ import com.habitree.xueshu.punchcard.adapter.PlantTreeAdapter;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
-import com.habitree.xueshu.xs.view.MyActionBar;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class PlantTreeActivity extends BaseActivity implements View.OnClickListener,HabitView.PlantTreeView{
+/**
+ * 种一棵树
+ */
+public class PlantTreeActivity extends BaseActionBarActivity implements View.OnClickListener,HabitView.PlantTreeView{
 
     private ViewPager mCardVp;
     private TextView mChooseTv;
@@ -48,6 +46,7 @@ public class PlantTreeActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initData() {
+        setTitle(R.string.plant_a_tree);
         mAdapter = new PlantTreeAdapter(this);
         mCardVp.setAdapter(mAdapter);
         mCardVp.setPageTransformer(false,new CardPagerTransformer());

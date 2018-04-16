@@ -13,11 +13,12 @@ import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
-import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.CommUtil;
-import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.view.MyActionBar;
 
+/**
+ * 手机验证码
+ */
 public class SendAuthCodeActivity extends BaseActionBarActivity implements RegisterView.AuthCodeView,View.OnClickListener,RegisterView.CheckAuthCodeView{
 
     private MyActionBar mSendMab;

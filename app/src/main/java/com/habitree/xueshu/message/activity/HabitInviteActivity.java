@@ -9,7 +9,7 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.bean.Message;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.MessageManager;
@@ -17,7 +17,10 @@ import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
-public class HabitInviteActivity extends BaseActivity implements View.OnClickListener,MessageView.HandleOtherMsgView{
+/**
+ * 习惯邀请
+ */
+public class HabitInviteActivity extends BaseActionBarActivity implements View.OnClickListener,MessageView.HandleOtherMsgView{
 
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
@@ -70,6 +73,7 @@ public class HabitInviteActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
+        setTitle(R.string.habit_invite);
 //        MessageManager.getManager().getMsgDetail(this,getIntent().getIntExtra(Constant.CODE,0),this);
         mMessage = (Message) getIntent().getSerializableExtra(Constant.CODE);
         ImageUtil.loadImage(this,mMessage.sender_user.portrait,mHeadRiv,R.drawable.ic_default_head);

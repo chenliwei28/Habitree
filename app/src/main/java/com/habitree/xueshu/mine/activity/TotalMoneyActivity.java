@@ -1,15 +1,12 @@
 package com.habitree.xueshu.mine.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.xs.activity.BaseActivity;
-import com.habitree.xueshu.xs.util.UIUtil;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.UserManager;
 
-public class TotalMoneyActivity extends BaseActivity {
+public class TotalMoneyActivity extends BaseActionBarActivity {
 
     private TextView mTotalTv;
     private TextView mFreezeTv;
@@ -34,13 +31,9 @@ public class TotalMoneyActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        setTitle(R.string.total_sum);
         mTotalTv.setText(UserManager.getManager().getUser().wallet.sum_money);
         mFreezeTv.setText(UserManager.getManager().getUser().wallet.frozen_money);
         mBalanceTv.setText(UserManager.getManager().getUser().wallet.balance);
-    }
-
-    @Override
-    protected void initStatusBar() {
-        UIUtil.setStatusBar(this,getResources().getColor(R.color.trans));
     }
 }

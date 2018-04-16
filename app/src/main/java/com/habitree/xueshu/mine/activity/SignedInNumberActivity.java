@@ -7,14 +7,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.view.calendarview.Calendar;
 import com.habitree.xueshu.xs.view.calendarview.CalendarView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignedInNumberActivity extends BaseActivity implements View.OnClickListener{
+/**
+ * 打卡数
+ */
+public class SignedInNumberActivity extends BaseActionBarActivity implements View.OnClickListener{
 
     private CalendarView mDateCv;
     private ImageView mPreMonthIv;
@@ -57,6 +60,7 @@ public class SignedInNumberActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initData() {
+        setTitle(R.string.times_of_punch_card);
         List<Calendar> calendars = new ArrayList<>();
         for (int i=1;i<20;i++){
             Calendar c = new Calendar();

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,16 +7,9 @@
     android:fitsSystemWindows="true"
     tools:context="com.habitree.xueshu.punchcard.activity.PlantTreeActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:id="@+id/plant_mab"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/plant_a_tree"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:layout_below="@id/plant_mab"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -50,7 +42,6 @@
         android:id="@+id/card_vp"
         android:layout_width="match_parent"
         android:layout_height="325dp"
-        android:layout_below="@id/plant_mab"
         android:layout_marginTop="130dp"
         android:clipToPadding="false"
         android:paddingBottom="5dp"

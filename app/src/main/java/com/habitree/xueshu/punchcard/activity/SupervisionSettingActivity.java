@@ -7,11 +7,13 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.view.CustomItemView;
-import com.habitree.xueshu.xs.view.MyDialog;
 
-public class SupervisionSettingActivity extends BaseActivity implements View.OnClickListener{
+/**
+ * 监督设置
+ */
+public class SupervisionSettingActivity extends BaseActionBarActivity implements View.OnClickListener{
 
     private CustomItemView mSuperCiv;
     private CustomItemView mPenaltyCiv;
@@ -56,6 +58,7 @@ public class SupervisionSettingActivity extends BaseActivity implements View.OnC
 
     @Override
     protected void initData() {
+        setTitle(R.string.supervision_setting);
         mIntent = getIntent();
         mSuperCiv.setDetail(getString(R.string.not_invite));
     }

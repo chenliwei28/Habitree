@@ -228,17 +228,21 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
     }
 
     private void initTrees(){
-        for (int i=0;i<9;i++){
-            mTitles.get(i).setVisibility(View.GONE);
-            mTrees.get(i).setVisibility(View.GONE);
-        }
-        int len = mHabits.size();
-        for (int j =0;j<len;j++){
-            mTitles.get(j).setVisibility(View.VISIBLE);
-            mTrees.get(j).setVisibility(View.VISIBLE);
-            mTitles.get(j).setText(mHabits.get(j).title);
-            if (mHabits.get(j).status==1)ImageUtil.loadImage(this,mHabits.get(j).youth_img,mTrees.get(j),R.drawable.tree_left1);
-            else ImageUtil.loadImage(this,mHabits.get(j).elder_img,mTrees.get(j),R.drawable.tree_left1);
+        try{
+            for (int i=0;i<9;i++){
+                mTitles.get(i).setVisibility(View.GONE);
+                mTrees.get(i).setVisibility(View.GONE);
+            }
+            int len = mHabits.size();
+            for (int j =0;j<len;j++){
+                mTitles.get(j).setVisibility(View.VISIBLE);
+                mTrees.get(j).setVisibility(View.VISIBLE);
+                mTitles.get(j).setText(mHabits.get(j).title);
+                if (mHabits.get(j).status==1)ImageUtil.loadImage(this,mHabits.get(j).youth_img,mTrees.get(j),R.drawable.tree_left1);
+                else ImageUtil.loadImage(this,mHabits.get(j).elder_img,mTrees.get(j),R.drawable.tree_left1);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

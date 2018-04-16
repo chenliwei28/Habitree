@@ -9,11 +9,6 @@
     android:orientation="vertical"
     tools:context="com.habitree.xueshu.mine.activity.TransactionDetailActivity">
 
-    <com.habitree.xueshu.xs.view.MyActionBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        app:title_text="@string/transaction_detail"/>
-
     <com.habitree.xueshu.xs.view.CustomItemView
         android:id="@+id/num_civ"
         android:layout_width="match_parent"

@@ -2,15 +2,11 @@ package com.habitree.xueshu.punchcard.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.punchcard.adapter.ImageAdapter;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
@@ -18,7 +14,6 @@ import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.UIUtil;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ImageActivity extends BaseActivity {
 

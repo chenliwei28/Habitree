@@ -13,11 +13,13 @@ import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.UserManager;
 
-//提现activity
-public class WithdrawActivity extends BaseActivity implements View.OnClickListener,PayView.WithdrawView {
+/**
+ * 提现activity
+ */
+public class WithdrawActivity extends BaseActionBarActivity implements View.OnClickListener, PayView.WithdrawView {
 
     private LinearLayout mChooseLl;
     private ImageView mModeIv;
@@ -50,6 +52,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initListener() {
+        setTitle(R.string.withdraw_deposit);
         mChooseLl.setOnClickListener(this);
         mAllTv.setOnClickListener(this);
         mConfirmTv.setOnClickListener(this);
@@ -57,15 +60,15 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
-        String ba = "可用余额："+ UserManager.getManager().getUser().wallet.balance+"元";
+        String ba = "可用余额：" + UserManager.getManager().getUser().wallet.balance + "元";
         mBalanceTv.setText(ba);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.choose_ll:
-                startActivityForResult(new Intent(this,ChooseAccountActivity.class), Constant.NUM_109);
+                startActivityForResult(new Intent(this, ChooseAccountActivity.class), Constant.NUM_109);
                 break;
             case R.id.all_tv:
                 mNumEt.setText(UserManager.getManager().getUser().wallet.balance);
@@ -76,27 +79,27 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    private void checkAndConfirm(){
+    private void checkAndConfirm() {
         mAmount = mNumEt.getText().toString();
         double amount = Double.valueOf(mAmount);
-        if (TextUtils.isEmpty(mAmount)){
+        if (TextUtils.isEmpty(mAmount)) {
             showToast("提现金额不能为空");
-        }else if (amount<=0){
+        } else if (amount <= 0) {
             showToast("提现金额不能为0");
-        }else {
+        } else {
             showLoadingDialog();
-            mPresenter.withdrawCreateOrder(mAmount,this);
+            mPresenter.withdrawCreateOrder(mAmount, this);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case Constant.NUM_109:
-                if (resultCode==Constant.NUM_110){
+                if (resultCode == Constant.NUM_110) {
                     WithdrawBindListResponse.Data account = (WithdrawBindListResponse.Data) data.getSerializableExtra(Constant.CODE);
-                    switch (account.from){
+                    switch (account.from) {
                         case "alipay":
                             mModeIv.setImageResource(R.drawable.ic_ali_big);
                             mNameTv.setText(getString(R.string.zhifubao));

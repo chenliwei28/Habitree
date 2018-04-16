@@ -10,16 +10,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:background="@drawable/ic_total_bg"
+        android:layout_height="200dp"
+        android:background="@color/blue"
         android:orientation="vertical">
 
-        <com.habitree.xueshu.xs.view.MyActionBar
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/actionbar_height"
-            android:layout_marginTop="25dp"
-            app:ma_bg_color="@color/trans"
-            app:title_text="@string/total_sum" />
 
         <TextView
             android:id="@+id/total_tv"

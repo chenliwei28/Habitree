@@ -1,7 +1,5 @@
 package com.habitree.xueshu.mine.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -15,12 +13,15 @@ import com.habitree.xueshu.login.presenter.LoginAndRegisterPresenter;
 import com.habitree.xueshu.login.pview.RegisterView;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.LoginEditText;
 
-public class BindAccountActivity extends BaseActivity implements View.OnClickListener,RegisterView.AuthCodeView,MyView.OauthBindView{
+/**
+ * 绑定账号
+ */
+public class BindAccountActivity extends BaseActionBarActivity implements View.OnClickListener,RegisterView.AuthCodeView,MyView.OauthBindView{
 
     private LoginEditText mAccountLet;
     private LoginEditText mNameLet;
@@ -58,6 +59,7 @@ public class BindAccountActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
+        setTitle(R.string.bind_account);
         ImageSpan span = new ImageSpan(this,R.drawable.ic_remind);
         SpannableString s = new SpannableString(getString(R.string.bind_account_remind_long_text));
         s.setSpan(span,0,1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);

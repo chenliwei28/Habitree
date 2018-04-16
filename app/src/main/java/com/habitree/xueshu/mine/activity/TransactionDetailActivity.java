@@ -2,8 +2,6 @@ package com.habitree.xueshu.mine.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import com.habitree.xueshu.R;
@@ -11,11 +9,14 @@ import com.habitree.xueshu.mine.bean.ChargeDetailResponse;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.xs.Constant;
-import com.habitree.xueshu.xs.activity.BaseActivity;
+import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
 
-public class TransactionDetailActivity extends BaseActivity implements MyView.ChargeDetailView{
+/**
+ * 交易详情
+ */
+public class TransactionDetailActivity extends BaseActionBarActivity implements MyView.ChargeDetailView{
 
     private CustomItemView mNumCiv;
     private CustomItemView mTypeCiv;
@@ -58,6 +59,7 @@ public class TransactionDetailActivity extends BaseActivity implements MyView.Ch
 
     @Override
     protected void initData() {
+        setTitle(R.string.transaction_detail);
         mPresenter.getChargeDetail(getIntent().getStringExtra(Constant.ID),this);
     }
 
