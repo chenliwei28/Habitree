@@ -106,6 +106,10 @@ public class SendRecordActivity extends BaseActionBarActivity implements HabitVi
                             .compress(true)
                             .selectionMedia(mPhotos)
                             .forResult(PictureConfig.CHOOSE_REQUEST);
+                }else{
+                    if(mPhotos != null && mPhotos.get(position) != null){
+                        PictureViewActivity.start(SendRecordActivity.this,mPhotos.get(position).getCompressPath());
+                    }
                 }
             }
 

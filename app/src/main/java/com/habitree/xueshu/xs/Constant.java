@@ -25,6 +25,7 @@ public class Constant {
     public final static String TOTAL = "total";
     public final static String PER = "per";
     public final static String HEAD = "head";
+    public final static String IMAGE = "image";
 
     //手机号正则表达式
     public final static String PHONE_REGEX = "[1][3578]\\d{9}";

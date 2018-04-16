@@ -21,7 +21,6 @@ import com.habitree.xueshu.xs.view.MyActionBar;
  */
 public class SendAuthCodeActivity extends BaseActionBarActivity implements RegisterView.AuthCodeView,View.OnClickListener,RegisterView.CheckAuthCodeView{
 
-    private MyActionBar mSendMab;
     private EditText mCodeEt;
     private TextView mSendTv;
     private TextView mNextTv;
@@ -50,7 +49,6 @@ public class SendAuthCodeActivity extends BaseActionBarActivity implements Regis
         mPhone = getIntent().getStringExtra(Constant.PHONE);
         mType = getIntent().getIntExtra(Constant.TYPE,1);
         mPresenter = new LoginAndRegisterPresenter(this);
-        mSendMab = findViewById(R.id.send_mab);
         mCodeEt = findViewById(R.id.code_et);
         mSendTv = findViewById(R.id.send_tv);
         mNextTv = findViewById(R.id.next_tv);

@@ -58,6 +58,8 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.Phot
                 if (mListener!=null){
                     if (holder.getAdapterPosition()==mList.size()){
                         mListener.onPhotoClick(holder.getAdapterPosition(),true);
+                    }else{
+                        mListener.onPhotoClick(holder.getAdapterPosition(),false);
                     }
                 }
             }
