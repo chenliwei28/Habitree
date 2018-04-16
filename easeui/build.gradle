@@ -29,7 +29,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile('com.github.LuckSiege.PictureSelector:picture_library:v2.1.7'){
+    compile('com.github.LuckSiege.PictureSelector:picture_library:v2.2.2'){
         exclude group:'com.android.support'
     }
     compile 'com.google.android.gms:play-services-base:11.4.0'
