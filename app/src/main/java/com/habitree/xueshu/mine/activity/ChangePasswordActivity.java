@@ -2,17 +2,21 @@ package com.habitree.xueshu.mine.activity;
 
 
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
-import com.habitree.xueshu.mine.pview.MyView;
+import com.habitree.xueshu.mine.pview.MyView.ChangePaswView;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 
-public class ChangePasswordActivity extends BaseActionBarActivity implements View.OnClickListener,MyView.ChangePaswView{
+/**
+ * 修改密码
+ */
+public class ChangePasswordActivity extends BaseActionBarActivity implements OnClickListener, ChangePaswView {
 
     private EditText mPasswordEt;
     private EditText mAgainEt;
@@ -44,21 +48,21 @@ public class ChangePasswordActivity extends BaseActionBarActivity implements Vie
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.confirm_tv:
                 checkAndConfirm();
                 break;
         }
     }
 
-    private void checkAndConfirm(){
+    private void checkAndConfirm() {
         CommUtil.hideSoftInput(this);
         String o = mPasswordEt.getText().toString();
         String n = mAgainEt.getText().toString();
-        if (!CommUtil.isPassword(this,n))return;
-        if (!CommUtil.isPassword(this,o))return;
+        if (!CommUtil.isPassword(this, n)) return;
+        if (!CommUtil.isPassword(this, o)) return;
         showLoadingDialog();
-        mPresenter.changePassword(o,n,this);
+        mPresenter.changePassword(o, n, this);
     }
 
     @Override

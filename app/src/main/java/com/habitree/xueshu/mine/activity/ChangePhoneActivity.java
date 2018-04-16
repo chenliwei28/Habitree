@@ -11,17 +11,21 @@ import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ToastUtil;
+import com.habitree.xueshu.xs.view.AuthCodeTimer;
 
+/**
+ * 更换手机
+ */
 public class ChangePhoneActivity extends BaseActionBarActivity implements View.OnClickListener, RegisterView.AuthCodeView,RegisterView.ChangeBindView {
 
+    // 验证码发生
+    private TextView mSendBtn, mCompleteBtn;
+
     private EditText mNumEt;
-    private TextView mSendTv;
     private EditText mCodeEt;
-    private TextView mCompleteTv;
     private LoginAndRegisterPresenter mPresenter;
-    private final static int AUTH_RESET_TIME = 60;
-    private int mTime = AUTH_RESET_TIME;
     private String mPhone;
+    private AuthCodeTimer timer;
 
     @Override
     protected int setLayoutId() {
@@ -30,22 +34,26 @@ public class ChangePhoneActivity extends BaseActionBarActivity implements View.O
 
     @Override
     protected void initView() {
-        mNumEt = findViewById(R.id.num_et);
-        mSendTv = findViewById(R.id.send_tv);
+        mSendBtn = findViewById(R.id.send_tv);
+        mCompleteBtn = findViewById(R.id.complete_btn);
+
+        mNumEt = findViewById(R.id.phone_et);
         mCodeEt = findViewById(R.id.code_et);
-        mCompleteTv = findViewById(R.id.completed_tv);
-        mPresenter = new LoginAndRegisterPresenter(this);
     }
 
     @Override
     protected void initListener() {
-        mSendTv.setOnClickListener(this);
-        mCompleteTv.setOnClickListener(this);
+        mCompleteBtn.setOnClickListener(this);
+        mSendBtn.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         setTitle(R.string.change_phone_number);
+        mPresenter = new LoginAndRegisterPresenter(this);
+        // 验证码倒计时
+        timer = AuthCodeTimer.getInstance();
+        timer.setTextView(mSendBtn);
     }
 
     @Override
@@ -56,7 +64,7 @@ public class ChangePhoneActivity extends BaseActionBarActivity implements View.O
                 if (CommUtil.isPhoneNumber(this, mPhone))
                     mPresenter.sendAuthCode(mPhone, 3, this);
                 break;
-            case R.id.completed_tv:
+            case R.id.complete_btn:
                 checkAndToNext();
                 break;
         }
@@ -66,36 +74,21 @@ public class ChangePhoneActivity extends BaseActionBarActivity implements View.O
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.onDetach();
+        if(timer != null){
+            timer.cancel();
+        }
     }
 
     @Override
     public void onSendSuccess() {
-        countDown();
+        hideLoadingDialog();
+        // 发送验证码
+        timer.start();
     }
 
     @Override
     public void onSendFail(String reason) {
         ToastUtil.showToast(this,reason);
-    }
-
-    private void countDown(){
-        mSendTv.setBackgroundResource(R.drawable.shape_rect_round_corner_gray_button);
-        mSendTv.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mTime==0){
-                    mTime = AUTH_RESET_TIME;
-                    mSendTv.setClickable(true);
-                    mSendTv.setText(R.string.resend);
-                    mSendTv.setBackgroundResource(R.drawable.shape_rect_round_corner_blue_button);
-                }else {
-                    mSendTv.setClickable(false);
-                    mTime--;
-                    mSendTv.setText(String.format(getString(R.string.resend_time),mTime));
-                    mSendTv.postDelayed(this,1000);
-                }
-            }
-        },1000);
     }
 
     private void checkAndToNext(){

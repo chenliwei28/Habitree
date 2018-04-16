@@ -4,48 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.habitree.xueshu.mine.activity.AccountBindingActivity">
 
-    <com.habitree.xueshu.xs.view.CustomItemView
-        android:id="@+id/phone_civ"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
-        app:title="@string/phone_number"
-        app:head_img="@drawable/ic_phone"
-        app:next_visible="true"
-        app:detail_text_color="@color/blue"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/_10dp">
 
-    <com.habitree.xueshu.xs.view.CustomItemView
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/ic_phone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:textColor="@color/black_text"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/phone_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/change_pwd_btn"
+            style="@style/RoundButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="@dimen/_10dp"
+            android:paddingRight="@dimen/_10dp"
+            android:paddingTop="5dp"
+            android:text="@string/change_password" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="点击此处"
+            android:textColor="@color/gray_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/change_phone_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="更换手机"
+            android:textColor="@color/blue"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:text="第三方账号绑定"
+        android:textColor="@color/gray_text"
+        android:textSize="16sp" />
+
+    <com.habitree.xueshu.xs.view.ToggleItemView
         android:id="@+id/wechat_civ"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="20dp"
-        app:detail_text_color="@color/blue"
-        app:title="@string/we_chat"
+        android:layout_height="wrap_content"
         app:head_img="@drawable/ic_weixin_blue"
-        app:next_visible="true"/>
+        app:title="@string/we_chat" />
 
-    <com.habitree.xueshu.xs.view.CustomItemView
+
+    <com.habitree.xueshu.xs.view.ToggleItemView
         android:id="@+id/weibo_civ"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:detail_text_color="@color/blue"
-        app:title="@string/sina_blog"
+        android:layout_height="wrap_content"
         app:head_img="@drawable/ic_weibo_blue"
-        app:next_visible="true"/>
+        app:title="@string/sina_blog" />
 
-    <com.habitree.xueshu.xs.view.CustomItemView
+    <com.habitree.xueshu.xs.view.ToggleItemView
         android:id="@+id/qq_civ"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_item_height"
-        app:detail_text_color="@color/blue"
-        app:title="@string/QQ"
+        android:layout_height="wrap_content"
         app:head_img="@drawable/ic_qq_blue"
-        app:next_visible="true"/>
+        app:title="@string/QQ"
+        app:line_visible="false"/>
 </LinearLayout>
