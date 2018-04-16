@@ -29,7 +29,7 @@ public class HabitListResponse implements Serializable{
         public int nosign_count;
         public List<Habit> list;
 
-        public  class Habit implements Serializable{
+        public class Habit implements Serializable{
             /**
              * habit_id : 9
              * mem_id : 3

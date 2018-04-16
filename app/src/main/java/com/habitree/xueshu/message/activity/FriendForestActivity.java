@@ -2,18 +2,11 @@ package com.habitree.xueshu.message.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.mine.fragment.LeftTreeFragment;
-import com.habitree.xueshu.mine.fragment.MidTreeFragment;
-import com.habitree.xueshu.mine.fragment.RightTreeFragment;
-import com.habitree.xueshu.mine.pview.MyView;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
@@ -25,20 +18,21 @@ import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class FriendForestActivity extends BaseActivity implements View.OnClickListener,MyView.OnTreeClickListener,HabitView.HabitListView {
+public class FriendForestActivity extends BaseActivity implements View.OnClickListener,HabitView.HabitListView {
 
-    private ViewPager mTreeVp;
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
     private TextView mHabitNameTv;
     private TextView mHabitTextTv;
     private TextView mWatchTv;
-    private Fragment[] mFragments;
     private HabitPresenter mPresenter;
     private List<HabitListResponse.Data.Habit> mHabits;
     private HabitListResponse.Data.Habit mCurrentHabit;
+    private List<ImageView> mTrees;
+    private List<TextView> mTitles;
 
     @Override
     protected int setLayoutId() {
@@ -60,12 +54,31 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initView() {
-        mTreeVp = findViewById(R.id.tree_vp);
         mHeadRiv = findViewById(R.id.head_riv);
         mNameTv = findViewById(R.id.name_tv);
         mHabitNameTv = findViewById(R.id.habit_name_tv);
         mHabitTextTv = findViewById(R.id.habit_text_tv);
         mWatchTv = findViewById(R.id.watch_tv);
+        mTrees = new ArrayList<>();
+        mTrees.add((ImageView) findViewById(R.id.tree_1));
+        mTrees.add((ImageView) findViewById(R.id.tree_2));
+        mTrees.add((ImageView) findViewById(R.id.tree_3));
+        mTrees.add((ImageView) findViewById(R.id.tree_4));
+        mTrees.add((ImageView) findViewById(R.id.tree_5));
+        mTrees.add((ImageView) findViewById(R.id.tree_6));
+        mTrees.add((ImageView) findViewById(R.id.tree_7));
+        mTrees.add((ImageView) findViewById(R.id.tree_8));
+        mTrees.add((ImageView) findViewById(R.id.tree_9));
+        mTitles = new ArrayList<>();
+        mTitles.add((TextView) findViewById(R.id.title_1));
+        mTitles.add((TextView) findViewById(R.id.title_2));
+        mTitles.add((TextView) findViewById(R.id.title_3));
+        mTitles.add((TextView) findViewById(R.id.title_4));
+        mTitles.add((TextView) findViewById(R.id.title_5));
+        mTitles.add((TextView) findViewById(R.id.title_6));
+        mTitles.add((TextView) findViewById(R.id.title_7));
+        mTitles.add((TextView) findViewById(R.id.title_8));
+        mTitles.add((TextView) findViewById(R.id.title_9));
         mPresenter = new HabitPresenter(this);
     }
 
@@ -77,34 +90,41 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initData() {
         showLoadingDialog();
-        mFragments = new Fragment[3];
-        mFragments[0] = new LeftTreeFragment();
-        mFragments[1] = new MidTreeFragment();
-        mFragments[2] = new RightTreeFragment();
-        ((LeftTreeFragment)mFragments[0]).setOnTreeClickListener(this);
-        ((MidTreeFragment)mFragments[1]).setOnTreeClickListener(this);
-        ((RightTreeFragment)mFragments[2]).setOnTreeClickListener(this);
-        TreePagerAdapter adapter = new TreePagerAdapter(getSupportFragmentManager());
-        mTreeVp.setAdapter(adapter);
-        mTreeVp.setOffscreenPageLimit(2);
-        mTreeVp.setCurrentItem(1);
         int id = getIntent().getIntExtra(Constant.ID,0);
-        mPresenter.getOthersHabitList(String.valueOf(id),this);
+        mPresenter.getOthersHabitList(String.valueOf(id),2,this);
         ImageUtil.loadImage(this,getIntent().getStringExtra(Constant.CODE),mHeadRiv,R.drawable.ic_default_head);
         mNameTv.setText(getIntent().getStringExtra(Constant.NAME));
     }
 
-    @Override
-    public void onTreeClick(int whichView, int whichTree) {
-        switch (whichView) {
-            case 1:
-                mCurrentHabit = mHabits.get(whichTree + 3);
+
+    public void onTreeClick(int treeId) {
+        switch (treeId) {
+            case R.id.tree_1:
+                mCurrentHabit = mHabits.get(0);
                 break;
-            case 2:
-                mCurrentHabit = mHabits.get(whichTree - 1);
+            case R.id.tree_2:
+                mCurrentHabit = mHabits.get(1);
                 break;
-            case 3:
-                mCurrentHabit = mHabits.get(whichTree + 6);
+            case R.id.tree_3:
+                mCurrentHabit = mHabits.get(2);
+                break;
+            case R.id.tree_4:
+                mCurrentHabit = mHabits.get(3);
+                break;
+            case R.id.tree_5:
+                mCurrentHabit = mHabits.get(4);
+                break;
+            case R.id.tree_6:
+                mCurrentHabit = mHabits.get(5);
+                break;
+            case R.id.tree_7:
+                mCurrentHabit = mHabits.get(6);
+                break;
+            case R.id.tree_8:
+                mCurrentHabit = mHabits.get(7);
+                break;
+            case R.id.tree_9:
+                mCurrentHabit = mHabits.get(8);
                 break;
         }
         mWatchTv.setVisibility(View.VISIBLE);
@@ -124,15 +144,17 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
                     HabitDetailActivity.start(this, mCurrentHabit.habit_id,false);
                 }
                 break;
+            default:
+                onTreeClick(view.getId());
         }
     }
 
     @Override
     public void onListGetSuccess(HabitListResponse.Data data, int type) {
-        mHabits = data.list;
-        ((MidTreeFragment)mFragments[1]).updateData(mHabits);
-        ((LeftTreeFragment)mFragments[0]).updateData(mHabits);
-        ((RightTreeFragment)mFragments[2]).updateData(mHabits);
+        if (data!=null&&data.list!=null){
+            mHabits = data.list;
+            initTrees();
+        }
         hideLoadingDialog();
     }
 
@@ -142,20 +164,18 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
         showToast(reason);
     }
 
-    private class TreePagerAdapter extends FragmentPagerAdapter {
-
-        public TreePagerAdapter(FragmentManager fm) {
-            super(fm);
+    private void initTrees(){
+        for (int i=0;i<9;i++){
+            mTitles.get(i).setVisibility(View.GONE);
+            mTrees.get(i).setVisibility(View.GONE);
         }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments[position];
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
+        int len = mHabits.size();
+        for (int j =0;j<len;j++){
+            mTitles.get(j).setVisibility(View.VISIBLE);
+            mTrees.get(j).setVisibility(View.VISIBLE);
+            mTitles.get(j).setText(mHabits.get(j).title);
+            if (mHabits.get(j).status==1)ImageUtil.loadImage(this,mHabits.get(j).youth_img,mTrees.get(j),R.drawable.tree1);
+            else ImageUtil.loadImage(this,mHabits.get(j).elder_img,mTrees.get(j),R.drawable.tree_left1);
         }
     }
 }

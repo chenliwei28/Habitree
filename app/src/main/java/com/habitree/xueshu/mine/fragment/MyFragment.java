@@ -28,30 +28,24 @@ import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyFragment extends BaseFragment implements HabitView.HabitListView,View.OnClickListener,MyView.OnTreeClickListener{
+public class MyFragment extends BaseFragment implements HabitView.HabitListView, View.OnClickListener {
 
     private TextView mNameTv;
-    private ImageView mHabitIv;
-    private ImageView mSettingIv;
+    private ImageView mHabitIv, mSettingIv;
     private RoundImageView mHeadRiv;
     private TextView mDaysTv;
-    private TextView mCountTv;
-    private TextView mRateTv;
-    private TextView mCompletedTv;
-    private TextView mOngoingTv;
-    private TextView mHabitNameTv;
-    private TextView mHabitTextTv;
-    private TextView mWatchTv;
+    private TextView mCountTv, mRateTv, mCompletedTv, mOngoingTv;
+    private TextView mHabitNameTv, mHabitTextTv, mWatchTv;
     private TextView mPaddingTv;
-//    private LinearLayout mCountLl;
+    //    private LinearLayout mCountLl;
     private LinearLayout mCompletedLl;
     private LinearLayout mOngoingLl;
     private LinearLayout mHeadLl;
-    private RelativeLayout mNameRl;
-    private ViewPager mTreeVp;
-    private Fragment[] mFragments;
+    private List<ImageView> mTrees;
+    private List<TextView> mTitles;
     private HabitPresenter mPresenter;
     private List<HabitListResponse.Data.Habit> mHabits;
     private HabitListResponse.Data.Habit mCurrentHabit;
@@ -77,11 +71,29 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
 //        mCountLl = view.findViewById(R.id.count_ll);
         mCompletedLl = view.findViewById(R.id.completed_ll);
         mOngoingLl = view.findViewById(R.id.ongoing_ll);
-        mTreeVp = view.findViewById(R.id.tree_vp);
         mHeadLl = view.findViewById(R.id.head_ll);
         mWatchTv = view.findViewById(R.id.watch_tv);
-        mNameRl = view.findViewById(R.id.name_rl);
         mPaddingTv = view.findViewById(R.id.padding_tv);
+        mTrees = new ArrayList<>();
+        mTrees.add((ImageView) view.findViewById(R.id.tree_1));
+        mTrees.add((ImageView) view.findViewById(R.id.tree_2));
+        mTrees.add((ImageView) view.findViewById(R.id.tree_3));
+        mTrees.add((ImageView) view.findViewById(R.id.tree_4));
+        mTrees.add((ImageView) view.findViewById(R.id.tree_5));
+        mTrees.add((ImageView) view.findViewById(R.id.tree_6));
+        mTrees.add((ImageView) view.findViewById(R.id.tree_7));
+        mTrees.add((ImageView) view.findViewById(R.id.tree_8));
+        mTrees.add((ImageView) view.findViewById(R.id.tree_9));
+        mTitles = new ArrayList<>();
+        mTitles.add((TextView) view.findViewById(R.id.title_1));
+        mTitles.add((TextView) view.findViewById(R.id.title_2));
+        mTitles.add((TextView) view.findViewById(R.id.title_3));
+        mTitles.add((TextView) view.findViewById(R.id.title_4));
+        mTitles.add((TextView) view.findViewById(R.id.title_5));
+        mTitles.add((TextView) view.findViewById(R.id.title_6));
+        mTitles.add((TextView) view.findViewById(R.id.title_7));
+        mTitles.add((TextView) view.findViewById(R.id.title_8));
+        mTitles.add((TextView) view.findViewById(R.id.title_9));
         mPresenter = new HabitPresenter(getContext());
     }
 
@@ -93,22 +105,14 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         mOngoingLl.setOnClickListener(this);
         mHeadLl.setOnClickListener(this);
         mWatchTv.setOnClickListener(this);
+        for (ImageView view:mTrees){
+            view.setOnClickListener(this);
+        }
     }
 
     @Override
     protected void initData() {
         setTopPadding(mPaddingTv);
-        mFragments = new Fragment[3];
-        mFragments[0] = new LeftTreeFragment();
-        mFragments[1] = new MidTreeFragment();
-        mFragments[2] = new RightTreeFragment();
-        ((LeftTreeFragment)mFragments[0]).setOnTreeClickListener(this);
-        ((MidTreeFragment)mFragments[1]).setOnTreeClickListener(this);
-        ((RightTreeFragment)mFragments[2]).setOnTreeClickListener(this);
-        TreePagerAdapter adapter = new TreePagerAdapter(getChildFragmentManager());
-        mTreeVp.setAdapter(adapter);
-        mTreeVp.setOffscreenPageLimit(2);
-        mTreeVp.setCurrentItem(1);
         updateData();
     }
 
@@ -119,29 +123,46 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         return fragment;
     }
 
-    @Override
-    public void onTreeClick(int whichView,int whichTree){
-        switch (whichView){
-            case 1:
-                mCurrentHabit = mHabits.get(whichTree+3);
+    private void onTreeClick(int treeId) {
+        switch (treeId) {
+            case R.id.tree_1:
+                mCurrentHabit = mHabits.get(0);
                 break;
-            case 2:
-                mCurrentHabit = mHabits.get(whichTree-1);
+            case R.id.tree_2:
+                mCurrentHabit = mHabits.get(1);
                 break;
-            case 3:
-                mCurrentHabit = mHabits.get(whichTree+6);
+            case R.id.tree_3:
+                mCurrentHabit = mHabits.get(2);
+                break;
+            case R.id.tree_4:
+                mCurrentHabit = mHabits.get(3);
+                break;
+            case R.id.tree_5:
+                mCurrentHabit = mHabits.get(4);
+                break;
+            case R.id.tree_6:
+                mCurrentHabit = mHabits.get(5);
+                break;
+            case R.id.tree_7:
+                mCurrentHabit = mHabits.get(6);
+                break;
+            case R.id.tree_8:
+                mCurrentHabit = mHabits.get(7);
+                break;
+            case R.id.tree_9:
+                mCurrentHabit = mHabits.get(8);
                 break;
         }
         mWatchTv.setVisibility(View.VISIBLE);
         mHabitNameTv.setText(mCurrentHabit.title);
-        String detail = "诞生于"+ TimeUtil.millisToString("yyyy-MM-dd",mCurrentHabit.create_time)
-                +" 今天是第"+mCurrentHabit.now_days+"/"+mCurrentHabit.recycle_days+"天 打卡率"+mCurrentHabit.sign_rate;
+        String detail = "诞生于" + TimeUtil.millisToString("yyyy-MM-dd", mCurrentHabit.create_time)
+                + " 今天是第" + mCurrentHabit.now_days + "/" + mCurrentHabit.recycle_days + "天 打卡率" + mCurrentHabit.sign_rate;
         mHabitTextTv.setText(detail);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.habit_iv:
                 startActivity(new Intent(getContext(), MyHabitsActivity.class));
                 break;
@@ -158,43 +179,45 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
                 startActivity(new Intent(getContext(), MyInfoActivity.class));
                 break;
             case R.id.watch_tv:
-                if (mCurrentHabit==null){
+                if (mCurrentHabit == null) {
                     showToast("请选择一棵树");
-                }else {
-                    HabitDetailActivity.start(getContext(),mCurrentHabit.habit_id,true);
+                } else {
+                    HabitDetailActivity.start(getContext(), mCurrentHabit.habit_id, true);
                 }
                 break;
+            default:
+                onTreeClick(view.getId());
         }
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if (!hidden) {
             updateData();
         }
     }
 
     //要刷新的UI操作放这里
-    public void updateData(){
+    public void updateData() {
         showLoadingDialog();
         User user = UserManager.getManager().getUser();
         mNameTv.setText(user.nickname);
-        ImageUtil.loadImage(getActivity(),user.portrait,mHeadRiv);
-        mDaysTv.setText(String.format(getString(R.string.num_days),user.join_days));
-        mCountTv.setText(user.sign_cnt+"次");
+        ImageUtil.loadImage(getActivity(), user.portrait, mHeadRiv);
+        mDaysTv.setText(String.format(getString(R.string.num_days), user.join_days));
+        mCountTv.setText(user.sign_cnt + "次");
         mRateTv.setText(String.valueOf(user.sign_rate));
-        mCompletedTv.setText(String.format(getString(R.string.num_number),user.finish_cnt));
-        mOngoingTv.setText(String.format(getString(R.string.num_number),user.going_cnt));
-        mPresenter.getMyHabitList(0,this);
+        mCompletedTv.setText(String.format(getString(R.string.num_number), user.finish_cnt));
+        mOngoingTv.setText(String.format(getString(R.string.num_number), user.going_cnt));
+        mPresenter.getMyHabitList(0, 2,this);
     }
 
     @Override
-    public void onListGetSuccess(HabitListResponse.Data data,int type) {
-        mHabits = data.list;
-        ((MidTreeFragment)mFragments[1]).updateData(mHabits);
-        ((LeftTreeFragment)mFragments[0]).updateData(mHabits);
-        ((RightTreeFragment)mFragments[2]).updateData(mHabits);
+    public void onListGetSuccess(HabitListResponse.Data data, int type) {
+        if (data!=null&&data.list!=null){
+            mHabits = data.list;
+            initTrees();
+        }
         hideLoadingDialog();
     }
 
@@ -204,20 +227,18 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
         showToast(reason);
     }
 
-    private class TreePagerAdapter extends FragmentPagerAdapter{
-
-        public TreePagerAdapter(FragmentManager fm) {
-            super(fm);
+    private void initTrees(){
+        for (int i=0;i<9;i++){
+            mTitles.get(i).setVisibility(View.GONE);
+            mTrees.get(i).setVisibility(View.GONE);
         }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments[position];
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
+        int len = mHabits.size();
+        for (int j =0;j<len;j++){
+            mTitles.get(j).setVisibility(View.VISIBLE);
+            mTrees.get(j).setVisibility(View.VISIBLE);
+            mTitles.get(j).setText(mHabits.get(j).title);
+            if (mHabits.get(j).status==1)ImageUtil.loadImage(this,mHabits.get(j).youth_img,mTrees.get(j),R.drawable.tree1);
+            else ImageUtil.loadImage(this,mHabits.get(j).elder_img,mTrees.get(j),R.drawable.tree_left1);
         }
     }
 }

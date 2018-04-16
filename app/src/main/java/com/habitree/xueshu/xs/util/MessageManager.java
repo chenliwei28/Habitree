@@ -30,13 +30,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MessageManager {
+public class MessageManager extends Observable{
     private static MessageManager manager;
     private List<IMInfo> infos;                 //回话列表对应的用户头像名字信息
     private List<EMConversation> conversations; //会话列表
@@ -66,6 +67,10 @@ public class MessageManager {
                 return getUserInfo(username);
             }
         });
+    }
+
+    public void onNewMessage(){
+        notifyObservers();
     }
 
     public List<EMConversation> getConversationList(){

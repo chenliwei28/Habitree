@@ -30,7 +30,9 @@ public class UserManager {
     public void saveUser(User user){
         if (user!=null) {
             this.user = user;
-            this.user.wallet.save();
+            if (this.user.wallet!=null){
+                this.user.wallet.save();
+            }
             DataSupport.saveAll(this.user.mem_oauth);
             if (this.user.save())LogUtil.d("save user success");
             else LogUtil.d("save user failed");

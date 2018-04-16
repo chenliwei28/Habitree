@@ -205,6 +205,7 @@
     <string name="he_become_your_supervision">TA成为你的监督人</string>
     <string name="wx_pay_long_text">推荐已安装微信的用户使用</string>
     <string name="ali_pay_long_text">推荐已安装支付宝的用户使用</string>
+    <string name="withdraw_request_success">提交提现申请成功</string>
     <!--X-->
     <string name="sex">性别</string>
     <string name="habit">习惯</string>

@@ -5,45 +5,34 @@ import java.io.Serializable;
 import java.util.List;
 
 public class WithdrawBindListResponse {
+
     /**
      * status : 200
-     * info : 请求成功
-     * data : {"count":1,"list":[{"id":1,"account":"xuqq123456@qq.com","type":"alipay","realname":"陈立为","mem_id":3,"create_time":1522743985,"status":2}]}
-     * timestamp : 1522744021
+     * info : 查询成功
+     * data : [{"id":8,"name":"","from":"alipay","mem_id":14,"status":2,"openid":"2088102583938241"}]
+     * timestamp : 1523689431
      */
 
     public int status;
     public String info;
-    public DataBean data;
     public int timestamp;
+    public List<Data> data;
 
-    public class DataBean {
+    public class Data implements Serializable{
         /**
-         * count : 1
-         * list : [{"id":1,"account":"xuqq123456@qq.com","type":"alipay","realname":"陈立为","mem_id":3,"create_time":1522743985,"status":2}]
+         * id : 8
+         * name :
+         * from : alipay
+         * mem_id : 14
+         * status : 2
+         * openid : 2088102583938241
          */
 
-        public int count;
-        public List<WithdrawAccount> list;
-
-        public class WithdrawAccount implements Serializable{
-            /**
-             * id : 1
-             * account : xuqq123456@qq.com
-             * type : alipay
-             * realname : 陈立为
-             * mem_id : 3
-             * create_time : 1522743985
-             * status : 2
-             */
-
-            public int id;
-            public String account;
-            public String type;
-            public String realname;
-            public int mem_id;
-            public int create_time;
-            public int status;
-        }
+        public int id;
+        public String name;
+        public String from;
+        public int mem_id;
+        public int status;
+        public String openid;
     }
 }

@@ -11,12 +11,13 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.presenter.PayPresenter;
+import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActivity;
 import com.habitree.xueshu.xs.util.UserManager;
 
 //提现activity
-public class WithdrawActivity extends BaseActivity implements View.OnClickListener{
+public class WithdrawActivity extends BaseActivity implements View.OnClickListener,PayView.WithdrawView {
 
     private LinearLayout mChooseLl;
     private ImageView mModeIv;
@@ -84,7 +85,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             showToast("提现金额不能为0");
         }else {
             showLoadingDialog();
-            mPresenter.withdrawCreateOrder(mAmount);
+            mPresenter.withdrawCreateOrder(mAmount,this);
         }
     }
 
@@ -94,17 +95,29 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
         switch (requestCode){
             case Constant.NUM_109:
                 if (resultCode==Constant.NUM_110){
-                    WithdrawBindListResponse.DataBean.WithdrawAccount account = (WithdrawBindListResponse.DataBean.WithdrawAccount) data.getSerializableExtra(Constant.CODE);
-                    switch (account.type){
+                    WithdrawBindListResponse.Data account = (WithdrawBindListResponse.Data) data.getSerializableExtra(Constant.CODE);
+                    switch (account.from){
                         case "alipay":
                             mModeIv.setImageResource(R.drawable.ic_ali_big);
                             mNameTv.setText(getString(R.string.zhifubao));
                             mNameTv.setVisibility(View.VISIBLE);
-                            mAccountTv.setText(account.account);
+                            mAccountTv.setText(account.name);
                             break;
                     }
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onWithdrawSuccess() {
+        hideLoadingDialog();
+        showToast(getString(R.string.withdraw_request_success));
+    }
+
+    @Override
+    public void onWithdrawFailed(String reason) {
+        hideLoadingDialog();
+        showToast(reason);
     }
 }

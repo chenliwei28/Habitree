@@ -15,4 +15,9 @@ public interface PayView extends BaseView {
         void onPayWayGetSuccess(List<PayWayResponse.Payway> list);
         void onPayWayGetFailed(String reason);
     }
+
+    interface WithdrawView {
+        void onWithdrawSuccess();
+        void onWithdrawFailed(String reason);
+    }
 }

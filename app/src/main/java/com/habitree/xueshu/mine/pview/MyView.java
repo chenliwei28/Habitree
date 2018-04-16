@@ -52,7 +52,7 @@ public interface MyView extends BaseView {
     }
 
     interface WithdrawAccountListView{
-        void onGetListSuccess(List<WithdrawBindListResponse.DataBean.WithdrawAccount> list);
+        void onGetListSuccess(List<WithdrawBindListResponse.Data> data);
         void onGetListFailed(String reason);
     }
 }

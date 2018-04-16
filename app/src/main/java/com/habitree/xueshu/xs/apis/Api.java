@@ -325,7 +325,8 @@ public interface Api {
                                            @Field("user_token") String token,
                                            @Field("page") int page,
                                            @Field("offset") int offset,
-                                           @Field("type")int type);
+                                           @Field("type")int type,
+                                           @Field("list_type")int listType);
 
     //获取别人的习惯列表
     @FormUrlEncoded
@@ -335,7 +336,8 @@ public interface Api {
                                                @Field("user_token") String token,
                                                @Field("user_id") String userid,
                                                @Field("page") int page,
-                                               @Field("offset") int offset);
+                                               @Field("offset") int offset,
+                                               @Field("list_type")int listType);
 
     //习惯支付
     @FormUrlEncoded
