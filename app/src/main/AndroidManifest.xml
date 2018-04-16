@@ -344,6 +344,12 @@
             android:name=".punchcard.activity.PictureViewActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".mine.activity.HabitCompletedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mine.activity.HabitGoingActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".message.activity.FriendDetailsActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".message.activity.FriendForestActivity" />

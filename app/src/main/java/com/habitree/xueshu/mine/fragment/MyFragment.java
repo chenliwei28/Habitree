@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.mine.activity.HabitCompletedActivity;
+import com.habitree.xueshu.mine.activity.HabitGoingActivity;
 import com.habitree.xueshu.mine.activity.MyHabitsActivity;
 import com.habitree.xueshu.mine.activity.MyInfoActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
@@ -170,10 +172,10 @@ public class MyFragment extends BaseFragment implements HabitView.HabitListView,
                 startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
             case R.id.completed_ll:
-
+                HabitCompletedActivity.start(getActivity());
                 break;
             case R.id.ongoing_ll:
-
+                HabitGoingActivity.start(getActivity());
                 break;
             case R.id.head_ll:
                 startActivity(new Intent(getContext(), MyInfoActivity.class));
