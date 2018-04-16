@@ -1,6 +1,7 @@
 package com.habitree.xueshu.xs;
 
 
+import android.app.Notification;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
@@ -19,6 +20,7 @@ import com.umeng.socialize.UMShareAPI;
 import org.litepal.LitePalApplication;
 import org.litepal.util.Const;
 
+import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 
 
@@ -60,6 +62,12 @@ public class BaseApp extends LitePalApplication {
         //极光推送初始化
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+        BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
+        builder.notificationDefaults = Notification.DEFAULT_SOUND
+                | Notification.DEFAULT_VIBRATE
+                | Notification.DEFAULT_LIGHTS;
+        JPushInterface.setPushNotificationBuilder(1,builder);
+
 
         //友盟统计初始化
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);

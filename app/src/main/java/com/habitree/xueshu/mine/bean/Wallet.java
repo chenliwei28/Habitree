@@ -25,4 +25,13 @@ public class Wallet extends DataSupport{
     public int last_pay_time;
     public double last_money;
     public String update_time;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
