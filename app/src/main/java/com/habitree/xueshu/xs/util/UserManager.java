@@ -87,6 +87,17 @@ public class UserManager {
         user.update(1);
     }
 
+    /**
+     * 获取头像
+     * @return
+     */
+    public String getUserPhoto(){
+        if(user != null){
+            return user.portrait;
+        }
+        return "";
+    }
+
     public User updateMyInfo(FriendInfoResponse.FriendDetail detail){
         user.nickname = detail.nickname;
         user.email = detail.email;

@@ -1,6 +1,5 @@
 package com.habitree.xueshu.mine.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
 import com.habitree.xueshu.xs.util.ImageUtil;
+import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
 import java.util.List;
@@ -20,10 +20,12 @@ public class PaymentRecordAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<ForfeitListResponse.Data.Forfeit> mList;
+    private String photoUrl;
 
     public PaymentRecordAdapter(Context context,List<ForfeitListResponse.Data.Forfeit> list){
         mContext = context;
         mList = list;
+        photoUrl = UserManager.getManager().getUserPhoto();
     }
 
     @Override
@@ -61,6 +63,9 @@ public class PaymentRecordAdapter extends BaseAdapter {
         holder.numTv.setText(forfeit.amount);
         holder.timeTv.setText(forfeit.create_time);
         holder.stateTv.setText(forfeit.title);
+
+
+        ImageUtil.loadImage(mContext,photoUrl,holder.headRiv,R.drawable.ic_default_head);
         return convertView;
     }
 
