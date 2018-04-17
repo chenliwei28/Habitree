@@ -68,6 +68,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 } else {
                     Intent intent = new Intent(getContext(),ChatActivity.class);
                     intent.putExtra(EaseConstant.EXTRA_USER_ID, mAdapter.getListItem(position).conversationId());
+                    intent.putExtra(EaseConstant.EXTRA_USER_NICK, mAdapter.getNickName(position));
                     UIUtil.startActivity(getContext(),intent);
                 }
             }

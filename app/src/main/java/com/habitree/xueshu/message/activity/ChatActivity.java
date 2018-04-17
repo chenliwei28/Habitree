@@ -21,6 +21,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class ChatActivity extends BaseActionBarActivity implements EasyPermissions.PermissionCallbacks{
 
     private String nickName = "";
+    private String user_id = "";
     @Override
     protected int setLayoutId() {
         return R.layout.activity_message_detail;
@@ -28,13 +29,14 @@ public class ChatActivity extends BaseActionBarActivity implements EasyPermissio
 
     @Override
     protected void initView() {
-        nickName = getIntent().getStringExtra(EaseConstant.EXTRA_USER_ID);
+        nickName = getIntent().getStringExtra(EaseConstant.EXTRA_USER_NICK);
+        user_id = getIntent().getStringExtra(EaseConstant.EXTRA_USER_ID);
         requestAudio();
         EaseChatFragment chatFragment = new EaseChatFragment();
         //传入参数
         Bundle args = new Bundle();
         args.putInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
-        args.putString(EaseConstant.EXTRA_USER_ID, nickName);
+        args.putString(EaseConstant.EXTRA_USER_ID, user_id);
         chatFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().add(R.id.message_ll, chatFragment).commit();
     }

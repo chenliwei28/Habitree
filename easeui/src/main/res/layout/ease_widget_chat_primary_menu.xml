@@ -81,7 +81,9 @@
                 android:paddingRight="1dp"
                 android:paddingTop="3dp"
                 android:textSize="18sp"
-                android:imeOptions="actionSend"/>
+                android:textColor="@color/black"
+                android:imeOptions="actionSend"
+                android:textCursorDrawable="@null"/>
 
             <RelativeLayout 
                 android:id="@+id/rl_face"

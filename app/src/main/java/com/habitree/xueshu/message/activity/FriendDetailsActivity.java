@@ -18,6 +18,7 @@ import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.MessageManager;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
 import com.hyphenate.easeui.EaseConstant;
 
@@ -138,7 +139,11 @@ public class FriendDetailsActivity extends BaseActionBarActivity implements View
                 imInfo.nickname = mDetail.nickname;
                 imInfo.portrait = mDetail.portrait;
                 MessageManager.getManager().addInfo(imInfo);
-                startActivity(new Intent(this, ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, String.valueOf(mDetail.mem_id)));
+
+                Intent intent = new Intent(this,ChatActivity.class);
+                intent.putExtra(EaseConstant.EXTRA_USER_ID, String.valueOf(mDetail.mem_id));
+                intent.putExtra(EaseConstant.EXTRA_USER_NICK, mDetail.nickname);
+                UIUtil.startActivity(this,intent);
                 break;
         }
     }

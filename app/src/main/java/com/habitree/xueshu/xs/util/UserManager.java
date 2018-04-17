@@ -5,6 +5,7 @@ import com.habitree.xueshu.login.bean.OAuth;
 import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.mine.bean.Wallet;
+import com.hyphenate.easeui.model.EasePreferenceManager;
 
 import org.litepal.crud.DataSupport;
 
@@ -37,6 +38,9 @@ public class UserManager {
             DataSupport.saveAll(this.user.mem_oauth);
             if (this.user.save())LogUtil.d("save user success");
             else LogUtil.d("save user failed");
+
+            EasePreferenceManager.getInstance().setStringValue("user_nick",user.nickname);
+            EasePreferenceManager.getInstance().setStringValue("user_icon",user.portrait);
         }
     }
 

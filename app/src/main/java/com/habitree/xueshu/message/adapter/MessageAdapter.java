@@ -44,6 +44,28 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
         return mList.get(position-1);
     }
 
+    /**
+     * 获取用户昵称
+     * @param position
+     * @return
+     */
+    public String getNickName(int position){
+        try{
+            EMConversation conversation =getListItem(position);
+            EaseUI.EaseUserProfileProvider provider = EaseUI.getInstance().getUserProfileProvider();
+            if (provider != null) {
+                EaseUser user = provider.getUser(conversation.conversationId());
+                return user.getNick();
+            } else {
+                LogUtil.d("provider is null");
+                return conversation.conversationId();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     @Override
     public MessageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_supervision_list, parent, false);
