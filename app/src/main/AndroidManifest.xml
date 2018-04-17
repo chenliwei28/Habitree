@@ -166,6 +166,20 @@
         <meta-data
             android:name="JPUSH_APPKEY"
             android:value="82a2803eedaaaf9947c08be6" />
+
+        <receiver
+            android:name=".xs.receiver.PushReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.habitree.xueshu" />
+            </intent-filter>
+        </receiver>
         <!-- 设置极光推送 结束 -->
 
 

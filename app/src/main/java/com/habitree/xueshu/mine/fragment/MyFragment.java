@@ -237,6 +237,7 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
                 mTrees.get(i).setVisibility(View.GONE);
             }
             int len = mHabits.size();
+            len = len > 9 ? 9 : len;
             for (int j =0;j<len;j++){
                 mTitles.get(j).setVisibility(View.VISIBLE);
                 mTrees.get(j).setVisibility(View.VISIBLE);
