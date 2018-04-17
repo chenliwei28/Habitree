@@ -241,8 +241,8 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
                 mTitles.get(j).setVisibility(View.VISIBLE);
                 mTrees.get(j).setVisibility(View.VISIBLE);
                 mTitles.get(j).setText(mHabits.get(j).title);
-                if (mHabits.get(j).status==1)ImageUtil.loadImage(this,mHabits.get(j).youth_img,mTrees.get(j),R.drawable.tree_left1);
-                else ImageUtil.loadImage(this,mHabits.get(j).elder_img,mTrees.get(j),R.drawable.tree_left1);
+                if (mHabits.get(j).status==1)ImageUtil.loadImage(this,mHabits.get(j).youth_img,mTrees.get(j),R.drawable.tree1);
+                else ImageUtil.loadImage(this,mHabits.get(j).elder_img,mTrees.get(j),R.drawable.tree1);
             }
         }catch (Exception e){
             e.printStackTrace();

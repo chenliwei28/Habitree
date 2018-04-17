@@ -13,7 +13,7 @@
             android:layout_width="1125dp"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/bg_left" />
+            android:src="@drawable/trees_bg" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +46,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree1"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
@@ -78,7 +78,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree2"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
@@ -110,7 +110,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree3"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
@@ -142,7 +142,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree4"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
@@ -174,7 +174,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree5"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
@@ -206,7 +206,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree6"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
@@ -238,7 +238,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree7"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
@@ -270,7 +270,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree1"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
@@ -302,7 +302,7 @@
                     android:layout_width="100dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    tools:src="@drawable/tree_left1"
+                    tools:src="@drawable/tree2"
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
