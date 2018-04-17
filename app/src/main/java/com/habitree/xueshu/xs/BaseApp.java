@@ -21,7 +21,9 @@ import org.litepal.LitePalApplication;
 import org.litepal.util.Const;
 
 import cn.jpush.android.api.BasicPushNotificationBuilder;
+import cn.jpush.android.api.CustomPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.MultiActionsNotificationBuilder;
 
 
 public class BaseApp extends LitePalApplication {
@@ -67,6 +69,7 @@ public class BaseApp extends LitePalApplication {
                 | Notification.DEFAULT_VIBRATE
                 | Notification.DEFAULT_LIGHTS;
         JPushInterface.setPushNotificationBuilder(1,builder);
+
 
 
         //友盟统计初始化
