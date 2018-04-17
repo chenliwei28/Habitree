@@ -75,7 +75,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     @Override
     public void onBindViewHolder(MessageHolder holder, int position) {
         if (position == 0) {
-            ImageUtil.loadImage((Activity) mContext,R.drawable.ic_default_head,holder.mHeadRiv);
+            ImageUtil.loadImage((Activity) mContext,R.drawable.ic_launcher,holder.mHeadRiv);
             holder.mNameTv.setText(mContext.getString(R.string.pending_matters));
             holder.mDetailTv.setText(String.format(mContext.getString(R.string.number_of_pending_matters),dealCount));
         } else {

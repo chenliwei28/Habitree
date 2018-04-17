@@ -109,7 +109,7 @@ public class FriendDetailsActivity extends BaseActionBarActivity implements View
             mHabitTitle.setVisibility(View.GONE);
             mHabitsLv.setVisibility(View.GONE);
         }
-        ImageUtil.loadImage(this,mDetail.portrait,mHeadRiv,R.drawable.ic_default_head);
+        ImageUtil.loadImage(this,mDetail.portrait,mHeadRiv,R.drawable.ic_launcher);
         mNameTv.setText(mDetail.nickname);
         mDaysTv.setText(String.format(getString(R.string.join_num_days),mDetail.join_days));
         mCountTv.setText(String.format(getString(R.string.num_times),mDetail.sign_cnt));

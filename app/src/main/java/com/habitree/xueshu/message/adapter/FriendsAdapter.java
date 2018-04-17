@@ -56,7 +56,7 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
             holder = (FriendViewHolder) convertView.getTag();
         }
         holder.nameTv.setText(mList.get(position).nickname);
-        ImageUtil.loadImage((Activity) mContext,mList.get(position).portrait,holder.headRiv);
+        ImageUtil.loadImage( mContext,mList.get(position).portrait,holder.headRiv,R.drawable.ic_launcher);
 
         // 根据position获取分类的首字母的Char ascii值
         int section = getSectionForPosition(position);
