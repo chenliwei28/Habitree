@@ -25,6 +25,9 @@ import com.habitree.xueshu.xs.view.calendarview.CalendarView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 习惯详情界面
+ */
 public class HabitDetailActivity extends BaseActionBarActivity implements HabitView.HabitDetailView,HabitView.RecordListView,View.OnClickListener,HabitView.GiveUpView {
 
     private CalendarView mDetailCv;
@@ -187,6 +190,7 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
         mCountTv.setText(count);
         mSuperCiv.setDetail(detail.check_meminfo==null?"":detail.check_meminfo.nickname);
         mReminderCiv.setDetail(TimeUtil.millisToString(detail.remind_time));
+        mTimeTv.setText("开始于 "+TimeUtil.millis2ToString(detail.create_time));
         String rs = detail.recycle;
         boolean[] b = new boolean[7];
         String[] wes = {"日","一","二","三","四","五","六"};
