@@ -357,7 +357,7 @@ public class MyPresenter extends BasePresenter {
                             if(response.body().data != null){
                                 view.onGetBindListSuccess(response.body().data);
                             }else{
-                                view.onGetBindListFailed(mContext.getString(R.string.network_error));
+                                view.onGetBindListFailed("");
                             }
                         }else {
                             if(response.body() != null && response.body().info != null){

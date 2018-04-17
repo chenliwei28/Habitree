@@ -9,7 +9,9 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.bean.Wallet;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
 
 /**
@@ -69,7 +71,9 @@ public class MyWalletActivity extends BaseActionBarActivity implements View.OnCl
                 startActivity(new Intent(this, TopUpActivity.class));
                 break;
             case R.id.withdraw_civ:
-                startActivity(new Intent(this, WithdrawActivity.class));
+                Intent intent = new Intent(this, WithdrawBindActivity.class);
+                intent.putExtra(Constant.MONEY_VALUE,mTotalTv.getText().toString());
+                UIUtil.startActivity(this,intent);
                 break;
             case R.id.transaction_record_civ:
                 startActivity(new Intent(this, TransactionRecordActivity.class));

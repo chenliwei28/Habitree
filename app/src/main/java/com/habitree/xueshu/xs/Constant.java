@@ -27,6 +27,7 @@ public class Constant {
     public final static String HEAD = "head";
     public final static String IMAGE = "image";
     public final static String MONEY_VALUE = "money_value";
+    public final static String OAUTH_ID = "oauth_id";
 
     //手机号正则表达式
     public final static String PHONE_REGEX = "[1][3578]\\d{9}";

@@ -371,6 +371,8 @@
         <activity android:name=".mine.activity.ProtocolActivity"/>
         <activity android:name=".mine.activity.BindConfirmActivity" />
         <activity android:name=".mine.activity.TopUpSuccessActivity"/>
+        <activity android:name=".mine.activity.WithdrawBindActivity"/>
+        <activity android:name=".mine.activity.WithDrawSuccessActivity"/>
     </application>
 
 </manifest>

@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.presenter.PayPresenter;
 import com.habitree.xueshu.mine.pview.PayView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
+import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 
 /**
@@ -21,8 +20,6 @@ import com.habitree.xueshu.xs.util.UserManager;
  */
 public class WithdrawActivity extends BaseActionBarActivity implements View.OnClickListener, PayView.WithdrawView {
 
-    private LinearLayout mChooseLl;
-    private ImageView mModeIv;
     private TextView mNameTv;
     private TextView mAccountTv;
     private EditText mNumEt;
@@ -39,8 +36,6 @@ public class WithdrawActivity extends BaseActionBarActivity implements View.OnCl
 
     @Override
     protected void initView() {
-        mChooseLl = findViewById(R.id.choose_ll);
-        mModeIv = findViewById(R.id.mode_iv);
         mNameTv = findViewById(R.id.name_tv);
         mAccountTv = findViewById(R.id.account_tv);
         mNumEt = findViewById(R.id.num_et);
@@ -53,13 +48,15 @@ public class WithdrawActivity extends BaseActionBarActivity implements View.OnCl
     @Override
     protected void initListener() {
         setTitle(R.string.withdraw_deposit);
-        mChooseLl.setOnClickListener(this);
         mAllTv.setOnClickListener(this);
         mConfirmTv.setOnClickListener(this);
     }
 
+    private int oAuthId = -1;
+
     @Override
     protected void initData() {
+        oAuthId = getIntent().getIntExtra(Constant.OAUTH_ID,-1);
         String ba = "可用余额：" + UserManager.getManager().getUser().wallet.balance + "元";
         mBalanceTv.setText(ba);
     }
@@ -67,9 +64,6 @@ public class WithdrawActivity extends BaseActionBarActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.choose_ll:
-                startActivityForResult(new Intent(this, ChooseAccountActivity.class), Constant.NUM_109);
-                break;
             case R.id.all_tv:
                 mNumEt.setText(UserManager.getManager().getUser().wallet.balance);
                 break;
@@ -88,34 +82,19 @@ public class WithdrawActivity extends BaseActionBarActivity implements View.OnCl
             showToast("提现金额不能为0");
         } else {
             showLoadingDialog();
-            mPresenter.withdrawCreateOrder(mAmount, this);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case Constant.NUM_109:
-                if (resultCode == Constant.NUM_110) {
-                    WithdrawBindListResponse.Data account = (WithdrawBindListResponse.Data) data.getSerializableExtra(Constant.CODE);
-                    switch (account.from) {
-                        case "alipay":
-                            mModeIv.setImageResource(R.drawable.ic_ali_big);
-                            mNameTv.setText(getString(R.string.zhifubao));
-                            mNameTv.setVisibility(View.VISIBLE);
-                            mAccountTv.setText(account.name);
-                            break;
-                    }
-                }
-                break;
+            if(oAuthId != -1){
+                mPresenter.withdrawCreateOrder(mAmount,oAuthId, this);
+            }
         }
     }
 
     @Override
     public void onWithdrawSuccess() {
         hideLoadingDialog();
-        showToast(getString(R.string.withdraw_request_success));
+        Intent intent = new Intent(WithdrawActivity.this, WithDrawSuccessActivity.class);
+        intent.putExtra(Constant.MONEY_VALUE,mNumEt.getText().toString());
+        UIUtil.startActivity(WithdrawActivity.this,intent);
+        AppManager.getAppManager().finishActivity(WithdrawActivity.this);
     }
 
     @Override

@@ -7,33 +7,40 @@
     android:background="@color/white">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="135dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/ic_withdraw_success" />
+        android:background="@drawable/icon_withdraw" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="申请提现成功"
-        android:textColor="@color/blue"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:text="账户余额"
+        android:textColor="@color/black_text"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/count_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black_text"
-        android:textSize="16sp" />
+        android:textSize="26sp"/>
 
     <TextView
-        android:id="@+id/complete_btn"
+        android:id="@+id/weixin_btn"
         style="@style/RoundButton"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:text="提现到微信钱包" />
+
+    <TextView
+        android:id="@+id/alipay_btn"
+        style="@style/RoundButton"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginBottom="40dp"
-        android:text="@string/complete" />
+        android:text="提现到支付宝钱包" />
 </LinearLayout>

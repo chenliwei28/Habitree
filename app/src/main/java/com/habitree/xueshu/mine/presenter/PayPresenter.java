@@ -118,10 +118,10 @@ public class PayPresenter extends BasePresenter {
     }
 
     //提现预下单
-    public void withdrawCreateOrder(String amount, final PayView.WithdrawView view) {
+    public void withdrawCreateOrder(String amount,int oAuthid, final PayView.WithdrawView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService().withdrawCreateOrder(timestamp, CommUtil.getSign(Constant.WITHDRAW_CREATE_ORDER_FUNCTION, timestamp),
-                UserManager.getManager().getUser().user_token, amount)
+                UserManager.getManager().getUser().user_token, amount,oAuthid)
                 .enqueue(new Callback<WithdrawOrderResponse>() {
                     @Override
                     public void onResponse(Call<WithdrawOrderResponse> call, Response<WithdrawOrderResponse> response) {

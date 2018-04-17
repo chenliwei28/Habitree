@@ -493,7 +493,8 @@ public interface Api {
     Call<WithdrawOrderResponse> withdrawCreateOrder(@Field("timestamp") String timestamp,
                                                     @Field("sign") String sign,
                                                     @Field("user_token") String userToken,
-                                                    @Field("amount")String amount);
+                                                    @Field("amount")String amount,
+                                                    @Field("oauth_id") int oauth_id);
 
     //充值预下单
     @FormUrlEncoded
