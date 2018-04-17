@@ -34,6 +34,7 @@ public class HabitCreateResultActivity extends BaseActionBarActivity implements 
     private LinearLayout mWbLl;
     private LinearLayout mFcLl;
     private LinearLayout mQzLl;
+    private LinearLayout mFriendLl;
 
     public static void start(Context context, String head, int memid, String title) {
         Intent intent = new Intent(context, HabitCreateResultActivity.class)
@@ -58,6 +59,7 @@ public class HabitCreateResultActivity extends BaseActionBarActivity implements 
         mWbLl = findViewById(R.id.wb_ll);
         mFcLl = findViewById(R.id.fc_ll);
         mQzLl = findViewById(R.id.qzone_ll);
+        mFriendLl = findViewById(R.id.freiend_ll);
     }
 
     @Override
@@ -68,6 +70,7 @@ public class HabitCreateResultActivity extends BaseActionBarActivity implements 
         mWbLl.setOnClickListener(this);
         mFcLl.setOnClickListener(this);
         mQzLl.setOnClickListener(this);
+        mFriendLl.setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +103,10 @@ public class HabitCreateResultActivity extends BaseActionBarActivity implements 
             case R.id.qzone_ll:
                 shareResult(SHARE_MEDIA.QZONE);
                 break;
+            case R.id.freiend_ll:
+//               showToast("还没有该接口");
+                // TODO
+                break;
         }
     }
 
@@ -113,7 +120,7 @@ public class HabitCreateResultActivity extends BaseActionBarActivity implements 
         int memid = getIntent().getIntExtra(Constant.MEMID, 0);
         String detail = memid == 0 ?
                 String.format(getString(R.string.share_no_super_content), UserManager.getManager().getUser().nickname)
-                :String.format(getString(R.string.share_has_super_content),getIntent().getStringExtra(Constant.TITLE));
+                : String.format(getString(R.string.share_has_super_content), getIntent().getStringExtra(Constant.TITLE));
         UMImage image = new UMImage(this, R.drawable.s_logo);
         image.compressFormat = Bitmap.CompressFormat.PNG;
         UMWeb web = new UMWeb("https://www.baidu.com/");

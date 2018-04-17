@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.habitree.xueshu.punchcard.activity.HabitCreateResultActivity">
 
     <ScrollView
@@ -21,35 +21,36 @@
                 android:id="@+id/tree_iv"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_marginTop="50dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/tree_mid1"/>
+                android:layout_marginTop="50dp"
+                android:src="@drawable/tree_mid1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="22sp"
-                android:textColor="@color/blue"
+                android:layout_marginTop="20dp"
                 android:text="@string/create_success"
-                android:layout_marginTop="20dp"/>
+                android:textColor="@color/blue"
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/detail_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 android:text="@string/change_yourself_begin_with_little_habit"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"/>
+                android:textColor="@color/black_text"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/confirm_tv"
                 style="@style/RoundButton"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="42dp"
                 android:layout_marginRight="42dp"
-                android:text="@string/confirm"/>
+                android:layout_marginTop="30dp"
+                android:text="@string/confirm" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,8 +60,9 @@
                 android:layout_marginTop="70dp"
                 android:gravity="center_vertical">
 
-                <View style="@style/Line"
-                    android:layout_weight="1"/>
+                <View
+                    style="@style/Line"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,10 +70,11 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:text="@string/share_habit"
-                    android:textColor="@color/gray_text"/>
+                    android:textColor="@color/gray_text" />
 
-                <View style="@style/Line"
-                    android:layout_weight="1"/>
+                <View
+                    style="@style/Line"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -84,110 +87,131 @@
                 <LinearLayout
                     android:id="@+id/wx_ll"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/s_wx"/>
+                        android:src="@drawable/s_wx" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/we_chat"
-                        android:textColor="@color/gray_text"/>
+                        android:textColor="@color/gray_text" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/qq_ll"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/s_qq"/>
+                        android:src="@drawable/s_qq" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/QQ"
-                        android:textColor="@color/gray_text"/>
+                        android:textColor="@color/gray_text" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/wb_ll"
+                    android:id="@+id/freiend_ll"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/s_wb"/>
+                        android:src="@drawable/s_wb" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/sina_blog"
-                        android:textColor="@color/gray_text"/>
+                        android:text="我的好友"
+                        android:textColor="@color/gray_text" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="70dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="12dp">
 
                 <LinearLayout
                     android:id="@+id/fc_ll"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/s_fc"/>
+                        android:src="@drawable/s_fc" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/friends_circle"
-                        android:textColor="@color/gray_text"/>
+                        android:textColor="@color/gray_text" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/qzone_ll"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/s_qz"/>
+                        android:src="@drawable/s_qz" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/qzone"
-                        android:textColor="@color/gray_text"/>
+                        android:textColor="@color/gray_text" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/wb_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/s_wb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sina_blog"
+                        android:textColor="@color/gray_text" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
