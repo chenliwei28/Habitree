@@ -370,7 +370,7 @@
         <activity android:name=".mine.activity.TransactionDetailActivity"></activity>
         <activity android:name=".mine.activity.ProtocolActivity"/>
         <activity android:name=".mine.activity.BindConfirmActivity" />
-
+        <activity android:name=".mine.activity.TopUpSuccessActivity"/>
     </application>
 
 </manifest>

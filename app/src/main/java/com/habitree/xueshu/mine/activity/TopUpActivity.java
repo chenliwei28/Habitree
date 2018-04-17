@@ -21,6 +21,7 @@ import com.habitree.xueshu.punchcard.bean.PayResultResponse;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
+import com.habitree.xueshu.xs.util.UIUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -174,6 +175,9 @@ public class TopUpActivity extends BaseActionBarActivity implements View.OnClick
             case Constant.NUM_109:
                 if (resultCode == Constant.NUM_110) {
                     showToast(getString(R.string.top_up_success));
+                    Intent intent = new Intent(this,TopUpSuccessActivity.class);
+                    intent.putExtra(Constant.MONEY_VALUE,mNumEt.getText().toString());
+                    UIUtil.startActivity(this,intent);
                     AppManager.getAppManager().finishActivity(this);
                 }
                 break;
@@ -197,6 +201,10 @@ public class TopUpActivity extends BaseActionBarActivity implements View.OnClick
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         showToast(getString(R.string.pay_success));
+                        Intent intent = new Intent(TopUpActivity.this,TopUpSuccessActivity.class);
+                        intent.putExtra(Constant.MONEY_VALUE,mNumEt.getText().toString());
+                        UIUtil.startActivity(TopUpActivity.this,intent);
+                        AppManager.getAppManager().finishActivity(TopUpActivity.this);
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         showToast("支付失败");
