@@ -21,6 +21,9 @@ import com.habitree.xueshu.xs.view.RoundImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 好友的森林
+ */
 public class FriendForestActivity extends BaseActivity implements View.OnClickListener, HabitView.HabitListView {
 
     private RoundImageView mHeadRiv;
@@ -85,6 +88,9 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initListener() {
         mWatchTv.setOnClickListener(this);
+        for (ImageView view : mTrees) {
+            view.setOnClickListener(this);
+        }
     }
 
     @Override
@@ -165,7 +171,7 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initTrees() {
-        try{
+        try {
             for (int i = 0; i < 9; i++) {
                 mTitles.get(i).setVisibility(View.GONE);
                 mTrees.get(i).setVisibility(View.GONE);
@@ -181,7 +187,7 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
                 else
                     ImageUtil.loadImage(this, mHabits.get(j).elder_img, mTrees.get(j), R.drawable.tree_left1);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
