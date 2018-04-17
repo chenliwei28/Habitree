@@ -4,7 +4,9 @@ package com.habitree.xueshu.punchcard.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,12 +21,13 @@ import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
  * 习惯设置
  */
-public class HabitSettingActivity extends BaseActionBarActivity implements View.OnClickListener{
+public class HabitSettingActivity extends BaseActionBarActivity implements View.OnClickListener,TextWatcher {
 
     private EditText mDescribeEt;
     private CustomItemView mRemindCiv;
@@ -77,6 +80,7 @@ public class HabitSettingActivity extends BaseActionBarActivity implements View.
 //        mPrivacyCiv.setOnClickListener(this);
         mRecordCiv.setOnClickListener(this);
         mNextTv.setOnClickListener(this);
+        mDescribeEt.addTextChangedListener(this);
     }
 
     @Override
@@ -244,5 +248,30 @@ public class HabitSettingActivity extends BaseActionBarActivity implements View.
         mRepeatCiv.setDetail(builder.toString());
         mRepeatDays = ds.toString();
         LogUtil.d(mRepeatDays);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        String name = editable.toString();
+        try {
+            int length = name.getBytes("GBK").length;
+            if(length > 24){
+                name = name.substring(0,name.length()-1);
+                mDescribeEt.setText(name);
+                mDescribeEt.setSelection(name.length()-1);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }

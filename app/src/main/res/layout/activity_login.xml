@@ -82,10 +82,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/trans"
+                android:theme="@style/WhiteEditTextStyle"
+                android:textCursorDrawable="@null"
                 android:inputType="number"
                 android:paddingLeft="@dimen/_10dp"
                 android:textColor="@color/white"
-                android:textSize="32sp" />
+                android:textSize="32sp"/>
         </LinearLayout>
 
 
@@ -120,11 +122,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/trans"
+                    android:theme="@style/WhiteEditTextStyle"
+                    android:textCursorDrawable="@null"
                     android:hint="@string/auth_code"
                     android:inputType="number"
                     android:maxLength="4"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/send_tv"
@@ -156,10 +160,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/trans"
+                    android:theme="@style/WhiteEditTextStyle"
+                    android:textCursorDrawable="@null"
                     android:hint="@string/password_length_hint"
                     android:inputType="textPassword"
+                    android:textSize="18sp"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    />
 
                 <ImageView
                     android:id="@+id/pwd_visibility_btn"

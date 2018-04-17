@@ -55,7 +55,8 @@
                     android:maxLength="40"
                     android:textSize="15sp"
                     android:inputType="textMultiLine"
-                    android:textColor="@color/black_text"/>
+                    android:textColor="@color/black_text"
+                    android:textCursorDrawable="@null"/>
             </LinearLayout>
 
             <View style="@style/Line"/>
