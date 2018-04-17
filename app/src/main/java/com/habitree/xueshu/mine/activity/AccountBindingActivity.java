@@ -9,6 +9,7 @@ import com.habitree.xueshu.login.bean.OAuth;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView.OauthBindListView;
 import com.habitree.xueshu.mine.pview.MyView.OauthBindView;
+import com.habitree.xueshu.mine.pview.MyView.OauthUnBindView;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
@@ -25,13 +26,18 @@ import java.util.Map;
 /**
  * 账号绑定界面
  */
-public class AccountBindingActivity extends BaseActionBarActivity implements OnToggleBtnClickListener, View.OnClickListener, OauthBindView, OauthBindListView {
+public class AccountBindingActivity extends BaseActionBarActivity implements OnToggleBtnClickListener, View.OnClickListener, OauthBindView, OauthBindListView, OauthUnBindView {
+
+    public static final String WEIXIN = "weixin";
+    public static final String QQ = "qq";
+    public static final String WEIBO = "weibo";
 
     // 更换手机|修改密码
     private TextView mChangePhoneBtn, mChangePwdBtn;
     private TextView mPhoneTv;
     private ToggleItemView mWeiboItemView, mQQItemView, mWeChatItemView;
     private MyPresenter mPresenter;
+    private List<OAuth> oAuthList;
 
     @Override
     protected int setLayoutId() {
@@ -67,17 +73,17 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
             mPhoneTv.setVisibility(View.VISIBLE);
             mPhoneTv.setText(UserManager.getManager().getUser().mobile);
         }
-        List<OAuth> oAuthList = UserManager.getManager().getUser().mem_oauth;
+        oAuthList = UserManager.getManager().getUser().mem_oauth;
         if (oAuthList != null) {
             for (int i = 0, len = oAuthList.size(); i < len; i++) {
                 switch (oAuthList.get(i).from) {
-                    case "weixin":
+                    case WEIXIN:
                         mWeChatItemView.setYes(true);
                         break;
-                    case "weibo":
+                    case WEIBO:
                         mWeiboItemView.setYes(true);
                         break;
-                    case "qq":
+                    case QQ:
                         mQQItemView.setYes(true);
                         break;
                 }
@@ -92,20 +98,25 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
 
     @Override
     public void toggleBtnClick(View view, boolean isYes) {
-        if (isYes) {
-            switch (view.getId()) {
-                case R.id.wechat_civ:
+        switch (view.getId()) {
+            case R.id.wechat_civ:
+                if (isYes)
                     UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN, mThirdLoginListener);
-                    break;
-                case R.id.weibo_civ:
+                else
+                    thirdUnBind(WEIXIN);
+                break;
+            case R.id.weibo_civ:
+                if (isYes)
                     UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.SINA, mThirdLoginListener);
-                    break;
-                case R.id.qq_civ:
+                else
+                    thirdUnBind(WEIBO);
+                break;
+            case R.id.qq_civ:
+                if (isYes)
                     UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, mThirdLoginListener);
-                    break;
-            }
-        } else {
-
+                else
+                    thirdUnBind(QQ);
+                break;
         }
     }
 
@@ -124,6 +135,19 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
     private void thirdBind(String openid, String type, String head, String token, String date, String nickname) {
         showLoadingDialog();
         mPresenter.thirdBind(openid, type, head, token, date, nickname, this);
+    }
+
+    /**
+     * 解绑
+     *
+     * @param type
+     */
+    private void thirdUnBind(String type) {
+        int oAuthID = getOauthID(type);
+        if (oAuthID != -1) {
+            showLoadingDialog();
+            mPresenter.thirdUnBind(oAuthID, this);
+        }
     }
 
     //三方登录授权结果回调
@@ -180,6 +204,31 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
     }
 
     @Override
+    public void onUnBindSuccess() {
+        hideLoadingDialog();
+        getBindList();
+        showToast("解绑成功");
+    }
+
+    @Override
+    public void onUnBindFailed(String reason) {
+        hideLoadingDialog();
+        getBindList();
+        showToast(reason);
+    }
+
+    @Override
+    public void onGetBindListSuccess(List<OAuth> list) {
+        this.oAuthList = list;
+        setItemToggle(list);
+    }
+
+    @Override
+    public void onGetBindListFailed(String reason) {
+
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
@@ -190,16 +239,6 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
      */
     private void getBindList() {
         mPresenter.getOauthBindList(this);
-    }
-
-    @Override
-    public void onGetBindListSuccess(List<OAuth> list) {
-        setItemToggle(list);
-    }
-
-    @Override
-    public void onGetBindListFailed(String reason) {
-
     }
 
     private void setItemToggle(List<OAuth> oAuthList) {
@@ -222,4 +261,26 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
             }
         }
     }
+
+    /**
+     * 获取绑定id
+     *
+     * @param type
+     * @return
+     */
+    public int getOauthID(String type) {
+        try {
+            if (oAuthList != null) {
+                for (OAuth oAuth : oAuthList) {
+                    if (oAuth.from.equals(type)) {
+                        return oAuth.mem_id;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
 }
