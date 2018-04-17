@@ -11,7 +11,7 @@ public class OAuth extends DataSupport{
      * status : 2
      * openid : oaZZB0TowuTt1HZus8TWOHSdI1i8
      */
-
+    public int id;
     public String from;
     public int mem_id;
     public int status;

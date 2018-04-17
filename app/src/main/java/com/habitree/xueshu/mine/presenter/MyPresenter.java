@@ -355,7 +355,6 @@ public class MyPresenter extends BasePresenter {
                     public void onResponse(Call<OauthBindResponse> call, Response<OauthBindResponse> response) {
                         if (response.body() != null && response.body().status == 200) {
                             if(response.body().data != null){
-                                UserManager.getManager().updateOauthInfo(response.body().data);
                                 view.onGetBindListSuccess(response.body().data);
                             }else{
                                 view.onGetBindListFailed(mContext.getString(R.string.network_error));

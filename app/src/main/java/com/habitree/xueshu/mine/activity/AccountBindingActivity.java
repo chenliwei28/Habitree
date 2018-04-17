@@ -248,13 +248,13 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
         if (oAuthList != null) {
             for (int i = 0, len = oAuthList.size(); i < len; i++) {
                 switch (oAuthList.get(i).from) {
-                    case "weixin":
+                    case WEIXIN:
                         mWeChatItemView.setYes(true);
                         break;
-                    case "weibo":
+                    case WEIBO:
                         mWeiboItemView.setYes(true);
                         break;
-                    case "qq":
+                    case QQ:
                         mQQItemView.setYes(true);
                         break;
                 }
@@ -273,7 +273,7 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
             if (oAuthList != null) {
                 for (OAuth oAuth : oAuthList) {
                     if (oAuth.from.equals(type)) {
-                        return oAuth.mem_id;
+                        return oAuth.id;
                     }
                 }
             }
