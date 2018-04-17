@@ -16,6 +16,14 @@
         <item name="actionBarStyle">@style/MyActionbar</item>
     </style>
 
+    <style name="TranActionBarStyle" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/trans</item>
+        <item name="colorPrimaryDark">@color/trans</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="elevation">0dp</item>
+        <item name="actionBarStyle">@style/TranActionbar</item>
+    </style>
+
     <style name="MyActionbar" parent="Widget.AppCompat.Light.ActionBar">
         <item name="contentInsetStart">0dp</item>
         <item name="contentInsetEnd">0dp</item>
@@ -24,10 +32,26 @@
         <item name="background">@color/blue</item>
     </style>
 
+    <style name="TranActionbar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="contentInsetRight">0dp</item>
+        <item name="background">@color/trans</item>
+    </style>
+
     <style name="NoTitleBarTheme">
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="toolbar_theme" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="contentInsetRight">0dp</item>
+        <item name="background">@color/trans</item>
     </style>
 
     <style name="Line">

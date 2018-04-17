@@ -22,6 +22,10 @@ public class ImageUtil {
         Glide.with(activity).load(id).into(imageView);
     }
 
+    public static void loadImage(Context context, int id, ImageView imageView){
+        Glide.with(context).load(id).into(imageView);
+    }
+
     public static void loadImage(Fragment fragment,String url,ImageView imageView){
         Glide.with(fragment).load(url).into(imageView);
     }

@@ -20,12 +20,10 @@ public class PaymentRecordAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<ForfeitListResponse.Data.Forfeit> mList;
-    private String photoUrl;
 
     public PaymentRecordAdapter(Context context,List<ForfeitListResponse.Data.Forfeit> list){
         mContext = context;
         mList = list;
-        photoUrl = UserManager.getManager().getUserPhoto();
     }
 
     @Override
@@ -65,7 +63,7 @@ public class PaymentRecordAdapter extends BaseAdapter {
         holder.stateTv.setText(forfeit.title);
 
 
-        ImageUtil.loadImage(mContext,photoUrl,holder.headRiv,R.drawable.ic_default_head);
+        ImageUtil.loadImage(mContext,R.drawable.ic_launcher,holder.headRiv);
         return convertView;
     }
 

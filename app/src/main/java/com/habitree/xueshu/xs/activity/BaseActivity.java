@@ -1,8 +1,10 @@
 package com.habitree.xueshu.xs.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.util.AppManager;
@@ -70,5 +72,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+    }
+
+    public void setTopPadding(View view){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            view.setPadding(0, UIUtil.dpToPx(getResources(), 0), 0, 0);
+        } else {
+            view.setPadding(0, UIUtil.dpToPx(getResources(), 10), 0, 0);
+        }
     }
 }
