@@ -76,7 +76,7 @@ public class HabitGoingActivity extends BaseActionBarActivity implements HabitLi
                 String numStr = getResources().getString(R.string.num_habits);
                 mHabitNumTv.setText(String.format(numStr,data.count));
                 if(mAdapter == null && mHabits != null){
-                    mAdapter = new MyHabitsAdapter(this,mHabits,1);
+                    mAdapter = new MyHabitsAdapter(this,mHabits,0);
                     mHabitLv.setAdapter(mAdapter);
                 }
                 else {
