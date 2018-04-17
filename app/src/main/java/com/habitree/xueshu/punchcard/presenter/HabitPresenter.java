@@ -108,7 +108,7 @@ public class HabitPresenter extends BasePresenter {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
                 .getMyHabitList(timestamp,CommUtil.getSign(Constant.GET_HABIT_LIST_FUNCTION,timestamp),
-                        UserManager.getManager().getUser().user_token,1,10,type,listType)
+                        UserManager.getManager().getUser().user_token,1,50,type,listType)
                 .enqueue(new Callback<HabitListResponse>() {
                     @Override
                     public void onResponse(Call<HabitListResponse> call, Response<HabitListResponse> response) {
