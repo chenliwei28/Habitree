@@ -21,7 +21,7 @@ import com.habitree.xueshu.xs.view.RoundImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendForestActivity extends BaseActivity implements View.OnClickListener,HabitView.HabitListView {
+public class FriendForestActivity extends BaseActivity implements View.OnClickListener, HabitView.HabitListView {
 
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
@@ -39,11 +39,11 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
         return R.layout.activity_friend_forest;
     }
 
-    public static void start(Context context,int friendId,String friendName,String friendHead){
-        Intent intent = new Intent(context,FriendForestActivity.class);
-        intent.putExtra(Constant.ID,friendId);
-        intent.putExtra(Constant.NAME,friendName);
-        intent.putExtra(Constant.CODE,friendHead);
+    public static void start(Context context, int friendId, String friendName, String friendHead) {
+        Intent intent = new Intent(context, FriendForestActivity.class);
+        intent.putExtra(Constant.ID, friendId);
+        intent.putExtra(Constant.NAME, friendName);
+        intent.putExtra(Constant.CODE, friendHead);
         context.startActivity(intent);
     }
 
@@ -90,9 +90,9 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initData() {
         showLoadingDialog();
-        int id = getIntent().getIntExtra(Constant.ID,0);
-        mPresenter.getOthersHabitList(String.valueOf(id),2,this);
-        ImageUtil.loadImage(this,getIntent().getStringExtra(Constant.CODE),mHeadRiv,R.drawable.ic_default_head);
+        int id = getIntent().getIntExtra(Constant.ID, 0);
+        mPresenter.getOthersHabitList(String.valueOf(id), 2, this);
+        ImageUtil.loadImage(this, getIntent().getStringExtra(Constant.CODE), mHeadRiv, R.drawable.ic_default_head);
         mNameTv.setText(getIntent().getStringExtra(Constant.NAME));
     }
 
@@ -129,8 +129,8 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
         }
         mWatchTv.setVisibility(View.VISIBLE);
         mHabitNameTv.setText(mCurrentHabit.title);
-        String detail = "诞生于"+ TimeUtil.millisToString("yyyy-MM-dd",mCurrentHabit.create_time)
-                +" 今天是第"+mCurrentHabit.now_days+"/"+mCurrentHabit.recycle_days+"天 打卡率"+mCurrentHabit.sign_rate;
+        String detail = "诞生于" + TimeUtil.millisToString("yyyy-MM-dd", mCurrentHabit.create_time)
+                + " 今天是第" + mCurrentHabit.now_days + "/" + mCurrentHabit.recycle_days + "天 打卡率" + mCurrentHabit.sign_rate;
         mHabitTextTv.setText(detail);
     }
 
@@ -141,7 +141,7 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
                 if (mCurrentHabit == null) {
                     showToast("请选择一棵树");
                 } else {
-                    HabitDetailActivity.start(this, mCurrentHabit.habit_id,false);
+                    HabitDetailActivity.start(this, mCurrentHabit.habit_id, false);
                 }
                 break;
             default:
@@ -151,7 +151,7 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onListGetSuccess(HabitListResponse.Data data, int type) {
-        if (data!=null&&data.list!=null){
+        if (data != null && data.list != null) {
             mHabits = data.list;
             initTrees();
         }
@@ -164,18 +164,25 @@ public class FriendForestActivity extends BaseActivity implements View.OnClickLi
         showToast(reason);
     }
 
-    private void initTrees(){
-        for (int i=0;i<9;i++){
-            mTitles.get(i).setVisibility(View.GONE);
-            mTrees.get(i).setVisibility(View.GONE);
-        }
-        int len = mHabits.size();
-        for (int j =0;j<len;j++){
-            mTitles.get(j).setVisibility(View.VISIBLE);
-            mTrees.get(j).setVisibility(View.VISIBLE);
-            mTitles.get(j).setText(mHabits.get(j).title);
-            if (mHabits.get(j).status==1)ImageUtil.loadImage(this,mHabits.get(j).youth_img,mTrees.get(j),R.drawable.tree_left1);
-            else ImageUtil.loadImage(this,mHabits.get(j).elder_img,mTrees.get(j),R.drawable.tree_left1);
+    private void initTrees() {
+        try{
+            for (int i = 0; i < 9; i++) {
+                mTitles.get(i).setVisibility(View.GONE);
+                mTrees.get(i).setVisibility(View.GONE);
+            }
+            int len = mHabits.size();
+            len = len > 9 ? 9 : len;
+            for (int j = 0; j < len; j++) {
+                mTitles.get(j).setVisibility(View.VISIBLE);
+                mTrees.get(j).setVisibility(View.VISIBLE);
+                mTitles.get(j).setText(mHabits.get(j).title);
+                if (mHabits.get(j).status == 1)
+                    ImageUtil.loadImage(this, mHabits.get(j).youth_img, mTrees.get(j), R.drawable.tree_left1);
+                else
+                    ImageUtil.loadImage(this, mHabits.get(j).elder_img, mTrees.get(j), R.drawable.tree_left1);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
