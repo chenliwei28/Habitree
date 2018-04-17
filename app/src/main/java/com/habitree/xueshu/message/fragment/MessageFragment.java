@@ -19,6 +19,7 @@ import com.habitree.xueshu.message.adapter.MessageAdapter;
 import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.hyphenate.easeui.EaseConstant;
 import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
@@ -65,7 +66,9 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 if (position == 0) {
                     startActivity(new Intent(getContext(), PendingMattersActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, mAdapter.getListItem(position).conversationId()));
+                    Intent intent = new Intent(getContext(),ChatActivity.class);
+                    intent.putExtra(EaseConstant.EXTRA_USER_ID, mAdapter.getListItem(position).conversationId());
+                    UIUtil.startActivity(getContext(),intent);
                 }
             }
         });
