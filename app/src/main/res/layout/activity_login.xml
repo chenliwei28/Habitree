@@ -82,12 +82,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/trans"
-                android:theme="@style/WhiteEditTextStyle"
-                android:textCursorDrawable="@null"
                 android:inputType="number"
                 android:paddingLeft="@dimen/_10dp"
                 android:textColor="@color/white"
-                android:textSize="32sp"/>
+                android:textSelectHandle="@color/white"
+                android:textCursorDrawable="@color/white"
+                android:textSize="32sp" />
         </LinearLayout>
 
 
@@ -105,88 +105,87 @@
             android:textSize="22sp" />
 
 
-            <!-- 验证码 -->
-            <LinearLayout
-                android:id="@+id/llAuthCode"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="bottom"
-                android:orientation="horizontal"
-                android:visibility="gone">
+        <!-- 验证码 -->
+        <LinearLayout
+            android:id="@+id/llAuthCode"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-                <EditText
-                    android:id="@+id/code_et"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/trans"
-                    android:theme="@style/WhiteEditTextStyle"
-                    android:textCursorDrawable="@null"
-                    android:hint="@string/auth_code"
-                    android:inputType="number"
-                    android:maxLength="4"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:id="@+id/send_tv"
-                    style="@style/WhiteRoundButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="5dp"
-                    android:minWidth="80dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:text="@string/get_auth_code"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-
-            <!-- 密码 -->
-            <LinearLayout
-                android:id="@+id/llPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/password_et"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/trans"
-                    android:theme="@style/WhiteEditTextStyle"
-                    android:textCursorDrawable="@null"
-                    android:hint="@string/password_length_hint"
-                    android:inputType="textPassword"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
-                    />
-
-                <ImageView
-                    android:id="@+id/pwd_visibility_btn"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_password_hide" />
-            </LinearLayout>
-
-            <TextView
-                style="@style/Line"
-                android:layout_marginRight="20dp" />
-
-            <TextView
-                android:id="@+id/forget_btn"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/code_et"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/forget_password_link"
+                android:layout_weight="1"
+                android:background="@color/trans"
+                android:hint="@string/auth_code"
+                android:inputType="number"
+                android:maxLength="4"
                 android:textColor="@color/white"
+                android:textCursorDrawable="@color/white"
+                android:textSelectHandle="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/send_tv"
+                style="@style/WhiteRoundButton"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:minWidth="80dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/get_auth_code"
                 android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <!-- 密码 -->
+        <LinearLayout
+            android:id="@+id/llPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/password_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/trans"
+                android:hint="@string/password_length_hint"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textSelectHandle="@color/white"
+                android:textCursorDrawable="@color/white"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/pwd_visibility_btn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_password_hide" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/Line"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:id="@+id/forget_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/forget_password_link"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/login_btn"

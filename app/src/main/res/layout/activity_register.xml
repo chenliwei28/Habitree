@@ -52,8 +52,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/trans"
-                android:theme="@style/WhiteEditTextStyle"
-                android:textCursorDrawable="@null"
+                android:textSelectHandle="@color/white"
+                android:textCursorDrawable="@color/white"
                 android:hint="@string/auth_code"
                 android:inputType="number"
                 android:maxLength="4"
@@ -104,9 +104,9 @@
                 android:hint="@string/password_length_hint"
                 android:inputType="textPassword"
                 android:textColor="@color/white"
-                android:textCursorDrawable="@null"
-                android:textSize="18sp"
-                android:theme="@style/WhiteEditTextStyle" />
+                android:textSelectHandle="@color/white"
+                android:textCursorDrawable="@color/white"
+                android:textSize="18sp"/>
 
             <ImageView
                 android:id="@+id/pwd_visibility_btn"

@@ -42,11 +42,6 @@
         <item name="android:background">@drawable/shape_shadow_black_line</item>
     </style>
 
-    <style name="WhiteEditTextStyle" parent="Widget.AppCompat.EditText">
-        <item name="colorAccent">@color/white</item>
-        <item name="textColor">@color/white</item>
-    </style>
-
     <style name="RoundButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/button_height</item>

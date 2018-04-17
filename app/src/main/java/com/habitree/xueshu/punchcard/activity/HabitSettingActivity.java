@@ -268,7 +268,7 @@ public class HabitSettingActivity extends BaseActionBarActivity implements View.
             if(length > 24){
                 name = name.substring(0,name.length()-1);
                 mDescribeEt.setText(name);
-                mDescribeEt.setSelection(name.length()-1);
+                mDescribeEt.setSelection(name.length());
             }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
