@@ -451,6 +451,14 @@ public interface Api {
                                       @Field("nickname")String nickname,
                                       @Field("user_token") String userToken);
 
+    //解除绑定三方账号
+    @FormUrlEncoded
+    @POST(Constant.UN_BIND)
+    Call<OauthBindResponse> thirdUnBind(@Field("timestamp") String timestamp,
+                                      @Field("sign") String sign,
+                                      @Field("oauth_id")int openid,
+                                      @Field("user_token") String userToken);
+
     //习惯支付订单状态查询
     @FormUrlEncoded
     @POST(Constant.QUERY_ORDER_FUNCTION)
@@ -504,4 +512,11 @@ public interface Api {
                                     @Field("user_token") String userToken,
                                     @Field("order_id")String orderId,
                                     @Field("payway")String payway);
+
+    //获取用户第三方绑定列表
+    @FormUrlEncoded
+    @POST(Constant.GET_OAUTH_LIST)
+    Call<OauthBindResponse> getOauthList(@Field("timestamp") String timestamp,
+                                     @Field("sign") String sign,
+                                     @Field("user_token") String userToken);
 }

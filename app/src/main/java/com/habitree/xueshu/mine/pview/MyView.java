@@ -1,5 +1,6 @@
 package com.habitree.xueshu.mine.pview;
 
+import com.habitree.xueshu.login.bean.OAuth;
 import com.habitree.xueshu.mine.bean.ChargeDetailResponse;
 import com.habitree.xueshu.mine.bean.ChargeListResponse;
 import com.habitree.xueshu.mine.bean.ForfeitListResponse;
@@ -51,8 +52,18 @@ public interface MyView extends BaseView {
         void onBindFailed(String reason);
     }
 
+    interface OauthUnBindView{
+        void onUnBindSuccess();
+        void onUnBindFailed(String reason);
+    }
+
     interface WithdrawAccountListView{
         void onGetListSuccess(List<WithdrawBindListResponse.Data> data);
         void onGetListFailed(String reason);
+    }
+
+    interface OauthBindListView{
+        void onGetBindListSuccess(List<OAuth> list);
+        void onGetBindListFailed(String reason);
     }
 }

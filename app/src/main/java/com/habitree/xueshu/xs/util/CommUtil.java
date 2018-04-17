@@ -79,11 +79,15 @@ public class CommUtil {
     }
 
     public static void logoutToLogin(Context context){
-        UserManager.getManager().deleteUser();
-        EMClient.getInstance().logout(true);
-        JPushInterface.deleteAlias(context,Constant.NUM_111);
-        context.startActivity(new Intent(context, LoginActivity.class));
-        AppManager.getAppManager().finishAllActivity();
+        try{
+            UserManager.getManager().deleteUser();
+            EMClient.getInstance().logout(true);
+            JPushInterface.deleteAlias(context,Constant.NUM_111);
+            context.startActivity(new Intent(context, LoginActivity.class));
+            AppManager.getAppManager().finishAllActivity();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**

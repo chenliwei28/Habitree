@@ -126,4 +126,16 @@ public class UserManager {
         saveUser(user);
         return user;
     }
+
+    /**
+     * 更新用户绑定信息
+     * @param oAuthList
+     */
+    public void updateOauthInfo(List<OAuth> oAuthList){
+        if(oAuthList != null){
+            user.mem_oauth = oAuthList;
+            user.update(1);
+            saveUser(user);
+        }
+    }
 }

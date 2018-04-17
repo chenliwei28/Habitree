@@ -1,8 +1,6 @@
 package com.habitree.xueshu.mine.bean;
 
 
-import com.habitree.xueshu.login.bean.User;
-
 import org.litepal.crud.DataSupport;
 
 public class Wallet extends DataSupport{
@@ -25,13 +23,5 @@ public class Wallet extends DataSupport{
     public int last_pay_time;
     public double last_money;
     public String update_time;
-    private User user;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

@@ -7,7 +7,8 @@ import android.widget.TextView;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.login.bean.OAuth;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
-import com.habitree.xueshu.mine.pview.MyView;
+import com.habitree.xueshu.mine.pview.MyView.OauthBindListView;
+import com.habitree.xueshu.mine.pview.MyView.OauthBindView;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.LogUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
@@ -24,7 +25,7 @@ import java.util.Map;
 /**
  * 账号绑定界面
  */
-public class AccountBindingActivity extends BaseActionBarActivity implements OnToggleBtnClickListener, View.OnClickListener, MyView.OauthBindView {
+public class AccountBindingActivity extends BaseActionBarActivity implements OnToggleBtnClickListener, View.OnClickListener, OauthBindView, OauthBindListView {
 
     // 更换手机|修改密码
     private TextView mChangePhoneBtn, mChangePwdBtn;
@@ -60,16 +61,16 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
     @Override
     protected void initData() {
         setTitle(R.string.account_binding);
-        if (UserManager.getManager().getUser().third_oauth!=null){
+        if (UserManager.getManager().getUser().third_oauth != null) {
             mPhoneTv.setVisibility(View.INVISIBLE);
-        }else {
+        } else {
             mPhoneTv.setVisibility(View.VISIBLE);
             mPhoneTv.setText(UserManager.getManager().getUser().mobile);
         }
         List<OAuth> oAuthList = UserManager.getManager().getUser().mem_oauth;
-        if (oAuthList!=null){
-            for (int i = 0,len = oAuthList.size();i<len;i++){
-                switch (oAuthList.get(i).from){
+        if (oAuthList != null) {
+            for (int i = 0, len = oAuthList.size(); i < len; i++) {
+                switch (oAuthList.get(i).from) {
                     case "weixin":
                         mWeChatItemView.setYes(true);
                         break;
@@ -81,7 +82,7 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
                         break;
                 }
             }
-        }else {
+        } else {
             mQQItemView.setYes(false);
             mWeiboItemView.setYes(false);
             mWeChatItemView.setYes(false);
@@ -90,19 +91,21 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
 
 
     @Override
-    public void toggleBtnClick(View view ,boolean isYes) {
-        if(isYes){
+    public void toggleBtnClick(View view, boolean isYes) {
+        if (isYes) {
             switch (view.getId()) {
                 case R.id.wechat_civ:
-                    UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN,mThirdLoginListener);
+                    UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN, mThirdLoginListener);
                     break;
                 case R.id.weibo_civ:
-                    UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.SINA,mThirdLoginListener);
+                    UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.SINA, mThirdLoginListener);
                     break;
                 case R.id.qq_civ:
-                    UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ,mThirdLoginListener);
+                    UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, mThirdLoginListener);
                     break;
             }
+        } else {
+
         }
     }
 
@@ -110,10 +113,10 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.change_phone_btn:
-                UIUtil.startActivity(AccountBindingActivity.this,BindConfirmActivity.class);
+                UIUtil.startActivity(AccountBindingActivity.this, BindConfirmActivity.class);
                 break;
             case R.id.change_pwd_btn:
-                startActivity(new Intent(this,ChangePasswordActivity.class));
+                startActivity(new Intent(this, ChangePasswordActivity.class));
                 break;
         }
     }
@@ -151,23 +154,28 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
         @Override
         public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
             showToast(throwable.getMessage());
+            getBindList();
         }
 
         @Override
         public void onCancel(SHARE_MEDIA share_media, int i) {
             LogUtil.d("用户取消");
+            getBindList();
         }
     };
 
     @Override
     public void onBindSuccess() {
         hideLoadingDialog();
+        getBindList();
         showToast(getString(R.string.bind_success));
     }
+
 
     @Override
     public void onBindFailed(String reason) {
         hideLoadingDialog();
+        getBindList();
         showToast(reason);
     }
 
@@ -175,5 +183,43 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * 更新 获取列表
+     */
+    private void getBindList() {
+        mPresenter.getOauthBindList(this);
+    }
+
+    @Override
+    public void onGetBindListSuccess(List<OAuth> list) {
+        setItemToggle(list);
+    }
+
+    @Override
+    public void onGetBindListFailed(String reason) {
+
+    }
+
+    private void setItemToggle(List<OAuth> oAuthList) {
+        mQQItemView.setYes(false);
+        mWeiboItemView.setYes(false);
+        mWeChatItemView.setYes(false);
+        if (oAuthList != null) {
+            for (int i = 0, len = oAuthList.size(); i < len; i++) {
+                switch (oAuthList.get(i).from) {
+                    case "weixin":
+                        mWeChatItemView.setYes(true);
+                        break;
+                    case "weibo":
+                        mWeiboItemView.setYes(true);
+                        break;
+                    case "qq":
+                        mQQItemView.setYes(true);
+                        break;
+                }
+            }
+        }
     }
 }

@@ -96,4 +96,6 @@ public class Constant {
     public final static String WITHDRAW_CREATE_ORDER_FUNCTION = "v1/user/withdraw/order";
     public final static String TOP_UP_CREATE_ORDER_FUNCTION = "v1/user/charge/order";
     public final static String TOP_UP_PAY_FUNCTION = "v1/charge/pay";
+    public final static String GET_OAUTH_LIST = "v1/user/oauth/list";// 获取用户第三方绑定列表
+    public final static String UN_BIND = "v1/user/oauth/unbind";// 解除第三方绑定
 }
