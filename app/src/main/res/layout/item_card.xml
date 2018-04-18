@@ -55,7 +55,7 @@
             android:text="@string/today_has_been_punch_card_no_check"
             android:textColor="@color/gray_text"
             android:textSize="14sp"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/punch_btn"

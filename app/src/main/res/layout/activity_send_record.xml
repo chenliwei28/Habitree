@@ -27,10 +27,8 @@
         android:gravity="start"
         android:minHeight="140dp"
         android:padding="10dp"
-        android:inputType="textMultiLine"
         android:textSize="15sp"
         android:textColor="@color/black_text"
-        android:labelFor="@id/detail_et"
         android:hint="少于200字以内"
         android:textCursorDrawable="@null"/>
 

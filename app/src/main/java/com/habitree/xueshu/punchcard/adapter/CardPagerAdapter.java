@@ -94,6 +94,12 @@ public class CardPagerAdapter extends PagerAdapter {
                         stateTv.setText("今天已打卡(审核未通过)");
                         punchBtn.setText(context.getString(R.string.punch_card));
                         break;
+                    case 6:
+                        punchBtn.setVisibility(View.VISIBLE);
+                        stateTv.setVisibility(View.VISIBLE);
+                        stateTv.setText("好友未接受邀请");
+                        punchBtn.setText("邀请好友");
+                        break;
                 }
             }
             punchBtn.setOnClickListener(new View.OnClickListener() {
