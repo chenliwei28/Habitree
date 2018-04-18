@@ -18,7 +18,7 @@ public class HabitListResponse implements Serializable{
     public Data data;
     public int timestamp;
 
-    public class Data {
+    public class Data implements Serializable{
         /**
          * list : [{"habit_id":9,"mem_id":3,"is_private":2,"check_mem_id":2,"check_time":0,"title":"跑步","status":1,"recycle":"1111111","record_type":2,"remind_time":72000,"recycle_days":7,"unit_price":1,"end_time":0,"sign_cnt":0,"view_cnt":0,"ht_title":"树二","youth_img":"http://img.habitree.cn/uploads/trees/tree.png","elder_img":"http://img.habitree.cn/uploads/trees/tree.png","death_img":"http://img.habitree.cn/uploads/trees/tree.png","ht_description":"树二","sign_status":2,"now_days":7,"check_meminfo":{"mem_id":2,"username":"14026","mobile":"15906063961","nickname":"陈主祥","portrait":"http://img.habitree.cn/uploads/portrait/20180306/5a9df0d4b1663.jpeg","is_official":null,"status":2}},{"habit_id":8,"mem_id":3,"is_private":2,"check_mem_id":2,"check_time":0,"title":"跑步","status":1,"recycle":"1111111","record_type":2,"remind_time":72000,"recycle_days":7,"unit_price":1,"end_time":0,"sign_cnt":0,"view_cnt":0,"ht_title":"树二","youth_img":"http://img.habitree.cn/uploads/trees/tree.png","elder_img":"http://img.habitree.cn/uploads/trees/tree.png","death_img":"http://img.habitree.cn/uploads/trees/tree.png","ht_description":"树二","sign_status":2,"now_days":7,"check_meminfo":{"mem_id":2,"username":"14026","mobile":"15906063961","nickname":"陈主祥","portrait":"http://img.habitree.cn/uploads/portrait/20180306/5a9df0d4b1663.jpeg","is_official":null,"status":2}},{"habit_id":7,"mem_id":3,"is_private":2,"check_mem_id":2,"check_time":0,"title":"跑步","status":1,"recycle":"1111111","record_type":2,"remind_time":72000,"recycle_days":7,"unit_price":1,"end_time":0,"sign_cnt":0,"view_cnt":0,"ht_title":"树二","youth_img":"http://img.habitree.cn/uploads/trees/tree.png","elder_img":"http://img.habitree.cn/uploads/trees/tree.png","death_img":"http://img.habitree.cn/uploads/trees/tree.png","ht_description":"树二","sign_status":2,"now_days":7,"check_meminfo":{"mem_id":2,"username":"14026","mobile":"15906063961","nickname":"陈主祥","portrait":"http://img.habitree.cn/uploads/portrait/20180306/5a9df0d4b1663.jpeg","is_official":null,"status":2}},{"habit_id":6,"mem_id":3,"is_private":2,"check_mem_id":2,"check_time":0,"title":"跑步","status":1,"recycle":"1111111","record_type":2,"remind_time":72000,"recycle_days":7,"unit_price":1,"end_time":0,"sign_cnt":0,"view_cnt":0,"ht_title":"树二","youth_img":"http://img.habitree.cn/uploads/trees/tree.png","elder_img":"http://img.habitree.cn/uploads/trees/tree.png","death_img":"http://img.habitree.cn/uploads/trees/tree.png","ht_description":"树二","sign_status":2,"now_days":7,"check_meminfo":{"mem_id":2,"username":"14026","mobile":"15906063961","nickname":"陈主祥","portrait":"http://img.habitree.cn/uploads/portrait/20180306/5a9df0d4b1663.jpeg","is_official":null,"status":2}},{"habit_id":5,"mem_id":3,"is_private":2,"check_mem_id":2,"check_time":0,"title":"跑步","status":1,"recycle":"1111111","record_type":2,"remind_time":68400,"recycle_days":7,"unit_price":1,"end_time":0,"sign_cnt":0,"view_cnt":0,"ht_title":"树二","youth_img":"http://img.habitree.cn/uploads/trees/tree.png","elder_img":"http://img.habitree.cn/uploads/trees/tree.png","death_img":"http://img.habitree.cn/uploads/trees/tree.png","ht_description":"树二","sign_status":2,"now_days":7,"check_meminfo":{"mem_id":2,"username":"14026","mobile":"15906063961","nickname":"陈主祥","portrait":"http://img.habitree.cn/uploads/portrait/20180306/5a9df0d4b1663.jpeg","is_official":null,"status":2}},{"habit_id":4,"mem_id":3,"is_private":2,"check_mem_id":2,"check_time":0,"title":"跑步","status":1,"recycle":"1111111","record_type":2,"remind_time":68400,"recycle_days":100,"unit_price":1,"end_time":0,"sign_cnt":0,"view_cnt":0,"ht_title":"树二","youth_img":"http://img.habitree.cn/uploads/trees/tree.png","elder_img":"http://img.habitree.cn/uploads/trees/tree.png","death_img":"http://img.habitree.cn/uploads/trees/tree.png","ht_description":"树二","sign_status":2,"now_days":100,"check_meminfo":{"mem_id":2,"username":"14026","mobile":"15906063961","nickname":"陈主祥","portrait":"http://img.habitree.cn/uploads/portrait/20180306/5a9df0d4b1663.jpeg","is_official":null,"status":2}}]
          * count : 6
@@ -28,6 +28,7 @@ public class HabitListResponse implements Serializable{
         public int count;
         public int nosign_count;
         public List<Habit> list;
+
 
         public class Habit implements Serializable{
             /**
@@ -82,7 +83,8 @@ public class HabitListResponse implements Serializable{
             public CheckMemInfo check_meminfo;
             public String sign_rate;
 
-            public class CheckMemInfo {
+
+            public class CheckMemInfo implements Serializable{
                 /**
                  * mem_id : 2
                  * username : 14026
@@ -100,6 +102,7 @@ public class HabitListResponse implements Serializable{
                 public String portrait;
                 public Object is_official;
                 public int status;
+
             }
         }
     }

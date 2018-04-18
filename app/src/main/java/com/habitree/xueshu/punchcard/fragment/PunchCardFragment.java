@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,7 +56,6 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mStartTv = view.findViewById(R.id.start_tv);
         mPaddingTv = view.findViewById(R.id.padding_tv);
         mCardVp.setPageMargin(100);
-        mCardVp.setOffscreenPageLimit(3);
         mPresenter = new HabitPresenter(getContext());
     }
 
@@ -101,6 +99,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     private void initCardViewPager() {
         if (mAdapter == null) {
             mAdapter = new CardPagerAdapter(getContext(), mHabits.list);
+
             mAdapter.setListener(new CardPagerAdapter.CardClickListener() {
                 @Override
                 public void detailClick(int position) {
@@ -115,6 +114,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
             });
             mCardVp.setAdapter(mAdapter);
             mCardVp.setPageTransformer(false, new CardPagerTransformer());
+            mCardVp.setCurrentItem(500);
         } else {
             mAdapter.updateData(mHabits.list);
         }

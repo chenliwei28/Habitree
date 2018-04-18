@@ -47,14 +47,14 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/card_vp"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_height="380dp"
         android:layout_below="@id/month_tv"
         android:layout_marginTop="50dp"
         android:clipToPadding="false"
         android:paddingBottom="5dp"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/empty_cv"
