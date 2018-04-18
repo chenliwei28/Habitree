@@ -120,10 +120,6 @@ public class CardPagerAdapter extends PagerAdapter {
         super.notifyDataSetChanged();
     }
 
-    @Override
-    public int getItemPosition(@NonNull Object object) {
-        return POSITION_NONE;
-    }
 
     public void setListener(CardClickListener listener) {
         this.listener = listener;
