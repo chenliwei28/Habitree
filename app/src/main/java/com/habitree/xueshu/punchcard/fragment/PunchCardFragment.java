@@ -206,6 +206,13 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                         }
                     });
         }
+
+        int signStatus = habit.sign_status;
+        if(signStatus == 1 || signStatus == 3 ||signStatus == 4 ){
+            shareDialog.title("分享好友");
+        }else {
+            shareDialog.title(R.string.invite_friends);
+        }
         shareDialog.show();
     }
 

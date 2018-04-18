@@ -11,13 +11,14 @@ import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
+import com.habitree.xueshu.xs.activity.TransActionBarActivity;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
 import java.util.List;
 
 /**
  * 种一棵树
  */
-public class PlantTreeActivity extends BaseActionBarActivity implements View.OnClickListener,HabitView.PlantTreeView{
+public class PlantTreeActivity extends TransActionBarActivity implements View.OnClickListener,HabitView.PlantTreeView{
 
     private ViewPager mCardVp;
     private TextView mChooseTv;
@@ -46,10 +47,6 @@ public class PlantTreeActivity extends BaseActionBarActivity implements View.OnC
 
     @Override
     protected void initData() {
-        setTitle(R.string.plant_a_tree);
-        mAdapter = new PlantTreeAdapter(this);
-        mCardVp.setAdapter(mAdapter);
-        mCardVp.setPageTransformer(false,new CardPagerTransformer());
         mPresenter.getPlantTree(this);
     }
 
@@ -57,15 +54,36 @@ public class PlantTreeActivity extends BaseActionBarActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choose_tv:
-                HabitSettingActivity.start(PlantTreeActivity.this,mList.get(mCardVp.getCurrentItem()).ht_id,mList.get(mCardVp.getCurrentItem()).youth_img);
+                try{
+                    int position = mCardVp.getCurrentItem();
+                    PlantTreeResponse.Tree  tree = mAdapter.getTree(position);
+                    if(tree != null){
+                        HabitSettingActivity.start(PlantTreeActivity.this,tree.ht_id,tree.youth_img);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 break;
         }
     }
 
     @Override
     public void onPlantTreeGetSuccess(List<PlantTreeResponse.Tree> list) {
-        mList = list;
-        mAdapter.updateData(mList);
+        if(list != null){
+            mList = list;
+            if(mAdapter == null || list.size() < 3){
+                mAdapter = new PlantTreeAdapter(this,mList);
+                mCardVp.setAdapter(mAdapter);
+                mCardVp.setPageTransformer(false,new CardPagerTransformer());
+                if(mList.size() > 2){
+                    mCardVp.setCurrentItem(500);
+                }else{
+                    mCardVp.setCurrentItem(0);
+                }
+            }else {
+                mAdapter.updateData(mList);
+            }
+        }
     }
 
     @Override

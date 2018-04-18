@@ -3,58 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/ic_day_bg"
     android:fitsSystemWindows="true"
     tools:context="com.habitree.xueshu.punchcard.activity.PlantTreeActivity">
 
     <LinearLayout
+        android:id="@+id/lltip"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="@string/choose_plant_trees"
-            android:textColor="@color/black_text"
-            android:textSize="21sp" />
+            android:textColor="@color/tip_color"
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="@string/plant_tree_long_text"
-            android:textColor="@color/gray_text"
-            android:textSize="15sp" />
+            android:textColor="@color/tip_color"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/choose_a_tree_with_you"
-            android:textColor="@color/gray_text"
-            android:textSize="15sp" />
+            android:textColor="@color/tip_color"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/card_vp"
         android:layout_width="match_parent"
-        android:layout_height="325dp"
-        android:layout_marginTop="130dp"
+        android:layout_height="360dp"
+        android:layout_below="@id/lltip"
         android:clipToPadding="false"
+        android:layout_marginTop="15dp"
         android:paddingBottom="5dp"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"/>
 
     <TextView
         android:id="@+id/choose_tv"
-        style="@style/RectButton"
+        style="@style/RoundButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:text="@string/confirm"/>
