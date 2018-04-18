@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/choose_plant_trees"
-            android:textColor="@color/tip_color"
+            android:textColor="@color/black_text"
             android:textSize="24sp" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/plant_tree_long_text"
-            android:textColor="@color/tip_color"
+            android:textColor="@color/black_text"
             android:textSize="18sp" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/choose_a_tree_with_you"
-            android:textColor="@color/tip_color"
+            android:textColor="@color/black_text"
             android:textSize="18sp" />
     </LinearLayout>
 

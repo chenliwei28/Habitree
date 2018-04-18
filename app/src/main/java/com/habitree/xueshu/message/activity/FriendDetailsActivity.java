@@ -22,6 +22,9 @@ import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
 import com.hyphenate.easeui.EaseConstant;
 
+/**
+ * 好友详情
+ */
 public class FriendDetailsActivity extends BaseActionBarActivity implements View.OnClickListener,FriendsView.FriendInfoView{
 
     private RoundImageView mHeadRiv;

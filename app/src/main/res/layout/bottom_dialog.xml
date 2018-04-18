@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#f1f1f1"
     android:orientation="vertical">
 
     <LinearLayout
@@ -46,7 +46,7 @@
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f1f1f1"
+        android:background="@color/white"
         android:gravity="center"
         android:padding="@dimen/app_plus_margin"
         android:text="@android:string/cancel"
