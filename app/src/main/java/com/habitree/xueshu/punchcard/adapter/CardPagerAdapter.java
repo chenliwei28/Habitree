@@ -20,14 +20,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 习惯适配器
+ */
 public class CardPagerAdapter extends PagerAdapter {
 
     private List<HabitListResponse.Data.Habit> mList;
     private Context context;
     private CardClickListener listener;
 
-    public CardPagerAdapter(Context context,List<HabitListResponse.Data.Habit> list) {
+    public CardPagerAdapter(Context context, List<HabitListResponse.Data.Habit> list) {
         this.context = context;
         mList = list;
     }
@@ -46,57 +48,53 @@ public class CardPagerAdapter extends PagerAdapter {
     @NonNull
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         final int p = position % mList.size();
-        HabitListResponse.Data.Habit habit = null;
-        try{
-            habit = mList.get(p);
-        }catch (Exception e){
+        HabitListResponse.Data.Habit habit = getHabit(position);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_card, container, false);
+        try {
+            TextView titleTv = view.findViewById(R.id.title_tv);
+            titleTv.setText(habit.title);
+            TextView punchBtn = view.findViewById(R.id.punch_btn);
+            TextView stateTv = view.findViewById(R.id.state_tv);
+            TextView countTv = view.findViewById(R.id.count_tv);
+            ImageView imgIv = view.findViewById(R.id.img_iv);
+            ImageUtil.loadImage((Activity) context, habit.youth_img, imgIv);
+            String s = "第" + habit.now_days + "/" + habit.recycle_days + "天";
+            countTv.setText(s);
+            switch (habit.sign_status) {
+                case 1:
+                    punchBtn.setVisibility(View.INVISIBLE);
+                    stateTv.setVisibility(View.INVISIBLE);
+                    break;
+                case 2:
+                    punchBtn.setVisibility(View.VISIBLE);
+                    stateTv.setVisibility(View.INVISIBLE);
+                    punchBtn.setText(context.getString(R.string.click_to_punch_card));
+                    break;
+                case 3:
+                    punchBtn.setVisibility(View.INVISIBLE);
+                    stateTv.setVisibility(View.VISIBLE);
+                    stateTv.setText(context.getString(R.string.today_has_been_punch_card_no_check));
+                    break;
+                case 4:
+                    punchBtn.setVisibility(View.INVISIBLE);
+                    stateTv.setVisibility(View.VISIBLE);
+                    stateTv.setText(context.getString(R.string.today_has_been_punch_card_and_checked));
+                    break;
+                case 5:
+                    punchBtn.setVisibility(View.VISIBLE);
+                    stateTv.setVisibility(View.VISIBLE);
+                    stateTv.setText("今天已打卡(审核未通过)");
+                    punchBtn.setText(context.getString(R.string.punch_card));
+                    break;
+            }
+            punchBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) listener.punchClick(p);
+                }
+            });
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        habit = habit == null ? mList.get(position) : habit;
-        View view = LayoutInflater.from(context).inflate(R.layout.item_card,container,false);
-        TextView titleTv = view.findViewById(R.id.title_tv);
-        titleTv.setText(habit.title);
-        TextView punchBtn = view.findViewById(R.id.punch_btn);
-        ImageView markIv = view.findViewById(R.id.mark_iv);
-        TextView stateTv = view.findViewById(R.id.state_tv);
-        TextView countTv = view.findViewById(R.id.count_tv);
-        ImageView imgIv = view.findViewById(R.id.img_iv);
-        ImageUtil.loadImage((Activity) context,habit.youth_img,imgIv);
-        String s = "第"+habit.now_days+"/"+habit.recycle_days+"天";
-        countTv.setText(s);
-        switch (habit.sign_status){
-            case 1:
-                punchBtn.setVisibility(View.GONE);
-                markIv.setVisibility(View.GONE);
-                stateTv.setVisibility(View.GONE);
-                break;
-            case 2:
-                punchBtn.setVisibility(View.VISIBLE);
-                markIv.setVisibility(View.GONE);
-                stateTv.setVisibility(View.GONE);
-                punchBtn.setText(context.getString(R.string.click_to_punch_card));
-                break;
-            case 3:
-                punchBtn.setVisibility(View.GONE);
-                markIv.setVisibility(View.VISIBLE);
-                stateTv.setVisibility(View.VISIBLE);
-                markIv.setImageResource(R.drawable.ic_mark_question);
-                stateTv.setText(context.getString(R.string.today_has_been_punch_card_no_check));
-                break;
-            case 4:
-                punchBtn.setVisibility(View.GONE);
-                markIv.setVisibility(View.VISIBLE);
-                stateTv.setVisibility(View.VISIBLE);
-                markIv.setImageResource(R.drawable.ic_mark_pass);
-                stateTv.setText(context.getString(R.string.today_has_been_punch_card_and_checked));
-                break;
-            case 5:
-                punchBtn.setVisibility(View.VISIBLE);
-                markIv.setVisibility(View.GONE);
-                stateTv.setVisibility(View.VISIBLE);
-                stateTv.setText("今天已打卡(审核未通过)");
-                punchBtn.setText(context.getString(R.string.punch_card));
-                break;
         }
         // 如果没有监督人
 //        if(){
@@ -105,13 +103,7 @@ public class CardPagerAdapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener!=null)listener.detailClick(p);
-            }
-        });
-        punchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener!=null)listener.punchClick(p);
+                if (listener != null) listener.detailClick(p);
             }
         });
         container.addView(view);
@@ -119,7 +111,7 @@ public class CardPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position,@NonNull Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
 
@@ -133,17 +125,30 @@ public class CardPagerAdapter extends PagerAdapter {
         return POSITION_NONE;
     }
 
-    public void setListener(CardClickListener listener){
+    public void setListener(CardClickListener listener) {
         this.listener = listener;
     }
 
-    public void updateData(List<HabitListResponse.Data.Habit> list){
+    public void updateData(List<HabitListResponse.Data.Habit> list) {
         mList = list;
         notifyDataSetChanged();
     }
 
-    public interface CardClickListener{
+    public interface CardClickListener {
         void detailClick(int position);
+
         void punchClick(int position);
+    }
+
+    public HabitListResponse.Data.Habit getHabit(int position) {
+        final int p = position % mList.size();
+        HabitListResponse.Data.Habit habit = null;
+        try {
+            habit = mList.get(p);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        habit = habit == null ? mList.get(position) : habit;
+        return habit;
     }
 }
