@@ -9,298 +9,296 @@
     android:orientation="vertical"
     tools:context="com.habitree.xueshu.message.activity.FriendDetailsActivity">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-
-                <ImageView
-                    android:id="@+id/bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="194dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/login_bg" />
-
-                <com.habitree.xueshu.xs.view.RoundImageView
-                    android:id="@+id/head_riv"
-                    android:layout_width="77dp"
-                    android:layout_height="77dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="150dp"
-                    android:src="@drawable/ic_launcher"
-                    app:type="circle"/>
-
-                <TextView
-                    android:id="@+id/name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/bg"
-                    android:layout_marginTop="15dp"
-                    android:layout_toRightOf="@id/head_riv"
-                    tools:text="张全蛋"
-                    android:textColor="@color/black_text"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:id="@+id/days_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/name_tv"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp"
-                    android:layout_toRightOf="@id/head_riv"
-                    tools:text="加入天数：120天"
-                    android:textColor="@color/gray_text"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/send_message_tv"
-                    android:layout_width="63dp"
-                    android:layout_height="25dp"
-                    android:gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_alignBottom="@id/days_tv"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/shape_round_blue_stroke_white_button"
-                    android:textSize="14sp"
-                    android:textColor="@color/blue"
-                    android:text="@string/send_message"/>
-            </RelativeLayout>
-
-            <View style="@style/Line"/>
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="61dp"
-                android:background="@color/white"
-                android:baselineAligned="false">
-
-                <LinearLayout
-                    android:id="@+id/count_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/times_of_punch_card"
-                        android:textColor="@color/black_text"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/count_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        tools:text="200次"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/rate_of_punch_card"
-                        android:textColor="@color/black_text"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/rate_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        tools:text="80%"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/completed_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/completed"
-                        android:textColor="@color/black_text"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/completed_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        tools:text="8个"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ongoing_ll"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/ongoing"
-                        android:textColor="@color/black_text"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/ongoing_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        tools:text="1个"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <View style="@style/Line"/>
-            
-            <TextView
-                android:id="@+id/habit_title"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical"
-                android:textColor="@color/gray_text"
-                android:textSize="14sp"
-                android:text="@string/habit"/>
-
-            <com.habitree.xueshu.xs.view.NoScrollListView
-                android:id="@+id/habits_lv"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:dividerHeight="0.5dp"
-                android:divider="@color/line"/>
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-            <View style="@style/Line"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@color/blue" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@color/background" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:gravity="center">
+
+                        <include layout="@layout/user_info_view" />
+                    </LinearLayout>
+                </FrameLayout>
+
+
+                <View style="@style/Line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:background="@color/white"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:id="@+id/count_ll"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/times_of_punch_card"
+                            android:textColor="@color/black_text"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/count_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            tools:text="200次" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rate_of_punch_card"
+                            android:textColor="@color/black_text"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/rate_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            tools:text="80%" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/completed_ll"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/completed"
+                            android:textColor="@color/black_text"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/completed_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            tools:text="8个" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ongoing_ll"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ongoing"
+                            android:textColor="@color/black_text"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/ongoing_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            tools:text="1个" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View style="@style/Line" />
+
+                <TextView
+                    android:id="@+id/habit_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/habit"
+                    android:textColor="@color/gray_text"
+                    android:textSize="14sp" />
+
+                <com.habitree.xueshu.xs.view.NoScrollListView
+                    android:id="@+id/habits_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@color/line"
+                    android:dividerHeight="0.5dp" />
+
+                <View style="@style/Line" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/between_you"
+                    android:textColor="@color/gray_text"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/he_become_your_friend"
+                        android:textColor="@color/black_text"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/become_days_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/gray_text"
+                        android:textSize="16sp"
+                        tools:text="666天" />
+                </RelativeLayout>
+
+                <View style="@style/Line" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/he_become_your_supervision"
+                        android:textColor="@color/black_text"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/become_times_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/gray_text"
+                        android:textSize="16sp"
+                        tools:text="22次" />
+                </RelativeLayout>
+
+                <View style="@style/Line" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:paddingLeft="15dp"
+                    android:layout_marginBottom="100dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/you_become_his_supervision"
+                        android:textColor="@color/black_text"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/become_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/gray_text"
+                        android:textSize="16sp"
+                        tools:text="222次" />
+                </RelativeLayout>
+
+                <View style="@style/Line" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|center_horizontal">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical"
-                android:textColor="@color/gray_text"
-                android:textSize="14sp"
-                android:text="@string/between_you"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="16sp"
-                    android:textColor="@color/black_text"
-                    android:text="@string/he_become_your_friend"/>
-
-                <TextView
-                    android:id="@+id/become_days_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:textSize="16sp"
-                    android:textColor="@color/gray_text"
-                    tools:text="666天"/>
-            </RelativeLayout>
-
-            <View style="@style/Line"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="16sp"
-                    android:textColor="@color/black_text"
-                    android:text="@string/he_become_your_supervision"/>
-
-                <TextView
-                    android:id="@+id/become_times_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:textSize="16sp"
-                    android:textColor="@color/gray_text"
-                    tools:text="22次"/>
-            </RelativeLayout>
-
-            <View style="@style/Line"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="16sp"
-                    android:textColor="@color/black_text"
-                    android:text="@string/you_become_his_supervision"/>
-
-                <TextView
-                    android:id="@+id/become_count_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:textSize="16sp"
-                    android:textColor="@color/gray_text"
-                    tools:text="222次"/>
-            </RelativeLayout>
-
-            <View style="@style/Line"/>
+                android:id="@+id/send_message_tv"
+                style="@style/RoundButton"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:text="@string/send_message" />
         </LinearLayout>
-    </ScrollView>
+    </FrameLayout>
 </LinearLayout>

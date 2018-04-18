@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="20dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="30dp"
     app:cardElevation="5dp">
 
     <LinearLayout
@@ -17,12 +17,19 @@
         android:padding="20dp">
 
         <TextView
-            android:id="@+id/text_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sliding_around_to_check_the_next"
             android:textColor="@color/black_text"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_text"
+            android:layout_marginTop="@dimen/_10dp"
+            android:textSize="16sp" />
 
 
         <com.habitree.xueshu.xs.view.RoundImageView

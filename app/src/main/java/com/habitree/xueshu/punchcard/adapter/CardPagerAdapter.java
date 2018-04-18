@@ -36,7 +36,10 @@ public class CardPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return Integer.MAX_VALUE;
+        if(mList != null){
+            return mList.size() > 2 ? Integer.MAX_VALUE : mList.size();
+        }
+        return 0;
     }
 
     @Override
@@ -47,7 +50,6 @@ public class CardPagerAdapter extends PagerAdapter {
     @Override
     @NonNull
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
-        final int p = position % mList.size();
         final HabitListResponse.Data.Habit habit = getHabit(position);
         View view = LayoutInflater.from(context).inflate(R.layout.item_card, container, false);
         try {
@@ -61,53 +63,55 @@ public class CardPagerAdapter extends PagerAdapter {
             String s = "第" + habit.now_days + "/" + habit.recycle_days + "天";
             countTv.setText(s);
 
-            // 如果没有监督人
-            if (habit.check_meminfo == null) {
-                punchBtn.setVisibility(View.VISIBLE);
-                stateTv.setVisibility(View.VISIBLE);
-                stateTv.setText("还未设置监督人");
-                punchBtn.setText("邀请好友");
-            }else{
-                switch (habit.sign_status) {
-                    case 1:
-                        punchBtn.setVisibility(View.INVISIBLE);
-                        stateTv.setVisibility(View.INVISIBLE);
-                        break;
-                    case 2:
-                        punchBtn.setVisibility(View.VISIBLE);
-                        stateTv.setVisibility(View.INVISIBLE);
-                        punchBtn.setText(context.getString(R.string.click_to_punch_card));
-                        break;
-                    case 3:
-                        punchBtn.setVisibility(View.INVISIBLE);
-                        stateTv.setVisibility(View.VISIBLE);
-                        stateTv.setText(context.getString(R.string.today_has_been_punch_card_no_check));
-                        break;
-                    case 4:
-                        punchBtn.setVisibility(View.INVISIBLE);
-                        stateTv.setVisibility(View.VISIBLE);
-                        stateTv.setText(context.getString(R.string.today_has_been_punch_card_and_checked));
-                        break;
-                    case 5:
-                        punchBtn.setVisibility(View.VISIBLE);
-                        stateTv.setVisibility(View.VISIBLE);
-                        stateTv.setText("今天已打卡(审核未通过)");
-                        punchBtn.setText(context.getString(R.string.punch_card));
-                        break;
-                    case 6:
-                        punchBtn.setVisibility(View.VISIBLE);
-                        stateTv.setVisibility(View.VISIBLE);
+            switch (habit.sign_status) {
+                case 1:
+                    // 不可打卡
+                    stateTv.setText("今天不是打卡日");
+                    punchBtn.setText("分享好友");
+                    break;
+                case 2:
+                    // 可打卡
+                    stateTv.setText("今日还未打卡");
+                    punchBtn.setText(context.getString(R.string.click_to_punch_card));
+                    break;
+                case 3:
+                    // 打卡未审核
+                    stateTv.setText(context.getString(R.string.today_has_been_punch_card_no_check));
+                    punchBtn.setText("分享好友");
+                    break;
+                case 4:
+                    //打卡已审核
+                    stateTv.setText(context.getString(R.string.today_has_been_punch_card_and_checked));
+                    punchBtn.setText("分享好友");
+                    break;
+                case 5:
+                    //打卡审核不通过状态可重新打卡
+                    stateTv.setText("今天已打卡(审核未通过)");
+                    punchBtn.setText(context.getString(R.string.punch_card));
+                    break;
+                case 6:
+                    //好友未接受邀请
+                    if (habit.check_meminfo == null) {
+                        stateTv.setText("还未设置监督人");
+                        punchBtn.setText("邀请好友");
+                    }else{
                         stateTv.setText("好友未接受邀请");
                         punchBtn.setText("邀请好友");
-                        break;
-                }
+                    }
+                    break;
             }
             punchBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (habit.check_meminfo == null) {
+                    if (habit.sign_status == 6) {
+                        // 没有监督人或者邀请监督未接受
                         if (listener != null) listener.shareFriendClick(habit);
-                    }else {
+                    }
+                    else if(habit.sign_status == 3 || habit.sign_status == 4 || habit.sign_status == 1){
+                        // 已经打卡完毕，分享好友
+                        if (listener != null) listener.shareFriendClick(habit);
+                    }
+                    else {
                         if (listener != null) listener.punchClick(habit);
                     }
                 }
@@ -129,12 +133,6 @@ public class CardPagerAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
-
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-    }
-
 
     public void setListener(CardClickListener listener) {
         this.listener = listener;

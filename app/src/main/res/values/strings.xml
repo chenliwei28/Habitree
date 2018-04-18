@@ -10,7 +10,7 @@
     <string name="bind_account">绑定账户</string>
     <string name="boil_yourself">把自己熬成金黄</string>
     <string name="bind_ali_pay_account">绑定支付宝账户</string>
-    <string name="plant_tree_long_text">不同背景颜色，不同外形，每一棵树都独一无二</string>
+    <string name="plant_tree_long_text">不同外形，每一棵树都独一无二</string>
     <!--C-->
     <string name="look_over">查看</string>
     <string name="top_up">充值</string>
@@ -243,7 +243,7 @@
     <string name="next_step_verify_phone">下一步，验证手机号码</string>
     <string name="next_step_set_password">下一步，设置密码</string>
     <string name="write_something_to_make_him_up">写点什么给TA加油吧</string>
-    <string name="choose_a_tree_with_you">选一棵小树陪你度过难忘的日子吧</string>
+    <string name="choose_a_tree_with_you">选一棵小树陪你度过难忘的日子</string>
     <string name="send_card_record_to_someone">向监督人（%s）发送打卡记录</string>
     <string name="choose_time_long_text">选择时间，将作为习惯养成的时间长度。</string>
     <string name="choose_rational_time_is_helpful">选择合理的周期，有助于积累成就感和信息</string>

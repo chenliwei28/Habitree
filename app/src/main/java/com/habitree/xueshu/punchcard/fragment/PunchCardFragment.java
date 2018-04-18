@@ -110,7 +110,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void initCardViewPager() {
-        if (mAdapter == null) {
+        if (mAdapter == null || mHabits.list.size() < 3) {
             mAdapter = new CardPagerAdapter(getContext(), mHabits.list);
 
             mAdapter.setListener(new CardPagerAdapter.CardClickListener() {
@@ -131,7 +131,11 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
             });
             mCardVp.setAdapter(mAdapter);
             mCardVp.setPageTransformer(false, new CardPagerTransformer());
-            mCardVp.setCurrentItem(500);
+            if(mHabits.list.size() > 2){
+                mCardVp.setCurrentItem(500);
+            }else{
+                mCardVp.setCurrentItem(0);
+            }
         } else {
             mAdapter.updateData(mHabits.list);
         }
@@ -171,7 +175,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     /**
      * 邀请好友
      */
-    private void shareToFriend(HabitListResponse.Data.Habit habit) {
+    private void shareToFriend(final HabitListResponse.Data.Habit habit) {
         if(shareDialog == null){
             shareDialog = new BottomDialog(getActivity())
                     .title(R.string.invite_friends)
@@ -198,9 +202,16 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                                     platform = SHARE_MEDIA.QZONE;
                                     break;
                             }
-                            shareWeb(getActivity(), platform);
+                            shareWeb(habit,getActivity(), platform);
                         }
                     });
+        }
+
+        int signStatus = habit.sign_status;
+        if(signStatus == 1 || signStatus == 3 ||signStatus == 4 ){
+            shareDialog.title("分享好友");
+        }else {
+            shareDialog.title(R.string.invite_friends);
         }
         shareDialog.show();
     }
@@ -208,9 +219,16 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     /**
      * 分享链接
      */
-    public void shareWeb(final Activity activity, SHARE_MEDIA platform) {
-        UMWeb web = new UMWeb("https://www.baidu.com/");//连接地址
-        web.setTitle("邀请好友");//标题
+    public void shareWeb(HabitListResponse.Data.Habit habit,final Activity activity, SHARE_MEDIA platform) {
+        int signStatus = habit.sign_status;
+        String url = "https://www.baidu.com/";
+        UMWeb web = new UMWeb(url);//连接地址
+        if(signStatus == 3){
+            // 打卡成功
+            web.setTitle("打卡成功");//标题
+        }else{
+            web.setTitle("邀请好友");
+        }
         web.setDescription("学树习惯，把自己熬成黄金");//描述
         web.setThumb(new UMImage(activity, R.drawable.ic_share_logo));  //本地缩略图
         if(platform == SHARE_MEDIA.SINA){

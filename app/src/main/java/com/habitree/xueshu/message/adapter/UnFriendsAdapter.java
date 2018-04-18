@@ -52,7 +52,7 @@ public class UnFriendsAdapter extends BaseAdapter{
         }else {
             holder = (UnFriendViewHolder) view.getTag();
         }
-        ImageUtil.loadImage((Activity) mContext,getItem(i).portrait,holder.mHeadRiv,R.drawable.ic_default_head);
+        ImageUtil.loadImage((Activity) mContext,getItem(i).portrait,holder.mHeadRiv,R.drawable.ic_launcher);
         holder.mNameTv.setText(getItem(i).nickname);
         holder.mAddTv.setOnClickListener(new View.OnClickListener() {
             @Override
