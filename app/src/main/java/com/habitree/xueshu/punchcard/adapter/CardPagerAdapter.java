@@ -48,7 +48,7 @@ public class CardPagerAdapter extends PagerAdapter {
     @NonNull
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         final int p = position % mList.size();
-        HabitListResponse.Data.Habit habit = getHabit(position);
+        final HabitListResponse.Data.Habit habit = getHabit(position);
         View view = LayoutInflater.from(context).inflate(R.layout.item_card, container, false);
         try {
             TextView titleTv = view.findViewById(R.id.title_tv);
@@ -60,50 +60,59 @@ public class CardPagerAdapter extends PagerAdapter {
             ImageUtil.loadImage((Activity) context, habit.youth_img, imgIv);
             String s = "第" + habit.now_days + "/" + habit.recycle_days + "天";
             countTv.setText(s);
-            switch (habit.sign_status) {
-                case 1:
-                    punchBtn.setVisibility(View.INVISIBLE);
-                    stateTv.setVisibility(View.INVISIBLE);
-                    break;
-                case 2:
-                    punchBtn.setVisibility(View.VISIBLE);
-                    stateTv.setVisibility(View.INVISIBLE);
-                    punchBtn.setText(context.getString(R.string.click_to_punch_card));
-                    break;
-                case 3:
-                    punchBtn.setVisibility(View.INVISIBLE);
-                    stateTv.setVisibility(View.VISIBLE);
-                    stateTv.setText(context.getString(R.string.today_has_been_punch_card_no_check));
-                    break;
-                case 4:
-                    punchBtn.setVisibility(View.INVISIBLE);
-                    stateTv.setVisibility(View.VISIBLE);
-                    stateTv.setText(context.getString(R.string.today_has_been_punch_card_and_checked));
-                    break;
-                case 5:
-                    punchBtn.setVisibility(View.VISIBLE);
-                    stateTv.setVisibility(View.VISIBLE);
-                    stateTv.setText("今天已打卡(审核未通过)");
-                    punchBtn.setText(context.getString(R.string.punch_card));
-                    break;
+
+            // 如果没有监督人
+            if (habit.check_meminfo == null) {
+                punchBtn.setVisibility(View.VISIBLE);
+                stateTv.setVisibility(View.VISIBLE);
+                stateTv.setText("还未设置监督人");
+                punchBtn.setText("邀请好友");
+            }else{
+                switch (habit.sign_status) {
+                    case 1:
+                        punchBtn.setVisibility(View.INVISIBLE);
+                        stateTv.setVisibility(View.INVISIBLE);
+                        break;
+                    case 2:
+                        punchBtn.setVisibility(View.VISIBLE);
+                        stateTv.setVisibility(View.INVISIBLE);
+                        punchBtn.setText(context.getString(R.string.click_to_punch_card));
+                        break;
+                    case 3:
+                        punchBtn.setVisibility(View.INVISIBLE);
+                        stateTv.setVisibility(View.VISIBLE);
+                        stateTv.setText(context.getString(R.string.today_has_been_punch_card_no_check));
+                        break;
+                    case 4:
+                        punchBtn.setVisibility(View.INVISIBLE);
+                        stateTv.setVisibility(View.VISIBLE);
+                        stateTv.setText(context.getString(R.string.today_has_been_punch_card_and_checked));
+                        break;
+                    case 5:
+                        punchBtn.setVisibility(View.VISIBLE);
+                        stateTv.setVisibility(View.VISIBLE);
+                        stateTv.setText("今天已打卡(审核未通过)");
+                        punchBtn.setText(context.getString(R.string.punch_card));
+                        break;
+                }
             }
             punchBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) listener.punchClick(p);
+                    if (habit.check_meminfo == null) {
+                        if (listener != null) listener.shareFriendClick(habit);
+                    }else {
+                        if (listener != null) listener.punchClick(habit);
+                    }
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // 如果没有监督人
-//        if(){
-//
-//        }
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null) listener.detailClick(p);
+                if (listener != null) listener.detailClick(habit);
             }
         });
         container.addView(view);
@@ -131,9 +140,15 @@ public class CardPagerAdapter extends PagerAdapter {
     }
 
     public interface CardClickListener {
-        void detailClick(int position);
+        void detailClick(HabitListResponse.Data.Habit habit);
 
-        void punchClick(int position);
+        void punchClick(HabitListResponse.Data.Habit habit);
+
+        /**
+         * 邀请好友
+         * @param habit
+         */
+        void shareFriendClick(HabitListResponse.Data.Habit habit);
     }
 
     public HabitListResponse.Data.Habit getHabit(int position) {

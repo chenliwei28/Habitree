@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/weixin"
+        android:icon="@drawable/ic_share_weixin"
+        android:title="微信" />
+    <item
+        android:id="@+id/friends"
+        android:icon="@drawable/ic_share_friends"
+        android:title="朋友圈" />
+    <item
+        android:id="@+id/weibo"
+        android:icon="@drawable/ic_share_weibo"
+        android:title="微博" />
+    <item
+        android:id="@+id/qq"
+        android:icon="@drawable/ic_share_qq"
+        android:title="QQ" />
+    <item
+        android:id="@+id/qzone"
+        android:icon="@drawable/ic_share_qqzone"
+        android:title="QQ空间" />
+</menu>
