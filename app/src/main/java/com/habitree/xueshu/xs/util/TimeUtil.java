@@ -5,6 +5,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.habitree.xueshu.R;
+import com.hyphenate.easeui.model.EasePreferenceManager;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -126,19 +127,19 @@ public class TimeUtil {
      * @param imageView
      */
     public static void setHomeBackground(Context context, ImageView imageView) {
-        int imgId = imageView.getTag() == null ? -1 : (Integer) imageView.getTag();
+        int imgId = EasePreferenceManager.getInstance().getIntValue("background",-1);
         long currHour = getCurrentHour();
         if (currHour >= 6 && currHour < 18) {
             // 白天
             if (imgId != R.drawable.ic_day_bg) {
                 ImageUtil.loadImage(context, R.drawable.ic_day_bg, imageView);
-                imageView.setTag(R.drawable.ic_day_bg);
+                EasePreferenceManager.getInstance().getIntValue("background",R.drawable.ic_day_bg);
             }
         } else if (currHour >= 18 || currHour < 6) {
             // 黑夜
             if (imgId != R.drawable.ic_night_bg) {
                 ImageUtil.loadImage(context, R.drawable.ic_night_bg, imageView);
-                imageView.setTag(R.drawable.ic_night_bg);
+                EasePreferenceManager.getInstance().getIntValue("background",R.drawable.ic_night_bg);
             }
         }
     }

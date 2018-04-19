@@ -2,6 +2,7 @@ package com.habitree.xueshu.login.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -68,6 +69,10 @@ public class CheckPhoneActivity extends BaseActionBarActivity implements OnClick
         int vid = view.getId();
         if (vid == R.id.next_btn) {
             // 下一步
+            String phone = mPhoneEt.getText().toString();
+            if(TextUtils.isEmpty(phone)){
+                return;
+            }
             if(AuthCodeTimer.getInstance().isTiming() && phone.equals(mPhoneEt.getText().toString())){
                 RegisterActivity.start(this,phone);
             }

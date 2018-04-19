@@ -47,4 +47,13 @@ public class EasePreferenceManager {
     public String getStringValue(String key, String defValue) {
         return mSharedPreferences.getString(key, defValue);
     }
+
+    public void setIntValue(String key, int value) {
+        editor.putInt(key, value);
+        editor.apply();
+    }
+
+    public int getIntValue(String key, int defValue) {
+        return mSharedPreferences.getInt(key, defValue);
+    }
 }

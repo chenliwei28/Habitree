@@ -59,6 +59,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     private HabitPresenter mPresenter;
     private CardPagerAdapter mAdapter;
     private HabitListResponse.Data mHabits;
+    private HabitListResponse.Data.Habit currHabit;
 
     @Override
     protected int setLayoutId() {
@@ -135,7 +136,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
 
                 @Override
                 public void shareFriendClick(HabitListResponse.Data.Habit habit) {
-                    shareToFriend(habit);
+                    currHabit = habit;
+                    shareToFriend();
                 }
             });
             mCardVp.setAdapter(mAdapter);
@@ -184,7 +186,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     /**
      * 邀请好友
      */
-    private void shareToFriend(final HabitListResponse.Data.Habit habit) {
+    private void shareToFriend() {
         if(shareDialog == null){
             shareDialog = new BottomDialog(getActivity())
                     .title(R.string.invite_friends)
@@ -211,7 +213,9 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                                     platform = SHARE_MEDIA.QZONE;
                                     break;
                             }
-                            shareWeb(habit,getActivity(), platform);
+                            if(currHabit != null){
+                                shareWeb(currHabit,getActivity(), platform);
+                            }
                         }
                     });
             shareDialog.setOnInvitationClickListener(new BottomDialog.OnInvitationClickListener() {
@@ -219,14 +223,14 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                 public void onmInvitationClick() {
                     // 邀请好友
                     Intent intent = new Intent(getActivity(),SuperviseInvitateActivity.class);
-                    intent.putExtra(Constant.HABIT_ID,habit.habit_id);
+                    intent.putExtra(Constant.HABIT_ID,currHabit.habit_id);
                     UIUtil.startActivity(getActivity(),intent);
                     shareDialog.dismiss();
                 }
             });
         }
 
-        int signStatus = habit.sign_status;
+        int signStatus = currHabit.sign_status;
         shareDialog.setInvitationShow(signStatus == 6 ? View.VISIBLE : View.GONE);
         shareDialog.title(signStatus == 6 ? "邀请好友":"分享好友");
         shareDialog.show();
