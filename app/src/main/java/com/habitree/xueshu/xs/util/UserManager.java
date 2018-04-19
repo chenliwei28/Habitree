@@ -102,6 +102,13 @@ public class UserManager {
         return "";
     }
 
+    public String getUserNick(){
+        if(user != null){
+            return user.nickname;
+        }
+        return "";
+    }
+
     public String getPhone(){
         if(user != null){
             return user.mobile;

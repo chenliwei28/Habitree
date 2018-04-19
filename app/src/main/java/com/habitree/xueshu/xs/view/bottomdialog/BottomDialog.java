@@ -102,6 +102,7 @@ public class BottomDialog {
         private LinearLayout background;
         private LinearLayout container;
         private TextView titleView;
+        private TextView mInvitationBtn;
 
         private DialogAdapter adapter;
 
@@ -135,10 +136,19 @@ public class BottomDialog {
             background = (LinearLayout) findViewById(R.id.background);
             titleView = (TextView) findViewById(R.id.title);
             container = (LinearLayout) findViewById(R.id.container);
+            mInvitationBtn = findViewById(R.id.invitation_tv);
             findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     dismiss();
+                }
+            });
+            mInvitationBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mListener != null){
+                        mListener.onmInvitationClick();
+                    }
                 }
             });
         }
@@ -185,6 +195,16 @@ public class BottomDialog {
 
         public void background(int res) {
             background.setBackgroundResource(res);
+        }
+
+        /**
+         * 设置邀请好友按钮是否可见
+         * @param visibility
+         */
+        public void setInvitationShow(int visibility){
+            if(mInvitationBtn != null){
+                mInvitationBtn.setVisibility(visibility);
+            }
         }
 
         void inflateMenu(int menu, OnItemClickListener onItemClickListener) {
@@ -376,4 +396,22 @@ public class BottomDialog {
         }
     }
 
+    private OnInvitationClickListener mListener;
+    public interface OnInvitationClickListener{
+        void onmInvitationClick();
+    }
+
+    public void setOnInvitationClickListener(OnInvitationClickListener listener){
+        this.mListener = listener;
+    }
+
+    /**
+     * 设置邀请好友按钮是否可见
+     * @param visibility
+     */
+    public void setInvitationShow(int visibility){
+        if(customDialog != null){
+            customDialog.setInvitationShow(visibility);
+        }
+    }
 }

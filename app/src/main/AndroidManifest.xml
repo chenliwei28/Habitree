@@ -388,6 +388,9 @@
         <activity android:name=".mine.activity.TopUpSuccessActivity"/>
         <activity android:name=".mine.activity.WithdrawBindActivity"/>
         <activity android:name=".mine.activity.WithDrawSuccessActivity"/>
+        <activity android:name=".mine.activity.InvitationFriendActivity"/>
+        <activity android:name=".mine.activity.SuperviseInvitateActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

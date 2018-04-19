@@ -1,6 +1,5 @@
 package com.habitree.xueshu.message.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,18 +54,27 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
         }else {
             holder = (FriendViewHolder) convertView.getTag();
         }
-        holder.nameTv.setText(mList.get(position).nickname);
-        ImageUtil.loadImage( mContext,mList.get(position).portrait,holder.headRiv,R.drawable.ic_launcher);
+        final Friend friend = mList.get(position);
+        holder.nameTv.setText(friend.nickname);
+        ImageUtil.loadImage( mContext,friend.portrait,holder.headRiv,R.drawable.ic_launcher);
 
         // 根据position获取分类的首字母的Char ascii值
         int section = getSectionForPosition(position);
         // 如果当前位置等于该分类首字母的Char的位置 ，则认为是第一次出现
         if (position == getPositionForSection(section)) {
             holder.letterTv.setVisibility(View.VISIBLE);
-            holder.letterTv.setText(mList.get(position).letter);
+            holder.letterTv.setText(friend.letter);
         } else {
             holder.letterTv.setVisibility(View.GONE);
         }
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mListener != null){
+                    mListener.onFriendSelect(friend);
+                }
+            }
+        });
         return convertView;
     }
 
@@ -105,5 +113,14 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
     @Override
     public Object[] getSections() {
         return null;
+    }
+
+    private OnFriendSelectListener mListener;
+    public interface OnFriendSelectListener{
+        void onFriendSelect(Friend friend);
+    }
+
+    public void setOnFriendSelectListener(OnFriendSelectListener listener){
+        this.mListener = listener;
     }
 }

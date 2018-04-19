@@ -259,6 +259,8 @@ public class MessageManager extends Observable{
                             }else {
                                 view.onSendFailed(CommUtil.unicode2Chinese(response.body().info));
                             }
+                        }else{
+                            view.onSendFailed(context.getString(R.string.network_error));
                         }
                     }
 

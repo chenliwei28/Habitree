@@ -28,6 +28,7 @@ public class Constant {
     public final static String IMAGE = "image";
     public final static String MONEY_VALUE = "money_value";
     public final static String OAUTH_ID = "oauth_id";
+    public final static String HABIT_ID = "habit_id";
 
     //手机号正则表达式
     public final static String PHONE_REGEX = "[1][3578]\\d{9}";
@@ -80,7 +81,7 @@ public class Constant {
     public final static String DELETE_MSG_FUNCTION = "v1/user/msg/delete";
     public final static String HANDLE_MSG_FUNCTION = "v1/user/msg/handle";
     public final static String GET_HABIT_LIST_FUNCTION = "v1/habit/list";
-    public final static String SEND_MSG_FUNCTION = "v1/user/send/message";
+    public final static String SEND_MSG_FUNCTION = "v1/user/send/message";// 发送消息
     public final static String PAY_ORDER_FUNCTION = "v1/habit/pay";
     public final static String PUNCH_CARD_FUNCTION = "v1/habit/sign";
     public final static String GET_MY_WALLET_FUNCTION = "v1/user/wallet";

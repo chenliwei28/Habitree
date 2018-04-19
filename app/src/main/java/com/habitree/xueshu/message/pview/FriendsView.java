@@ -17,4 +17,5 @@ public interface FriendsView extends BaseView{
         void onInfoGetSuccess(FriendInfoResponse.FriendDetail detail);
         void onInfoGetFailed(String reason);
     }
+
 }

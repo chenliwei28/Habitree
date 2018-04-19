@@ -91,12 +91,11 @@ public class CardPagerAdapter extends PagerAdapter {
                     break;
                 case 6:
                     //好友未接受邀请
+                    punchBtn.setText("邀请好友");
                     if (habit.check_meminfo == null) {
                         stateTv.setText("还未设置监督人");
-                        punchBtn.setText("邀请好友");
                     }else{
                         stateTv.setText("好友未接受邀请");
-                        punchBtn.setText("邀请好友");
                     }
                     break;
             }

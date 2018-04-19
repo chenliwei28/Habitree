@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.mine.activity.SuperviseInvitateActivity;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
 import com.habitree.xueshu.punchcard.activity.PlantTreeActivity;
 import com.habitree.xueshu.punchcard.activity.SendRecordActivity;
@@ -21,8 +22,10 @@ import com.habitree.xueshu.punchcard.adapter.CardPagerAdapter;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
+import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
 import com.habitree.xueshu.xs.util.TimeUtil;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
 import com.habitree.xueshu.xs.view.bottomdialog.BottomDialog;
 import com.habitree.xueshu.xs.view.bottomdialog.Item;
@@ -205,14 +208,21 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                             shareWeb(habit,getActivity(), platform);
                         }
                     });
+            shareDialog.setOnInvitationClickListener(new BottomDialog.OnInvitationClickListener() {
+                @Override
+                public void onmInvitationClick() {
+                    // 邀请好友
+                    Intent intent = new Intent(getActivity(),SuperviseInvitateActivity.class);
+                    intent.putExtra(Constant.HABIT_ID,habit.habit_id);
+                    UIUtil.startActivity(getActivity(),intent);
+                    shareDialog.dismiss();
+                }
+            });
         }
 
         int signStatus = habit.sign_status;
-        if(signStatus == 1 || signStatus == 3 ||signStatus == 4 ){
-            shareDialog.title("分享好友");
-        }else {
-            shareDialog.title(R.string.invite_friends);
-        }
+        shareDialog.setInvitationShow(signStatus == 6 ? View.VISIBLE : View.GONE);
+        shareDialog.title(signStatus == 6 ? "邀请好友":"分享好友");
         shareDialog.show();
     }
 
