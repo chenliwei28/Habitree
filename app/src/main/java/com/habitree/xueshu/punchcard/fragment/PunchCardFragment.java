@@ -113,7 +113,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void initCardViewPager() {
-        if (mAdapter == null || mHabits.list.size() < 3) {
+        try{
             mAdapter = new CardPagerAdapter(getContext(), mHabits.list);
 
             mAdapter.setListener(new CardPagerAdapter.CardClickListener() {
@@ -139,8 +139,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
             }else{
                 mCardVp.setCurrentItem(0);
             }
-        } else {
-            mAdapter.updateData(mHabits.list);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

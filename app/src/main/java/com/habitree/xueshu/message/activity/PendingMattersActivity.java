@@ -14,6 +14,9 @@ import com.habitree.xueshu.xs.util.MessageManager;
 
 import java.util.List;
 
+/**
+ * 待处理事项
+ */
 public class PendingMattersActivity extends BaseActionBarActivity implements MessageView.MsgListView{
 
     private RecyclerView mListRv;

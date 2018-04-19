@@ -61,6 +61,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:padding="@dimen/app_plus_margin"
+        android:textColor="@color/black"
         android:text="@android:string/cancel"
         android:textSize="@dimen/font_larger" />
 

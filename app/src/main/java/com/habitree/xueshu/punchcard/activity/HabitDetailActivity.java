@@ -1,13 +1,22 @@
 package com.habitree.xueshu.punchcard.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.message.activity.FriendDetailsActivity;
+import com.habitree.xueshu.message.activity.FriendForestActivity;
+import com.habitree.xueshu.mine.activity.SuperviseInvitateActivity;
 import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
+import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.RecordListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
@@ -16,11 +25,20 @@ import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyDialog;
 import com.habitree.xueshu.xs.view.RoundImageView;
+import com.habitree.xueshu.xs.view.bottomdialog.BottomDialog;
+import com.habitree.xueshu.xs.view.bottomdialog.Item;
+import com.habitree.xueshu.xs.view.bottomdialog.OnItemClickListener;
 import com.habitree.xueshu.xs.view.calendarview.Calendar;
 import com.habitree.xueshu.xs.view.calendarview.CalendarView;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +73,10 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
     private HabitPresenter mPresenter;
     private List<Calendar> mCalendars = new ArrayList<>();
     private List<RecordListResponse.Data.Record> mRecordList;
+    // 习惯详情
+    private HabitDetailResponse.HabitDetail detailInfo;
+    // 分享对话框
+    private BottomDialog shareDialog;
 
     @Override
     protected int setLayoutId() {
@@ -154,6 +176,26 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
         }
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_her, menu);
+        MenuItem item = menu.findItem(R.id.tvHerForest);
+        item.setTitle("分享");
+        item.setIcon(R.drawable.ic_menu_share);
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if(detailInfo != null){
+                    share();
+                }
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
     private void showAbandonDialog(){
         if (mGiveUpDialog==null){
             mGiveUpDialog = new MyDialog(this,R.style.MyDialog).builder()
@@ -172,6 +214,7 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
     }
 
     private void updateDetail(HabitDetailResponse.HabitDetail detail){
+        this.detailInfo = detail;
         switch (detail.status){
             case 1:
                 ImageUtil.loadImage(this,detail.youth_img,mHeadRiv);
@@ -279,4 +322,112 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
         hideLoadingDialog();
         showToast(reason);
     }
+
+    /**
+     * 邀请好友
+     */
+    private void share() {
+        if(shareDialog == null){
+            shareDialog = new BottomDialog(this)
+                    .title("分享好友")
+                    .orientation(BottomDialog.HORIZONTAL)
+                    .inflateMenu(R.menu.menu_share, new OnItemClickListener() {
+                        @Override
+                        public void click(Item item) {
+                            int vid = item.getId();
+                            SHARE_MEDIA platform = SHARE_MEDIA.WEIXIN;
+                            switch (vid) {
+                                case R.id.weixin:
+                                    platform = SHARE_MEDIA.WEIXIN;
+                                    break;
+                                case R.id.friends:
+                                    platform = SHARE_MEDIA.WEIXIN_CIRCLE;
+                                    break;
+                                case R.id.weibo:
+                                    platform = SHARE_MEDIA.SINA;
+                                    break;
+                                case R.id.qq:
+                                    platform = SHARE_MEDIA.QQ;
+                                    break;
+                                case R.id.qzone:
+                                    platform = SHARE_MEDIA.QZONE;
+                                    break;
+                            }
+                            shareWeb(HabitDetailActivity.this, platform);
+                        }
+                    });
+            shareDialog.setOnInvitationClickListener(new BottomDialog.OnInvitationClickListener() {
+                @Override
+                public void onmInvitationClick() {
+                    // 邀请好友
+                    Intent intent = new Intent(HabitDetailActivity.this,SuperviseInvitateActivity.class);
+                    intent.putExtra(Constant.HABIT_ID,detailInfo.habit_id);
+                    UIUtil.startActivity(HabitDetailActivity.this,intent);
+                    shareDialog.dismiss();
+                }
+            });
+        }
+
+        int signStatus = detailInfo.sign_status;
+        shareDialog.setInvitationShow(signStatus == 6 ? View.VISIBLE : View.GONE);
+        shareDialog.title(signStatus == 6 ? "邀请好友":"分享好友");
+        shareDialog.show();
+    }
+
+    /**
+     * 分享链接
+     */
+    public void shareWeb(final Activity activity, SHARE_MEDIA platform) {
+        String url = "https://www.baidu.com/";
+        UMWeb web = new UMWeb(url);//连接地址
+        web.setTitle("分享好友");
+        web.setDescription("学树习惯，把自己熬成黄金");//描述
+        web.setThumb(new UMImage(activity, R.drawable.ic_share_logo));  //本地缩略图
+        if(platform == SHARE_MEDIA.SINA){
+            new ShareAction(activity)
+                    .setPlatform(platform)
+                    .withExtra(new UMImage(activity, R.drawable.ic_share_logo))
+                    .withMedia(web)
+                    .setCallback(umShareListener)
+                    .share();
+        }else{
+            new ShareAction(activity)
+                    .setPlatform(platform)
+                    .withMedia(web)
+                    .setCallback(umShareListener)
+                    .share();
+        }
+
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onResult(final SHARE_MEDIA share_media) {
+            Toast.makeText(HabitDetailActivity.this, " 分享成功", Toast.LENGTH_SHORT).show();
+            if(shareDialog != null){
+                shareDialog.dismiss();
+            }
+        }
+
+        @Override
+        public void onError(final SHARE_MEDIA share_media, final Throwable throwable) {
+            Toast.makeText(HabitDetailActivity.this, " 分享失败", Toast.LENGTH_SHORT).show();
+            if(shareDialog != null){
+                shareDialog.dismiss();
+            }
+        }
+
+        @Override
+        public void onCancel(final SHARE_MEDIA share_media) {
+            if(shareDialog != null){
+                shareDialog.dismiss();
+            }
+            Toast.makeText(HabitDetailActivity.this, " 分享取消", Toast.LENGTH_SHORT).show();
+        }
+    };
 }

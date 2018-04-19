@@ -89,7 +89,7 @@ public class AboutActivity extends AppCompatActivity implements OnClickListener 
         if (vid == R.id.contact_ll) {
             if(mContantDetailLl.getVisibility() == View.VISIBLE){
                 mContantDetailLl.setVisibility(View.GONE);
-                mArrowIv.setImageResource(R.drawable.ic_arrow_up);
+                mArrowIv.setImageResource(R.drawable.ic_arrow);
             }else{
                 mContantDetailLl.setVisibility(View.VISIBLE);
                 mArrowIv.setImageResource(R.drawable.ic_arrow_down);
