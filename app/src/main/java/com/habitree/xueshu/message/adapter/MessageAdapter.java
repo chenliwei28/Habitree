@@ -83,11 +83,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
             EaseUI.EaseUserProfileProvider provider = EaseUI.getInstance().getUserProfileProvider();
             if (provider != null) {
                 EaseUser user = provider.getUser(conversation.conversationId());
-                ImageUtil.loadImage((Activity) mContext, user.getAvatar(), holder.mHeadRiv, R.drawable.ic_default_head);
+                ImageUtil.loadImage((Activity) mContext, user.getAvatar(), holder.mHeadRiv, R.drawable.ic_launcher);
                 holder.mNameTv.setText(user.getNick());
             } else {
                 LogUtil.d("provider is null");
-                ImageUtil.loadImage((Activity) mContext, R.drawable.ic_default_head, holder.mHeadRiv);
+                ImageUtil.loadImage((Activity) mContext, R.drawable.ic_launcher, holder.mHeadRiv);
                 holder.mNameTv.setText(conversation.conversationId());
             }
 

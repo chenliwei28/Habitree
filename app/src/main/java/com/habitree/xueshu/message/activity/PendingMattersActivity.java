@@ -14,6 +14,7 @@ import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.util.ToastUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,6 +61,16 @@ public class PendingMattersActivity extends BaseActionBarActivity implements Mes
     @Override
     public void onListGetFailed(String reason) {
         showToast(reason);
+        List<Message> list = new ArrayList<>();
+        if (mAdapter==null){
+            mAdapter = new PendingMattersAdapter(this,list);
+            mListRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+            mListRv.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+            mAdapter.setOnHandlerListener(this);
+            mListRv.setAdapter(mAdapter);
+        }else {
+            mAdapter.updateData(list);
+        }
     }
 
     @Override
@@ -86,5 +97,6 @@ public class PendingMattersActivity extends BaseActionBarActivity implements Mes
     @Override
     public void onHandleFailed() {
         ToastUtil.showToast(this,R.string.network_error);
+        MessageManager.getManager().getMsgList(this,1,100,0,1,1,this);
     }
 }

@@ -72,14 +72,15 @@ public class CheckPhoneActivity extends BaseActionBarActivity implements OnClick
             String phone = mPhoneEt.getText().toString();
             if(TextUtils.isEmpty(phone)){
                 return;
-            }
-            if(AuthCodeTimer.getInstance().isTiming() && phone.equals(mPhoneEt.getText().toString())){
-                RegisterActivity.start(this,phone);
-            }
-            else{
-                phone = mPhoneEt.getText().toString();
-                showLoadingDialog();
-                mPresenter.sendAuthCode(phone, SMSType.REGISTER, this);
+            }else{
+                if(AuthCodeTimer.getInstance().isTiming() && phone.equals(mPhoneEt.getText().toString())){
+                    RegisterActivity.start(this,phone);
+                }
+                else{
+                    phone = mPhoneEt.getText().toString();
+                    showLoadingDialog();
+                    mPresenter.sendAuthCode(phone, SMSType.REGISTER, this);
+                }
             }
         } else if (vid == R.id.secret_btn) {
             // 隐私协议

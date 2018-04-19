@@ -26,12 +26,12 @@
 
     <TextView
         android:id="@+id/add_tv"
+        style="@style/RoundButton"
         android:layout_width="80dp"
         android:layout_height="30dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:gravity="center"
-        android:background="@drawable/shape_rect_corner_green_bg"
         android:text="@string/add_friends"
         android:textSize="14sp"
         android:textColor="@color/white"/>

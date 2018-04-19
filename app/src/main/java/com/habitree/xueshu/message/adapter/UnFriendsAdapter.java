@@ -44,7 +44,7 @@ public class UnFriendsAdapter extends BaseAdapter{
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        UnFriendViewHolder holder;
+        final UnFriendViewHolder holder;
         if (view==null){
             view = LayoutInflater.from(mContext).inflate(R.layout.item_unfriends_list,viewGroup,false);
             holder = new UnFriendViewHolder(view);
@@ -57,7 +57,11 @@ public class UnFriendsAdapter extends BaseAdapter{
         holder.mAddTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mListener!=null)mListener.onAddClick(i);
+                if (mListener!=null){
+                    mListener.onAddClick(i);
+                    holder.mAddTv.setBackgroundResource(R.drawable.shape_round_corner_gray_button);
+                    holder.mAddTv.setEnabled(false);
+                }
             }
         });
         view.setOnClickListener(new View.OnClickListener() {

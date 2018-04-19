@@ -72,7 +72,7 @@ public class RecordDetailActivity extends BaseActionBarActivity implements Messa
         setTitle(R.string.punch_card_record);
         showLoadingDialog();
         mNameTv.setText(UserManager.getManager().getUser().nickname);
-        ImageUtil.loadImage(this,UserManager.getManager().getUser().portrait,mHeadRiv);
+        ImageUtil.loadImage(this,UserManager.getManager().getUser().portrait,mHeadRiv,R.drawable.ic_launcher);
         MessageManager.getManager().getRecordDetail(this,getIntent().getIntExtra(Constant.ID,0),this);
     }
 

@@ -215,6 +215,9 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                             }
                             if(currHabit != null){
                                 shareWeb(currHabit,getActivity(), platform);
+                                if (shareDialog!= null){
+                                    shareDialog.dismiss();
+                                }
                             }
                         }
                     });

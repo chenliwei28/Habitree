@@ -204,7 +204,7 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
         showLoadingDialog();
         User user = UserManager.getManager().getUser();
         mNameTv.setText(user.nickname);
-        ImageUtil.loadImage(getActivity(), user.portrait, mHeadRiv);
+        ImageUtil.loadImage(getActivity(), user.portrait, mHeadRiv,R.drawable.ic_launcher);
         mDaysTv.setText(String.format(getString(R.string.num_days), user.join_days));
         mCountTv.setText(user.sign_cnt + "次");
         mRateTv.setText(String.valueOf(user.sign_rate));
@@ -256,7 +256,7 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
         if(detail != null){
             User user = UserManager.getManager().updateMyInfo(detail);
             mNameTv.setText(user.nickname);
-            ImageUtil.loadImage(getActivity(),user.portrait,mHeadRiv);
+            ImageUtil.loadImage(getActivity(),user.portrait,mHeadRiv,R.drawable.ic_launcher);
             mDaysTv.setText(String.format(getString(R.string.num_days),user.join_days));
             mCountTv.setText(user.sign_cnt+"次");
             mRateTv.setText(String.valueOf(user.sign_rate));

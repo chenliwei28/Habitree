@@ -84,7 +84,7 @@ public class MyInfoActivity extends BaseActionBarActivity implements View.OnClic
 
     private void updateData(){
         User user = UserManager.getManager().getUser();
-        ImageUtil.loadImage(this, user.portrait,mHeadRiv);
+        ImageUtil.loadImage(this, user.portrait,mHeadRiv,R.drawable.ic_launcher);
         mNameCiv.setDetail(user.nickname);
         switch (user.sex){
             case 1:
