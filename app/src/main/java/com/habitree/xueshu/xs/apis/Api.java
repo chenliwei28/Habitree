@@ -17,6 +17,7 @@ import com.habitree.xueshu.message.bean.MsgCountResponse;
 import com.habitree.xueshu.message.bean.MsgDetailResponse;
 import com.habitree.xueshu.message.bean.MsgListResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
+import com.habitree.xueshu.message.bean.ShareUrlResponse;
 import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.mine.bean.BindWithdrawAccountResponse;
 import com.habitree.xueshu.mine.bean.ChangeInfoResponse;
@@ -521,4 +522,13 @@ public interface Api {
     Call<OauthBindResponse> getOauthList(@Field("timestamp") String timestamp,
                                      @Field("sign") String sign,
                                      @Field("user_token") String userToken);
+
+    //分享链接获取
+    @FormUrlEncoded
+    @POST(Constant.GET_SHARE_URL)
+    Call<ShareUrlResponse> getShareUrl(@Field("timestamp") String timestamp,
+                                       @Field("sign") String sign,
+                                       @Field("user_token") String userToken,
+                                       @Field("share_type") int share_type,
+                                       @Field("type_id") int type_id);
 }

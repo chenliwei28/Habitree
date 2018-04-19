@@ -3,6 +3,7 @@ package com.habitree.xueshu.message.pview;
 
 import com.habitree.xueshu.message.bean.Friend;
 import com.habitree.xueshu.message.bean.FriendInfoResponse;
+import com.habitree.xueshu.message.bean.ShareUrlResponse;
 import com.habitree.xueshu.xs.presenter.BaseView;
 
 import java.util.List;
@@ -18,4 +19,8 @@ public interface FriendsView extends BaseView{
         void onInfoGetFailed(String reason);
     }
 
+    interface GetShareUrlView{
+        void onGetShareUrlSuccess(ShareUrlResponse.Data data);
+        void onGetShareUrlFailed(String reason);
+    }
 }

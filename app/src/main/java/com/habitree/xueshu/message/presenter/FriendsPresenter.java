@@ -9,6 +9,7 @@ import com.habitree.xueshu.message.bean.Friend;
 import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.message.bean.FriendsResponse;
 import com.habitree.xueshu.message.bean.SendMsgResponse;
+import com.habitree.xueshu.message.bean.ShareUrlResponse;
 import com.habitree.xueshu.message.pview.FriendsView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.presenter.BasePresenter;
@@ -80,6 +81,35 @@ public class FriendsPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<FriendInfoResponse> call, Throwable t) {
                         view.onInfoGetFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+
+    /**
+     * 分享链接获取
+     */
+    public void getShareUrl(int share_type,int type_id,final FriendsView.GetShareUrlView view) {
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().getShareUrl(timestamp,
+                CommUtil.getSign(Constant.GET_SHARE_URL, timestamp),
+                UserManager.getManager().getUser().user_token, share_type,type_id)
+                .enqueue(new Callback<ShareUrlResponse>() {
+                    @Override
+                    public void onResponse(Call<ShareUrlResponse> call, Response<ShareUrlResponse> response) {
+                        if (response.body() != null) {
+                            if (CommUtil.isSuccess(mContext, response.body().status)) {
+                                view.onGetShareUrlSuccess(response.body().data);
+                            } else {
+                                view.onGetShareUrlFailed(response.body().info == null ?
+                                        mContext.getString(R.string.network_error) : CommUtil.unicode2Chinese(response.body().info));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ShareUrlResponse> call, Throwable t) {
+                        view.onGetShareUrlFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }

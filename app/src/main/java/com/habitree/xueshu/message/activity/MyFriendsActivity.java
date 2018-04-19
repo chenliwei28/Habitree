@@ -1,6 +1,7 @@
 package com.habitree.xueshu.message.activity;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -10,17 +11,28 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.message.adapter.FriendsAdapter;
 import com.habitree.xueshu.message.adapter.FriendsAdapter.OnFriendSelectListener;
 import com.habitree.xueshu.message.bean.Friend;
+import com.habitree.xueshu.message.bean.ShareUrlResponse;
 import com.habitree.xueshu.message.presenter.FriendsPresenter;
+import com.habitree.xueshu.message.pview.FriendsView;
 import com.habitree.xueshu.message.pview.FriendsView.FriendsListView;
+import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.CharacterParser;
 import com.habitree.xueshu.xs.util.CommUtil;
+import com.habitree.xueshu.xs.util.UserManager;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -32,7 +44,7 @@ import java.util.Locale;
 /**
  * 好友界面
  */
-public class MyFriendsActivity extends BaseActionBarActivity implements View.OnClickListener, FriendsListView,OnFriendSelectListener {
+public class MyFriendsActivity extends BaseActionBarActivity implements View.OnClickListener, FriendsListView,OnFriendSelectListener,FriendsView.GetShareUrlView {
 
     private EditText mSearchEt;
     private ListView mFriendsLv;
@@ -125,22 +137,26 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
         }
     }
 
+    private SHARE_MEDIA platform;
     @Override
     public void onClick(View v) {
+        platform = SHARE_MEDIA.WEIXIN;
         switch (v.getId()) {
             case R.id.wx_ll:
-
+                platform = SHARE_MEDIA.WEIXIN;
                 break;
             case R.id.wb_ll:
-
+                platform = SHARE_MEDIA.SINA;
                 break;
             case R.id.qq_ll:
-
+                platform = SHARE_MEDIA.QQ;
                 break;
             case R.id.circle_ll:
-
+                platform = SHARE_MEDIA.QZONE;
                 break;
         }
+        User user = UserManager.getManager().getUser();
+        mPresenter.getShareUrl(1,user.mem_id,this);
     }
 
     @Override
@@ -170,4 +186,57 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
                     FriendDetailsActivity.class).putExtra(Constant.ID, friend.mem_id));
         }
     }
+
+    @Override
+    public void onGetShareUrlSuccess(ShareUrlResponse.Data data) {
+        if(data != null){
+            shareWeb(data,MyFriendsActivity.this,platform);
+        }
+    }
+
+    @Override
+    public void onGetShareUrlFailed(String reason) {
+        showToast(reason);
+    }
+
+
+    /**
+     * 分享链接
+     */
+    public void shareWeb( ShareUrlResponse.Data data,final Activity activity, SHARE_MEDIA platform) {
+        String url =data.url;
+        UMWeb web = new UMWeb(url);//连接地址
+        web.setTitle(data.title);//标题
+        web.setDescription(data.desc);//描述
+        web.setThumb(new UMImage(activity,data.icon));
+
+        new ShareAction(activity)
+                .setPlatform(platform)
+                .withMedia(web)
+                .setCallback(umShareListener)
+                .share();
+
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onResult(final SHARE_MEDIA share_media) {
+            Toast.makeText(MyFriendsActivity.this, " 分享成功", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(final SHARE_MEDIA share_media, final Throwable throwable) {
+            Toast.makeText(MyFriendsActivity.this, " 分享失败", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCancel(final SHARE_MEDIA share_media) {
+            Toast.makeText(MyFriendsActivity.this, " 分享取消", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
