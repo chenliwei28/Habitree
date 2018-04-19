@@ -52,13 +52,14 @@ public class BindConfirmActivity extends BaseActionBarActivity implements OnClic
 
     @Override
     protected void initData() {
+        setTitle("确认");
         mSendPresenter = new LoginAndRegisterPresenter(this);
         phone = UserManager.getManager().getPhone();
-        if (TextUtils.isEmpty(phone)) {
-            showToast("电话号码不能为空");
-            AppManager.getAppManager().finishActivity(this);
-            return;
-        }
+//        if (TextUtils.isEmpty(phone)) {
+//            showToast("电话号码不能为空");
+//            AppManager.getAppManager().finishActivity(this);
+//            return;
+//        }
 
         mPhoneTv.setText("+86 " + phone);
         // 验证码倒计时

@@ -115,7 +115,9 @@ public class ChangePasswordActivity extends BaseActionBarActivity implements OnC
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.onDetach();
+        if(mPresenter != null){
+            mPresenter.onDetach();
+        }
     }
 
     @Override

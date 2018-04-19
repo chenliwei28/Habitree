@@ -1,6 +1,7 @@
 package com.habitree.xueshu.mine.activity;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -67,11 +68,11 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
     @Override
     protected void initData() {
         setTitle(R.string.account_binding);
-        if (UserManager.getManager().getUser().third_oauth != null) {
-            mPhoneTv.setVisibility(View.INVISIBLE);
-        } else {
+        if (UserManager.getManager().getUser().mobile != null) {
             mPhoneTv.setVisibility(View.VISIBLE);
             mPhoneTv.setText(UserManager.getManager().getUser().mobile);
+        } else {
+            mPhoneTv.setVisibility(View.INVISIBLE);
         }
         oAuthList = UserManager.getManager().getUser().mem_oauth;
         if (oAuthList != null) {
@@ -124,7 +125,12 @@ public class AccountBindingActivity extends BaseActionBarActivity implements OnT
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.change_phone_btn:
-                UIUtil.startActivity(AccountBindingActivity.this, BindConfirmActivity.class);
+                String phone = UserManager.getManager().getPhone();
+                if (TextUtils.isEmpty(phone)) {
+                    UIUtil.startActivity(this, ChangePhoneActivity.class);
+                } else {
+                    UIUtil.startActivity(AccountBindingActivity.this, BindConfirmActivity.class);
+                }
                 break;
             case R.id.change_pwd_btn:
                 startActivity(new Intent(this, ChangePasswordActivity.class));
