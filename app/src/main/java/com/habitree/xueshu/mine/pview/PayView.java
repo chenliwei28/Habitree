@@ -20,4 +20,9 @@ public interface PayView extends BaseView {
         void onWithdrawSuccess();
         void onWithdrawFailed(String reason);
     }
+
+    interface QueryPayView {
+        void onQueryAliPaySuccess();
+        void onQueryAliPayFailed(String reason);
+    }
 }

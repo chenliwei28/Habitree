@@ -128,6 +128,11 @@ public class HabitPresenter extends BasePresenter {
                 });
     }
 
+    /**
+     * 创建习惯惩金支付订单(预下单)
+     * @param payName
+     * @param view
+     */
     public void createOrder(final String payName, final HabitView.CreateOrderView view){
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()

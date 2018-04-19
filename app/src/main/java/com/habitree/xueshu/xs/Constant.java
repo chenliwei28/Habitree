@@ -72,7 +72,7 @@ public class Constant {
     public final static String GET_FRIENDS_LIST_FUNCTION = "v1/user/friends/list";
     public final static String GET_FRIENDS_INFO_FUNCTION = "v1/user/info";
     public final static String GET_IM_INFO_FUNCTION = "v1/user/ids/list";
-    public final static String CREATE_HABIT_ORDER_FUNCTION = "v1/habit/pay/order";
+    public final static String CREATE_HABIT_ORDER_FUNCTION = "v1/habit/pay/order";//创建习惯惩金支付订单(预下单)
     public final static String CREATE_HABIT_FUNCTION = "v1/habit/save";
     public final static String GET_PAYWAY_FUNCTION = "v1/pay/payway";
     public final static String GET_MSG_COUNT_FUNCTION = "v1/user/msg/hasdo";
@@ -82,7 +82,7 @@ public class Constant {
     public final static String HANDLE_MSG_FUNCTION = "v1/user/msg/handle";
     public final static String GET_HABIT_LIST_FUNCTION = "v1/habit/list";
     public final static String SEND_MSG_FUNCTION = "v1/user/send/message";// 发送消息
-    public final static String PAY_ORDER_FUNCTION = "v1/habit/pay";
+    public final static String PAY_ORDER_FUNCTION = "v1/habit/pay";//习惯预下单支付
     public final static String PUNCH_CARD_FUNCTION = "v1/habit/sign";
     public final static String GET_MY_WALLET_FUNCTION = "v1/user/wallet";
     public final static String GET_CHARGE_LIST_FUNCTION = "v1/user/trade/list";

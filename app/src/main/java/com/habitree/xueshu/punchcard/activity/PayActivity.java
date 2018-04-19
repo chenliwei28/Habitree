@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * 支付界面
  */
-public class PayActivity extends BaseActionBarActivity implements View.OnClickListener,PayView.PayWayView,HabitView.CreateHabitView,PayView,HabitView.CreateOrderView {
+public class PayActivity extends BaseActionBarActivity implements View.OnClickListener,PayView.PayWayView,HabitView.CreateHabitView,PayView,HabitView.CreateOrderView ,PayView.QueryPayView{
 
     private LinearLayout mWxCheckLl;
     private LinearLayout mAliCheckLl;
@@ -46,6 +46,7 @@ public class PayActivity extends BaseActionBarActivity implements View.OnClickLi
     private PayWayResponse.Payway mBalance;
     private PayWayResponse.Payway mWX;
     private PayWayResponse.Payway mAli;
+    private String alipayOrderID ;// 阿里支付
 
     @Override
     protected int setLayoutId() {
@@ -119,6 +120,10 @@ public class PayActivity extends BaseActionBarActivity implements View.OnClickLi
         }
     }
 
+    /**
+     * 创建习惯惩金支付订单(预下单)
+     * @param payWay
+     */
     private void toPay(String payWay){
         showLoadingDialog();
         mHabitPresenter.createOrder(payWay,this);
@@ -190,6 +195,10 @@ public class PayActivity extends BaseActionBarActivity implements View.OnClickLi
         showToast(reason);
     }
 
+    /**
+     * 习惯预下单支付
+     * @param data
+     */
     @Override
     public void onPaySuccess(PayResultResponse.Data data) {
         switch (mCurrentMode){
@@ -202,6 +211,7 @@ public class PayActivity extends BaseActionBarActivity implements View.OnClickLi
                 }
                 break;
             case 3:
+                // 阿里支付
                 mPayPresenter.startAliPay(data.order_id,String.valueOf(data.amount),getString(R.string.habit_create),mHandler);
                 break;
         }
@@ -213,6 +223,10 @@ public class PayActivity extends BaseActionBarActivity implements View.OnClickLi
         showToast(reason);
     }
 
+    /**
+     * 创建习惯惩金支付订单(预下单) 返回结果
+     * @param orderId
+     */
     @Override
     public void onOrderCreateSuccess(String orderId) {
         switch (mCurrentMode){
@@ -223,6 +237,7 @@ public class PayActivity extends BaseActionBarActivity implements View.OnClickLi
                 mPayPresenter.payOrder(orderId,mWX.payname,this);
                 break;
             case 3:
+                this.alipayOrderID = orderId;
                 mPayPresenter.payOrder(orderId,mAli.payname,this);
                 break;
         }
@@ -262,11 +277,14 @@ public class PayActivity extends BaseActionBarActivity implements View.OnClickLi
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        showToast(getString(R.string.pay_success));
-                        mHabitPresenter.createHabit(PayActivity.this);
+//                        mHabitPresenter.createHabit(PayActivity.this);
+
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                        showToast("支付失败");
+//                        showToast("支付失败");
+                    }
+                    if(!TextUtils.isEmpty(alipayOrderID)){
+                        mPayPresenter.queryOrderStateByAliPay(alipayOrderID, PayActivity.this);
                     }
                     break;
                 }
@@ -275,4 +293,30 @@ public class PayActivity extends BaseActionBarActivity implements View.OnClickLi
             }
         }
     };
+
+
+    /**
+     * 查询订单
+     * @param orderId
+     */
+    private void query(final String orderId){
+        mPayTv.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPayPresenter.queryOrderStateByAliPay(orderId, PayActivity.this);
+            }
+        },2000);
+    }
+
+    @Override
+    public void onQueryAliPaySuccess() {
+        // 阿里支付成功
+        mHabitPresenter.createHabit(PayActivity.this);
+        showToast("支付成功");
+    }
+
+    @Override
+    public void onQueryAliPayFailed(String reason) {
+        query(alipayOrderID);
+    }
 }

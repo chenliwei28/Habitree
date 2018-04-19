@@ -32,7 +32,6 @@ import retrofit2.Response;
 import static com.habitree.xueshu.xs.Constant.RSA2_PRIVATE;
 import static com.habitree.xueshu.xs.Constant.RSA_PRIVATE;
 
-
 public class PayPresenter extends BasePresenter {
 
     public PayPresenter(Context context) {
@@ -64,7 +63,12 @@ public class PayPresenter extends BasePresenter {
                 });
     }
 
-    //习惯支付
+    /**
+     * 习惯预下单支付
+     * @param orderId
+     * @param payWay
+     * @param view
+     */
     public void payOrder(String orderId, String payWay, final PayView view) {
         String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
         HttpManager.getManager().getService()
@@ -113,6 +117,35 @@ public class PayPresenter extends BasePresenter {
                     @Override
                     public void onFailure(Call<QueryOrderResponse> call, Throwable t) {
                         view.onPayFailed(mContext.getString(R.string.network_error));
+                    }
+                });
+    }
+
+
+    //查询习惯支付订单状态，主要是微信
+    public void queryOrderStateByAliPay(String orderId, final PayView.QueryPayView view) {
+        String timestamp = String.valueOf(TimeUtil.getCurrentMillis());
+        HttpManager.getManager().getService().queryOrderState(timestamp, CommUtil.getSign(Constant.QUERY_ORDER_FUNCTION, timestamp),
+                UserManager.getManager().getUser().user_token, orderId)
+                .enqueue(new Callback<QueryOrderResponse>() {
+                    @Override
+                    public void onResponse(Call<QueryOrderResponse> call, Response<QueryOrderResponse> response) {
+                        if (response.body() != null) {
+                            QueryOrderResponse res = response.body();
+                            if (CommUtil.isSuccess(mContext, res.status)) {
+                                LogUtil.d("order status is:" + res.data.status);
+                                if (res.data.status == 2) {
+                                    view.onQueryAliPaySuccess();
+                                } else {
+                                    view.onQueryAliPayFailed(null);
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<QueryOrderResponse> call, Throwable t) {
+                        view.onQueryAliPayFailed(mContext.getString(R.string.network_error));
                     }
                 });
     }
