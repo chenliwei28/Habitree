@@ -20,7 +20,7 @@ import com.habitree.xueshu.xs.view.RoundImageView;
 /**
  * 习惯邀请
  */
-public class HabitInviteActivity extends BaseActionBarActivity implements View.OnClickListener, MessageView.HandleOtherMsgView {
+public class HabitInviteActivity extends BaseActionBarActivity implements View.OnClickListener, MessageView.HandleOtherMsgView,MessageView.DeleteMsgView {
 
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
@@ -77,7 +77,7 @@ public class HabitInviteActivity extends BaseActionBarActivity implements View.O
         try {
             //        MessageManager.getManager().getMsgDetail(this,getIntent().getIntExtra(Constant.CODE,0),this);
             mMessage = (Message) getIntent().getSerializableExtra(Constant.CODE);
-            ImageUtil.loadImage(this, mMessage.sender_user.portrait, mHeadRiv, R.drawable.ic_default_head);
+            ImageUtil.loadImage(this, mMessage.sender_user.portrait, mHeadRiv, R.drawable.ic_launcher);
             mNameTv.setText(mMessage.sender_user.nickname);
             mTimeTv.setText(TimeUtil.millisToString(null, mMessage.send_time));
             mDetailTv.setText(mMessage.message);
@@ -135,8 +135,19 @@ public class HabitInviteActivity extends BaseActionBarActivity implements View.O
     }
 
     @Override
-    public void onHandleFailed(String reason) {
+    public void onHandleFailed(int msg_id,String reason) {
         hideLoadingDialog();
         showToast(reason);
+        MessageManager.getManager().deleteMessage(this,msg_id,this);
+    }
+
+    @Override
+    public void onDeleteSuccess() {
+        onBackClick();
+    }
+
+    @Override
+    public void onDeleteFailed(String reason) {
+
     }
 }

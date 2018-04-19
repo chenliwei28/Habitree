@@ -13,16 +13,13 @@ import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.activity.AuditRecordActivity;
 import com.habitree.xueshu.message.activity.HabitInviteActivity;
 import com.habitree.xueshu.message.bean.Message;
-import com.habitree.xueshu.message.pview.MessageView;
 import com.habitree.xueshu.xs.util.ImageUtil;
-import com.habitree.xueshu.xs.util.MessageManager;
-import com.habitree.xueshu.xs.util.ToastUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
 import java.util.List;
 
 
-public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAdapter.PendingMattersViewHolder> implements MessageView.HandleFriendRequestMsgView {
+public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAdapter.PendingMattersViewHolder> {
 
     private Context mContext;
     private List<Message> mList;
@@ -46,7 +43,7 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
     @Override
     public void onBindViewHolder(final PendingMattersViewHolder holder, int position) {
         final Message message = mList.get(position);
-        ImageUtil.loadImage((Activity) mContext, message.sender_user.portrait, holder.mHeadRiv, R.drawable.ic_default_head);
+        ImageUtil.loadImage((Activity) mContext, message.sender_user.portrait, holder.mHeadRiv, R.drawable.ic_launcher);
         String detail = message.message + "：" + message.sender_user.nickname;
         holder.mDetailTv.setText(detail);
         if (mList.get(position).type == 1) {
@@ -89,14 +86,18 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
             @Override
             public void onClick(View view) {
                 Message message = mList.get(holder.getAdapterPosition());
-                MessageManager.getManager().handleFriendRequestMessage(mContext, message, 2,null, PendingMattersAdapter.this, holder);
+                if(mListener != null){
+                    mListener.onAddFriend(true,message);
+                }
             }
         });
         holder.mNoIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Message message = mList.get(holder.getAdapterPosition());
-                MessageManager.getManager().handleFriendRequestMessage(mContext, message, 3, null,PendingMattersAdapter.this, holder);
+                if(mListener != null){
+                    mListener.onAddFriend(true,message);
+                }
             }
         });
     }
@@ -122,19 +123,6 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
         return mList.size();
     }
 
-    @Override
-    public void onHandleSuccess(PendingMattersViewHolder holder, int ftype) {
-        if (ftype == 2) {
-            showAccepted(holder);
-        } else {
-            showRefused(holder);
-        }
-    }
-
-    @Override
-    public void onHandleFailed() {
-        ToastUtil.showToast(mContext,R.string.network_error);
-    }
 
     public class PendingMattersViewHolder extends RecyclerView.ViewHolder {
         RoundImageView mHeadRiv;
@@ -153,5 +141,14 @@ public class PendingMattersAdapter extends RecyclerView.Adapter<PendingMattersAd
             mLookOverTv = itemView.findViewById(R.id.look_over_tv);
             mResultTv = itemView.findViewById(R.id.result_tv);
         }
+    }
+
+    public interface OnHandlerListener{
+        void onAddFriend(boolean isYes,Message message);
+    }
+
+    private OnHandlerListener mListener;
+    public void setOnHandlerListener(OnHandlerListener listener){
+        this.mListener = listener;
     }
 }

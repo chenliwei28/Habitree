@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
@@ -30,7 +31,8 @@
                 <com.habitree.xueshu.xs.view.RoundImageView
                     android:id="@+id/head_riv"
                     android:layout_width="46dp"
-                    android:layout_height="46dp" />
+                    android:layout_height="46dp"
+                    app:type="circle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

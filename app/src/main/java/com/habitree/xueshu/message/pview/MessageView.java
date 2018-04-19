@@ -1,6 +1,5 @@
 package com.habitree.xueshu.message.pview;
 
-import com.habitree.xueshu.message.adapter.PendingMattersAdapter;
 import com.habitree.xueshu.message.bean.Message;
 import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.xs.presenter.BaseView;
@@ -20,13 +19,13 @@ public interface MessageView extends BaseView {
     }
 
     interface HandleFriendRequestMsgView {
-        void onHandleSuccess(PendingMattersAdapter.PendingMattersViewHolder holder,int dotype);
+        void onHandleSuccess(int dotype);
         void onHandleFailed();
     }
 
     interface HandleOtherMsgView{
         void onHandleSuccess();
-        void onHandleFailed(String reason);
+        void onHandleFailed(int msg_id,String reason);
     }
 
     interface MsgDetailView{
@@ -37,5 +36,10 @@ public interface MessageView extends BaseView {
     interface SendMsgView{
         void onSendSuccess();
         void onSendFailed(String reason);
+    }
+
+    interface DeleteMsgView{
+        void onDeleteSuccess();
+        void onDeleteFailed(String reason);
     }
 }

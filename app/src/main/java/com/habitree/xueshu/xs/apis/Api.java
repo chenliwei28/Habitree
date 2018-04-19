@@ -9,6 +9,7 @@ import com.habitree.xueshu.login.bean.FindPasswordResponse;
 import com.habitree.xueshu.login.bean.LoginResponse;
 import com.habitree.xueshu.login.bean.RegisterResponse;
 import com.habitree.xueshu.message.bean.AgreeFriendResponse;
+import com.habitree.xueshu.message.bean.DeleteMsgResponse;
 import com.habitree.xueshu.message.bean.FriendInfoResponse;
 import com.habitree.xueshu.message.bean.FriendsResponse;
 import com.habitree.xueshu.message.bean.IMInfoResponse;
@@ -301,10 +302,10 @@ public interface Api {
     //删除消息
     @FormUrlEncoded
     @POST(Constant.DELETE_MSG_FUNCTION)
-    Call deleteMsg(@Field("timestamp") String timestamp,
-                   @Field("sign") String sign,
-                   @Field("user_token") String token,
-                   @Field("msg_id") int id);
+    Call<DeleteMsgResponse> deleteMsg(@Field("timestamp") String timestamp,
+                                      @Field("sign") String sign,
+                                      @Field("user_token") String token,
+                                      @Field("msg_id") int id);
 
     //处理消息
     @FormUrlEncoded

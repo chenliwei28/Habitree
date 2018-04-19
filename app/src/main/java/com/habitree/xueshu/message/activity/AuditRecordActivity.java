@@ -27,7 +27,7 @@ import com.habitree.xueshu.xs.view.RoundImageView;
 /**
  * 打卡审核
  */
-public class AuditRecordActivity extends BaseActionBarActivity implements View.OnClickListener,MessageView.MsgDetailView,MessageView.HandleOtherMsgView{
+public class AuditRecordActivity extends BaseActionBarActivity implements View.OnClickListener,MessageView.MsgDetailView,MessageView.HandleOtherMsgView,MessageView.DeleteMsgView {
 
     private RoundImageView mHeadRiv;
     private TextView mNameTv;
@@ -82,7 +82,7 @@ public class AuditRecordActivity extends BaseActionBarActivity implements View.O
         setTitle(R.string.audit_record);
         showLoadingDialog();
         mMessage = (Message) getIntent().getSerializableExtra(Constant.CODE);
-        ImageUtil.loadImage(this,mMessage.sender_user.portrait,mHeadRiv,R.drawable.ic_default_head);
+        ImageUtil.loadImage(this,mMessage.sender_user.portrait,mHeadRiv,R.drawable.ic_launcher);
         mNameTv.setText(mMessage.sender_user.nickname);
         MessageManager.getManager().getRecordDetail(this,mMessage.sign_id,this);
         mTitleTv.setText(mMessage.habit_info.title);
@@ -159,8 +159,19 @@ public class AuditRecordActivity extends BaseActionBarActivity implements View.O
     }
 
     @Override
-    public void onHandleFailed(String reason) {
+    public void onHandleFailed(int msgid,String reason) {
         hideLoadingDialog();
         showToast(reason);
+        MessageManager.getManager().deleteMessage(this,msgid,this);
+    }
+
+    @Override
+    public void onDeleteSuccess() {
+        onBackClick();
+    }
+
+    @Override
+    public void onDeleteFailed(String reason) {
+
     }
 }
