@@ -13,9 +13,10 @@ import android.widget.ListView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.message.adapter.FriendsAdapter;
+import com.habitree.xueshu.message.adapter.FriendsAdapter.OnFriendSelectListener;
 import com.habitree.xueshu.message.bean.Friend;
 import com.habitree.xueshu.message.presenter.FriendsPresenter;
-import com.habitree.xueshu.message.pview.FriendsView;
+import com.habitree.xueshu.message.pview.FriendsView.FriendsListView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.CharacterParser;
@@ -31,7 +32,7 @@ import java.util.Locale;
 /**
  * 好友界面
  */
-public class MyFriendsActivity extends BaseActionBarActivity implements View.OnClickListener, FriendsView.FriendsListView {
+public class MyFriendsActivity extends BaseActionBarActivity implements View.OnClickListener, FriendsListView,OnFriendSelectListener {
 
     private EditText mSearchEt;
     private ListView mFriendsLv;
@@ -80,12 +81,6 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
             @Override
             public void afterTextChanged(Editable s) {
                 mAdapter.updateData(changeFriendList(s.toString()));
-            }
-        });
-        mFriendsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(MyFriendsActivity.this, FriendDetailsActivity.class).putExtra(Constant.ID, ((Friend) mAdapter.getItem(position)).mem_id));
             }
         });
     }
@@ -155,6 +150,7 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
         if (mAdapter == null) {
             mAdapter = new FriendsAdapter(this, mFriends);
             mFriendsLv.setAdapter(mAdapter);
+            mAdapter.setOnFriendSelectListener(this);
         } else {
             mAdapter.updateData(mFriends);
         }
@@ -165,5 +161,13 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
     public void onGetFriendsListFailed(String reason) {
         hideLoadingDialog();
         showToast(reason);
+    }
+
+    @Override
+    public void onFriendSelect(Friend friend) {
+        if(friend != null){
+            startActivity(new Intent(this,
+                    FriendDetailsActivity.class).putExtra(Constant.ID, friend.mem_id));
+        }
     }
 }
