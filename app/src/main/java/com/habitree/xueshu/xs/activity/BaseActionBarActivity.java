@@ -89,18 +89,6 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
-
     public void setTitle(@StringRes int title) {
         tvTitle.setText(title);
     }
