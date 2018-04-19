@@ -8,10 +8,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.main.MainActivity;
 import com.habitree.xueshu.xs.util.LogUtil;
@@ -74,14 +76,6 @@ public class PushReceiver extends BroadcastReceiver {
         LogUtil.d("message : " + message);
         String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
         LogUtil.d("extras : " + extras);
-        String alertType = bundle.getString(JPushInterface.EXTRA_ALERT_TYPE);
-        LogUtil.d("alert type : "+alertType);
-        String notifyType = bundle.getString(JPushInterface.EXTRA_NOTI_TYPE);
-        LogUtil.d("notify type : "+notifyType);
-        String contentType = bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE);
-        LogUtil.d("content type : "+contentType);
-        String categroy = bundle.getString(JPushInterface.EXTRA_NOTI_CATEGORY);
-        LogUtil.d("categroy type : "+categroy);
         Notification.Builder builder = new Notification.Builder(context);
         builder.setContentTitle(title)
                 .setContentText(message)
@@ -97,7 +91,18 @@ public class PushReceiver extends BroadcastReceiver {
         notification.ledOnMS = 1000;// 指定 LED 灯亮起的时长，以毫秒为单位
         notification.ledOffMS = 1000;// 指定 LED 灯暗去的时长，也是以毫秒为单位
         notification.flags = Notification.FLAG_SHOW_LIGHTS;// 指定通知的一些行为，其中就包括显示LED 灯这一选项
-        notification.sound = Uri.parse("android.resource://" + context.getPackageName()+ "/" + R.raw.push_ring);
+        int type = 0;
+        try {
+            JSONObject object = new JSONObject(extras);
+            type = object.getInt("push_type");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (type==2){
+            notification.sound = Uri.parse("android.resource://" + context.getPackageName()+ "/" + R.raw.push_ring);
+        }else {
+            notification.sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        }
         nm.notify(1,notification);
     }
 

@@ -264,6 +264,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="habitree://"
+                    android:host="test"/>
             </intent-filter>
         </activity>
         <activity
