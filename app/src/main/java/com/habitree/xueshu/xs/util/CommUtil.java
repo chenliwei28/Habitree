@@ -279,4 +279,6 @@ public class CommUtil {
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         return decimalFormat.format(d);
     }
+
+
 }

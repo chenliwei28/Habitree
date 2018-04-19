@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
+import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
@@ -52,6 +55,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     private CardView mEmptyCv;
     private TextView mStartTv;
     private TextView mPaddingTv;
+    private ImageView mBackgroundIv;
     private HabitPresenter mPresenter;
     private CardPagerAdapter mAdapter;
     private HabitListResponse.Data mHabits;
@@ -71,6 +75,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mEmptyCv = view.findViewById(R.id.empty_cv);
         mStartTv = view.findViewById(R.id.start_tv);
         mPaddingTv = view.findViewById(R.id.padding_tv);
+        mBackgroundIv = view.findViewById(R.id.background_iv);
         mCardVp.setPageMargin(100);
         mPresenter = new HabitPresenter(getContext());
     }
@@ -105,6 +110,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     }
 
     public void updateData() {
+        handle.sendEmptyMessage(0x001);
         showLoadingDialog();
         mDateTv.setText(TimeUtil.getTodayInfo(Calendar.DATE));
         String s = TimeUtil.getTodayInfo(Calendar.YEAR) + "·" + TimeUtil.getTodayInfo(Calendar.MONTH);
@@ -286,6 +292,20 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                 shareDialog.dismiss();
             }
             Toast.makeText(getActivity(), " 分享取消", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private Handler handle = new Handler(){
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0x001:
+                    // 设置白天黑夜背景
+                    TimeUtil.setHomeBackground(getActivity(),mBackgroundIv);
+                    break;
+            }
         }
     };
 }
