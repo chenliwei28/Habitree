@@ -33,7 +33,7 @@ import java.util.Locale;
 /**
  * 选择监督人
  */
-public class ChooseSupervisorActivity extends BaseActionBarActivity implements FriendsView.FriendsListView{
+public class ChooseSupervisorActivity extends BaseActionBarActivity implements FriendsView.FriendsListView,FriendsAdapter.OnFriendSelectListener {
 
     private EditText mSearchEt;
     private ListView mFriendsLv;
@@ -82,18 +82,12 @@ public class ChooseSupervisorActivity extends BaseActionBarActivity implements F
                 if (position!=-1)mFriendsLv.setSelection(position);
             }
         });
-        mFriendsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                returnToPer(position);
-            }
-        });
     }
 
-    private void returnToPer(int position){
+    private void returnToPer(Friend friend){
         Intent intent = new Intent(this,SupervisionSettingActivity.class);
-        intent.putExtra(Constant.MEMID,mFriends.get(position).mem_id);
-        intent.putExtra(Constant.NAME,mFriends.get(position).nickname);
+        intent.putExtra(Constant.MEMID,friend.mem_id);
+        intent.putExtra(Constant.NAME,friend.nickname);
         setResult(Constant.NUM_110,intent);
         AppManager.getAppManager().finishActivity(this);
     }
@@ -145,6 +139,7 @@ public class ChooseSupervisorActivity extends BaseActionBarActivity implements F
         if (mAdapter==null){
             mAdapter = new FriendsAdapter(this,mFriends);
             mFriendsLv.setAdapter(mAdapter);
+            mAdapter.setOnFriendSelectListener(this);
         }else {
             mAdapter.updateData(mFriends);
         }
@@ -155,5 +150,12 @@ public class ChooseSupervisorActivity extends BaseActionBarActivity implements F
     public void onGetFriendsListFailed(String reason) {
         hideLoadingDialog();
         showToast(reason);
+    }
+
+    @Override
+    public void onFriendSelect(Friend friend) {
+        if(friend != null){
+            returnToPer(friend);
+        }
     }
 }
