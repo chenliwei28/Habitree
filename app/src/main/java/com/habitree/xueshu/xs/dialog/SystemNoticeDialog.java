@@ -25,11 +25,6 @@ public class SystemNoticeDialog extends Dialog implements View.OnClickListener {
         initUI();
     }
 
-    public SystemNoticeDialog(@NonNull Context context, int themeResId) {
-        super(context, R.style.Dialog_Fullscreen);
-        initUI();
-    }
-
     private void initUI() {
         setContentView(R.layout.dialog_notice);
         tvGotoOpen = findViewById(R.id.tvGotoOpen);
@@ -42,7 +37,7 @@ public class SystemNoticeDialog extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         int vid = view.getId();
         if (vid == R.id.tvGotoOpen) {
-            Utils.checkNoticePermission(getContext());
+            Utils.noticeSetting(getContext());
             this.dismiss();
         } else if (vid == R.id.llCancel) {
             this.dismiss();

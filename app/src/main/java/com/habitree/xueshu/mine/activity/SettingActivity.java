@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
+import com.habitree.xueshu.xs.sp.SPUtils;
 import com.habitree.xueshu.xs.util.CacheUtil;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.UserManager;
@@ -83,6 +84,7 @@ public class SettingActivity extends BaseActionBarActivity implements View.OnCli
                         @Override
                         public void onClick(View view) {
                             mClearDialog.dismiss();
+                            SPUtils.clearAllSharePreferences();
                             CacheUtil.cleanInternalCache(getApplicationContext());
                             PictureFileUtils.deleteCacheDirFile(SettingActivity.this);
                             showToast("清除成功");
