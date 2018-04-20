@@ -2,20 +2,23 @@ package com.habitree.xueshu.punchcard.fragment;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
-import android.text.TextUtils;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.habitree.xueshu.R;
+import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.message.bean.ShareUrlResponse;
+import com.habitree.xueshu.message.presenter.FriendsPresenter;
+import com.habitree.xueshu.message.pview.FriendsView.GetShareUrlView;
 import com.habitree.xueshu.mine.activity.SuperviseInvitateActivity;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
 import com.habitree.xueshu.punchcard.activity.PlantTreeActivity;
@@ -23,18 +26,17 @@ import com.habitree.xueshu.punchcard.activity.SendRecordActivity;
 import com.habitree.xueshu.punchcard.adapter.CardPagerAdapter;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
-import com.habitree.xueshu.punchcard.pview.HabitView;
+import com.habitree.xueshu.punchcard.pview.HabitView.HabitListView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
-import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
+import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.CardPagerTransformer;
 import com.habitree.xueshu.xs.view.bottomdialog.BottomDialog;
 import com.habitree.xueshu.xs.view.bottomdialog.Item;
 import com.habitree.xueshu.xs.view.bottomdialog.OnItemClickListener;
 import com.umeng.socialize.ShareAction;
-import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -45,7 +47,7 @@ import java.util.Calendar;
 /**
  * 首页习惯界面
  */
-public class PunchCardFragment extends BaseFragment implements View.OnClickListener, HabitView.HabitListView {
+public class PunchCardFragment extends BaseFragment implements OnClickListener, HabitListView ,GetShareUrlView {
 
     private ViewPager mCardVp;
     private TextView mDateTv;
@@ -60,6 +62,8 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     private CardPagerAdapter mAdapter;
     private HabitListResponse.Data mHabits;
     private HabitListResponse.Data.Habit currHabit;
+    private FriendsPresenter mSharePresenter;
+    private ShareUrlResponse.Data shareData;
 
     @Override
     protected int setLayoutId() {
@@ -79,6 +83,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
         mBackgroundIv = view.findViewById(R.id.background_iv);
         mCardVp.setPageMargin(100);
         mPresenter = new HabitPresenter(getContext());
+        mSharePresenter = new FriendsPresenter(getActivity());
     }
 
     @Override
@@ -137,6 +142,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                 @Override
                 public void shareFriendClick(HabitListResponse.Data.Habit habit) {
                     currHabit = habit;
+                    mSharePresenter.getShareUrl(1,currHabit.habit_id,PunchCardFragment.this);
                     shareToFriend();
                 }
             });
@@ -214,7 +220,7 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
                                     break;
                             }
                             if(currHabit != null){
-                                shareWeb(currHabit,getActivity(), platform);
+                                shareWeb(getActivity(), platform);
                                 if (shareDialog!= null){
                                     shareDialog.dismiss();
                                 }
@@ -242,33 +248,28 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
     /**
      * 分享链接
      */
-    public void shareWeb(HabitListResponse.Data.Habit habit,final Activity activity, SHARE_MEDIA platform) {
-        int signStatus = habit.sign_status;
-        String url = "https://www.baidu.com/";
-        UMWeb web = new UMWeb(url);//连接地址
-        if(signStatus == 3){
-            // 打卡成功
-            web.setTitle("打卡成功");//标题
-        }else{
-            web.setTitle("邀请好友");
+    public void shareWeb(final Activity activity, SHARE_MEDIA platform) {
+        if(shareData != null){
+            UMImage image = new UMImage(activity,shareData.icon);
+            UMWeb web = new UMWeb(shareData.url);//连接地址
+            web.setTitle(shareData.title);//标题
+            web.setDescription(shareData.desc);//描述
+            web.setThumb(image);  //本地缩略图
+            if(platform == SHARE_MEDIA.SINA){
+                new ShareAction(activity)
+                        .setPlatform(platform)
+                        .withExtra(image)
+                        .withMedia(web)
+                        .setCallback(umShareListener)
+                        .share();
+            }else{
+                new ShareAction(activity)
+                        .setPlatform(platform)
+                        .withMedia(web)
+                        .setCallback(umShareListener)
+                        .share();
+            }
         }
-        web.setDescription("学树习惯，把自己熬成黄金");//描述
-        web.setThumb(new UMImage(activity, R.drawable.ic_share_logo));  //本地缩略图
-        if(platform == SHARE_MEDIA.SINA){
-            new ShareAction(activity)
-                    .setPlatform(platform)
-                    .withExtra(new UMImage(activity, R.drawable.ic_share_logo))
-                    .withMedia(web)
-                    .setCallback(umShareListener)
-                    .share();
-        }else{
-            new ShareAction(activity)
-                    .setPlatform(platform)
-                    .withMedia(web)
-                    .setCallback(umShareListener)
-                    .share();
-        }
-
     }
 
     private  UMShareListener umShareListener = new UMShareListener() {
@@ -315,4 +316,16 @@ public class PunchCardFragment extends BaseFragment implements View.OnClickListe
             }
         }
     };
+
+    @Override
+    public void onGetShareUrlSuccess(ShareUrlResponse.Data data) {
+        if(data != null){
+            this.shareData = data;
+        }
+    }
+
+    @Override
+    public void onGetShareUrlFailed(String reason) {
+
+    }
 }

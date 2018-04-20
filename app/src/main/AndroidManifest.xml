@@ -177,6 +177,7 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
                 <action android:name="cn.jpush.android.intent.CONNECTION" />
+
                 <category android:name="com.habitree.xueshu" />
             </intent-filter>
         </receiver>
@@ -263,9 +264,9 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.BROWSABLE" />
                 <!--<data android:scheme="habitree://"-->
-                    <!--android:host="test"/>-->
+                <!--android:host="test"/>-->
             </intent-filter>
         </activity>
         <activity
@@ -371,7 +372,10 @@
         <activity android:name=".mine.activity.MyInfoActivity" />
         <activity android:name=".message.activity.PendingMattersActivity" />
         <activity android:name=".message.activity.AuditRecordActivity" />
-        <activity android:name=".message.activity.AddFriendActivity" />
+        <activity
+            android:name=".message.activity.AddFriendActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".punchcard.activity.RecordDetailActivity" />
         <activity android:name=".mine.activity.AboutActivity" />
         <activity android:name=".mine.activity.ChangePasswordActivity" />
@@ -384,13 +388,14 @@
         <activity android:name=".mine.activity.ChooseAccountActivity" />
         <activity android:name=".mine.activity.BindAccountActivity" />
         <activity android:name=".mine.activity.TransactionDetailActivity"></activity>
-        <activity android:name=".mine.activity.ProtocolActivity"/>
+        <activity android:name=".mine.activity.ProtocolActivity" />
         <activity android:name=".mine.activity.BindConfirmActivity" />
-        <activity android:name=".mine.activity.TopUpSuccessActivity"/>
-        <activity android:name=".mine.activity.WithdrawBindActivity"/>
-        <activity android:name=".mine.activity.WithDrawSuccessActivity"/>
-        <activity android:name=".mine.activity.InvitationFriendActivity"/>
-        <activity android:name=".mine.activity.SuperviseInvitateActivity"
+        <activity android:name=".mine.activity.TopUpSuccessActivity" />
+        <activity android:name=".mine.activity.WithdrawBindActivity" />
+        <activity android:name=".mine.activity.WithDrawSuccessActivity" />
+        <activity android:name=".mine.activity.InvitationFriendActivity" />
+        <activity
+            android:name=".mine.activity.SuperviseInvitateActivity"
             android:windowSoftInputMode="stateHidden" />
     </application>
 

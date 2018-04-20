@@ -12,20 +12,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.habitree.xueshu.R;
-import com.habitree.xueshu.message.activity.FriendDetailsActivity;
-import com.habitree.xueshu.message.activity.FriendForestActivity;
+import com.habitree.xueshu.login.bean.User;
+import com.habitree.xueshu.message.bean.ShareUrlResponse;
+import com.habitree.xueshu.message.presenter.FriendsPresenter;
+import com.habitree.xueshu.message.pview.FriendsView.GetShareUrlView;
 import com.habitree.xueshu.mine.activity.SuperviseInvitateActivity;
 import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
-import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.RecordListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
-import com.habitree.xueshu.punchcard.pview.HabitView;
+import com.habitree.xueshu.punchcard.pview.HabitView.HabitDetailView;
+import com.habitree.xueshu.punchcard.pview.HabitView.RecordListView;
+import com.habitree.xueshu.punchcard.pview.HabitView.GiveUpView;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.util.UIUtil;
+import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.CustomItemView;
 import com.habitree.xueshu.xs.view.MyDialog;
 import com.habitree.xueshu.xs.view.RoundImageView;
@@ -34,6 +38,7 @@ import com.habitree.xueshu.xs.view.bottomdialog.Item;
 import com.habitree.xueshu.xs.view.bottomdialog.OnItemClickListener;
 import com.habitree.xueshu.xs.view.calendarview.Calendar;
 import com.habitree.xueshu.xs.view.calendarview.CalendarView;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -46,7 +51,7 @@ import java.util.List;
 /**
  * 习惯详情界面
  */
-public class HabitDetailActivity extends BaseActionBarActivity implements HabitView.HabitDetailView,HabitView.RecordListView,View.OnClickListener,HabitView.GiveUpView {
+public class HabitDetailActivity extends BaseActionBarActivity implements HabitDetailView,RecordListView,View.OnClickListener,GiveUpView ,GetShareUrlView{
 
     private CalendarView mDetailCv;
     private RoundImageView mHeadRiv;
@@ -77,6 +82,8 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
     private HabitDetailResponse.HabitDetail detailInfo;
     // 分享对话框
     private BottomDialog shareDialog;
+    private FriendsPresenter mSharePresenter;
+    private ShareUrlResponse.Data shareData;
 
     @Override
     protected int setLayoutId() {
@@ -117,6 +124,7 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
         String da = mDetailCv.getCurYear()+"."+mDetailCv.getCurMonth();
         mMonthTv.setText(da);
         mPresenter = new HabitPresenter(this);
+        mSharePresenter = new FriendsPresenter(this);
     }
 
     @Override
@@ -159,6 +167,18 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
         if (isUser){
             mPresenter.getRecordList(getIntent().getIntExtra(Constant.ID,0),this);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
@@ -271,6 +291,7 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
         int c = detail.now_days-detail.sign_cnt;
         int money = c>0?detail.unit_price*c:0;
         mNeedCiv.setDetail(String.valueOf(money));
+
     }
 
     private void updateRecords(RecordListResponse.Data data){
@@ -368,9 +389,18 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
             });
         }
 
+        // 获取分享数据
         int signStatus = detailInfo.sign_status;
-        shareDialog.setInvitationShow(signStatus == 6 ? View.VISIBLE : View.GONE);
-        shareDialog.title(signStatus == 6 ? "邀请好友":"分享好友");
+        if(signStatus == 6){
+            shareDialog.setInvitationShow(View.VISIBLE);
+            shareDialog.title("邀请好友");
+            User user = UserManager.getManager().getUser();
+            mSharePresenter.getShareUrl(2,user.mem_id,this);
+        }else{
+            shareDialog.setInvitationShow(View.GONE);
+            shareDialog.title("分享好友");
+            mSharePresenter.getShareUrl(1,detailInfo.habit_id,this);
+        }
         shareDialog.show();
     }
 
@@ -378,26 +408,27 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
      * 分享链接
      */
     public void shareWeb(final Activity activity, SHARE_MEDIA platform) {
-        String url = "https://www.baidu.com/";
-        UMWeb web = new UMWeb(url);//连接地址
-        web.setTitle("分享好友");
-        web.setDescription("学树习惯，把自己熬成黄金");//描述
-        web.setThumb(new UMImage(activity, R.drawable.ic_share_logo));  //本地缩略图
-        if(platform == SHARE_MEDIA.SINA){
-            new ShareAction(activity)
-                    .setPlatform(platform)
-                    .withExtra(new UMImage(activity, R.drawable.ic_share_logo))
-                    .withMedia(web)
-                    .setCallback(umShareListener)
-                    .share();
-        }else{
-            new ShareAction(activity)
-                    .setPlatform(platform)
-                    .withMedia(web)
-                    .setCallback(umShareListener)
-                    .share();
+        if(shareData != null){
+            UMImage image = new UMImage(activity,shareData.icon);
+            UMWeb web = new UMWeb(shareData.url);//连接地址
+            web.setTitle(shareData.title);
+            web.setDescription(shareData.desc);//描述
+            web.setThumb(image);  //本地缩略图
+            if(platform == SHARE_MEDIA.SINA){
+                new ShareAction(activity)
+                        .setPlatform(platform)
+                        .withExtra(image)
+                        .withMedia(web)
+                        .setCallback(umShareListener)
+                        .share();
+            }else{
+                new ShareAction(activity)
+                        .setPlatform(platform)
+                        .withMedia(web)
+                        .setCallback(umShareListener)
+                        .share();
+            }
         }
-
     }
 
     private UMShareListener umShareListener = new UMShareListener() {
@@ -430,4 +461,16 @@ public class HabitDetailActivity extends BaseActionBarActivity implements HabitV
             Toast.makeText(HabitDetailActivity.this, " 分享取消", Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    public void onGetShareUrlSuccess(ShareUrlResponse.Data data) {
+        if(data != null){
+            this.shareData = data;
+        }
+    }
+
+    @Override
+    public void onGetShareUrlFailed(String reason) {
+
+    }
 }

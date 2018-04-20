@@ -211,26 +211,24 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
 
     @Override
     public void onGetShareUrlFailed(String reason) {
-        showToast(reason);
     }
-
 
     /**
      * 分享链接
      */
     public void shareWeb(ShareUrlResponse.Data data,Activity activity, SHARE_MEDIA platform) {
+        UMImage image = new UMImage(activity,data.icon);
         String url =data.url;
         UMWeb web = new UMWeb(url);//连接地址
         web.setTitle(data.title);//标题
         web.setDescription(data.desc);//描述
-//        web.setThumb(new UMImage(activity,data.icon));
+        web.setThumb(image);
 
         new ShareAction(activity)
                 .setPlatform(platform)
                 .withMedia(web)
                 .setCallback(umShareListener)
                 .share();
-
     }
 
     private UMShareListener umShareListener = new UMShareListener() {
