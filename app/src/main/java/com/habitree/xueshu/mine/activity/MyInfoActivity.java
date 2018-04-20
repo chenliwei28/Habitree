@@ -20,6 +20,7 @@ import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.AppleDialog;
 import com.habitree.xueshu.xs.view.CustomItemView;
@@ -48,7 +49,6 @@ public class MyInfoActivity extends BaseActionBarActivity implements View.OnClic
     private CustomItemView mSexCiv;
     private CustomItemView mBirthdayCiv;
     private AppleDialog mHeadDialog;
-    private MyInputDialog mNameDialog;
     private AppleDialog mGenderDialog;
     private TimePickerView mTimePicker;
     private MyPresenter mPresenter;
@@ -106,7 +106,8 @@ public class MyInfoActivity extends BaseActionBarActivity implements View.OnClic
                 showHeadDialog();
                 break;
             case R.id.name_civ:
-                showNameDialog();
+                Intent intent = new Intent(this,NickNameActivity.class);
+                UIUtil.startActivityForResult(this,intent,Constant.NUM_109);
                 break;
             case R.id.sex_civ:
                 showGenderDialog();
@@ -158,24 +159,6 @@ public class MyInfoActivity extends BaseActionBarActivity implements View.OnClic
             .commit();
         }
         mHeadDialog.show();
-    }
-
-    private void showNameDialog(){
-        if (mNameDialog==null){
-            mNameDialog = new MyInputDialog(this)
-                    .builder().setTitle("设置昵称")
-                    .setInputMaxLength(8)
-                    .setConfirmClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            CommUtil.hideSoftInput(MyInfoActivity.this);
-                            mNameDialog.dismiss();
-                            showLoadingDialog();
-                            mPresenter.changeNickname(mNameDialog.getInputText(),MyInfoActivity.this);
-                        }
-                    });
-        }
-        mNameDialog.show();
     }
 
     private void showTimePicker(){
@@ -268,6 +251,10 @@ public class MyInfoActivity extends BaseActionBarActivity implements View.OnClic
                     showLoadingDialog();
                     mPresenter.uploadHeadImg(selectList.get(0).getCompressPath(),this);
                     break;
+            }
+        }else if(resultCode==Constant.NUM_109){
+            if(requestCode == Constant.NUM_109){
+                updateData();
             }
         }
     }

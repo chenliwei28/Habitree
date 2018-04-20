@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.adapter.PhotoGridAdapter;
@@ -230,7 +231,8 @@ public class SendRecordActivity extends BaseActionBarActivity implements HabitVi
 
     @Override
     public void onRecordSendFailed(String reason) {
+        Toast.makeText(SendRecordActivity.this,reason,Toast.LENGTH_LONG).show();
         hideLoadingDialog();
-        showToast(reason);
+//        showToast(reason);
     }
 }
