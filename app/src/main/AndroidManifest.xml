@@ -394,6 +394,7 @@
         <activity android:name=".mine.activity.WithdrawBindActivity" />
         <activity android:name=".mine.activity.WithDrawSuccessActivity" />
         <activity android:name=".mine.activity.InvitationFriendActivity" />
+        <activity android:name=".mine.activity.MySuperviseActivity" />
         <activity
             android:name=".mine.activity.SuperviseInvitateActivity"
             android:windowSoftInputMode="stateHidden" />

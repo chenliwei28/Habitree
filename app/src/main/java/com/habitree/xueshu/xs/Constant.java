@@ -102,4 +102,5 @@ public class Constant {
     public final static String GET_OAUTH_LIST = "v1/user/oauth/list";// 获取用户第三方绑定列表
     public final static String UN_BIND = "v1/user/oauth/unbind";// 解除第三方绑定
     public final static String GET_SHARE_URL = "v1/user/share";// 分享链接获取
+    public final static String CHECK_HABIT_LIST = "v1/habit/checklist";// 获取监督者习惯列表
 }

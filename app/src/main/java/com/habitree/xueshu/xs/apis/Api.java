@@ -34,6 +34,7 @@ import com.habitree.xueshu.mine.bean.TopUpPayResponse;
 import com.habitree.xueshu.mine.bean.UploadFileResponse;
 import com.habitree.xueshu.mine.bean.WithdrawBindListResponse;
 import com.habitree.xueshu.mine.bean.WithdrawOrderResponse;
+import com.habitree.xueshu.punchcard.bean.CheckListResponse;
 import com.habitree.xueshu.punchcard.bean.CreateHabitResponse;
 import com.habitree.xueshu.punchcard.bean.CreateOrderResponse;
 import com.habitree.xueshu.punchcard.bean.GiveUpHabitResponse;
@@ -71,10 +72,10 @@ public interface Api {
     @FormUrlEncoded
     @POST(Constant.LOGIN_AUTH_CODE)
     Call<LoginResponse> loginWithAuthCode(@Field("timestamp") String timestamp,
-                              @Field("sign") String sign,
-                              @Field("mobile") String phone,
-                              @Field("smstype") int smstype,
-                              @Field("smscode") String password);
+                                          @Field("sign") String sign,
+                                          @Field("mobile") String phone,
+                                          @Field("smstype") int smstype,
+                                          @Field("smscode") String password);
 
 
     //三方登录
@@ -82,12 +83,12 @@ public interface Api {
     @POST(Constant.THIRD_LOGIN_FUNCTION)
     Call<LoginResponse> thirdLogin(@Field("timestamp") String timestamp,
                                    @Field("sign") String sign,
-                                   @Field("openid")String openid,
-                                   @Field("userfrom")String userfrom,
-                                   @Field("head_img")String head,
-                                   @Field("access_token")String token,
-                                   @Field("expires_date")String expiresDate,
-                                   @Field("nickname")String nickname);
+                                   @Field("openid") String openid,
+                                   @Field("userfrom") String userfrom,
+                                   @Field("head_img") String head,
+                                   @Field("access_token") String token,
+                                   @Field("expires_date") String expiresDate,
+                                   @Field("nickname") String nickname);
 
     //发送验证码
     @FormUrlEncoded
@@ -104,7 +105,7 @@ public interface Api {
                                           @Field("sign") String sign,
                                           @Field("mobile") String mobile,
                                           @Field("smstype") int type,
-                                          @Field("smscode")String code,
+                                          @Field("smscode") String code,
                                           @Field("user_token") String userToken);
 
     //注册
@@ -320,7 +321,7 @@ public interface Api {
                                         @Field("habit_id") int habit_id,
                                         @Field("ftype") int ftype,
                                         @Field("sign_id") int sign_id,
-                                        @Field("content")String content);
+                                        @Field("content") String content);
 
     //获取我的习惯列表
     @FormUrlEncoded
@@ -330,8 +331,8 @@ public interface Api {
                                            @Field("user_token") String token,
                                            @Field("page") int page,
                                            @Field("offset") int offset,
-                                           @Field("type")int type,
-                                           @Field("list_type")int listType);
+                                           @Field("type") int type,
+                                           @Field("list_type") int listType);
 
     //获取别人的习惯列表
     @FormUrlEncoded
@@ -342,7 +343,7 @@ public interface Api {
                                                @Field("user_id") String userid,
                                                @Field("page") int page,
                                                @Field("offset") int offset,
-                                               @Field("list_type")int listType);
+                                               @Field("list_type") int listType);
 
     //习惯支付
     @FormUrlEncoded
@@ -350,8 +351,8 @@ public interface Api {
     Call<PayResultResponse> balancePay(@Field("timestamp") String timestamp,
                                        @Field("sign") String sign,
                                        @Field("user_token") String token,
-                                       @Field("order_id")String orderId,
-                                       @Field("payway")String payway);
+                                       @Field("order_id") String orderId,
+                                       @Field("payway") String payway);
 
     //习惯打卡
     @Multipart
@@ -385,7 +386,7 @@ public interface Api {
                                            @Field("user_token") String token,
                                            @Field("page") int page,
                                            @Field("offset") int offset,
-                                           @Field("type")int type);
+                                           @Field("type") int type);
 
     //获取交易详情
     @FormUrlEncoded
@@ -393,7 +394,7 @@ public interface Api {
     Call<ChargeDetailResponse> getChargeDetail(@Field("timestamp") String timestamp,
                                                @Field("sign") String sign,
                                                @Field("user_token") String token,
-                                               @Field("order_id")String id);
+                                               @Field("order_id") String id);
 
     //获取罚金收支记录
     @FormUrlEncoded
@@ -403,8 +404,8 @@ public interface Api {
                                              @Field("user_token") String token,
                                              @Field("page") int page,
                                              @Field("offset") int offset,
-                                             @Field("type")int type,
-                                             @Field("status")int status);
+                                             @Field("type") int type,
+                                             @Field("status") int status);
 
     //获取习惯详情
     @FormUrlEncoded
@@ -445,21 +446,21 @@ public interface Api {
     @POST(Constant.OAUTH_BIND_FUNCTION)
     Call<OauthBindResponse> thirdBind(@Field("timestamp") String timestamp,
                                       @Field("sign") String sign,
-                                      @Field("openid")String openid,
-                                      @Field("userfrom")String userfrom,
-                                      @Field("head_img")String head,
-                                      @Field("access_token")String token,
-                                      @Field("expires_date")String expiresDate,
-                                      @Field("nickname")String nickname,
+                                      @Field("openid") String openid,
+                                      @Field("userfrom") String userfrom,
+                                      @Field("head_img") String head,
+                                      @Field("access_token") String token,
+                                      @Field("expires_date") String expiresDate,
+                                      @Field("nickname") String nickname,
                                       @Field("user_token") String userToken);
 
     //解除绑定三方账号
     @FormUrlEncoded
     @POST(Constant.UN_BIND)
     Call<OauthBindResponse> thirdUnBind(@Field("timestamp") String timestamp,
-                                      @Field("sign") String sign,
-                                      @Field("oauth_id")int openid,
-                                      @Field("user_token") String userToken);
+                                        @Field("sign") String sign,
+                                        @Field("oauth_id") int openid,
+                                        @Field("user_token") String userToken);
 
     //习惯支付订单状态查询
     @FormUrlEncoded
@@ -467,7 +468,7 @@ public interface Api {
     Call<QueryOrderResponse> queryOrderState(@Field("timestamp") String timestamp,
                                              @Field("sign") String sign,
                                              @Field("user_token") String userToken,
-                                             @Field("order_id")String orderId);
+                                             @Field("order_id") String orderId);
 
     //提现绑定三方账号
     @FormUrlEncoded
@@ -475,12 +476,12 @@ public interface Api {
     Call<BindWithdrawAccountResponse> bindWithdrawAccount(@Field("timestamp") String timestamp,
                                                           @Field("sign") String sign,
                                                           @Field("user_token") String userToken,
-                                                          @Field("type")String type,
-                                                          @Field("account")String account,
-                                                          @Field("realname")String name,
-                                                          @Field("mobile")String mobile,
-                                                          @Field("smscode")String code,
-                                                          @Field("smstype")int smsType);
+                                                          @Field("type") String type,
+                                                          @Field("account") String account,
+                                                          @Field("realname") String name,
+                                                          @Field("mobile") String mobile,
+                                                          @Field("smscode") String code,
+                                                          @Field("smstype") int smsType);
 
     //获取提现绑定账号列表
     @FormUrlEncoded
@@ -495,7 +496,7 @@ public interface Api {
     Call<WithdrawOrderResponse> withdrawCreateOrder(@Field("timestamp") String timestamp,
                                                     @Field("sign") String sign,
                                                     @Field("user_token") String userToken,
-                                                    @Field("amount")String amount,
+                                                    @Field("amount") String amount,
                                                     @Field("oauth_id") int oauth_id);
 
     //充值预下单
@@ -504,24 +505,24 @@ public interface Api {
     Call<TopUpOrderResponse> topUpCreateOrder(@Field("timestamp") String timestamp,
                                               @Field("sign") String sign,
                                               @Field("user_token") String userToken,
-                                              @Field("amount")String amount,
-                                              @Field("payway")String payway);
+                                              @Field("amount") String amount,
+                                              @Field("payway") String payway);
 
     //充值预下单支付
     @FormUrlEncoded
     @POST(Constant.TOP_UP_PAY_FUNCTION)
     Call<PayResultResponse> topUpPay(@Field("timestamp") String timestamp,
-                                    @Field("sign") String sign,
-                                    @Field("user_token") String userToken,
-                                    @Field("order_id")String orderId,
-                                    @Field("payway")String payway);
+                                     @Field("sign") String sign,
+                                     @Field("user_token") String userToken,
+                                     @Field("order_id") String orderId,
+                                     @Field("payway") String payway);
 
     //获取用户第三方绑定列表
     @FormUrlEncoded
     @POST(Constant.GET_OAUTH_LIST)
     Call<OauthBindResponse> getOauthList(@Field("timestamp") String timestamp,
-                                     @Field("sign") String sign,
-                                     @Field("user_token") String userToken);
+                                         @Field("sign") String sign,
+                                         @Field("user_token") String userToken);
 
     //分享链接获取
     @FormUrlEncoded
@@ -531,4 +532,15 @@ public interface Api {
                                        @Field("user_token") String userToken,
                                        @Field("share_type") int share_type,
                                        @Field("type_id") int type_id);
+
+    // 获取监督者习惯列表
+    @FormUrlEncoded
+    @POST(Constant.CHECK_HABIT_LIST)
+    Call<CheckListResponse> getHabitCheckList(@Field("timestamp") String timestamp,
+                                              @Field("sign") String sign,
+                                              @Field("user_token") String userToken,
+                                              @Field("page") int page,
+                                              @Field("offset") int offset,
+                                              @Field("type") int type,
+                                              @Field("list_type") int list_type);
 }

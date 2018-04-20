@@ -81,7 +81,7 @@ public class PunchCardFragment extends BaseFragment implements OnClickListener, 
         mStartTv = view.findViewById(R.id.start_tv);
         mPaddingTv = view.findViewById(R.id.padding_tv);
         mBackgroundIv = view.findViewById(R.id.background_iv);
-        mCardVp.setPageMargin(100);
+        mCardVp.setPageMargin(50);
         mPresenter = new HabitPresenter(getContext());
         mSharePresenter = new FriendsPresenter(getActivity());
     }

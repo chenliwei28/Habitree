@@ -33,7 +33,8 @@
         android:layout_marginTop="60dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:text="提现到微信钱包" />
+        android:text="提现到微信钱包"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/alipay_btn"

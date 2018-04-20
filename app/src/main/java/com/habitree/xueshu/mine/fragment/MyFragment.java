@@ -16,21 +16,24 @@ import com.habitree.xueshu.mine.activity.HabitCompletedActivity;
 import com.habitree.xueshu.mine.activity.HabitGoingActivity;
 import com.habitree.xueshu.mine.activity.MyHabitsActivity;
 import com.habitree.xueshu.mine.activity.MyInfoActivity;
+import com.habitree.xueshu.mine.activity.MySuperviseActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
+import com.habitree.xueshu.punchcard.pview.HabitView.HabitSuperviseListView;
 import com.habitree.xueshu.punchcard.pview.HabitView.HabitListView;
 import com.habitree.xueshu.xs.fragment.BaseFragment;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.util.TimeUtil;
+import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFragment extends BaseFragment implements HabitListView, View.OnClickListener ,FriendInfoView{
+public class MyFragment extends BaseFragment implements HabitListView, View.OnClickListener ,FriendInfoView,HabitSuperviseListView {
 
     // 我监督的习惯
     private LinearLayout llMySupervise;
@@ -194,6 +197,7 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
                 break;
             case R.id.llMySupervise:
                 // 我监督的习惯
+                UIUtil.startActivity(getActivity(),MySuperviseActivity.class);
                 break;
             default:
                 onTreeClick(view.getId());
@@ -222,6 +226,8 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
         mPresenter.getMyHabitList(0, 2,this);
         // 获取自己的最新信息
         mInfoPresenter.getFriendInfo(user.mem_id,this);
+        // 获取我监督
+        mPresenter.getHabitCheckList(1, 50, 0, 1, this);
     }
 
     @Override
@@ -276,6 +282,18 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
 
     @Override
     public void onInfoGetFailed(String reason) {
+
+    }
+
+    @Override
+    public void onGetSuperviseListSuccess(HabitListResponse.Data data) {
+        if(data != null){
+            tvSupervise.setText(data.count+"个");
+        }
+    }
+
+    @Override
+    public void onGetSuperviseListFailed(String reason) {
 
     }
 }

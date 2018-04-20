@@ -13,7 +13,6 @@
         android:id="@+id/head_riv"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        tools:src="@drawable/img_yepao"
         app:corner_radius="4dp"
         app:type="round" />
 

@@ -20,6 +20,14 @@ public interface HabitView extends BaseView {
         void onListGetFailed(String reason);
     }
 
+    /**
+     * 我监督的习惯
+     */
+    interface HabitSuperviseListView{
+        void onGetSuperviseListSuccess(HabitListResponse.Data data);
+        void onGetSuperviseListFailed(String reason);
+    }
+
     interface CreateOrderView{
         void onOrderCreateSuccess(String orderId);
         void onOrderCreateFailed(String reason);

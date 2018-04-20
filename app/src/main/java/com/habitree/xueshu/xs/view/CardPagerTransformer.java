@@ -6,7 +6,7 @@ import android.view.View;
 
 public class CardPagerTransformer implements ViewPager.PageTransformer {
 
-    final float SCALE_MAX = 0.25f;
+    final float SCALE_MAX = 0.3f;
     private ViewPager mViewPager;
 
     @Override
