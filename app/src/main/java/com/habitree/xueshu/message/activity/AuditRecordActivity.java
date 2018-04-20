@@ -14,6 +14,8 @@ import com.habitree.xueshu.message.adapter.MessageImageAdapter;
 import com.habitree.xueshu.message.bean.Message;
 import com.habitree.xueshu.message.bean.SignDetailResponse;
 import com.habitree.xueshu.message.pview.MessageView;
+import com.habitree.xueshu.punchcard.activity.ImageActivity;
+import com.habitree.xueshu.punchcard.activity.RecordDetailActivity;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.AppManager;
@@ -23,6 +25,8 @@ import com.habitree.xueshu.xs.util.TimeUtil;
 import com.habitree.xueshu.xs.view.MyInputDialog;
 import com.habitree.xueshu.xs.view.NoScrollRecyclerView;
 import com.habitree.xueshu.xs.view.RoundImageView;
+
+import java.util.ArrayList;
 
 /**
  * 打卡审核
@@ -119,7 +123,7 @@ public class AuditRecordActivity extends BaseActionBarActivity implements View.O
     }
 
     @Override
-    public void onMsgDetailGetSuccess(SignDetailResponse.DataBean dataBean) {
+    public void onMsgDetailGetSuccess(final SignDetailResponse.DataBean dataBean) {
         mDetailTv.setText(dataBean.content);
         mTitleTv.setText(dataBean.habit_info.title);
         mTimeTv.setText(TimeUtil.millisToString("yyyy-MM-dd",dataBean.sign_time));
@@ -136,7 +140,15 @@ public class AuditRecordActivity extends BaseActionBarActivity implements View.O
                 mAdapter.setListener(new MessageImageAdapter.ImageClickListener() {
                     @Override
                     public void onImageClick(int position) {
-
+                        try{
+                            ArrayList<String> imgs = new ArrayList<>();
+                            for (SignDetailResponse.DataBean.ImagesBean bean: dataBean.images){
+                                imgs.add(bean.file_url);
+                            }
+                            ImageActivity.start(AuditRecordActivity.this,imgs,position);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
                 });
                 mPhotosRv.setAdapter(mAdapter);

@@ -12,10 +12,8 @@ import com.habitree.xueshu.login.bean.User;
 import com.habitree.xueshu.mine.presenter.MyPresenter;
 import com.habitree.xueshu.mine.pview.MyView.ChangeInfoView;
 import com.habitree.xueshu.punchcard.activity.HabitSettingActivity;
-import com.habitree.xueshu.punchcard.activity.TimeSettingActivity;
 import com.habitree.xueshu.xs.Constant;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
-import com.habitree.xueshu.xs.util.AppManager;
 import com.habitree.xueshu.xs.util.UserManager;
 
 /**

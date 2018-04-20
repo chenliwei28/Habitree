@@ -35,7 +35,7 @@ public class PlantTreeActivity extends TransActionBarActivity implements View.On
     protected void initView() {
         mCardVp = findViewById(R.id.card_vp);
         mChooseTv = findViewById(R.id.choose_tv);
-        mCardVp.setPageMargin(100);
+        mCardVp.setPageMargin(50);
         mCardVp.setOffscreenPageLimit(3);
         mPresenter = new HabitPresenter(this);
     }
