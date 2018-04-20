@@ -28,6 +28,7 @@ import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
 import com.habitree.xueshu.xs.util.CharacterParser;
 import com.habitree.xueshu.xs.util.CommUtil;
 import com.habitree.xueshu.xs.util.UserManager;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -56,6 +57,7 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
     private FriendsAdapter mAdapter;
     private List<Friend> mFriends;
     private FriendsPresenter mPresenter;
+    private ShareUrlResponse.Data data;
 
     @Override
     protected int setLayoutId() {
@@ -102,6 +104,8 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
         setTitle(R.string.friend);
         showLoadingDialog();
         mPresenter.getFriendsList(2, 1, 100, this);
+        User user = UserManager.getManager().getUser();
+        mPresenter.getShareUrl(2,user.mem_id,this);
     }
 
     private void initFriendList() {
@@ -137,6 +141,18 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
     private SHARE_MEDIA platform;
     @Override
     public void onClick(View v) {
@@ -152,11 +168,10 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
                 platform = SHARE_MEDIA.QQ;
                 break;
             case R.id.circle_ll:
-                platform = SHARE_MEDIA.QZONE;
+                platform = SHARE_MEDIA.WEIXIN_CIRCLE;
                 break;
         }
-        User user = UserManager.getManager().getUser();
-        mPresenter.getShareUrl(1,user.mem_id,this);
+        shareWeb(data,MyFriendsActivity.this,platform);
     }
 
     @Override
@@ -190,7 +205,7 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
     @Override
     public void onGetShareUrlSuccess(ShareUrlResponse.Data data) {
         if(data != null){
-            shareWeb(data,MyFriendsActivity.this,platform);
+            this.data = data;
         }
     }
 
@@ -203,12 +218,12 @@ public class MyFriendsActivity extends BaseActionBarActivity implements View.OnC
     /**
      * 分享链接
      */
-    public void shareWeb( ShareUrlResponse.Data data,final Activity activity, SHARE_MEDIA platform) {
+    public void shareWeb(ShareUrlResponse.Data data,Activity activity, SHARE_MEDIA platform) {
         String url =data.url;
         UMWeb web = new UMWeb(url);//连接地址
         web.setTitle(data.title);//标题
         web.setDescription(data.desc);//描述
-        web.setThumb(new UMImage(activity,data.icon));
+//        web.setThumb(new UMImage(activity,data.icon));
 
         new ShareAction(activity)
                 .setPlatform(platform)
