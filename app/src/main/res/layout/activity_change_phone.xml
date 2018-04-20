@@ -12,8 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="@dimen/_40dp"
+        android:layout_marginRight="@dimen/_40dp"
         android:orientation="vertical">
 
         <TextView
@@ -22,7 +22,7 @@
             android:layout_marginTop="30dp"
             android:text="@string/telephone"
             android:textColor="@color/black_text"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_22sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="+86"
                 android:textColor="@color/black_text"
-                android:textSize="24sp" />
+                android:textSize="@dimen/_24sp" />
 
             <EditText
                 android:id="@+id/phone_et"
@@ -47,7 +47,7 @@
                 android:textCursorDrawable="@null"
                 android:paddingLeft="@dimen/_10dp"
                 android:textColor="@color/black_text"
-                android:textSize="32sp" />
+                android:textSize="@dimen/_32sp" />
         </LinearLayout>
 
         <TextView
@@ -59,7 +59,7 @@
             android:layout_marginTop="30dp"
             android:text="@string/auth_code"
             android:textColor="@color/black_text"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_22sp" />
 
         <!-- 验证码 -->
         <LinearLayout
@@ -81,7 +81,7 @@
                 android:maxLength="4"
                 android:textCursorDrawable="@null"
                 android:textColor="@color/black_text"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_18sp" />
 
             <TextView
                 android:id="@+id/send_tv"
@@ -93,7 +93,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="@string/get_auth_code"
-                android:textSize="16sp" />
+                android:textSize="@dimen/_16sp" />
         </LinearLayout>
 
         <TextView

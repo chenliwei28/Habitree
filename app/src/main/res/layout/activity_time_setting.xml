@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginRight="@dimen/_20dp"
         android:layout_marginTop="15dp">
 
         <LinearLayout
@@ -32,20 +32,20 @@
                 android:gravity="center"
                 android:text="@string/seven_days"
                 android:textColor="@drawable/selector_radio_button_text"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_18sp" />
 
             <RadioButton
                 android:id="@+id/fifteen"
                 android:layout_width="0dp"
                 android:layout_height="76dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/_15dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_time_radio_button"
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/fifteen_days"
                 android:textColor="@drawable/selector_radio_button_text"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,20 +64,20 @@
                 android:gravity="center"
                 android:text="@string/thirty_days"
                 android:textColor="@drawable/selector_radio_button_text"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_18sp" />
 
             <RadioButton
                 android:id="@+id/sixty"
                 android:layout_width="0dp"
                 android:layout_height="76dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/_15dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_time_radio_button"
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/sixty_days"
                 android:textColor="@drawable/selector_radio_button_text"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,28 +96,28 @@
                 android:gravity="center"
                 android:text="@string/ninety_days"
                 android:textColor="@drawable/selector_radio_button_text"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_18sp" />
 
             <RadioButton
                 android:id="@+id/hundred"
                 android:layout_width="0dp"
                 android:layout_height="76dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/_15dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_time_radio_button"
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/hundred_days"
                 android:textColor="@drawable/selector_radio_button_text"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_18sp" />
         </LinearLayout>
     </com.habitree.xueshu.xs.view.CustomRadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginRight="@dimen/_20dp"
         android:background="@drawable/shape_rect_white_radio"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -129,7 +129,7 @@
             android:paddingRight="@dimen/_10dp"
             android:text="其他天数"
             android:textColor="@drawable/selector_radio_button_text"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
 
         <EditText
             android:id="@+id/etCount"
@@ -150,33 +150,33 @@
             android:paddingRight="@dimen/_10dp"
             android:text="天"
             android:textColor="@drawable/selector_radio_button_text"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginRight="@dimen/_20dp"
         android:layout_marginTop="10dp"
         android:text="自定义天数，时间长度至少7天"
         android:textColor="@color/gray_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/_14sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginRight="@dimen/_20dp"
         android:text="选择的时间将作为习惯养成的时间长度"
         android:textColor="@color/gray_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/_14sp" />
 
     <TextView
         android:id="@+id/confirm_tv"
         style="@style/RoundButton"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginLeft="@dimen/_32dp"
+        android:layout_marginRight="@dimen/_32dp"
         android:layout_marginTop="25dp"
         android:text="@string/confirm" />
 </LinearLayout>

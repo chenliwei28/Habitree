@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="test">0.5dp</dimen>
+
+    <!-- dp通用 -->
+    <dimen name="_0_5dp">0.5dp</dimen>
+    <dimen name="_1dp">0.75dp</dimen>
+    <dimen name="_2dp">1.5dp</dimen>
+    <dimen name="_3dp">2dp</dimen>
+    <dimen name="_4dp">3dp</dimen>
+    <dimen name="_5dp">4dp</dimen>
+    <dimen name="_6dp">4.5dp</dimen>
+    <dimen name="_8dp">6dp</dimen>
+    <dimen name="_10dp">7.5dp</dimen>
+    <dimen name="_12dp">9dp</dimen>
+    <dimen name="_14dp">10.5dp</dimen>
+    <dimen name="_15dp">11dp</dimen>
+    <dimen name="_16dp">12dp</dimen>
+    <dimen name="_18dp">13.5dp</dimen>
+    <dimen name="_20dp">15dp</dimen>
+    <dimen name="_22dp">16.5dp</dimen>
+    <dimen name="_24dp">18dp</dimen>
+    <dimen name="_25dp">19dp</dimen>
+    <dimen name="_26dp">19.5dp</dimen>
+    <dimen name="_28dp">21dp</dimen>
+    <dimen name="_30dp">22.5dp</dimen>
+    <dimen name="_32dp">24dp</dimen>
+    <dimen name="_34dp">25.5dp</dimen>
+    <dimen name="_35dp">26dp</dimen>
+    <dimen name="_36dp">27dp</dimen>
+    <dimen name="_38dp">28.5dp</dimen>
+    <dimen name="_40dp">30dp</dimen>
+    <dimen name="_42dp">31.5dp</dimen>
+    <dimen name="_44dp">33dp</dimen>
+    <dimen name="_45dp">34dp</dimen>
+    <dimen name="_46dp">34.5dp</dimen>
+    <dimen name="_48dp">36dp</dimen>
+    <dimen name="_50dp">37.5dp</dimen>
+    <dimen name="_52dp">39dp</dimen>
+    <dimen name="_54dp">40.5dp</dimen>
+    <dimen name="_55dp">41dp</dimen>
+    <dimen name="_56dp">42dp</dimen>
+    <dimen name="_58dp">43.5dp</dimen>
+    <dimen name="_60dp">45dp</dimen>
+    <dimen name="_65dp">49dp</dimen>
+    <dimen name="_70dp">52.5dp</dimen>
+    <dimen name="_75dp">56dp</dimen>
+    <dimen name="_80dp">60dp</dimen>
+    <dimen name="_85dp">64dp</dimen>
+    <dimen name="_90dp">67.5dp</dimen>
+    <dimen name="_95dp">71dp</dimen>
+    <dimen name="_100dp">75dp</dimen>
+    <dimen name="_110dp">82.5dp</dimen>
+    <dimen name="_120dp">90dp</dimen>
+    <dimen name="_130dp">97.5dp</dimen>
+    <dimen name="_140dp">105dp</dimen>
+    <dimen name="_150dp">112.5dp</dimen>
+    <dimen name="_160dp">120dp</dimen>
+    <dimen name="_180dp">135dp</dimen>
+    <dimen name="_200dp">150dp</dimen>
+    <dimen name="_250dp">187.5dp</dimen>
+    <dimen name="_300dp">225dp</dimen>
+
+    <!-- sp通用 -->
+    <dimen name="_10sp">7.5sp</dimen>
+    <dimen name="_12sp">9sp</dimen>
+    <dimen name="_14sp">10.5sp</dimen>
+    <dimen name="_15sp">11sp</dimen>
+    <dimen name="_16sp">12sp</dimen>
+    <dimen name="_18sp">13.5sp</dimen>
+    <dimen name="_20sp">15sp</dimen>
+    <dimen name="_22sp">16.5sp</dimen>
+    <dimen name="_24sp">18sp</dimen>
+    <dimen name="_25sp">19sp</dimen>
+    <dimen name="_26sp">19.5sp</dimen>
+    <dimen name="_28sp">21sp</dimen>
+    <dimen name="_30sp">22.5sp</dimen>
+    <dimen name="_32sp">24sp</dimen>
+    <dimen name="_34sp">25.5sp</dimen>
+    <dimen name="_35sp">26sp</dimen>
+    <dimen name="_36sp">27sp</dimen>
+    <dimen name="_38sp">28.5sp</dimen>
+    <dimen name="_40sp">30sp</dimen>
+    <dimen name="_42sp">31.5sp</dimen>
+    <dimen name="_44sp">33sp</dimen>
+    <dimen name="_45sp">34sp</dimen>
+
+
+    <dimen name="actionbar_height">45dp</dimen>
+    <dimen name="status_bar_height">25dp</dimen>
+    <dimen name="button_height">45dp</dimen>
+    <dimen name="custom_item_height">45dp</dimen>
+
+    <dimen name="app_normal_margin">10dp</dimen>
+    <dimen name="app_plus_margin">12dp</dimen>
+    <dimen name="app_tiny_margin">4dp</dimen>
+
+    <dimen name="font_larger">16sp</dimen>
+    <dimen name="font_normal">14sp</dimen>
+    <dimen name="font_small">10sp</dimen>
+
+    <dimen name="bottom_dialog_top_icon">50dp</dimen>
+    <dimen name="bottom_dialog_left_icon">32dp</dimen>
+</resources>

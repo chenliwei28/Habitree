@@ -17,7 +17,7 @@
         android:paddingRight="12dp"
         android:text="@string/send_card_record_to_someone"
         android:textColor="@color/gray_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/_14sp" />
 
     <EditText
         android:id="@+id/detail_et"
@@ -27,7 +27,7 @@
         android:gravity="start"
         android:minHeight="140dp"
         android:padding="10dp"
-        android:textSize="15sp"
+        android:textSize="@dimen/_15sp"
         android:textColor="@color/black_text"
         android:hint="少于200字以内"
         android:textCursorDrawable="@null"/>
@@ -43,7 +43,7 @@
         android:paddingRight="12dp"
         android:text="@string/photo_record"
         android:textColor="@color/gray_text"
-        android:textSize="14sp" />
+        android:textSize="@dimen/_14sp" />
 
     <com.habitree.xueshu.xs.view.NoScrollRecyclerView
         android:id="@+id/photo_rv"

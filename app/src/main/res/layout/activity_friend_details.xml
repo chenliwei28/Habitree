@@ -49,8 +49,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_10dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginRight="40dp"
+                        android:layout_marginLeft="@dimen/_40dp"
+                        android:layout_marginRight="@dimen/_40dp"
                         android:layout_marginTop="@dimen/_10dp"
                         android:gravity="center">
 
@@ -80,15 +80,15 @@
                             android:layout_height="wrap_content"
                             android:text="@string/times_of_punch_card"
                             android:textColor="@color/black_text"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/_16sp" />
 
                         <TextView
                             android:id="@+id/count_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="@dimen/_4dp"
                             android:textColor="@color/blue"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/_16sp"
                             tools:text="200次" />
                     </LinearLayout>
 
@@ -104,15 +104,15 @@
                             android:layout_height="wrap_content"
                             android:text="@string/rate_of_punch_card"
                             android:textColor="@color/black_text"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/_16sp" />
 
                         <TextView
                             android:id="@+id/rate_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="@dimen/_4dp"
                             android:textColor="@color/blue"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/_16sp"
                             tools:text="80%" />
                     </LinearLayout>
 
@@ -129,15 +129,15 @@
                             android:layout_height="wrap_content"
                             android:text="@string/completed"
                             android:textColor="@color/black_text"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/_16sp" />
 
                         <TextView
                             android:id="@+id/completed_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="@dimen/_4dp"
                             android:textColor="@color/blue"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/_16sp"
                             tools:text="8个" />
                     </LinearLayout>
 
@@ -154,15 +154,15 @@
                             android:layout_height="wrap_content"
                             android:text="@string/ongoing"
                             android:textColor="@color/black_text"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/_16sp" />
 
                         <TextView
                             android:id="@+id/ongoing_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="@dimen/_4dp"
                             android:textColor="@color/blue"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/_16sp"
                             tools:text="1个" />
                     </LinearLayout>
                 </LinearLayout>
@@ -173,12 +173,12 @@
                     android:id="@+id/habit_title"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="@dimen/_15dp"
+                    android:layout_marginRight="@dimen/_15dp"
                     android:gravity="center_vertical"
                     android:text="@string/habit"
                     android:textColor="@color/gray_text"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/_14sp" />
 
                 <com.habitree.xueshu.xs.view.NoScrollListView
                     android:id="@+id/habits_lv"
@@ -192,12 +192,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="@dimen/_15dp"
+                    android:layout_marginRight="@dimen/_15dp"
                     android:gravity="center_vertical"
                     android:text="@string/between_you"
                     android:textColor="@color/gray_text"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/_14sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -212,7 +212,7 @@
                         android:layout_centerVertical="true"
                         android:text="@string/he_become_your_friend"
                         android:textColor="@color/black_text"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/_16sp" />
 
                     <TextView
                         android:id="@+id/become_days_tv"
@@ -221,7 +221,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:textColor="@color/gray_text"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16sp"
                         tools:text="666天" />
                 </RelativeLayout>
 
@@ -240,7 +240,7 @@
                         android:layout_centerVertical="true"
                         android:text="@string/he_become_your_supervision"
                         android:textColor="@color/black_text"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/_16sp" />
 
                     <TextView
                         android:id="@+id/become_times_tv"
@@ -249,7 +249,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:textColor="@color/gray_text"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16sp"
                         tools:text="22次" />
                 </RelativeLayout>
 
@@ -269,7 +269,7 @@
                         android:layout_centerVertical="true"
                         android:text="@string/you_become_his_supervision"
                         android:textColor="@color/black_text"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/_16sp" />
 
                     <TextView
                         android:id="@+id/become_count_tv"
@@ -278,7 +278,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:textColor="@color/gray_text"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16sp"
                         tools:text="222次" />
                 </RelativeLayout>
 
@@ -296,8 +296,8 @@
                 android:id="@+id/send_message_tv"
                 style="@style/RoundButton"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="@dimen/_40dp"
+                android:layout_marginRight="@dimen/_40dp"
                 android:text="@string/send_message" />
         </LinearLayout>
     </FrameLayout>

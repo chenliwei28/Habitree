@@ -18,13 +18,13 @@
         android:gravity="center"
         android:text="验证码已发送至+86 1925555"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/_16sp"
         android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="@dimen/_40dp"
         android:orientation="vertical">
 
         <TextView
@@ -33,14 +33,14 @@
             android:layout_marginTop="30dp"
             android:text="@string/auth_code"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_22sp" />
 
         <!-- 验证码 -->
         <LinearLayout
             android:id="@+id/llAuthCode"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="@dimen/_40dp"
             android:layout_marginTop="10dp"
             android:gravity="bottom"
             android:orientation="horizontal"
@@ -58,7 +58,7 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_18sp" />
 
             <TextView
                 android:id="@+id/send_tv"
@@ -70,12 +70,12 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="@string/get_auth_code"
-                android:textSize="16sp" />
+                android:textSize="@dimen/_16sp" />
         </LinearLayout>
 
         <TextView
             style="@style/Line"
-            android:layout_marginRight="40dp" />
+            android:layout_marginRight="@dimen/_40dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,14 +83,14 @@
             android:layout_marginTop="30dp"
             android:text="@string/password"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_22sp" />
 
         <!-- 密码 -->
         <LinearLayout
             android:id="@+id/llPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="@dimen/_40dp"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -106,7 +106,7 @@
                 android:textColor="@color/white"
                 android:textSelectHandle="@color/white"
                 android:textCursorDrawable="@color/white"
-                android:textSize="18sp"/>
+                android:textSize="@dimen/_18sp"/>
 
             <ImageView
                 android:id="@+id/pwd_visibility_btn"
@@ -117,13 +117,13 @@
 
         <TextView
             style="@style/Line"
-            android:layout_marginRight="40dp" />
+            android:layout_marginRight="@dimen/_40dp" />
 
 
         <TextView
             android:id="@+id/next_btn"
             style="@style/WhiteRoundButton"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="@dimen/_50dp"
             android:layout_marginTop="50dp"
             android:text="@string/next_step" />
     </LinearLayout>

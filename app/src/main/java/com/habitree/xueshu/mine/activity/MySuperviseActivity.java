@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.mine.adapter.HabitListAdapter;
-import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.bean.CheckListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView.HabitSuperviseListView;
 import com.habitree.xueshu.xs.activity.BaseActionBarActivity;
@@ -61,7 +61,7 @@ public class MySuperviseActivity extends BaseActionBarActivity implements OnRefr
     }
 
     @Override
-    public void onGetSuperviseListSuccess(HabitListResponse.Data data) {
+    public void onGetSuperviseListSuccess(CheckListResponse.Data data) {
         if (data != null) {
             if(mAdapter == null){
                 mAdapter = new HabitListAdapter(this,data.list);

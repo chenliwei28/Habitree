@@ -18,21 +18,21 @@
         android:layout_marginTop="20dp"
         android:text="账户余额"
         android:textColor="@color/black_text"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/_16sp"/>
 
     <TextView
         android:id="@+id/count_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black_text"
-        android:textSize="26sp"/>
+        android:textSize="@dimen/_26sp"/>
 
     <TextView
         android:id="@+id/weixin_btn"
         style="@style/RoundButton"
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="@dimen/_30dp"
+        android:layout_marginRight="@dimen/_30dp"
         android:text="提现到微信钱包"
         android:visibility="gone"/>
 
@@ -40,8 +40,8 @@
         android:id="@+id/alipay_btn"
         style="@style/RoundButton"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="@dimen/_30dp"
+        android:layout_marginRight="@dimen/_30dp"
         android:layout_marginBottom="40dp"
         android:text="提现到支付宝钱包" />
 </LinearLayout>

@@ -20,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="@dimen/_15dp"
         android:orientation="vertical">
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             tools:text="啪啪啪"
             android:textColor="@color/black_text"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
 
         <TextView
             android:id="@+id/days_tv"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             tools:text="第1/90天 "
             android:textColor="@color/gray_text"
-            android:textSize="14sp" />
+            android:textSize="@dimen/_14sp" />
     </LinearLayout>
 
     <ImageView

@@ -10,18 +10,18 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="@dimen/_12dp"
         tools:src="@drawable/ic_time"/>
 
     <TextView
         android:id="@+id/title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="@dimen/_12dp"
         android:layout_toRightOf="@id/img_iv"
         android:layout_centerVertical="true"
         android:textColor="@color/black_text"
-        android:textSize="16sp"
+        android:textSize="@dimen/_16sp"
         tools:text="提醒时间" />
 
     <LinearLayout
@@ -34,17 +34,17 @@
             android:id="@+id/detail_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="@dimen/_12dp"
+            android:layout_marginRight="@dimen/_12dp"
             android:textColor="@color/black_text"
-            android:textSize="16sp"
+            android:textSize="@dimen/_16sp"
             tools:text="21:00" />
 
         <ImageView
             android:id="@+id/next_iv"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginRight="@dimen/_12dp"
             android:src="@drawable/ic_arrow"
             android:visibility="gone"/>
     </LinearLayout>

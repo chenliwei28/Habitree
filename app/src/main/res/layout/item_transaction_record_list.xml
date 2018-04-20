@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black_text"
-        android:textSize="17sp"
+        android:textSize="@dimen/_16sp"
         android:text="支付宝"/>
 
     <RelativeLayout
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:textColor="@color/black_text"
-            android:textSize="14sp"
+            android:textSize="@dimen/_14sp"
             android:text="2018-01-01   12:00"/>
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:textColor="@color/orange"
-            android:textSize="17sp"
+            android:textSize="@dimen/_16sp"
             tools:text="+888元"/>
     </RelativeLayout>
 </LinearLayout>

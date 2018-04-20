@@ -26,24 +26,24 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/_15dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/name_tv"
+                android:id="@+id/tvNickName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black_text"
-                android:textSize="16sp"
+                android:textSize="@dimen/_16sp"
                 tools:text="啪啪啪" />
 
             <TextView
-                android:id="@+id/days_tv"
+                android:id="@+id/tvHabitName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 tools:text="第1/90天 " />
         </LinearLayout>
 

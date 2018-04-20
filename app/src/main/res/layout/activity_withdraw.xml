@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/withdraw_sum"
-            android:textSize="14sp"
+            android:textSize="@dimen/_14sp"
             android:textColor="@color/gray_text"/>
 
         <LinearLayout
@@ -32,16 +32,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rmb"
-                android:textSize="30sp"
+                android:textSize="@dimen/_30sp"
                 android:textColor="@color/black_text"/>
 
             <EditText
                 android:id="@+id/num_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="@dimen/_8dp"
                 android:background="@color/white"
-                android:textSize="36sp"
+                android:textSize="@dimen/_36sp"
                 android:textColor="@color/black_text"
                 android:inputType="numberDecimal" />
         </LinearLayout>
@@ -60,10 +60,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="@dimen/_12dp"
+            android:layout_marginRight="@dimen/_12dp"
             tools:text="可用余额：30.00元"
-            android:textSize="12sp"
+            android:textSize="@dimen/_12sp"
             android:textColor="@color/gray_text"/>
 
         <TextView
@@ -74,15 +74,15 @@
             android:paddingRight="12dp"
             android:gravity="center"
             android:text="@string/all_withdrawal"
-            android:textSize="12sp"
+            android:textSize="@dimen/_12sp"
             android:textColor="@color/blue"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/confirm_tv"
         style="@style/RoundButton"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginLeft="@dimen/_32dp"
+        android:layout_marginRight="@dimen/_32dp"
         android:layout_marginTop="32dp"
         android:text="@string/confirm"/>
 </LinearLayout>

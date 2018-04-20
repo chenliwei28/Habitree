@@ -21,7 +21,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="@dimen/_30sp"
             tools:text="888" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/total_sum"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="@dimen/_18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/_20sp"
                     tools:text="¥ 900" />
 
                 <TextView
@@ -61,7 +61,7 @@
                     android:gravity="center"
                     android:text="@string/account_balance2"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/_14sp" />
             </LinearLayout>
 
 
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/_20sp"
                     tools:text="¥ 12" />
 
                 <TextView
@@ -87,7 +87,7 @@
                     android:gravity="center"
                     android:text="@string/habit_balance"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/_14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/_20sp"
                     tools:text="¥ 12" />
 
                 <TextView
@@ -112,7 +112,7 @@
                     android:gravity="center"
                     android:text="@string/frozen_money"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/_14sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

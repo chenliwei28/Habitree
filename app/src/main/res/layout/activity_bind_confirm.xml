@@ -23,7 +23,7 @@
         android:text="+86"
         android:textColor="@color/black_text"
         android:textCursorDrawable="@null"
-        android:textSize="18sp" />
+        android:textSize="@dimen/_18sp" />
 
 
     <View style="@style/Line" />
@@ -52,7 +52,7 @@
             android:textColor="@color/black_text"
             android:textColorHint="@color/gray_text"
             android:textCursorDrawable="@null"
-            android:textSize="18sp" />
+            android:textSize="@dimen/_18sp" />
 
         <TextView
             android:id="@+id/send_tv"
@@ -64,7 +64,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:text="@string/auth_code"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
     </LinearLayout>
 
     <View style="@style/Line" />
@@ -73,8 +73,8 @@
     <TextView
         android:id="@+id/confirm_tv"
         style="@style/RoundButton"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginLeft="@dimen/_32dp"
+        android:layout_marginRight="@dimen/_32dp"
         android:layout_marginTop="42dp"
         android:text="@string/confirm" />
 </LinearLayout>

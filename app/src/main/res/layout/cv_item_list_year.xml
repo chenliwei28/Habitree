@@ -14,7 +14,7 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:textColor="#111111"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18sp"
         android:textStyle="bold" />
 
     <com.habitree.xueshu.xs.view.calendarview.YearView

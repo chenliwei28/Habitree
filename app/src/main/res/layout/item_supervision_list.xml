@@ -30,7 +30,7 @@
             android:background="@drawable/shape_circle_red_unread_bg"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="@dimen/_12sp"
             tools:text="9"
             android:visibility="gone"/>
     </FrameLayout>
@@ -38,7 +38,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/_10dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black_text"
-                android:textSize="17sp"
+                android:textSize="@dimen/_16sp"
                 tools:text="张全蛋" />
 
             <TextView
@@ -63,14 +63,14 @@
                 android:layout_centerVertical="true"
                 android:gravity="end"
                 android:textColor="@color/gray_text"
-                android:textSize="13sp"
+                android:textSize="@dimen/_14sp"
                 tools:text="10:00" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/_4dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -87,7 +87,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/gray_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 tools:text="1月9日夜跑：环岛路这边，晚上很凉爽，大家有空来吹西北风" />
         </LinearLayout>
     </LinearLayout>

@@ -11,8 +11,8 @@
         android:id="@+id/head_riv"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:layout_marginRight="@dimen/_15dp"
         app:type="circle"/>
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textColor="@color/black_text"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18sp"
         tools:text="啊啊啊" />
 
     <TextView
@@ -29,10 +29,10 @@
         style="@style/RoundButton"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:layout_marginRight="@dimen/_15dp"
         android:gravity="center"
         android:text="@string/add_friends"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14sp"
         android:textColor="@color/white"/>
 </LinearLayout>

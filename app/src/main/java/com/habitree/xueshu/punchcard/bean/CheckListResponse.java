@@ -13,14 +13,14 @@ public class CheckListResponse implements Serializable {
 
     public int status;
     public String info;
-    public HabitListResponse.Data data;
+    public CheckListResponse.Data data;
     public int timestamp;
 
     public class Data implements Serializable{
 
 
         public int count;
-        public List<HabitListResponse.Data.Habit> list;
+        public List<CheckListResponse.Data.Habit> list;
 
 
         public class Habit implements Serializable{
@@ -73,7 +73,9 @@ public class CheckListResponse implements Serializable {
             public String ht_description;
             public int sign_status;
             public int now_days;
-            public HabitListResponse.Data.Habit.CheckMemInfo check_meminfo;
+            public String portrait;
+            public String nickname;
+            public CheckListResponse.Data.Habit.CheckMemInfo check_meminfo;
             public String sign_rate;
 
 

@@ -9,7 +9,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="@dimen/_12dp"
         tools:src="@drawable/ic_time" />
 
     <TextView
@@ -17,10 +17,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="@dimen/_12dp"
         android:layout_toRightOf="@id/img_iv"
         android:textColor="@color/black_text"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18sp"
         tools:text="提醒时间" />
 
     <LinearLayout

@@ -14,8 +14,8 @@
         android:id="@+id/tab_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:textSize="12sp"
+        android:layout_marginTop="@dimen/_1dp"
+        android:textSize="@dimen/_12sp"
         android:textColor="@color/gray_text"
         tools:text="打卡"/>
 </merge>

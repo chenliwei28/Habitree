@@ -37,7 +37,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginLeft="@dimen/_12dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -45,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black_text"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16sp"
                         tools:text="张全蛋" />
 
                     <RelativeLayout
@@ -57,7 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/gray_text"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/_14sp"
                             tools:text="2018-01-29  13:00" />
 
                         <TextView
@@ -66,7 +66,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:textColor="@color/gray_text"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/_14sp"
                             tools:text="剩余01:00" />
                     </RelativeLayout>
                 </LinearLayout>
@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/_14sp" />
 
                 <TextView
                     android:id="@+id/detail_tv"
@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black_text"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14sp"
                     tools:text="哈哈哈哈哈哈"/>
 
                 <ImageView
@@ -130,7 +130,7 @@
             android:gravity="center"
             android:text="@string/no_pass"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="@dimen/_16sp" />
 
         <TextView
             android:id="@+id/accept_tv"
@@ -141,6 +141,6 @@
             android:gravity="center"
             android:text="@string/pass"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="@dimen/_16sp" />
     </LinearLayout>
 </LinearLayout>

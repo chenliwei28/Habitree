@@ -32,8 +32,8 @@
                     android:id="@+id/img_iv"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="@dimen/_12dp"
+                    android:layout_marginRight="@dimen/_12dp"
                     android:src="@drawable/ic_jewel"/>
 
                 <TextView
@@ -41,19 +41,19 @@
                     android:layout_height="wrap_content"
                     android:text="@string/habit_description"
                     android:textColor="@color/black_text"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sp" />
 
                 <EditText
                     android:id="@+id/describe_et"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="@dimen/_12dp"
+                    android:layout_marginRight="@dimen/_12dp"
                     android:background="@color/white"
                     android:hint="@string/describe_what_habit_that_you_want_to_foster"
                     android:maxLength="40"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/_15sp"
                     android:inputType="textMultiLine"
                     android:textColor="@color/black_text"
                     android:textCursorDrawable="@null"/>
@@ -68,7 +68,7 @@
                 android:paddingRight="12dp"
                 android:gravity="center_vertical"
                 android:textColor="@color/black_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 android:text="@string/basic_setting"/>
 
             <com.habitree.xueshu.xs.view.CustomItemView
@@ -102,7 +102,7 @@
                 android:paddingRight="12dp"
                 android:gravity="center_vertical"
                 android:textColor="@color/gray_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 android:text="@string/choose_rational_time_is_helpful"/>
 
             <!--<com.habitree.xueshu.xs.view.CustomItemView-->
@@ -120,7 +120,7 @@
                 <!--android:paddingRight="12dp"-->
                 <!--android:gravity="center_vertical"-->
                 <!--android:textColor="@color/gray_text"-->
-                <!--android:textSize="14sp"-->
+                <!--android:textSize="@dimen/_14sp"-->
                 <!--android:text="@string/is_allow_other_people_see_this_habit"/>-->
 
             <com.habitree.xueshu.xs.view.CustomItemView
@@ -138,14 +138,14 @@
                 android:paddingRight="12dp"
                 android:gravity="center_vertical"
                 android:textColor="@color/gray_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 android:text="@string/is_must_upload_photos_as_record"/>
 
             <TextView
                 android:id="@+id/next_tv"
                 style="@style/RectButton"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginLeft="@dimen/_32dp"
+                android:layout_marginRight="@dimen/_32dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/next_step"/>

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="@string/choose_plant_trees"
             android:textColor="@color/black_text"
-            android:textSize="24sp" />
+            android:textSize="@dimen/_24sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/plant_tree_long_text"
             android:textColor="@color/black_text"
-            android:textSize="18sp" />
+            android:textSize="@dimen/_18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_marginTop="5dp"
             android:text="@string/choose_a_tree_with_you"
             android:textColor="@color/black_text"
-            android:textSize="18sp" />
+            android:textSize="@dimen/_18sp" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
@@ -56,7 +56,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="@dimen/_40dp"
+        android:layout_marginRight="@dimen/_40dp"
         android:text="@string/confirm"/>
 </RelativeLayout>

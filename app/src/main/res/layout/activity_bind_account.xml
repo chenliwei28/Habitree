@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="@dimen/_24dp"
+        android:layout_marginRight="@dimen/_24dp"
         android:layout_marginTop="29dp"
         app:hint="@string/please_enter_your_ali_pay_account"
         app:input_mode="2"
@@ -26,8 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="@dimen/_24dp"
+        android:layout_marginRight="@dimen/_24dp"
         android:layout_marginTop="18dp"
         app:hint="@string/please_enter_your_ali_pay_name"
         app:input_mode="2"
@@ -36,8 +36,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="@dimen/_24dp"
+        android:layout_marginRight="@dimen/_24dp"
         android:layout_marginTop="18dp">
 
         <ImageView
@@ -56,7 +56,7 @@
             android:hint="@string/note_auth_code"
             android:inputType="number"
             android:maxLength="4"
-            android:textSize="14sp" />
+            android:textSize="@dimen/_14sp" />
 
         <View style="@style/Line"
             android:layout_width="220dp"
@@ -72,24 +72,24 @@
             android:background="@drawable/shape_rect_round_corner_orange_button"
             android:text="@string/auth_code"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/_14sp" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/remind_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="@dimen/_24dp"
+        android:layout_marginRight="@dimen/_24dp"
         android:layout_marginTop="10dp"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14sp"
         android:textColor="@color/gray_text"/>
 
     <TextView
         android:id="@+id/confirm_tv"
         style="@style/RoundButton"
         android:layout_marginTop="35dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginLeft="@dimen/_44dp"
+        android:layout_marginRight="@dimen/_44dp"
         android:text="@string/confirm"/>
 </LinearLayout>

@@ -18,7 +18,7 @@
         android:layout_marginTop="20dp"
         android:text="充值成功"
         android:textColor="@color/blue"
-        android:textSize="26sp"
+        android:textSize="@dimen/_26sp"
         android:textStyle="bold" />
 
     <TextView
@@ -26,14 +26,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black_text"
-        android:textSize="16sp" />
+        android:textSize="@dimen/_16sp" />
 
     <TextView
         android:id="@+id/complete_btn"
         style="@style/RoundButton"
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="@dimen/_30dp"
+        android:layout_marginRight="@dimen/_30dp"
         android:layout_marginBottom="40dp"
         android:text="@string/complete" />
 </LinearLayout>

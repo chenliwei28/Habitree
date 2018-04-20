@@ -32,7 +32,7 @@
         android:layout_marginTop="5dp"
         tools:text="@string/app_name"
         android:textColor="@color/white"
-        android:textSize="17sp" />
+        android:textSize="@dimen/_16sp" />
 
     <TextView
         android:id="@+id/habit_name_tv"
@@ -43,20 +43,20 @@
         android:layout_marginBottom="90dp"
         android:text="@string/click_tree_to_watch_detail"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/_16sp" />
 
     <TextView
         android:id="@+id/habit_text_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginRight="@dimen/_20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="68dp"
         tools:text="诞生于2018.01.01  今天是第36/90天  打卡率100%"
         android:textColor="@color/white"
-        android:textSize="13sp" />
+        android:textSize="@dimen/_14sp" />
 
     <TextView
         android:id="@+id/watch_tv"
@@ -68,7 +68,7 @@
         android:layout_marginBottom="24dp"
         android:text="@string/view_details"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="@dimen/_15sp"
         android:background="@drawable/shape_round_white_alpha_button"
         android:visibility="gone"/>
 </RelativeLayout>

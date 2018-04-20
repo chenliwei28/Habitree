@@ -1,5 +1,6 @@
 package com.habitree.xueshu.punchcard.pview;
 
+import com.habitree.xueshu.punchcard.bean.CheckListResponse;
 import com.habitree.xueshu.punchcard.bean.HabitDetailResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.bean.PlantTreeResponse;
@@ -24,7 +25,7 @@ public interface HabitView extends BaseView {
      * 我监督的习惯
      */
     interface HabitSuperviseListView{
-        void onGetSuperviseListSuccess(HabitListResponse.Data data);
+        void onGetSuperviseListSuccess(CheckListResponse.Data data);
         void onGetSuperviseListFailed(String reason);
     }
 

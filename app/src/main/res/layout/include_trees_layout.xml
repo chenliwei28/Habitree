@@ -37,7 +37,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
@@ -68,7 +68,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:text="夜跑啪啪啪啪啪"
                     tools:visibility="visible" />
@@ -100,7 +100,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:text="夜跑啪啪啪啪啪"
                     tools:visibility="visible" />
@@ -132,7 +132,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:text="夜跑啪啪啪啪啪"
                     tools:visibility="visible" />
@@ -164,7 +164,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:text="夜跑啪啪啪啪啪"
                     tools:visibility="visible" />
@@ -196,7 +196,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:text="夜跑啪啪啪啪啪"
                     tools:visibility="visible" />
@@ -228,7 +228,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:text="夜跑啪啪啪啪啪"
                     tools:visibility="visible" />
@@ -260,7 +260,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:text="夜跑啪啪啪啪啪"
                     tools:visibility="visible" />
@@ -292,7 +292,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="2dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12sp"
                     android:visibility="gone"
                     tools:text="夜跑啪啪啪啪啪"
                     tools:visibility="visible" />

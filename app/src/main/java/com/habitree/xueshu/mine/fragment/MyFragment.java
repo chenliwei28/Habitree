@@ -19,6 +19,7 @@ import com.habitree.xueshu.mine.activity.MyInfoActivity;
 import com.habitree.xueshu.mine.activity.MySuperviseActivity;
 import com.habitree.xueshu.mine.activity.SettingActivity;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
+import com.habitree.xueshu.punchcard.bean.CheckListResponse;
 import com.habitree.xueshu.punchcard.bean.HabitListResponse;
 import com.habitree.xueshu.punchcard.presenter.HabitPresenter;
 import com.habitree.xueshu.punchcard.pview.HabitView.HabitSuperviseListView;
@@ -286,7 +287,7 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
     }
 
     @Override
-    public void onGetSuperviseListSuccess(HabitListResponse.Data data) {
+    public void onGetSuperviseListSuccess(CheckListResponse.Data data) {
         if(data != null){
             tvSupervise.setText(data.count+"个");
         }

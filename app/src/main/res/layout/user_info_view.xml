@@ -11,8 +11,8 @@
         android:id="@+id/head_riv"
         android:layout_width="77dp"
         android:layout_height="77dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:layout_marginRight="@dimen/_15dp"
         android:src="@drawable/ic_launcher"
         app:type="circle" />
 
@@ -27,7 +27,7 @@
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/head_riv"
             android:textColor="@color/black_text"
-            android:textSize="20sp" />
+            android:textSize="@dimen/_20sp" />
 
         <TextView
             android:id="@+id/days_tv"
@@ -35,10 +35,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/name_tv"
             android:layout_marginBottom="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/_4dp"
             android:layout_toRightOf="@id/head_riv"
             android:textColor="@color/black_text"
-            android:textSize="13sp" />
+            android:textSize="@dimen/_14sp" />
     </LinearLayout>
 
 

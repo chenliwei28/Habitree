@@ -23,7 +23,7 @@
             android:paddingRight="12dp"
             android:text="@string/all"
             android:textColor="@color/black_text"
-            android:textSize="15sp"/>
+            android:textSize="@dimen/_15sp"/>
 
         <View style="@style/Line"/>
 
@@ -39,7 +39,7 @@
             android:paddingRight="12dp"
             android:text="@string/top_up"
             android:textColor="@color/black_text"
-            android:textSize="15sp"/>
+            android:textSize="@dimen/_15sp"/>
 
         <View style="@style/Line"/>
 
@@ -55,7 +55,7 @@
             android:paddingRight="12dp"
             android:text="@string/withdraw_deposit"
             android:textColor="@color/black_text"
-            android:textSize="15sp"/>
+            android:textSize="@dimen/_15sp"/>
 
         <View style="@style/Line"/>
 
@@ -71,7 +71,7 @@
             android:paddingRight="12dp"
             android:text="@string/forfeit"
             android:textColor="@color/black_text"
-            android:textSize="15sp"/>
+            android:textSize="@dimen/_15sp"/>
     </RadioGroup>
 
     <View style="@style/Line"/>

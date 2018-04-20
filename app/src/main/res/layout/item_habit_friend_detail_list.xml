@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:textSize="15sp"
+        android:textSize="@dimen/_15sp"
         android:textColor="@color/black_text"
         tools:text="啪啪啪"/>
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:textSize="15sp"
+        android:textSize="@dimen/_15sp"
         android:textColor="@color/gray_text"
         tools:text="1月20日 (第30/90天)"/>
 </RelativeLayout>

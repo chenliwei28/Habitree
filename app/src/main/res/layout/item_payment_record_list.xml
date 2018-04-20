@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
+        android:layout_marginLeft="@dimen/_14dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black_text"
-                android:textSize="17sp"
+                android:textSize="@dimen/_16sp"
                 tools:text="李国宝" />
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/orange"
-                android:textSize="17sp"
+                android:textSize="@dimen/_16sp"
                 tools:text="+100元" />
         </RelativeLayout>
 
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 tools:text="早期习惯" />
 
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/black_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 tools:text="2018-01-01  12:00" />
         </RelativeLayout>
     </LinearLayout>

@@ -16,7 +16,7 @@
         android:paddingRight="15dp"
         android:paddingLeft="15dp"
         android:textColor="@color/gray_text"
-        android:textSize="16sp"
+        android:textSize="@dimen/_16sp"
         android:visibility="gone"/>
 
     <LinearLayout
@@ -28,8 +28,8 @@
             android:id="@+id/head_riv"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="@dimen/_15dp"
+            android:layout_marginRight="@dimen/_15dp"
             app:type="circle" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black_text"
-            android:textSize="18sp"
+            android:textSize="@dimen/_18sp"
             tools:text="啊啊啊" />
     </LinearLayout>
 </LinearLayout>

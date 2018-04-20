@@ -26,8 +26,8 @@
             android:id="@+id/search_et"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="@dimen/_12dp"
+            android:layout_marginRight="@dimen/_12dp"
             android:background="@color/white"
             android:hint="@string/search_friends"
             android:inputType="text"
@@ -35,7 +35,7 @@
             android:maxLines="1"
             android:textColor="@color/black_text"
             android:textCursorDrawable="@null"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_15sp" />
     </LinearLayout>
 
     <ListView

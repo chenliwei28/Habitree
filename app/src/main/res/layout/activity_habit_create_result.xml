@@ -32,7 +32,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/create_success"
                 android:textColor="@color/blue"
-                android:textSize="22sp" />
+                android:textSize="@dimen/_22sp" />
 
             <TextView
                 android:id="@+id/detail_tv"
@@ -42,21 +42,21 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/change_yourself_begin_with_little_habit"
                 android:textColor="@color/black_text"
-                android:textSize="16sp" />
+                android:textSize="@dimen/_16sp" />
 
             <TextView
                 android:id="@+id/confirm_tv"
                 style="@style/RoundButton"
-                android:layout_marginLeft="42dp"
-                android:layout_marginRight="42dp"
+                android:layout_marginLeft="@dimen/_42dp"
+                android:layout_marginRight="@dimen/_42dp"
                 android:layout_marginTop="30dp"
                 android:text="@string/confirm" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="62dp"
-                android:layout_marginRight="62dp"
+                android:layout_marginLeft="@dimen/_60dp"
+                android:layout_marginRight="@dimen/_60dp"
                 android:layout_marginTop="70dp"
                 android:gravity="center_vertical">
 
@@ -67,8 +67,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_20dp"
                     android:text="@string/share_habit"
                     android:textColor="@color/gray_text" />
 
@@ -80,8 +80,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="@dimen/_30dp"
+                android:layout_marginRight="@dimen/_30dp"
                 android:layout_marginTop="12dp">
 
                 <LinearLayout
@@ -149,8 +149,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="@dimen/_30dp"
+                android:layout_marginRight="@dimen/_30dp"
                 android:layout_marginTop="12dp">
 
                 <LinearLayout

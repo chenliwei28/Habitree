@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.habitree.xueshu.R;
 import com.habitree.xueshu.punchcard.activity.HabitDetailActivity;
-import com.habitree.xueshu.punchcard.bean.HabitListResponse;
+import com.habitree.xueshu.punchcard.bean.CheckListResponse;
 import com.habitree.xueshu.xs.util.ImageUtil;
 import com.habitree.xueshu.xs.view.RoundImageView;
 
@@ -19,9 +19,9 @@ import java.util.List;
 public class HabitListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
-    private List<HabitListResponse.Data.Habit> mList;
+    private List<CheckListResponse.Data.Habit> mList;
 
-    public HabitListAdapter(Context context, List<HabitListResponse.Data.Habit> list) {
+    public HabitListAdapter(Context context, List<CheckListResponse.Data.Habit> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -37,11 +37,12 @@ public class HabitListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HabitHolder) {
             HabitHolder mHolder = (HabitHolder) holder;
-            final HabitListResponse.Data.Habit habit = mList.get(position);
+            final CheckListResponse.Data.Habit habit = mList.get(position);
             ImageUtil.loadImage(mContext, habit.youth_img, mHolder.headRiv);
-            mHolder.nameTv.setText(habit.title);
+            mHolder.tvNickName.setText(habit.nickname);
             String days = "第" + habit.now_days + "/" + habit.recycle_days + "天";
-            mHolder.daysTv.setText(days);
+            mHolder.tvHabitName.setText(habit.title+"("+days+")");
+
             mHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -56,7 +57,7 @@ public class HabitListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return mList == null ? 0 : mList.size();
     }
 
-    public void updateData(List<HabitListResponse.Data.Habit> list) {
+    public void updateData(List<CheckListResponse.Data.Habit> list) {
         mList = list;
         notifyDataSetChanged();
     }
@@ -64,14 +65,14 @@ public class HabitListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     class HabitHolder extends RecyclerView.ViewHolder {
 
         RoundImageView headRiv;
-        TextView nameTv;
-        TextView daysTv;
+        TextView tvNickName;
+        TextView tvHabitName;
 
         public HabitHolder(View itemView) {
             super(itemView);
             headRiv = itemView.findViewById(R.id.head_riv);
-            nameTv = itemView.findViewById(R.id.name_tv);
-            daysTv = itemView.findViewById(R.id.days_tv);
+            tvNickName = itemView.findViewById(R.id.tvNickName);
+            tvHabitName = itemView.findViewById(R.id.tvHabitName);
         }
     }
 }

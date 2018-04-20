@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="@dimen/_45dp"
     android:background="@color/blue">
 
     <ImageView
         android:id="@+id/back_iv"
-        android:layout_width="45dp"
+        android:layout_width="@dimen/_45dp"
         android:layout_height="match_parent"
         android:src="@drawable/ic_back_white"
         android:scaleType="center"/>
@@ -17,20 +17,20 @@
         android:id="@+id/title_tv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:maxWidth="200dp"
+        android:maxWidth="@dimen/_200dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18sp"
         android:maxLines="1"
         android:ellipsize="end"/>
 
     <ImageView
         android:id="@+id/right_iv"
-        android:layout_width="45dp"
+        android:layout_width="@dimen/_45dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginRight="@dimen/_10dp"
         android:scaleType="center"
         android:layout_alignParentEnd="true"
         android:visibility="gone"
@@ -40,11 +40,11 @@
         android:id="@+id/right_tv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginRight="@dimen/_10dp"
         android:layout_alignParentEnd="true"
         android:gravity="center"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14sp"
         android:textColor="@color/white"
         android:visibility="gone"
         tools:text="下一步"/>

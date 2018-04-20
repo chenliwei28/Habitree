@@ -23,7 +23,7 @@
             android:layout_centerVertical="true"
             android:text="@string/head"
             android:textColor="@color/black_text"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_16sp" />
 
         <ImageView
             android:id="@+id/next_iv"
@@ -39,8 +39,8 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginRight="@dimen/_10dp"
             android:layout_toLeftOf="@id/next_iv" />
     </RelativeLayout>
 
