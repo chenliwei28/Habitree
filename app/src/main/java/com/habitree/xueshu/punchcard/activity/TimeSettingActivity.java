@@ -2,8 +2,12 @@ package com.habitree.xueshu.punchcard.activity;
 
 
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -20,11 +24,14 @@ import java.util.List;
 /**
  * 持续时间
  */
-public class TimeSettingActivity extends BaseActionBarActivity implements OnClickListener{
+public class TimeSettingActivity extends BaseActionBarActivity implements OnClickListener,TextWatcher {
 
     private TextView mConfirmTv;
     private CustomRadioGroup mDaysCrg;
+    private EditText etCount;
     private int mDays;
+    private RadioButton[] btns;
+    private RadioButton seven,fifteen,thirty,sixty,ninety,hundred;
     private List<InitResponse.Data.RecycleDays> mList;
 
     @Override
@@ -36,19 +43,31 @@ public class TimeSettingActivity extends BaseActionBarActivity implements OnClic
     protected void initView() {
         mConfirmTv = findViewById(R.id.confirm_tv);
         mDaysCrg = findViewById(R.id.days_crg);
+        etCount = findViewById(R.id.etCount);
+        seven = findViewById(R.id.seven);
+        fifteen = findViewById(R.id.fifteen);
+        thirty = findViewById(R.id.thirty);
+        sixty = findViewById(R.id.sixty);
+        ninety = findViewById(R.id.ninety);
+        hundred = findViewById(R.id.hundred);
+        btns = new RadioButton[]{seven,fifteen,thirty,sixty,ninety,hundred};
     }
 
     @Override
     protected void initListener() {
+        etCount.addTextChangedListener(this);
         mConfirmTv.setOnClickListener(this);
-        int[] ids = {R.id.seven,R.id.fifteen,R.id.thirty,R.id.sixty,R.id.ninety,R.id.hundred};
         mList = BaseApp.normalData.recycle_days;
         for (int i = 0;i<6;i++){
-            ((RadioButton)findViewById(ids[i])).setText(mList.get(i).title);
+            btns[i].setText(mList.get(i).title);
         }
         mDaysCrg.setOnCheckedChangeListener(new CustomRadioGroup.OnCheckChangeListener() {
             @Override
             public void onCheckChange(RadioButton button) {
+                for (RadioButton btn : btns) {
+                    btn.setBackgroundResource(R.drawable.bg_time_radio_button);
+                }
+                etCount.setText("");
                 switch (button.getId()){
                     case R.id.seven:
                         mDays = mList.get(0).day;
@@ -89,6 +108,25 @@ public class TimeSettingActivity extends BaseActionBarActivity implements OnClic
                     AppManager.getAppManager().finishActivity(TimeSettingActivity.this);
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        String str = editable.toString();
+        if(!TextUtils.isEmpty(str)){
+            for (RadioButton btn : btns) {
+                btn.setChecked(false);
+            }
+            mDays = Integer.valueOf(str);
         }
     }
 }
