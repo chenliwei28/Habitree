@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10dp"
             android:text="@string/plant_tree_long_text"
             android:textColor="@color/black_text"
             android:textSize="@dimen/_18sp" />
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/_5dp"
             android:text="@string/choose_a_tree_with_you"
             android:textColor="@color/black_text"
             android:textSize="@dimen/_18sp" />
@@ -44,18 +44,18 @@
         android:layout_height="360dp"
         android:layout_below="@id/lltip"
         android:clipToPadding="false"
-        android:layout_marginTop="15dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="60dp"
-        android:paddingRight="60dp"
-        android:paddingTop="5dp"/>
+        android:layout_marginTop="@dimen/_15dp"
+        android:paddingBottom="@dimen/_5dp"
+        android:paddingLeft="@dimen/_60dp"
+        android:paddingRight="@dimen/_60dp"
+        android:paddingTop="@dimen/_5dp"/>
 
     <TextView
         android:id="@+id/choose_tv"
         style="@style/RoundButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="@dimen/_50dp"
         android:layout_marginLeft="@dimen/_40dp"
         android:layout_marginRight="@dimen/_40dp"
         android:text="@string/confirm"/>

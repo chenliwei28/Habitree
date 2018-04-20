@@ -11,16 +11,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/_60dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingRight="@dimen/_10dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/_20dp"
+            android:layout_height="@dimen/_20dp"
             android:layout_marginLeft="@dimen/_12dp"
             android:layout_marginRight="@dimen/_12dp"
             android:background="@drawable/ic_phone" />
@@ -47,10 +47,10 @@
             style="@style/RoundButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
+            android:paddingBottom="@dimen/_5dp"
             android:paddingLeft="@dimen/_10dp"
             android:paddingRight="@dimen/_10dp"
-            android:paddingTop="5dp"
+            android:paddingTop="@dimen/_5dp"
             android:text="@string/change_password" />
 
     </LinearLayout>
@@ -58,7 +58,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_5dp"
         android:orientation="horizontal">
 
         <TextView
@@ -85,8 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_12dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="@dimen/_25dp"
+        android:layout_marginBottom="@dimen/_5dp"
         android:text="第三方账号绑定"
         android:textColor="@color/gray_text"
         android:textSize="@dimen/_16sp" />

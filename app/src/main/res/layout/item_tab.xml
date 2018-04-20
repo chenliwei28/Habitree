@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/tab_iv"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/_24dp"
+        android:layout_height="@dimen/_24dp"
         tools:src="@drawable/ic_my_normal"/>
 
     <TextView

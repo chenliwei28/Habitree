@@ -10,14 +10,14 @@
 
     <fr.castorflex.android.circularprogressbar.CircularProgressBar
         android:id="@+id/progress"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="@dimen/_60dp"
+        android:layout_height="@dimen/_60dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:indeterminate="true"
         app:cpb_color="@color/blue"
         app:cpb_rotation_speed="1.0"
         app:cpb_sweep_speed="1.0"
-        app:cpb_stroke_width="4dp"
+        app:cpb_stroke_width="@dimen/_4dp"
         app:cpb_min_sweep_angle="10"
         app:cpb_max_sweep_angle="300"/>
 
@@ -25,8 +25,8 @@
         android:id="@+id/text_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_15dp"
         android:textSize="@dimen/_16sp"
         android:textColor="@color/gray_text"
         android:text="@string/please_wait"/>

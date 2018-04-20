@@ -16,7 +16,7 @@
         android:background="@color/background"
         android:layout_marginLeft="@dimen/_24dp"
         android:layout_marginRight="@dimen/_24dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="@dimen/_30dp"
         app:hint="@string/please_enter_your_ali_pay_account"
         app:input_mode="2"
         app:left_img="@drawable/ic_people" />
@@ -28,7 +28,7 @@
         android:background="@color/background"
         android:layout_marginLeft="@dimen/_24dp"
         android:layout_marginRight="@dimen/_24dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="@dimen/_18dp"
         app:hint="@string/please_enter_your_ali_pay_name"
         app:input_mode="2"
         app:left_img="@drawable/ic_pen" />
@@ -38,19 +38,19 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_24dp"
         android:layout_marginRight="@dimen/_24dp"
-        android:layout_marginTop="18dp">
+        android:layout_marginTop="@dimen/_18dp">
 
         <ImageView
             android:id="@+id/auth_iv"
-            android:layout_width="40dp"
-            android:layout_height="25dp"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_25dp"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_pen"/>
 
         <EditText
             android:id="@+id/code_et"
             android:layout_width="190dp"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/_45dp"
             android:layout_toRightOf="@id/auth_iv"
             android:background="@color/white"
             android:hint="@string/note_auth_code"
@@ -64,8 +64,8 @@
 
         <TextView
             android:id="@+id/send_tv"
-            android:layout_width="82dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_80dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/code_et"
             android:gravity="center"
@@ -81,14 +81,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_24dp"
         android:layout_marginRight="@dimen/_24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         android:textSize="@dimen/_14sp"
         android:textColor="@color/gray_text"/>
 
     <TextView
         android:id="@+id/confirm_tv"
         style="@style/RoundButton"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="@dimen/_35dp"
         android:layout_marginLeft="@dimen/_44dp"
         android:layout_marginRight="@dimen/_44dp"
         android:text="@string/confirm"/>

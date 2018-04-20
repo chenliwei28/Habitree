@@ -12,10 +12,10 @@
     <RelativeLayout
         android:id="@+id/head_rl"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/_100dp"
         android:background="@color/white"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+        android:paddingLeft="@dimen/_12dp"
+        android:paddingRight="@dimen/_12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,16 +28,16 @@
         <ImageView
             android:id="@+id/next_iv"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/_45dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:minWidth="6dp"
+            android:minWidth="@dimen/_6dp"
             android:src="@drawable/ic_next" />
 
         <com.habitree.xueshu.xs.view.RoundImageView
             android:id="@+id/head_riv"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/_70dp"
+            android:layout_height="@dimen/_70dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10dp"
             android:layout_marginRight="@dimen/_10dp"
@@ -50,7 +50,7 @@
         android:id="@+id/name_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/_12dp"
         app:head_img_visible="false"
         app:next_visible="true"
         app:title="@string/nickname" />

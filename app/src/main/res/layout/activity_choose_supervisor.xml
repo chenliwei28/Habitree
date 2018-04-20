@@ -10,22 +10,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
+        android:layout_height="@dimen/_40dp"
+        android:layout_margin="@dimen/_10dp"
         android:gravity="center_vertical"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
+        android:paddingLeft="@dimen/_12dp"
+        android:paddingRight="@dimen/_12dp"
         android:background="@drawable/shape_rect_round_corner_stroke_white_bg">
 
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="@dimen/_15dp"
+            android:layout_height="@dimen/_15dp"
             android:src="@drawable/ic_search"/>
 
         <EditText
             android:id="@+id/search_et"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="@dimen/_36dp"
             android:labelFor="@+id/search_et"
             android:layout_marginLeft="@dimen/_12dp"
             android:layout_marginRight="@dimen/_12dp"
@@ -49,16 +49,16 @@
 
         <com.habitree.xueshu.xs.view.SideBar
             android:id="@+id/side_bar"
-            android:layout_width="30dp"
+            android:layout_width="@dimen/_30dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_marginBottom="@dimen/_20dp"
             android:layout_gravity="end"/>
 
         <TextView
             android:id="@+id/current_tv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/_100dp"
+            android:layout_height="@dimen/_100dp"
             android:layout_gravity="center"
             android:background="@color/blue"
             android:gravity="center"

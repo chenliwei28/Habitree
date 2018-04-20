@@ -13,7 +13,7 @@
         android:id="@+id/super_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/_12dp"
         app:title="@string/choose_supervisor"
         app:next_visible="true"
         app:head_img="@drawable/ic_people"/>
@@ -22,16 +22,16 @@
         android:id="@+id/penalty_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/_12dp"
         app:title="@string/penalty_settings"
         app:next_visible="true"
         app:head_img="@drawable/ic_money"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
+        android:layout_height="@dimen/_35dp"
+        android:paddingLeft="@dimen/_12dp"
+        android:paddingRight="@dimen/_12dp"
         android:gravity="center_vertical"
         android:textColor="@color/red_text"
         android:textSize="@dimen/_14sp"
@@ -42,6 +42,6 @@
         style="@style/RectButton"
         android:layout_marginLeft="@dimen/_32dp"
         android:layout_marginRight="@dimen/_32dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/_50dp"
         android:text="@string/confirm"/>
 </LinearLayout>

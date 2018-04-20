@@ -19,17 +19,17 @@
 
             <ImageView
                 android:id="@+id/tree_iv"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="@dimen/_120dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="@dimen/_50dp"
                 android:src="@drawable/tree_mid1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/_20dp"
                 android:text="@string/create_success"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/_22sp" />
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10dp"
                 android:text="@string/change_yourself_begin_with_little_habit"
                 android:textColor="@color/black_text"
                 android:textSize="@dimen/_16sp" />
@@ -49,7 +49,7 @@
                 style="@style/RoundButton"
                 android:layout_marginLeft="@dimen/_42dp"
                 android:layout_marginRight="@dimen/_42dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/_30dp"
                 android:text="@string/confirm" />
 
             <LinearLayout
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_60dp"
                 android:layout_marginRight="@dimen/_60dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="@dimen/_70dp"
                 android:gravity="center_vertical">
 
                 <View
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_30dp"
                 android:layout_marginRight="@dimen/_30dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="@dimen/_12dp">
 
                 <LinearLayout
                     android:id="@+id/wx_ll"
@@ -93,8 +93,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
                         android:src="@drawable/s_wx" />
 
                     <TextView
@@ -113,8 +113,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
                         android:src="@drawable/s_qq" />
 
                     <TextView
@@ -133,8 +133,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
                         android:src="@drawable/s_wb" />
 
                     <TextView
@@ -148,10 +148,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="@dimen/_30dp"
                 android:layout_marginLeft="@dimen/_30dp"
                 android:layout_marginRight="@dimen/_30dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="@dimen/_12dp">
 
                 <LinearLayout
                     android:id="@+id/fc_ll"
@@ -162,8 +162,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
                         android:src="@drawable/s_fc" />
 
                     <TextView
@@ -182,8 +182,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
                         android:src="@drawable/s_qz" />
 
                     <TextView
@@ -203,8 +203,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
                         android:src="@drawable/s_wb" />
 
                     <TextView

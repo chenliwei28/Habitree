@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/_30dp"
             android:textColor="@color/white"
             android:textSize="@dimen/_30sp"
             tools:text="888.00" />
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10dp"
             android:text="@string/total_sum"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sp" />
@@ -39,10 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         android:background="@color/white"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:paddingLeft="@dimen/_15dp"
+        android:paddingRight="@dimen/_15dp">
 
         <TextView
             android:layout_width="0dp"
@@ -75,10 +75,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
         android:background="@color/white"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_5dp"
         android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:paddingLeft="@dimen/_15dp"
+        android:paddingRight="@dimen/_15dp">
 
         <TextView
             android:layout_width="0dp"

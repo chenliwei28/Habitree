@@ -4,24 +4,24 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:gravity="center"
-    android:padding="5dp">
+    android:padding="@dimen/_5dp">
 
     <RelativeLayout
-        android:layout_width="100dp"
+        android:layout_width="@dimen/_100dp"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/photo_iv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/_100dp"
+            android:layout_height="@dimen/_100dp"
             android:gravity="center"
             android:scaleType="centerCrop"
             android:src="@drawable/btn_tianjia" />
 
         <ImageView
             android:id="@+id/photo_delete"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/_20dp"
+            android:layout_height="@dimen/_20dp"
             android:gravity="center"
             android:layout_alignParentEnd="true"
             android:src="@drawable/icon_delete"

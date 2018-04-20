@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10dp"
             android:textColor="@color/white"
             android:textSize="@dimen/_30sp"
             tools:text="888" />
@@ -28,15 +28,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/_8dp"
             android:text="@string/total_sum"
             android:textColor="@color/white"
             android:textSize="@dimen/_18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="40dp"
+            android:layout_height="@dimen/_60dp"
+            android:layout_marginTop="@dimen/_40dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -121,7 +121,7 @@
         android:id="@+id/top_up_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         app:head_img="@drawable/ic_gold"
         app:next_visible="true"
         app:title="@string/top_up" />
@@ -130,7 +130,7 @@
         android:id="@+id/withdraw_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         app:head_img="@drawable/ic_money"
         app:next_visible="true"
         app:title="@string/withdraw_deposit" />
@@ -139,7 +139,7 @@
         android:id="@+id/transaction_record_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         app:head_img="@drawable/ic_pag"
         app:next_visible="true"
         app:title="@string/transaction_record" />
@@ -148,7 +148,7 @@
         android:id="@+id/payment_record_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         app:head_img="@drawable/ic_record"
         app:next_visible="true"
         app:title="@string/payment_record" />

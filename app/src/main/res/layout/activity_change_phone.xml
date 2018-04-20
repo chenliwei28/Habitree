@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/_30dp"
             android:text="@string/telephone"
             android:textColor="@color/black_text"
             android:textSize="@dimen/_22sp" />
@@ -27,7 +27,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/_30dp"
             android:text="@string/auth_code"
             android:textColor="@color/black_text"
             android:textSize="@dimen/_22sp" />
@@ -64,8 +64,8 @@
         <!-- 验证码 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/_50dp"
+            android:layout_marginTop="@dimen/_10dp"
             android:gravity="bottom"
             android:orientation="horizontal"
             android:visibility="visible">
@@ -87,11 +87,11 @@
                 android:id="@+id/send_tv"
                 style="@style/RoundButton"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:minWidth="80dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:layout_height="@dimen/_35dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:minWidth="@dimen/_80dp"
+                android:paddingLeft="@dimen/_15dp"
+                android:paddingRight="@dimen/_15dp"
                 android:text="@string/get_auth_code"
                 android:textSize="@dimen/_16sp" />
         </LinearLayout>
@@ -102,7 +102,7 @@
         <TextView
             android:id="@+id/complete_btn"
             style="@style/RoundButton"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/_50dp"
             android:text="@string/complete"
             />
     </LinearLayout>

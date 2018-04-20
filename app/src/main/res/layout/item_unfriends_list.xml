@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="@dimen/_70dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:gravity="center_vertical">
 
     <com.habitree.xueshu.xs.view.RoundImageView
         android:id="@+id/head_riv"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/_50dp"
+        android:layout_height="@dimen/_50dp"
         android:layout_marginLeft="@dimen/_15dp"
         android:layout_marginRight="@dimen/_15dp"
         app:type="circle"/>
@@ -27,8 +27,8 @@
     <TextView
         android:id="@+id/add_tv"
         style="@style/RoundButton"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/_80dp"
+        android:layout_height="@dimen/_30dp"
         android:layout_marginLeft="@dimen/_15dp"
         android:layout_marginRight="@dimen/_15dp"
         android:gravity="center"

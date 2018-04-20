@@ -13,7 +13,7 @@
         android:id="@+id/monday_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/_12dp"
         app:detail_visible="false"
         app:next_visible="false"
         app:head_img="@drawable/selector_day_check_box"

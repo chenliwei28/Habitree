@@ -11,13 +11,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_50dp"
         android:background="@color/white"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/pre_month_iv"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/_80dp"
             android:layout_height="match_parent"
             android:scaleType="center"
             android:src="@drawable/pre"/>
@@ -34,7 +34,7 @@
 
         <ImageView
             android:id="@+id/next_month_iv"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/_80dp"
             android:layout_height="match_parent"
             android:scaleType="center"
             android:src="@drawable/next"/>
@@ -65,8 +65,8 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="@dimen/_110dp"
+        android:layout_marginTop="@dimen/_10dp"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical">
@@ -82,7 +82,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10dp"
             android:textColor="@color/black_text"
             android:textSize="@dimen/_15sp"
             android:text="@string/total_number_of_punch_card"/>
@@ -92,7 +92,7 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/_40dp"
         android:background="@color/white">
 
         <LinearLayout

@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_week"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:minHeight="40dp"
+    android:layout_height="@dimen/_40dp"
+    android:minHeight="@dimen/_40dp"
     android:orientation="horizontal"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
+    android:paddingBottom="@dimen/_8dp"
+    android:paddingTop="@dimen/_8dp"
     tools:ignore="HardcodedText">
 
     <TextView

@@ -9,13 +9,13 @@
     <ImageView
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/_40dp"
         android:background="@drawable/icon_withdraw" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:text="账户余额"
         android:textColor="@color/black_text"
         android:textSize="@dimen/_16sp"/>
@@ -30,7 +30,7 @@
     <TextView
         android:id="@+id/weixin_btn"
         style="@style/RoundButton"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/_60dp"
         android:layout_marginLeft="@dimen/_30dp"
         android:layout_marginRight="@dimen/_30dp"
         android:text="提现到微信钱包"
@@ -39,9 +39,9 @@
     <TextView
         android:id="@+id/alipay_btn"
         style="@style/RoundButton"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:layout_marginLeft="@dimen/_30dp"
         android:layout_marginRight="@dimen/_30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="@dimen/_40dp"
         android:text="提现到支付宝钱包" />
 </LinearLayout>

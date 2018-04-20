@@ -13,7 +13,7 @@
         android:id="@+id/my_wallet_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         app:title="@string/my_wallet"
         app:head_img="@drawable/ic_money"
         app:next_visible="true"/>
@@ -22,7 +22,7 @@
         android:id="@+id/account_binding_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         app:title="@string/account_binding"
         app:head_img="@drawable/ic_binding"
         app:next_visible="true"/>
@@ -31,7 +31,7 @@
         android:id="@+id/about_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         app:title="@string/about_app"
         app:head_img="@drawable/ic_tree"
         app:next_visible="true"/>

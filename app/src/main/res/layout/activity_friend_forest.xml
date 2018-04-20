@@ -11,16 +11,16 @@
     <com.habitree.xueshu.xs.view.MyActionBar
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/_25dp"
         app:ma_bg_color="@color/trans"
         app:title_text="@string/his_forest" />
 
     <com.habitree.xueshu.xs.view.RoundImageView
         android:id="@+id/head_riv"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="@dimen/_70dp"
+        android:layout_height="@dimen/_70dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="@dimen/_80dp"
         android:src="@drawable/ic_default_head" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/head_riv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_5dp"
         tools:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="@dimen/_16sp" />
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="90dp"
+        android:layout_marginBottom="@dimen/_90dp"
         android:text="@string/click_tree_to_watch_detail"
         android:textColor="@color/white"
         android:textSize="@dimen/_16sp" />
@@ -53,19 +53,19 @@
         android:layout_marginRight="@dimen/_20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="@dimen/_70dp"
         tools:text="诞生于2018.01.01  今天是第36/90天  打卡率100%"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sp" />
 
     <TextView
         android:id="@+id/watch_tv"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/_120dp"
+        android:layout_height="@dimen/_30dp"
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="@dimen/_24dp"
         android:text="@string/view_details"
         android:textColor="@color/white"
         android:textSize="@dimen/_15sp"

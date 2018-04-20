@@ -7,15 +7,15 @@
 
     <ImageView
         android:id="@+id/img_iv"
-        android:layout_width="40dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/_40dp"
+        android:layout_height="@dimen/_25dp"
         android:layout_centerVertical="true"
         tools:src="@drawable/ic_phone" />
 
     <EditText
         android:id="@+id/et"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="@dimen/_35dp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/img_iv"
         android:background="@color/white"

@@ -18,10 +18,10 @@
             android:id="@+id/num_crg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="@dimen/_15dp"
             android:layout_marginLeft="@dimen/_20dp"
             android:layout_marginRight="@dimen/_20dp"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="@dimen/_15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 <RadioButton
                     android:id="@+id/one"
                     android:layout_width="0dp"
-                    android:layout_height="76dp"
+                    android:layout_height="@dimen/_75dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_time_radio_button"
                     android:button="@null"
@@ -43,7 +43,7 @@
                 <RadioButton
                     android:id="@+id/five"
                     android:layout_width="0dp"
-                    android:layout_height="76dp"
+                    android:layout_height="@dimen/_75dp"
                     android:layout_marginLeft="@dimen/_15dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_time_radio_button"
@@ -57,13 +57,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/_15dp"
                 android:gravity="center">
 
                 <RadioButton
                     android:id="@+id/ten"
                     android:layout_width="0dp"
-                    android:layout_height="76dp"
+                    android:layout_height="@dimen/_75dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_time_radio_button"
                     android:button="@null"
@@ -75,7 +75,7 @@
                 <RadioButton
                     android:id="@+id/fifteen"
                     android:layout_width="0dp"
-                    android:layout_height="76dp"
+                    android:layout_height="@dimen/_75dp"
                     android:layout_marginLeft="@dimen/_15dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_time_radio_button"
@@ -89,13 +89,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/_15dp"
                 android:gravity="center">
 
                 <RadioButton
                     android:id="@+id/twenty"
                     android:layout_width="0dp"
-                    android:layout_height="76dp"
+                    android:layout_height="@dimen/_75dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_time_radio_button"
                     android:button="@null"
@@ -107,7 +107,7 @@
                 <RadioButton
                     android:id="@+id/fifty"
                     android:layout_width="0dp"
-                    android:layout_height="76dp"
+                    android:layout_height="@dimen/_75dp"
                     android:layout_marginLeft="@dimen/_15dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_time_radio_button"
@@ -121,13 +121,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/_45dp"
             android:background="@color/white"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="@dimen/_15dp"
+                android:layout_height="@dimen/_15dp"
                 android:layout_marginLeft="@dimen/_12dp"
                 android:layout_marginRight="@dimen/_12dp"
                 android:src="@drawable/ic_money" />
@@ -168,14 +168,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_20dp"
             android:layout_marginRight="@dimen/_20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10dp"
             android:text="@string/forfeit_setting_long_text"
             android:textColor="@color/gray_text" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="@dimen/_50dp">
 
         <TextView
             android:id="@+id/num_tv"

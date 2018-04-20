@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="@dimen/_60dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_vertical"
@@ -9,12 +9,12 @@
 
     <com.habitree.xueshu.xs.view.RoundImageView
         android:id="@+id/head_riv"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
+        android:layout_width="@dimen/_42dp"
+        android:layout_height="@dimen/_42dp"
         android:layout_marginLeft="@dimen/_12dp"
         android:layout_marginRight="@dimen/_12dp"
         app:type="circle"
-        app:corner_radius="4dp"
+        app:corner_radius="@dimen/_4dp"
         android:src="@drawable/ic_launcher"/>
 
     <TextView
@@ -32,16 +32,16 @@
 
     <ImageView
         android:id="@+id/no_iv"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/_30dp"
+        android:layout_height="@dimen/_30dp"
         android:background="@drawable/shape_rect_check_blue_bg"
         android:src="@drawable/ic_no"
         android:scaleType="center"/>
 
     <ImageView
         android:id="@+id/yes_iv"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/_30dp"
+        android:layout_height="@dimen/_30dp"
         android:layout_marginLeft="@dimen/_12dp"
         android:layout_marginRight="@dimen/_12dp"
         android:background="@drawable/shape_rect_check_blue_bg"
@@ -50,8 +50,8 @@
     
     <TextView
         android:id="@+id/look_over_tv"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/_60dp"
+        android:layout_height="@dimen/_30dp"
         android:layout_marginLeft="@dimen/_12dp"
         android:layout_marginRight="@dimen/_12dp"
         android:gravity="center"

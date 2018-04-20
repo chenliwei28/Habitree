@@ -16,13 +16,13 @@
             android:id="@+id/vp_calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="41dp"/>
+            android:layout_marginTop="@dimen/_40dp"/>
 
         <com.habitree.xueshu.xs.view.calendarview.WeekViewPager
             android:id="@+id/vp_week"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="41dp"
+            android:layout_height="@dimen/_50dp"
+            android:layout_marginTop="@dimen/_40dp"
             android:visibility="gone" />
 
         <View
@@ -31,7 +31,7 @@
             android:layout_height="1px"
             android:layout_marginLeft="@dimen/_16dp"
             android:layout_marginRight="@dimen/_16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/_40dp"
             android:background="#cfcfcf"/>
 
     </FrameLayout>
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
+        android:paddingLeft="@dimen/_12dp"
+        android:paddingRight="@dimen/_12dp"
         android:visibility="gone" />
 </FrameLayout>

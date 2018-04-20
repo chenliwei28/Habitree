@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="55dp">
+    android:layout_height="@dimen/_55dp">
 
     <ImageView
         android:id="@+id/img_iv"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/_20dp"
+        android:layout_height="@dimen/_20dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/_12dp"
         tools:src="@drawable/ic_time" />
@@ -32,8 +32,8 @@
 
         <ImageView
             android:id="@+id/toggle_btn"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/_60dp"
+            android:layout_height="@dimen/_35dp"
             android:background="@drawable/toggle_off"/>
 
     </LinearLayout>

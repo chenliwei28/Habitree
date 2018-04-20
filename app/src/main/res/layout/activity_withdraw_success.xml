@@ -9,13 +9,13 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="135dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/_40dp"
         android:background="@drawable/ic_withdraw_success" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:text="申请提现成功"
         android:textColor="@color/blue"
         android:textSize="@dimen/_26sp"
@@ -31,9 +31,9 @@
     <TextView
         android:id="@+id/complete_btn"
         style="@style/RoundButton"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/_60dp"
         android:layout_marginLeft="@dimen/_30dp"
         android:layout_marginRight="@dimen/_30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="@dimen/_40dp"
         android:text="@string/complete" />
 </LinearLayout>

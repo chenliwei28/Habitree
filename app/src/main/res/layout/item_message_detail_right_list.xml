@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/time_tv"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/_40dp"
         android:gravity="center"
         android:text="2018-02-09 11:00"
         android:textColor="@color/gray_text"
@@ -17,14 +17,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="70dp"
+        android:minHeight="@dimen/_70dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp">
 
         <com.habitree.xueshu.xs.view.RoundImageView
             android:id="@+id/head_riv"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_50dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="@dimen/_12dp"
             android:layout_marginRight="@dimen/_12dp" />
@@ -33,14 +33,14 @@
             android:id="@+id/detail_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="@dimen/_85dp"
+            android:layout_marginTop="@dimen/_5dp"
             android:layout_toLeftOf="@id/head_riv"
             android:background="@drawable/shape_rect_round_corner_blue_button"
-            android:minHeight="40dp"
+            android:minHeight="@dimen/_40dp"
             android:paddingBottom="10dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
+            android:paddingLeft="@dimen/_12dp"
+            android:paddingRight="@dimen/_12dp"
             android:paddingTop="10dp"
             android:text="@string/plant_tree_long_text"
             android:textColor="@color/white" />

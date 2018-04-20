@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/umeng_socialize_share_titlebar"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="@dimen/_54dp"
         android:background="#0086DC">
 
         <TextView
@@ -23,14 +23,14 @@
 
         <RelativeLayout
             android:id="@+id/umeng_back"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/_50dp"
             android:layout_height="match_parent"
             android:onClick="onCancel"
             android:visibility="visible">
 
             <ImageButton
-                android:layout_width="12dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_12dp"
+                android:layout_height="@dimen/_20dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_15dp"
                 android:background="@drawable/umeng_socialize_back_icon"
@@ -45,8 +45,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingLeft="@dimen/_15dp"
+            android:paddingRight="@dimen/_15dp"
             android:text="分享"
             android:textColor="#ffffff"
             android:textSize="@dimen/_15sp" />
@@ -57,14 +57,14 @@
         android:layout_width="fill_parent"
         android:layout_height="180dp"
         android:layout_below="@id/umeng_socialize_share_titlebar"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="8dp"
+        android:paddingLeft="@dimen/_15dp"
+        android:paddingRight="@dimen/_15dp"
+        android:paddingTop="@dimen/_8dp"
         android:background="#ffffff"
         android:bufferType="spannable"
         android:gravity="top"
         android:hint="编辑分享内容"
-        android:lineSpacingExtra="3dp"
+        android:lineSpacingExtra="@dimen/_3dp"
         android:paddingBottom="10dp"
         android:textColor="#000000"
         android:textSize="@dimen/_15sp" />
@@ -77,7 +77,7 @@
         android:background="#ffffff"
         android:layout_below="@id/umeng_socialize_share_edittext"
         android:paddingBottom="10dp"
-        android:paddingRight="15dp"
+        android:paddingRight="@dimen/_15dp"
         android:gravity="right"
         android:singleLine="true"
         android:textColor="#98999B"
@@ -93,19 +93,19 @@
         android:background="#F2F5F6"
         android:visibility="gone">
         <RelativeLayout
-            android:layout_width="62dp"
-            android:layout_height="62dp"
+            android:layout_width="@dimen/_60dp"
+            android:layout_height="@dimen/_60dp"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="@dimen/_15dp"
             android:layout_marginLeft="@dimen/_15dp"
             android:id="@+id/umeng_image_edge"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/_15dp"
            android:background="@drawable/umeng_socialize_edit_bg"
             >
         <ImageView
             android:id="@+id/umeng_share_icon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_60dp"
+            android:layout_height="@dimen/_60dp"
            android:layout_centerInParent="true"
             android:src="#2c3035" />
         </RelativeLayout>
@@ -114,7 +114,7 @@
         android:id="@+id/umeng_web_title"
         android:layout_toRightOf="@id/umeng_image_edge"
         android:layout_marginLeft="@dimen/_40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:textColor="#575A5C"
         android:singleLine="true"
         android:textSize="@dimen/_14sp"
@@ -123,8 +123,8 @@
 
     <ImageView
         android:id="@+id/umeng_del"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/_20dp"
+        android:layout_height="@dimen/_20dp"
         android:layout_alignRight="@id/umeng_image_edge"
         android:layout_alignTop="@id/umeng_image_edge"
         android:layout_marginRight="-10dp"

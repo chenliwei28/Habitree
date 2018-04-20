@@ -13,8 +13,8 @@
         android:id="@+id/total_civ"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_item_height"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="@dimen/_12dp"
+        android:layout_marginBottom="@dimen/_20dp"
         app:title="@string/total_sum"
         app:head_img="@drawable/ic_money"
         app:detail_text="¥0"
@@ -29,15 +29,15 @@
         <LinearLayout
             android:id="@+id/balance_check_ll"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_60dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:visibility="gone"
             tools:visibility="visible">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/_40dp"
+                android:layout_height="@dimen/_40dp"
                 android:layout_marginLeft="@dimen/_12dp"
                 android:layout_marginRight="@dimen/_12dp"
                 android:src="@drawable/ic_balance" />
@@ -66,8 +66,8 @@
 
             <ImageView
                 android:id="@+id/balance_check_iv"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="@dimen/_24dp"
+                android:layout_height="@dimen/_24dp"
                 android:layout_marginLeft="@dimen/_12dp"
                 android:layout_marginRight="@dimen/_12dp"
                 android:src="@drawable/selector_pay_check_box"/>
@@ -77,15 +77,15 @@
         <LinearLayout
             android:id="@+id/wx_check_ll"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_60dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:visibility="gone"
             tools:visibility="visible">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/_40dp"
+                android:layout_height="@dimen/_40dp"
                 android:layout_marginLeft="@dimen/_12dp"
                 android:layout_marginRight="@dimen/_12dp"
                 android:src="@drawable/ic_wx_big" />
@@ -113,8 +113,8 @@
 
             <ImageView
                 android:id="@+id/wx_check_iv"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="@dimen/_24dp"
+                android:layout_height="@dimen/_24dp"
                 android:layout_marginLeft="@dimen/_12dp"
                 android:layout_marginRight="@dimen/_12dp"
                 android:src="@drawable/selector_pay_check_box"/>
@@ -125,15 +125,15 @@
         <LinearLayout
             android:id="@+id/ali_check_ll"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/_60dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:visibility="gone"
             tools:visibility="visible">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/_40dp"
+                android:layout_height="@dimen/_40dp"
                 android:layout_marginLeft="@dimen/_12dp"
                 android:layout_marginRight="@dimen/_12dp"
                 android:src="@drawable/ic_ali_big" />
@@ -161,8 +161,8 @@
 
             <ImageView
                 android:id="@+id/ali_check_iv"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="@dimen/_24dp"
+                android:layout_height="@dimen/_24dp"
                 android:layout_marginLeft="@dimen/_12dp"
                 android:layout_marginRight="@dimen/_12dp"
                 android:src="@drawable/selector_pay_check_box"/>
@@ -174,7 +174,7 @@
     <TextView
         android:id="@+id/pay_tv"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_50dp"
         android:background="@color/orange"
         android:gravity="center"
         android:textColor="@color/white"

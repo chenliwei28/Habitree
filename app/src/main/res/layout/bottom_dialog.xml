@@ -50,7 +50,7 @@
         android:text="从已有好友中邀请"
         android:textColor="@color/black"
         android:textSize="@dimen/font_larger"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/_10dp"
         android:visibility="gone"/>
 
     <TextView

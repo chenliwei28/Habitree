@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="@dimen/_55dp"
             android:includeFontPadding="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_40sp"
@@ -45,12 +45,12 @@
 
         <ImageView
             android:id="@+id/add_iv"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
             android:layout_alignParentEnd="true"
             android:layout_below="@id/padding_tv"
             android:layout_marginLeft="@dimen/_6dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/_5dp"
             android:scaleType="center"
             android:src="@drawable/icon_gd" />
 
@@ -59,12 +59,12 @@
             android:layout_width="match_parent"
             android:layout_height="380dp"
             android:layout_below="@id/month_tv"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/_50dp"
             android:clipToPadding="false"
-            android:paddingBottom="5dp"
-            android:paddingLeft="60dp"
-            android:paddingRight="60dp"
-            android:paddingTop="5dp" />
+            android:paddingBottom="@dimen/_5dp"
+            android:paddingLeft="@dimen/_60dp"
+            android:paddingRight="@dimen/_60dp"
+            android:paddingTop="@dimen/_5dp" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/empty_cv"
@@ -72,11 +72,11 @@
             android:layout_height="320dp"
             android:layout_below="@id/month_tv"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/_50dp"
             android:background="@color/white"
             android:visibility="gone"
             app:cardCornerRadius="10dp"
-            app:cardElevation="3dp">
+            app:cardElevation="@dimen/_3dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="@dimen/_40dp"
                     android:text="@string/plant_a_tree"
                     android:textColor="@color/black_text"
                     android:textSize="@dimen/_20sp" />
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_10dp"
                     android:text="@string/the_best_time_is_now"
                     android:textColor="@color/gray_text"
                     android:textSize="@dimen/_14sp" />
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="65dp"
+                    android:layout_marginTop="@dimen/_65dp"
                     android:text="@string/create_your_first_habit"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/_16sp" />
@@ -113,9 +113,9 @@
                 <TextView
                     android:id="@+id/start_tv"
                     android:layout_width="165dp"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/_50dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_10dp"
                     android:background="@drawable/shape_round_corner_blue_stroke_button"
                     android:gravity="center"
                     android:text="@string/start_it_right_now"
@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="@dimen/_30dp"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sp" />
     </RelativeLayout>
