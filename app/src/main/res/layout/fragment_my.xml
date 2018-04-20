@@ -52,13 +52,13 @@
 
         <LinearLayout
             android:id="@+id/head_ll"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/name_rl"
             android:layout_marginTop="15dp"
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp">
+            android:paddingRight="10dp">
 
             <com.habitree.xueshu.xs.view.RoundImageView
                 android:id="@+id/head_riv"
@@ -89,6 +89,34 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     tools:text="200天" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <LinearLayout
+                android:id="@+id/llMySupervise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我监督的习惯"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvSupervise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="0个" />
             </LinearLayout>
         </LinearLayout>
 

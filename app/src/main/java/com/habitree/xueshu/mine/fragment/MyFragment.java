@@ -32,6 +32,9 @@ import java.util.List;
 
 public class MyFragment extends BaseFragment implements HabitListView, View.OnClickListener ,FriendInfoView{
 
+    // 我监督的习惯
+    private LinearLayout llMySupervise;
+    private TextView tvSupervise;
     private TextView mNameTv;
     private ImageView mHabitIv, mSettingIv;
     private RoundImageView mHeadRiv;
@@ -57,6 +60,8 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
 
     @Override
     protected void initView(View view) {
+        llMySupervise = view.findViewById(R.id.llMySupervise);
+        tvSupervise = view.findViewById(R.id.tvSupervise);
         mHabitIv = view.findViewById(R.id.habit_iv);
         mSettingIv = view.findViewById(R.id.setting_iv);
         mHeadRiv = view.findViewById(R.id.head_riv);
@@ -106,6 +111,7 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
         mOngoingLl.setOnClickListener(this);
         mHeadLl.setOnClickListener(this);
         mWatchTv.setOnClickListener(this);
+        llMySupervise.setOnClickListener(this);
         for (ImageView view:mTrees){
             view.setOnClickListener(this);
         }
@@ -185,6 +191,9 @@ public class MyFragment extends BaseFragment implements HabitListView, View.OnCl
                 } else {
                     HabitDetailActivity.start(getContext(), mCurrentHabit.habit_id, true);
                 }
+                break;
+            case R.id.llMySupervise:
+                // 我监督的习惯
                 break;
             default:
                 onTreeClick(view.getId());

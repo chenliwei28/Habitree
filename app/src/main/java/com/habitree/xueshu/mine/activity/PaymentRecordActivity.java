@@ -72,8 +72,8 @@ public class PaymentRecordActivity extends BaseActionBarActivity implements MyVi
         } else {
             mAdapter.updateData(data.list);
         }
-        mIncomeTv.setText(String.format(getString(R.string.income_num), data.money_in));
-        mExpenseTv.setText(String.format(getString(R.string.expense_num), data.money_out));
+        mIncomeTv.setText(String.format(getString(R.string.income_num), String.valueOf(data.money_in)));
+        mExpenseTv.setText(String.format(getString(R.string.expense_num), String.valueOf(data.money_out)));
     }
 
     @Override

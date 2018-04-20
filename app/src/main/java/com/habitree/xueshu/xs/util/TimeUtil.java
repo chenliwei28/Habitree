@@ -98,6 +98,16 @@ public class TimeUtil {
     }
 
     /**
+     * 获取当前时间
+     * @return
+     */
+    public static long getCurrentTime(){
+        Date date = new Date();
+        return date.getTime();
+    }
+
+    /**
+     *
      * 获取相应时间的秒数
      *
      * @param time 时间，必须是HH：mm ，如21:00
@@ -115,6 +125,17 @@ public class TimeUtil {
      * @return
      */
     public static int getCurrentHour() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH");
+        String hourStr = sdf.format(new Date());
+        int hour = Integer.parseInt(hourStr);
+        return hour;
+    }
+
+    /**
+     * 获取当前小时
+     * @return
+     */
+    public static int getCurrentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH");
         String hourStr = sdf.format(new Date());
         int hour = Integer.parseInt(hourStr);

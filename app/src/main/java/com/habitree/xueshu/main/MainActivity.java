@@ -21,6 +21,7 @@ import com.habitree.xueshu.xs.util.MainHandler;
 import com.habitree.xueshu.xs.util.MessageManager;
 import com.habitree.xueshu.xs.util.UIUtil;
 import com.habitree.xueshu.xs.util.UserManager;
+import com.habitree.xueshu.xs.util.Utils;
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.EMMessageListener;
@@ -67,7 +68,11 @@ public class MainActivity extends BaseActivity {
             EMClient.getInstance().chatManager().loadAllConversations();
             EMClient.getInstance().groupManager().loadAllGroups();
         }
+        Utils.checkNoticePermission(this);
     }
+
+    private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
+    private static final String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

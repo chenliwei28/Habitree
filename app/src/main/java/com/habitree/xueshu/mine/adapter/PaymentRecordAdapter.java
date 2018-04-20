@@ -62,8 +62,7 @@ public class PaymentRecordAdapter extends BaseAdapter {
         holder.timeTv.setText(forfeit.create_time);
         holder.stateTv.setText(forfeit.title);
 
-
-        ImageUtil.loadImage(mContext,R.drawable.ic_launcher,holder.headRiv);
+        ImageUtil.loadImage(mContext,forfeit.portrait,holder.headRiv,R.drawable.ic_launcher);
         return convertView;
     }
 

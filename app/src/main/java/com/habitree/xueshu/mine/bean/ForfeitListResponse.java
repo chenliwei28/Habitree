@@ -25,22 +25,24 @@ public class ForfeitListResponse {
          */
 
         public int count;
-        public String money_in;
-        public String money_out;
+        public int money_in;
+        public int money_out;
         public List<Forfeit> list;
 
         public class Forfeit {
-            /**
-             * order_id : 15214655258869700030001
-             * status : 2
-             * type : 2
-             * amount : -183元
-             * create_time : 2018-03-19 21:18:45
-             * title : 洗衣服
-             * nickname : 啦啦啦
-             * status_str : 支付完成
-             */
 
+            /**
+             * 			"order_id": "F15241536419389800120001",
+             "status": 2,
+             "type": 2,
+             "amount": "-1.00元",
+             "create_time": "2018-04-20 00:00:41",
+             "title": "拒绝啦",
+             "nickname": "Genki2018",
+             "portrait": "http:\/\/tva3.sinaimg.cn\/crop.0.0.599.599.50\/b9ebb6abgw1eb45tkwdbaj20go0gota3.jpg",
+             "own_id": 12,
+             "status_str": "支付完成"
+             */
             public String order_id;
             public int status;
             public int type;
@@ -49,6 +51,8 @@ public class ForfeitListResponse {
             public String title;
             public String nickname;
             public String status_str;
+            public String portrait;
+            public int own_id;
         }
     }
 }
